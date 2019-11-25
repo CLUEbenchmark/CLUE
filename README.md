@@ -12,16 +12,16 @@ Language Understanding Evaluation benchmark for Chinese: datasets, baselines, pr
 
 #### 分类任务(v1版本,正式版)
 
-| 模型   | Score  | 参数    | LCQMC'  | TNEWS'  | IFYTEK'   | MNLI-m  | MNLI-mm  | XNLI     | COPA | WSC | CSL  |
+| 模型   | Score  | 参数    | LCQMC'  | TNEWS'  | IFYTEK'   | MNLI-m  | MNLI-mm  | XNLI     | COPA | WSC | -  |
 | :----:| :----: | :----: | :----: |:----: |:----: |:----: |:----: |:----: |:----: |:----: |:----: |
 | <a href="https://github.com/google-research/bert">BERT-base</a>        | - | 108M | 74.89% | 55.58%  | 60.29% | 79.39%  | 79.76% | 77.8%  | 57.40% | -  | -      |
-| <a href="https://github.com/ymcui/Chinese-BERT-wwm">BERT-wwm-ext</a>      | - | 108M  | 76.72% | 56.84%  | 59.43% | - | -| 78.7%  | 61.4%  | -  | -      |
-| <a href="https://github.com/PaddlePaddle/ERNIE">ERNIE-base</a>         | - | 108M  | 77.94% | 58.23% | 58.96% | - | - | 78.6%  | -  | -  | -      |
+| <a href="https://github.com/ymcui/Chinese-BERT-wwm">BERT-wwm-ext</a>      | - | 108M  | 76.72% | 56.84%  | 59.43% | 81.41% | 80.67% | 78.7%  | 61.4%  | -  | -      |
+| <a href="https://github.com/PaddlePaddle/ERNIE">ERNIE-base</a>         | - | 108M  | 77.94% | 58.23% | 58.96% | 79.65% | 80.70% | 78.6%  | -  | -  | -      |
 | <a href="https://github.com/brightmart/roberta_zh">RoBERTa-large</a>      | - | 334M  | 77.57% | 57.05%  | 62.55% | -  |  - | 79.9%   | - | -   | -       |
-| <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>  | - | 200M | - | - | 57.85% | -  | -   | 78.7% | -      | -   | -     |
+| <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>  | - | 200M | - | - | 57.85% | 78.15%  | 76.93%   | 78.7% | -      | -   | -     |
 | <a href="https://github.com/brightmart/albert_zh">ALBERT-xxlarge</a>      | - | 59M   | -  | - | - | - | - | - | -  | -  | -     |
-| <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a>        | - | 4M |76.57% | 53.35% | 36.18% | -   | -  | 69.5% | -  | -   | -     |
-| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>   | - | 108M  | 77.43% | 56.86% | 60.31% | - | - | 79.3%  | 63.6%  | - | -      |
+| <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a>        | - | 4M |76.57% | 53.35% | 36.18% | 72.71%   | 72.72%  | 69.5% | -  | -   | -     |
+| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>   | - | 108M  | 77.43% | 56.86% | 60.31% | 81.09 | 81.38 | 79.3%  | 63.6%  | - | -      |
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-large</a> | - | 330M | **78.02%** | **58.61%** | 62.98% | 83.4% | 83.42% | **80.0%** | 59.40% | - | - |
 
 
@@ -636,7 +636,7 @@ Danny Lan，CMU博士、google AI 研究员，SOTA语言理解模型AlBERT第一
 
 谢恩宁，大搜车，围绕汽车领域语对话机器人，负责NLU部分。
 
-李露，来自华中师范大学计算机学院，曾参与某项目筹备中文自然语言推理的数据集；暑期在平安科技实习，主要负责利用自然语言处理最新模型进行序列标注和情感分类任务。
+李露，来自华中师范大学计算机学院，曾参与筹备中文自然语言推理的数据集；暑期在平安科技实习，主要负责利用自然语言处理最新模型进行序列标注和情感分类任务。
 
 董倩倩，来自中科院自动化所，phd在读，主要研究语音翻译，曾参与多个中文NLP项目。
 
