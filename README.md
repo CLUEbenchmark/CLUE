@@ -59,7 +59,7 @@ Score是通过计算1-9数据集得分平均值获得；
 | <a href="https://github.com/PaddlePaddle/ERNIE">ERNIE-base</a>         | 84\.63 | 108M  | 89\.83 | 87\.2  | 78\.6  | ***85\.14*** | 84\.47 | 95\.17  | 94\.9    | 61\.75      |
 | <a href="https://github.com/brightmart/roberta_zh">RoBERTa-large</a>      | 85\.08 | 334M  | 89\.91 | 87\.2  | 79\.9  | 84     | 85\.2  | ***96\.07***  | 94\.56   | 63\.8       |
 | <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>          | 81\.07 | 209M  | 86\.26 | 85\.98 | 78\.7  | 84     | 77\.85 | \-      | 94\.54   | 60\.16      |
-| <a href="https://github.com/brightmart/albert_zh">ALBERT-xlarge</a>      | 84\.08 | 59M   | 88\.3  | 86\.76 | 74\.0? | 82\.4  | 84\.21 | 89\.51  | 95\.45   | 61\.94      |
+| <a href="https://github.com/brightmart/albert_zh">ALBERT-xlarge</a>      | 84\.08 | 59M   | 88\.3  | 86\.76 | 78\.7 | 82\.4  | 84\.21 | 89\.51  | 95\.45   | 61\.94      |
 | <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a>        | 78\.22 | 1\.8M | 87\.1  | 85\.4  | 68     | 81\.4  | 80\.76 | 84\.77  | 93\.54   | 44\.83      |
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>   | 84\.55 | 108M  | 89\.79 | 86\.33 | 79\.28 | 82\.28 | 84\.02 | 95\.06  | 95\.52   | 64\.18      |
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-large</a> | ***85\.13*** | 330M  | ***90\.11*** | 86\.82 | ***80\.04*** | 82\.78 | 84\.9  | 95\.32  | ***95\.93***   | ***65\.19***      |
@@ -356,7 +356,7 @@ https://arxiv.org/abs/1906.01265
 
 | 模型 | 开发集（dev) | 测试集（test) | 训练参数 |
 | :----:| :----: | :----: | :----: |
-| ALBERT-xlarge | 74.0? | 74.0? |batch_size=64, length=128, epoch=2 |
+| ALBERT-xlarge | 79.6 | 78.7 |batch_size=64, length=128, epoch=2 |
 | BERT-base | 77.80 | 77.80 | batch_size=64, length=128, epoch=2 |
 | BERT-wwm-ext-base | 79.4 | 78.7 | batch_size=64, length=128, epoch=2 |
 | ERNIE-base  | 79.7  |78.6 | batch_size=64, length=128, epoch=2 |
