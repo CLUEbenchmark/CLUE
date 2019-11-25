@@ -21,7 +21,7 @@ Language Understanding Evaluation benchmark for Chinese: datasets, baselines, pr
 | <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>  | - | 200M | - | - | 57.85% | 78.15%  | 76.93%   | 78.7% | -      | -   | -     |
 | <a href="https://github.com/brightmart/albert_zh">ALBERT-xxlarge</a>      | - | 59M   | -  | - | - | - | - | - | -  | -  | -     |
 | <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a>        | - | 4M |76.57% | 53.35% | 36.18% | 72.71% | 72.72%  | 69.5% | -  | -   | -     |
-| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>   | - | 108M  | 77.43% | 56.86% | 60.31% | 81.09 | 81.38 | 79.3%  | 63.6%  | - | -      |
+| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>   | - | 108M  | 77.43% | 56.86% | 60.31% | 81.09% | 81.38% | 79.3%  | 63.6%  | - | -      |
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-large</a> | - | 330M | **78.02%** | **58.61%** | 62.98% | **83.4%** | **83.42%** | **80.0%** | 59.40% | - | - |
 
 
