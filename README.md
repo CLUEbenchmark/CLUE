@@ -7,7 +7,7 @@ Language Understanding Evaluation benchmark for Chinese: datasets, baselines, pr
 
 中文任务基准测评(ChineseGLUE)-排行榜 Leaderboard
 ---------------------------------------------------------------------
-#####  排行榜会定期更新                     数据来源: https://github.com/chineseGLUE/chineseGLUE
+#####  排行榜会定期更新                     数据来源: https://github.com/CLUEbenchmark/CLUE
 
 
 #### 分类任务(v1版本,正式版)
