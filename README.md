@@ -37,13 +37,13 @@ Score是通过计算1-9数据集得分平均值获得；
 | :----:| :----: | :----: | :----: |:----: |:----: |
 | <a href="https://github.com/google-research/bert">BERT-base</a>	| 79.08 | 108M | 85.49 	| 69.72 | 82.04 |
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">BERT-wwm-ext</a> | - | 108M | 87.15 | 73.23 | - |
-| <a href="https://github.com/PaddlePaddle/ERNIE">ERNIE-base</a>	| - | 108M | 86.03 | 73.32 | - |
+| <a href="https://github.com/PaddlePaddle/ERNIE">ERNIE-base</a>	| 80.54 | 108M | 86.03 | 73.32 | 82.28 |
 | <a href="https://github.com/brightmart/roberta_zh">RoBERTa-large</a> | 83.32 | 334M 	| 89.35 | 76.11 | 84.5 |
 | <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>	| - | 209M | 83.28 | 66.51  | - |
 | <a href="https://github.com/brightmart/albert_zh">ALBERT-xlarge</a> | - | 59M | 89.78 | 75.22 | - |
 | <a href="https://github.com/brightmart/albert_zh">ALBERT-xxlarge</a> | - | - | - | - | - |
-| <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a> | - | 1.8M | 70.08 | 53.68 | - |
+| <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a> | 55.73 | 1.8M | 70.08 | 53.68 | 43.53 |
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>  | 81.88 | 108M  | 88.12 | 73.89 | 83.62 |
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-large</a> | ***84.22*** | 330M |	***90.70*** |	***76.58*** | ***85.37*** |
 
-注：阅读理解上述指标中F1和EM共存
+注：阅读理解上述指标中F1和EM共存的情况下，取EM为最终指标
