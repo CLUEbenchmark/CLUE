@@ -14,9 +14,9 @@ python run_multichoice_mrc.py \
   --learning_rate=2e-5 \
   --warmup_proportion=0.06 \
   --max_seq_length=64 \
-  --vocab_file=BERT_DIR/vocab.txt \
-  --bert_config_file=BERT_DIR/bert_config.json \
-  --init_checkpoint=BERT_DIR/pytorch_model.pth \
+  --vocab_file=$BERT_DIR/vocab.txt \
+  --bert_config_file=$BERT_DIR/bert_config.json \
+  --init_checkpoint=$BERT_DIR/pytorch_model.pth \
   --model_name=$MODEL_NAME \
   --input_dir=$GLUE_DIR/$TASK_NAME/ \
   --output_dir=$GLUE_DIR/$TASK_NAME/ \
