@@ -37,6 +37,8 @@
     
     如果您想在其他模型上执行其他的任务，只需要在对应模型的目录下找到对应任务的执行脚本（ run_classifier_**??**.sh ），即可直接运行。
     
+    注: 在pytorch中阅读理解(MRC)的baseline中，所有模型的(包括bert,roberta,albert但是不包含xlnet)baseline是整合的。请通过调整MODEL_NAME和BERT_DIR来调整使用不同的模型，注意MODEL_NAME如果包含"albert"则会构建albert模型。
+    
 2. 测试效果
 
     1. TNEWS 文本分类 (Accuracy)
