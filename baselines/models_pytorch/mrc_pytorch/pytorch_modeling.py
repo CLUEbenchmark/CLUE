@@ -248,6 +248,7 @@ try:
 except ImportError:
     print("Better speed can be achieved with apex installed from https://www.github.com/nvidia/apex.")
 
+
     class BertLayerNorm(nn.Module):
         def __init__(self, hidden_size, eps=1e-5):
             """Construct a layernorm module in the TF style (epsilon inside the square root).
@@ -272,7 +273,7 @@ class BertEmbeddings(nn.Module):
         super(BertEmbeddings, self).__init__()
         self.word_embeddings = nn.Embedding(config.vocab_size, config.hidden_size, padding_idx=0)
         # TODO:ROBERTA暂时存在一些问题，必须512才能加载一些模型，但是部分模型却不是用512长度训练的，要注意
-        self.position_embeddings = nn.Embedding(512, config.hidden_size)
+        self.position_embeddings = nn.Embedding(config.max_position_embeddings, config.hidden_size)
         self.token_type_embeddings = nn.Embedding(config.type_vocab_size, config.hidden_size)
 
         # self.LayerNorm is not snake-cased to stick with TensorFlow model variable name and be able to load
@@ -1203,3 +1204,31 @@ class ALBertForQA_CLS(PreTrainedBertModel):
             return total_loss
         else:
             return start_logits, end_logits, target_logits
+
+
+class ALBertForMultipleChoice(PreTrainedBertModel):
+
+    def __init__(self, config, num_choices=2):
+        super(ALBertForMultipleChoice, self).__init__(config)
+        self.num_choices = num_choices
+        self.bert = ALBertModel(config)
+        self.dropout = nn.Dropout(config.hidden_dropout_prob)
+        self.classifier = nn.Linear(config.hidden_size, 1)
+        self.apply(self.init_bert_weights)
+
+    def forward(self, input_ids, token_type_ids=None, attention_mask=None, labels=None):
+        flat_input_ids = input_ids.view(-1, input_ids.size(-1))
+        flat_token_type_ids = token_type_ids.view(-1, token_type_ids.size(-1))
+        flat_attention_mask = attention_mask.view(-1, attention_mask.size(-1))
+        _, pooled_output = self.bert(flat_input_ids, flat_token_type_ids, flat_attention_mask,
+                                     output_all_encoded_layers=False)
+        pooled_output = self.dropout(pooled_output)
+        logits = self.classifier(pooled_output)
+        reshaped_logits = logits.view(-1, self.num_choices)
+
+        if labels is not None:
+            loss_fct = CrossEntropyLoss()
+            loss = loss_fct(reshaped_logits, labels)
+            return loss
+        else:
+            return reshaped_logits

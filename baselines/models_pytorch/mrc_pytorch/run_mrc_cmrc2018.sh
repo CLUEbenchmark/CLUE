@@ -17,7 +17,7 @@ python run_mrc.py \
   --task_name=$TASK_NAME \
   --vocab_file=BERT_DIR/vocab.txt \
   --bert_config_file=BERT_DIR/bert_config.json \
-  --init_checkpoint=BERT_DIR/pytorch_model.pth \
+  --init_restore_dir=BERT_DIR/pytorch_model.pth \
   --train_dir=$GLUE_DIR/$TASK_NAME/train_features.json \
   --train_file=$GLUE_DIR/$TASK_NAME/cmrc2018_train.json \
   --dev_dir1=$GLUE_DIR/$TASK_NAME/dev_examples.json \
