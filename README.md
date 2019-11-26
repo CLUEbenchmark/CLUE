@@ -48,24 +48,6 @@ Score是通过计算1-9数据集得分平均值获得；
 
 注：阅读理解上述指标中F1和EM共存的情况下，取EM为最终指标
 
-注：阅读理解上述指标中F1和EM共存的情况下，取EM为最终指标
-
-
-#### 分类任务(vO版本，初版)
-
-| 模型   | Score  | 参数    | TNEWS  | LCQMC  | XNLI   | INEWS  | BQ     | MSRANER | THUCNEWS | iFLYTEKData |
-| :----:| :----: | :----: | :----: |:----: |:----: |:----: |:----: |:----: |:----: |:----: |
-| <a href="https://github.com/google-research/bert">BERT-base</a>        | 84\.57 | 108M  | 89\.78 | 86\.9  | 77\.8  | 82\.7  | 85\.08 | 95\.38  | 95\.35   | 63\.57      |
-| <a href="https://github.com/ymcui/Chinese-BERT-wwm">BERT-wwm-ext</a>      | 84\.89 | 108M  | 89\.81 | ***87\.3***  | 78\.7  | 83\.46 | ***85\.21*** | 95\.26  | 95\.57   | 63\.83      |
-| <a href="https://github.com/PaddlePaddle/ERNIE">ERNIE-base</a>         | 84\.63 | 108M  | 89\.83 | 87\.2  | 78\.6  | ***85\.14*** | 84\.47 | 95\.17  | 94\.9    | 61\.75      |
-| <a href="https://github.com/brightmart/roberta_zh">RoBERTa-large</a>      | 85\.08 | 334M  | 89\.91 | 87\.2  | 79\.9  | 84     | 85\.2  | ***96\.07***  | 94\.56   | 63\.8       |
-| <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>          | 81\.07 | 209M  | 86\.26 | 85\.98 | 78\.7  | 84     | 77\.85 | \-      | 94\.54   | 60\.16      |
-| <a href="https://github.com/brightmart/albert_zh">ALBERT-xlarge</a>      | 84\.08 | 59M   | 88\.3  | 86\.76 | 78\.7 | 82\.4  | 84\.21 | 89\.51  | 95\.45   | 61\.94      |
-| <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a>        | 78\.22 | 1\.8M | 87\.1  | 85\.4  | 68     | 81\.4  | 80\.76 | 84\.77  | 93\.54   | 44\.83      |
-| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>   | 84\.55 | 108M  | 89\.79 | 86\.33 | 79\.28 | 82\.28 | 84\.02 | 95\.06  | 95\.52   | 64\.18      |
-| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-large</a> | ***85\.13*** | 330M  | ***90\.11*** | 86\.82 | ***80\.04*** | 82\.78 | 84\.9  | 95\.32  | ***95\.93***   | ***65\.19***      |
-
-
 ChineseGLUE的定位 Vision
 ---------------------------------------------------------------------
 为更好的服务中文语言理解、任务和产业界，做为通用语言模型测评的补充，通过完善中文语言理解基础设施的方式来促进中文语言模型的发展
