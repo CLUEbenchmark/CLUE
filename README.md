@@ -11,7 +11,7 @@ Language Understanding Evaluation benchmark for Chinese: datasets, baselines, pr
 
 #### 分类任务(v1版本,正式版)
 
-| 模型   | Score  | 参数    | LCQMC'  | TNEWS'  | IFYTEK'   | MNLI-m  | MNLI-mm  | XNLI     | COPA | WSC | CSL  |
+| 模型   | Score  | 参数    | LCQMC'  | TNEWS'  | IFYTEK'   | CMNLI-m  | CMNLI-mm  | XNLI     | COPA | WSC | CSL  |
 | :----:| :----: | :----: | :----: |:----: |:----: |:----: |:----: |:----: |:----: |:----: |:----: |
 | <a href="https://github.com/google-research/bert">BERT-base</a>        | - | 108M | 74.89% | 55.58%  | 60.29% | 79.39%  | 79.76% | 77.8%  | 57.40% | -  | -      |
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">BERT-wwm-ext</a>      | - | 108M  | 76.72% | 56.84%  | 59.43% | 81.41% | 80.67% | 78.7%  | 61.4%  | -  | -      |
@@ -24,7 +24,7 @@ Language Understanding Evaluation benchmark for Chinese: datasets, baselines, pr
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-large</a> | - | 330M | **78.02%** | **58.61%** | 62.98% | **83.4%** | **83.42%** | **80.0%** | 59.40% | - | - |
 
 
-注：' 代表对原数据集筛选后获得，数据集与原数据集不同；TNEWS:文本分类(Acc)；LCQMC:语义相似度(Acc)；XNLI/MNLI:自然语言推理(Acc),MNLI-m:MNLI-matched，MNLI-mm:MNLI-mismatched；
+注：' 代表对原数据集筛选后获得，数据集与原数据集不同；TNEWS:文本分类(Acc)；LCQMC:语义相似度(Acc)；XNLI/MNLI:自然语言推理(Acc),CMNLI-m:chinese-MNLI-matched，CMNLI-mm:chinese-MNLI-mismatched；
 
 DRCD & CMRC2018:抽取式阅读理解(F1, EM)；CHID:成语多分类阅读理解(Acc)；BQ:智能客服问句匹配(Acc)；MSRANER:命名实体识别(F1)；iFLYTEK:长文本分类(Acc)；
 
