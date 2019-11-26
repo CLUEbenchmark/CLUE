@@ -645,46 +645,95 @@ class MnliMatchedProcessor(GLUEProcessor):
         return ["contradiction", "entailment", "neutral"]
 
 
+# class XnliProcessor(DataProcessor):
+#     """Processor for the XNLI data set."""
+#
+#     def __init__(self):
+#         self.language = "zh"
+#
+#     def get_train_examples(self, data_dir):
+#         """See base class."""
+#         lines = self._read_tsv(
+#             os.path.join(data_dir, "train.tsv"))
+#         examples = []
+#         for (i, line) in enumerate(lines):
+#             if i == 0:
+#                 continue
+#             guid = "train-%d" % (i)
+#             text_a = line[0]
+#             text_b = line[1]
+#             label = line[2]
+#             if label == "contradictory":
+#                 label = "contradiction"
+#             examples.append(
+#                 InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
+#         return examples
+#
+#     def get_devtest_examples(self, data_dir, set_type="dev"):
+#         """See base class."""
+#         lines = self._read_tsv(os.path.join(data_dir, set_type+".tsv"))
+#         examples = []
+#         for (i, line) in enumerate(lines):
+#             if i == 0:
+#                 continue
+#             guid = "dev-%d" % (i)
+#             language = line[0]
+#             if language != self.language:
+#                 continue
+#             text_a = line[6]
+#             text_b = line[7]
+#             label = line[1]
+#             examples.append(
+#                 InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
+#         return examples
+#
+#     def get_labels(self):
+#         """See base class."""
+#         return ["contradiction", "entailment", "neutral"]
+
+
 class XnliProcessor(DataProcessor):
     """Processor for the XNLI data set."""
 
-    def __init__(self):
-        self.language = "zh"
-
     def get_train_examples(self, data_dir):
         """See base class."""
-        lines = self._read_tsv(
-            os.path.join(data_dir, "train.tsv"))
         examples = []
-        for (i, line) in enumerate(lines):
-            if i == 0:
-                continue
-            guid = "train-%d" % (i)
-            text_a = line[0]
-            text_b = line[1]
-            label = line[2]
-            if label == "contradictory":
-                label = "contradiction"
-            examples.append(
-                InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
+        with open(os.path.join(data_dir, "train.json"), 'r', encoding='utf-8') as file:
+            for (i, line) in enumerate(file.readlines()):
+                guid = "train-%d" % (i)
+                line = json.loads(line.strip())
+                text_a = line['premise']
+                text_b = line['hypo']
+                label = line['label']
+                examples.append(
+                    InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
         return examples
 
-    def get_devtest_examples(self, data_dir, set_type="dev"):
+    def get_dev_examples(self, data_dir):
         """See base class."""
-        lines = self._read_tsv(os.path.join(data_dir, set_type+".tsv"))
         examples = []
-        for (i, line) in enumerate(lines):
-            if i == 0:
-                continue
-            guid = "dev-%d" % (i)
-            language = line[0]
-            if language != self.language:
-                continue
-            text_a = line[6]
-            text_b = line[7]
-            label = line[1]
-            examples.append(
-                InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
+        with open(os.path.join(data_dir, "dev.json"), 'r', encoding='utf-8') as file:
+            for (i, line) in enumerate(file.readlines()):
+                guid = "dev-%d" % (i)
+                line = json.loads(line.strip())
+                text_a = line['premise']
+                text_b = line['hypo']
+                label = line['label']
+                examples.append(
+                    InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
+        return examples
+
+    def get_test_examples(self, data_dir):
+        """See base class."""
+        examples = []
+        with open(os.path.join(data_dir, "test.json"), 'r', encoding='utf-8') as file:
+            for (i, line) in enumerate(file.readlines()):
+                guid = "test-%d" % (i)
+                line = json.loads(line.strip())
+                text_a = line['premise']
+                text_b = line['hypo']
+                examples.append(
+                    InputExample(guid=guid, text_a=text_a, text_b=text_b))
         return examples
 
     def get_labels(self):
@@ -1221,82 +1270,82 @@ def main(_):
         for key, val in sorted(eval_results[0].items(), key=lambda x: x[0]):
             log_str += "{} {} | ".format(key, val)
         tf.logging.info(log_str)
-### evalation testset
-#####################################################################################
-        eval_examples = processor.get_test_examples(FLAGS.data_dir)
-        tf.logging.info("Num of eval samples: {}".format(len(eval_examples)))
-        while len(eval_examples) % FLAGS.eval_batch_size != 0:
-            eval_examples.append(PaddingInputExample())
-
-        eval_file_base = "{}.len-{}.{}.test.tf_record".format(
-            spm_basename, FLAGS.max_seq_length, FLAGS.eval_split)
-        eval_file = os.path.join(FLAGS.output_dir, eval_file_base)
-        if task_name == "inews":
-            file_based_convert_examples_to_features_for_inews(
-            eval_examples, label_list, FLAGS.max_seq_length, tokenize_fn,
-            eval_file)
-        else:
-            file_based_convert_examples_to_features(
-            eval_examples, label_list, FLAGS.max_seq_length, tokenize_fn,
-            eval_file)
-
-        assert len(eval_examples) % FLAGS.eval_batch_size == 0
-        eval_steps = int(len(eval_examples) // FLAGS.eval_batch_size)
-
-        eval_input_fn = file_based_input_fn_builder(
-            input_file=eval_file,
-            seq_length=FLAGS.max_seq_length,
-            is_training=False,
-            drop_remainder=True)
-
-        # Filter out all checkpoints in the directory
-        steps_and_files = []
-        filenames = tf.gfile.ListDirectory(FLAGS.model_dir)
-
-        for filename in filenames:
-            if filename.endswith(".index"):
-                ckpt_name = filename[:-6]
-                cur_filename = join(FLAGS.model_dir, ckpt_name)
-                global_step = int(cur_filename.split("-")[-1])
-                tf.logging.info("Add {} to eval list.".format(cur_filename))
-                steps_and_files.append([global_step, cur_filename])
-        steps_and_files = sorted(steps_and_files, key=lambda x: x[0])
-
-        # Decide whether to evaluate all ckpts
-        if not FLAGS.eval_all_ckpt:
-            steps_and_files = steps_and_files[-1:]
-
-        eval_results = []
-        output_eval_file = os.path.join(FLAGS.data_dir, "test_results_bert.txt")
-        print("output_eval_file:", output_eval_file)
-        tf.logging.info("output_eval_file:" + output_eval_file)
-        with tf.gfile.GFile(output_eval_file, "w") as writer:
-          for global_step, filename in sorted(steps_and_files, key=lambda x: x[0]):
-            ret = estimator.evaluate(
-                input_fn=eval_input_fn,
-                steps=eval_steps,
-                checkpoint_path=filename)
-
-            ret["step"] = global_step
-            ret["path"] = filename
-
-            eval_results.append(ret)
-
-            tf.logging.info("=" * 80)
-            log_str = "Eval result | "
-            for key, val in sorted(ret.items(), key=lambda x: x[0]):
-                log_str += "{} {} | ".format(key, val)
-                writer.write("%s = %s\n" % (key, val))
-            tf.logging.info(log_str)
-
-        key_name = "eval_pearsonr" if FLAGS.is_regression else "eval_accuracy"
-        eval_results.sort(key=lambda x: x[key_name], reverse=True)
-
-        tf.logging.info("=" * 80)
-        log_str = "Best result | "
-        for key, val in sorted(eval_results[0].items(), key=lambda x: x[0]):
-            log_str += "{} {} | ".format(key, val)
-        tf.logging.info(log_str)
+# ### evalation testset
+# #####################################################################################
+#         eval_examples = processor.get_test_examples(FLAGS.data_dir)
+#         tf.logging.info("Num of eval samples: {}".format(len(eval_examples)))
+#         while len(eval_examples) % FLAGS.eval_batch_size != 0:
+#             eval_examples.append(PaddingInputExample())
+#
+#         eval_file_base = "{}.len-{}.{}.test.tf_record".format(
+#             spm_basename, FLAGS.max_seq_length, FLAGS.eval_split)
+#         eval_file = os.path.join(FLAGS.output_dir, eval_file_base)
+#         if task_name == "inews":
+#             file_based_convert_examples_to_features_for_inews(
+#             eval_examples, label_list, FLAGS.max_seq_length, tokenize_fn,
+#             eval_file)
+#         else:
+#             file_based_convert_examples_to_features(
+#             eval_examples, label_list, FLAGS.max_seq_length, tokenize_fn,
+#             eval_file)
+#
+#         assert len(eval_examples) % FLAGS.eval_batch_size == 0
+#         eval_steps = int(len(eval_examples) // FLAGS.eval_batch_size)
+#
+#         eval_input_fn = file_based_input_fn_builder(
+#             input_file=eval_file,
+#             seq_length=FLAGS.max_seq_length,
+#             is_training=False,
+#             drop_remainder=True)
+#
+#         # Filter out all checkpoints in the directory
+#         steps_and_files = []
+#         filenames = tf.gfile.ListDirectory(FLAGS.model_dir)
+#
+#         for filename in filenames:
+#             if filename.endswith(".index"):
+#                 ckpt_name = filename[:-6]
+#                 cur_filename = join(FLAGS.model_dir, ckpt_name)
+#                 global_step = int(cur_filename.split("-")[-1])
+#                 tf.logging.info("Add {} to eval list.".format(cur_filename))
+#                 steps_and_files.append([global_step, cur_filename])
+#         steps_and_files = sorted(steps_and_files, key=lambda x: x[0])
+#
+#         # Decide whether to evaluate all ckpts
+#         if not FLAGS.eval_all_ckpt:
+#             steps_and_files = steps_and_files[-1:]
+#
+#         eval_results = []
+#         output_eval_file = os.path.join(FLAGS.data_dir, "test_results_bert.txt")
+#         print("output_eval_file:", output_eval_file)
+#         tf.logging.info("output_eval_file:" + output_eval_file)
+#         with tf.gfile.GFile(output_eval_file, "w") as writer:
+#           for global_step, filename in sorted(steps_and_files, key=lambda x: x[0]):
+#             ret = estimator.evaluate(
+#                 input_fn=eval_input_fn,
+#                 steps=eval_steps,
+#                 checkpoint_path=filename)
+#
+#             ret["step"] = global_step
+#             ret["path"] = filename
+#
+#             eval_results.append(ret)
+#
+#             tf.logging.info("=" * 80)
+#             log_str = "Eval result | "
+#             for key, val in sorted(ret.items(), key=lambda x: x[0]):
+#                 log_str += "{} {} | ".format(key, val)
+#                 writer.write("%s = %s\n" % (key, val))
+#             tf.logging.info(log_str)
+#
+#         key_name = "eval_pearsonr" if FLAGS.is_regression else "eval_accuracy"
+#         eval_results.sort(key=lambda x: x[key_name], reverse=True)
+#
+#         tf.logging.info("=" * 80)
+#         log_str = "Best result | "
+#         for key, val in sorted(eval_results[0].items(), key=lambda x: x[0]):
+#             log_str += "{} {} | ".format(key, val)
+#         tf.logging.info(log_str)
 
     if FLAGS.do_predict:
         eval_examples = processor.get_test_examples(FLAGS.data_dir)

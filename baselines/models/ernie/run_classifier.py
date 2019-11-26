@@ -26,6 +26,7 @@ from __future__ import print_function
 import collections
 import csv
 import os
+import json
 import modeling
 import optimization
 import tokenization
@@ -335,6 +336,54 @@ class InewsProcessor(DataProcessor):
       examples.append(
           InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
     return examples
+
+class XnliProcessor(DataProcessor):
+    """Processor for the XNLI data set."""
+
+    def get_train_examples(self, data_dir):
+        """See base class."""
+        examples = []
+        with open(os.path.join(data_dir, "train.json"), 'r', encoding='utf-8') as file:
+            for (i, line) in enumerate(file.readlines()):
+                guid = "train-%d" % (i)
+                line = json.loads(line.strip())
+                text_a = tokenization.convert_to_unicode(line['premise'])
+                text_b = tokenization.convert_to_unicode(line['hypo'])
+                label = tokenization.convert_to_unicode(line['label'])
+                examples.append(
+                    InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
+        return examples
+
+    def get_dev_examples(self, data_dir):
+        """See base class."""
+        examples = []
+        with open(os.path.join(data_dir, "dev.json"), 'r', encoding='utf-8') as file:
+            for (i, line) in enumerate(file.readlines()):
+                guid = "dev-%d" % (i)
+                line = json.loads(line.strip())
+                text_a = tokenization.convert_to_unicode(line['premise'])
+                text_b = tokenization.convert_to_unicode(line['hypo'])
+                label = tokenization.convert_to_unicode(line['label'])
+                examples.append(
+                    InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
+        return examples
+
+    def get_test_examples(self, data_dir):
+        """See base class."""
+        examples = []
+        with open(os.path.join(data_dir, "test.json"), 'r', encoding='utf-8') as file:
+            for (i, line) in enumerate(file.readlines()):
+                guid = "test-%d" % (i)
+                line = json.loads(line.strip())
+                text_a = tokenization.convert_to_unicode(line['premise'])
+                text_b = tokenization.convert_to_unicode(line['hypo'])
+                examples.append(
+                    InputExample(guid=guid, text_a=text_a, text_b=text_b))
+        return examples
+
+    def get_labels(self):
+        """See base class."""
+        return ["contradiction", "entailment", "neutral"]
 
 def convert_single_example_for_inews(ex_index, tokens_a, tokens_b, label_map, max_seq_length,
                            tokenizer, example):
@@ -1445,67 +1494,67 @@ def main(_):
         #    writer.write("%s = %s\n" % (key, str(result[key])))
 
         ## test dataset
-        eval_examples = processor.get_test_examples(FLAGS.data_dir)
-        num_actual_eval_examples = len(eval_examples)
-        if FLAGS.use_tpu:
-            # TPU requires a fixed batch size for all batches, therefore the number
-            # of examples must be a multiple of the batch size, or else examples
-            # will get dropped. So we pad with fake examples which are ignored
-            # later on. These do NOT count towards the metric (all tf.metrics
-            # support a per-instance weight, and these get a weight of 0.0).
-            while len(eval_examples) % FLAGS.eval_batch_size != 0:
-                eval_examples.append(PaddingInputExample())
-
-        eval_file = os.path.join(FLAGS.output_dir, "test.tf_record")
-        file_based_convert_examples_to_features(
-            eval_examples, label_list, FLAGS.max_seq_length, tokenizer, eval_file)
-
-        tf.logging.info("***** Running evaluation *****")
-        tf.logging.info("  Num examples = %d (%d actual, %d padding)",
-                        len(eval_examples), num_actual_eval_examples,
-                        len(eval_examples) - num_actual_eval_examples)
-        tf.logging.info("  Batch size = %d", FLAGS.eval_batch_size)
-
-        # This tells the estimator to run through the entire set.
-        eval_steps = None
-        # However, if running eval on the TPU, you will need to specify the
-        # number of steps.
-        if FLAGS.use_tpu:
-            assert len(eval_examples) % FLAGS.eval_batch_size == 0
-            eval_steps = int(len(eval_examples) // FLAGS.eval_batch_size)
-
-        eval_drop_remainder = True if FLAGS.use_tpu else False
-        eval_input_fn = file_based_input_fn_builder(
-            input_file=eval_file,
-            seq_length=FLAGS.max_seq_length,
-            is_training=False,
-            drop_remainder=eval_drop_remainder)
-
-        #######################################################################################################################
-        # evaluate all checkpoints; you can use the checkpoint with the best dev accuarcy
-        steps_and_files = []
-        filenames = tf.gfile.ListDirectory(FLAGS.output_dir)
-        for filename in filenames:
-            if filename.endswith(".index"):
-                ckpt_name = filename[:-6]
-                cur_filename = os.path.join(FLAGS.output_dir, ckpt_name)
-                global_step = int(cur_filename.split("-")[-1])
-                tf.logging.info("Add {} to eval list.".format(cur_filename))
-                steps_and_files.append([global_step, cur_filename])
-        steps_and_files = sorted(steps_and_files, key=lambda x: x[0])
-
-        output_eval_file = os.path.join(FLAGS.data_dir, "test_results_ernie.txt")
-        print("output_eval_file:", output_eval_file)
-        tf.logging.info("output_eval_file:" + output_eval_file)
-        with tf.gfile.GFile(output_eval_file, "w") as writer:
-            for global_step, filename in sorted(steps_and_files, key=lambda x: x[0]):
-                result = estimator.evaluate(input_fn=eval_input_fn, steps=eval_steps, checkpoint_path=filename)
-
-                tf.logging.info("***** Eval results %s *****" % (filename))
-                writer.write("***** Eval results %s *****\n" % (filename))
-                for key in sorted(result.keys()):
-                    tf.logging.info("  %s = %s", key, str(result[key]))
-                    writer.write("%s = %s\n" % (key, str(result[key])))
+        # eval_examples = processor.get_test_examples(FLAGS.data_dir)
+        # num_actual_eval_examples = len(eval_examples)
+        # if FLAGS.use_tpu:
+        #     # TPU requires a fixed batch size for all batches, therefore the number
+        #     # of examples must be a multiple of the batch size, or else examples
+        #     # will get dropped. So we pad with fake examples which are ignored
+        #     # later on. These do NOT count towards the metric (all tf.metrics
+        #     # support a per-instance weight, and these get a weight of 0.0).
+        #     while len(eval_examples) % FLAGS.eval_batch_size != 0:
+        #         eval_examples.append(PaddingInputExample())
+        #
+        # eval_file = os.path.join(FLAGS.output_dir, "test.tf_record")
+        # file_based_convert_examples_to_features(
+        #     eval_examples, label_list, FLAGS.max_seq_length, tokenizer, eval_file)
+        #
+        # tf.logging.info("***** Running evaluation *****")
+        # tf.logging.info("  Num examples = %d (%d actual, %d padding)",
+        #                 len(eval_examples), num_actual_eval_examples,
+        #                 len(eval_examples) - num_actual_eval_examples)
+        # tf.logging.info("  Batch size = %d", FLAGS.eval_batch_size)
+        #
+        # # This tells the estimator to run through the entire set.
+        # eval_steps = None
+        # # However, if running eval on the TPU, you will need to specify the
+        # # number of steps.
+        # if FLAGS.use_tpu:
+        #     assert len(eval_examples) % FLAGS.eval_batch_size == 0
+        #     eval_steps = int(len(eval_examples) // FLAGS.eval_batch_size)
+        #
+        # eval_drop_remainder = True if FLAGS.use_tpu else False
+        # eval_input_fn = file_based_input_fn_builder(
+        #     input_file=eval_file,
+        #     seq_length=FLAGS.max_seq_length,
+        #     is_training=False,
+        #     drop_remainder=eval_drop_remainder)
+        #
+        # #######################################################################################################################
+        # # evaluate all checkpoints; you can use the checkpoint with the best dev accuarcy
+        # steps_and_files = []
+        # filenames = tf.gfile.ListDirectory(FLAGS.output_dir)
+        # for filename in filenames:
+        #     if filename.endswith(".index"):
+        #         ckpt_name = filename[:-6]
+        #         cur_filename = os.path.join(FLAGS.output_dir, ckpt_name)
+        #         global_step = int(cur_filename.split("-")[-1])
+        #         tf.logging.info("Add {} to eval list.".format(cur_filename))
+        #         steps_and_files.append([global_step, cur_filename])
+        # steps_and_files = sorted(steps_and_files, key=lambda x: x[0])
+        #
+        # output_eval_file = os.path.join(FLAGS.data_dir, "test_results_ernie.txt")
+        # print("output_eval_file:", output_eval_file)
+        # tf.logging.info("output_eval_file:" + output_eval_file)
+        # with tf.gfile.GFile(output_eval_file, "w") as writer:
+        #     for global_step, filename in sorted(steps_and_files, key=lambda x: x[0]):
+        #         result = estimator.evaluate(input_fn=eval_input_fn, steps=eval_steps, checkpoint_path=filename)
+        #
+        #         tf.logging.info("***** Eval results %s *****" % (filename))
+        #         writer.write("***** Eval results %s *****\n" % (filename))
+        #         for key in sorted(result.keys()):
+        #             tf.logging.info("  %s = %s", key, str(result[key]))
+        #             writer.write("%s = %s\n" % (key, str(result[key])))
         #######################################################################################################################
 
         #result = estimator.evaluate(input_fn=eval_input_fn, steps=eval_steps)
