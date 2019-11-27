@@ -292,7 +292,7 @@ https://arxiv.org/abs/1906.01265
 
 ##### 12.CMNLI 语言推理任务 Chinese Multi-Genre NLI
 
-ChineseMNLI数据对原始MNLI数据进行中英文转化，数据来自于fiction , telephone ,travel ,government ,slate等,用于判断给定的两个句子之间属于蕴涵、中立、矛盾关系。
+ChineseMNLI数据对原始MNLI数据进行中英文转化，数据来自于fiction，telephone，travel，government，slate等，用于判断给定的两个句子之间属于蕴涵、中立、矛盾关系。
 
 ```
     数据量：train(391,783)，matched(9336)，mismatched(8,870)
