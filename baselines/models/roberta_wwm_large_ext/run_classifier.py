@@ -257,23 +257,60 @@ class THUCNewsProcessor(DataProcessor):
                 InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
         return examples
 
+# class iFLYTEKDataProcessor(DataProcessor):
+#     """Processor for the iFLYTEKData data set (GLUE version)."""
+#
+#     def get_train_examples(self, data_dir):
+#         """See base class."""
+#         return self._create_examples(
+#             self._read_txt(os.path.join(data_dir, "train.txt")), "train")
+#
+#     def get_dev_examples(self, data_dir):
+#         """See base class."""
+#         return self._create_examples(
+#             self._read_txt(os.path.join(data_dir, "dev.txt")), "dev")
+#
+#     def get_test_examples(self, data_dir):
+#         """See base class."""
+#         return self._create_examples(
+#             self._read_txt(os.path.join(data_dir, "test.txt")), "test")
+#
+#     def get_labels(self):
+#         """See base class."""
+#         labels = []
+#         for i in range(119):
+#             labels.append(str(i))
+#         return labels
+#
+#     def _create_examples(self, lines, set_type):
+#         """Creates examples for the training and dev sets."""
+#         examples = []
+#         for (i, line) in enumerate(lines):
+#             if i == 0:
+#                 continue
+#             guid = "%s-%s" % (set_type, i)
+#             text_a = tokenization.convert_to_unicode(line[1])
+#             text_b = None
+#             label = tokenization.convert_to_unicode(line[0])
+#             examples.append(
+#                 InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
+#         return examples
+
+
 class iFLYTEKDataProcessor(DataProcessor):
     """Processor for the iFLYTEKData data set (GLUE version)."""
 
     def get_train_examples(self, data_dir):
         """See base class."""
-        return self._create_examples(
-            self._read_txt(os.path.join(data_dir, "train.txt")), "train")
+        return self._create_examples(data_dir, "train")
 
     def get_dev_examples(self, data_dir):
         """See base class."""
-        return self._create_examples(
-            self._read_txt(os.path.join(data_dir, "dev.txt")), "dev")
+        return self._create_examples(data_dir, "dev")
 
     def get_test_examples(self, data_dir):
         """See base class."""
-        return self._create_examples(
-            self._read_txt(os.path.join(data_dir, "test.txt")), "test")
+        return self._create_examples(data_dir, "test")
 
     def get_labels(self):
         """See base class."""
@@ -282,18 +319,18 @@ class iFLYTEKDataProcessor(DataProcessor):
             labels.append(str(i))
         return labels
 
-    def _create_examples(self, lines, set_type):
+    def _create_examples(self, data_dir, set_type):
         """Creates examples for the training and dev sets."""
         examples = []
-        for (i, line) in enumerate(lines):
-            if i == 0:
-                continue
-            guid = "%s-%s" % (set_type, i)
-            text_a = tokenization.convert_to_unicode(line[1])
-            text_b = None
-            label = tokenization.convert_to_unicode(line[0])
-            examples.append(
-                InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
+        with open(os.path.join(data_dir, set_type+'.json'), 'r', encoding='utf-8') as f:
+            for (i, line) in enumerate(f.readlines()):
+                guid = "%s-%s" % (set_type, i)
+                line = json.loads(line.strip())
+                text_a = tokenization.convert_to_unicode(line['sentence'])
+                text_b = None
+                label = tokenization.convert_to_unicode(line['label']) if set_type!='test' else None
+                examples.append(
+                    InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
         return examples
 
 class InewsProcessor(DataProcessor):
@@ -487,23 +524,62 @@ def file_based_convert_examples_to_features_for_inews(
   tf.logging.info("feature num: %s", num_example)
   writer.close()
 
+# class TnewsProcessor(DataProcessor):
+#     """Processor for the MRPC data set (GLUE version)."""
+#
+#     def get_train_examples(self, data_dir):
+#         """See base class."""
+#         return self._create_examples(
+#             self._read_txt(os.path.join(data_dir, "toutiao_category_train.txt")), "train")
+#
+#     def get_dev_examples(self, data_dir):
+#         """See base class."""
+#         return self._create_examples(
+#             self._read_txt(os.path.join(data_dir, "toutiao_category_dev.txt")), "dev")
+#
+#     def get_test_examples(self, data_dir):
+#         """See base class."""
+#         return self._create_examples(
+#             self._read_txt(os.path.join(data_dir, "toutiao_category_test.txt")), "test")
+#
+#     def get_labels(self):
+#         """See base class."""
+#         labels = []
+#         for i in range(17):
+#             if i == 5 or i == 11:
+#                 continue
+#             labels.append(str(100 + i))
+#         return labels
+#
+#     def _create_examples(self, lines, set_type):
+#         """Creates examples for the training and dev sets."""
+#         examples = []
+#         for (i, line) in enumerate(lines):
+#             if i == 0:
+#                 continue
+#             guid = "%s-%s" % (set_type, i)
+#             text_a = tokenization.convert_to_unicode(line[3])
+#             text_b = None
+#             label = tokenization.convert_to_unicode(line[1])
+#             examples.append(
+#                 InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
+#         return examples
+
+
 class TnewsProcessor(DataProcessor):
     """Processor for the MRPC data set (GLUE version)."""
 
     def get_train_examples(self, data_dir):
         """See base class."""
-        return self._create_examples(
-            self._read_txt(os.path.join(data_dir, "toutiao_category_train.txt")), "train")
+        return self._create_examples(data_dir, "train")
 
     def get_dev_examples(self, data_dir):
         """See base class."""
-        return self._create_examples(
-            self._read_txt(os.path.join(data_dir, "toutiao_category_dev.txt")), "dev")
+        return self._create_examples(data_dir, "dev")
 
     def get_test_examples(self, data_dir):
         """See base class."""
-        return self._create_examples(
-            self._read_txt(os.path.join(data_dir, "toutiao_category_test.txt")), "test")
+        return self._create_examples(data_dir, "test")
 
     def get_labels(self):
         """See base class."""
@@ -514,22 +590,18 @@ class TnewsProcessor(DataProcessor):
             labels.append(str(100 + i))
         return labels
 
-    def _create_examples(self, lines, set_type):
+    def _create_examples(self, data_dir, set_type):
         """Creates examples for the training and dev sets."""
         examples = []
-        for (i, line) in enumerate(lines):
-            if i == 0:
-                continue
-            guid = "%s-%s" % (set_type, i)
-            text_a = tokenization.convert_to_unicode(line[3])
-            text_b = None
-            #if set_type == "test":
-            #    label = "0"
-            #else:
-            #    label = tokenization.convert_to_unicode(line[1])
-            label = tokenization.convert_to_unicode(line[1])
-            examples.append(
-                InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
+        with open(os.path.join(data_dir, "%s.json"%(set_type)), 'r', encoding='utf-8') as f:
+            for (i, line) in enumerate(f.readlines()):
+                guid = "%s-%s" % (set_type, i)
+                line = json.loads(line.strip())
+                text_a = tokenization.convert_to_unicode(line['sentence'])
+                text_b = None
+                label = tokenization.convert_to_unicode(line['label']) if set_type!='test' else None
+                examples.append(
+                    InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
         return examples
 
 

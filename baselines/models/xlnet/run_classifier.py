@@ -212,98 +212,138 @@ class DataProcessor(object):
 
 
 class InewsProcessor(DataProcessor):
-  """Processor for the MRPC data set (GLUE version)."""
-
-  def get_train_examples(self, data_dir):
-    """See base class."""
-    return self._create_examples(
-        self._read_txt(os.path.join(data_dir, "train.txt")), "train")
-
-  def get_devtest_examples(self, data_dir, set_type="dev"):
-    """See base class."""
-    return self._create_examples(
-        self._read_txt(os.path.join(data_dir, "dev.txt")), set_type)
-
-  def get_test_examples(self, data_dir):
-    """See base class."""
-    return self._create_examples(
-        self._read_txt(os.path.join(data_dir, "test.txt")), "test")
-
-  def get_labels(self):
-    """See base class."""
-    labels = ["0", "1", "2"]
-    return labels
-
-  def _create_examples(self, lines, set_type):
-    """Creates examples for the training and dev sets."""
-    examples = []
-    for (i, line) in enumerate(lines):
-      if i == 0:
-        continue
-      guid = "%s-%s" % (set_type, i)
-      text_a = (line[2])
-      text_b = (line[3])
-      if set_type == "test":
-        label = "0"
-      else:
-        label = (line[0])
-      examples.append(
-          InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
-    return examples
-
-
-
-
-def file_based_convert_examples_to_features_for_inews(
-    examples, label_list, max_seq_length, tokenizer, output_file, num_passes=1):
-  """Convert a set of `InputExample`s to a TFRecord file."""
-
-  writer = tf.python_io.TFRecordWriter(output_file)
-  num_example = 0
-  if num_passes > 1:
-    examples *= num_passes
-
-  for (ex_index, example) in enumerate(examples):
-    if ex_index % 1000 == 0:
-      tf.logging.info("Writing example %d of %d" % (ex_index, len(examples)))
-
-    feature_list = convert_example_list_for_inews(ex_index, example, label_list,
-                                     max_seq_length, tokenizer)
-    num_example += len(feature_list)
-    def create_int_feature(values):
-      f = tf.train.Feature(int64_list=tf.train.Int64List(value=list(values)))
-      return f
-
-    features = collections.OrderedDict()
-    for feature in feature_list:
-      features["input_ids"] = create_int_feature(feature.input_ids)
-      features["input_mask"] = create_int_feature(feature.input_mask)
-      features["segment_ids"] = create_int_feature(feature.segment_ids)
-      features["label_ids"] = create_int_feature([feature.label_id])
-      features["is_real_example"] = create_int_feature(
-          [int(feature.is_real_example)])
-
-      tf_example = tf.train.Example(features=tf.train.Features(feature=features))
-      writer.write(tf_example.SerializeToString())
-  tf.logging.info("feature num: %s", num_example)
-  writer.close()
-class TnewsProcessor(DataProcessor):
     """Processor for the MRPC data set (GLUE version)."""
 
     def get_train_examples(self, data_dir):
         """See base class."""
         return self._create_examples(
-            self._read_txt(os.path.join(data_dir, "toutiao_category_train.txt")), "train")
+            self._read_txt(os.path.join(data_dir, "train.txt")), "train")
 
     def get_devtest_examples(self, data_dir, set_type="dev"):
         """See base class."""
         return self._create_examples(
-            self._read_txt(os.path.join(data_dir, "toutiao_category_dev.txt")), "dev")
+            self._read_txt(os.path.join(data_dir, "dev.txt")), set_type)
 
     def get_test_examples(self, data_dir):
         """See base class."""
         return self._create_examples(
-            self._read_txt(os.path.join(data_dir, "toutiao_category_test.txt")), "test")
+            self._read_txt(os.path.join(data_dir, "test.txt")), "test")
+
+    def get_labels(self):
+        """See base class."""
+        labels = ["0", "1", "2"]
+        return labels
+
+    def _create_examples(self, lines, set_type):
+        """Creates examples for the training and dev sets."""
+        examples = []
+        for (i, line) in enumerate(lines):
+            if i == 0:
+                continue
+            guid = "%s-%s" % (set_type, i)
+            text_a = (line[2])
+            text_b = (line[3])
+            if set_type == "test":
+                label = "0"
+            else:
+                label = (line[0])
+            examples.append(
+                InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
+        return examples
+
+
+def file_based_convert_examples_to_features_for_inews(
+        examples, label_list, max_seq_length, tokenizer, output_file, num_passes=1):
+    """Convert a set of `InputExample`s to a TFRecord file."""
+
+    writer = tf.python_io.TFRecordWriter(output_file)
+    num_example = 0
+    if num_passes > 1:
+        examples *= num_passes
+
+    for (ex_index, example) in enumerate(examples):
+        if ex_index % 1000 == 0:
+            tf.logging.info("Writing example %d of %d" % (ex_index, len(examples)))
+
+        feature_list = convert_example_list_for_inews(ex_index, example, label_list,
+                                                      max_seq_length, tokenizer)
+        num_example += len(feature_list)
+
+        def create_int_feature(values):
+            f = tf.train.Feature(int64_list=tf.train.Int64List(value=list(values)))
+            return f
+
+        features = collections.OrderedDict()
+        for feature in feature_list:
+            features["input_ids"] = create_int_feature(feature.input_ids)
+            features["input_mask"] = create_int_feature(feature.input_mask)
+            features["segment_ids"] = create_int_feature(feature.segment_ids)
+            features["label_ids"] = create_int_feature([feature.label_id])
+            features["is_real_example"] = create_int_feature(
+                [int(feature.is_real_example)])
+
+            tf_example = tf.train.Example(features=tf.train.Features(feature=features))
+            writer.write(tf_example.SerializeToString())
+    tf.logging.info("feature num: %s", num_example)
+    writer.close()
+
+
+# class TnewsProcessor(DataProcessor):
+#     """Processor for the MRPC data set (GLUE version)."""
+#
+#     def get_train_examples(self, data_dir):
+#         """See base class."""
+#         return self._create_examples(
+#             self._read_txt(os.path.join(data_dir, "toutiao_category_train.txt")), "train")
+#
+#     def get_dev_examples(self, data_dir):
+#         """See base class."""
+#         return self._create_examples(
+#             self._read_txt(os.path.join(data_dir, "toutiao_category_dev.txt")), "dev")
+#
+#     def get_test_examples(self, data_dir):
+#         """See base class."""
+#         return self._create_examples(
+#             self._read_txt(os.path.join(data_dir, "toutiao_category_test.txt")), "test")
+#
+#     def get_labels(self):
+#         """See base class."""
+#         labels = []
+#         for i in range(17):
+#             if i == 5 or i == 11:
+#                 continue
+#             labels.append(str(100 + i))
+#         return labels
+#
+#     def _create_examples(self, lines, set_type):
+#         """Creates examples for the training and dev sets."""
+#         examples = []
+#         for (i, line) in enumerate(lines):
+#             if i == 0:
+#                 continue
+#             guid = "%s-%s" % (set_type, i)
+#             text_a = tokenization.convert_to_unicode(line[3])
+#             text_b = None
+#             label = tokenization.convert_to_unicode(line[1])
+#             examples.append(
+#                 InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
+#         return examples
+
+
+class TnewsProcessor(DataProcessor):
+    """Processor for the MRPC data set (GLUE version)."""
+
+    def get_train_examples(self, data_dir):
+        """See base class."""
+        return self._create_examples(data_dir, "train")
+
+    def get_dev_examples(self, data_dir):
+        """See base class."""
+        return self._create_examples(data_dir, "dev")
+
+    def get_test_examples(self, data_dir):
+        """See base class."""
+        return self._create_examples(data_dir, "test")
 
     def get_labels(self):
         """See base class."""
@@ -314,23 +354,20 @@ class TnewsProcessor(DataProcessor):
             labels.append(str(100 + i))
         return labels
 
-    def _create_examples(self, lines, set_type):
+    def _create_examples(self, data_dir, set_type):
         """Creates examples for the training and dev sets."""
         examples = []
-        for (i, line) in enumerate(lines):
-            if i == 0:
-                continue
-            guid = "%s-%s" % (set_type, i)
-            text_a = line[3]
-            text_b = None
-            if set_type == "test":
-                #label = "0"
-                label = line[1]
-            else:
-                label = line[1]
-            examples.append(
-                InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
+        with open(os.path.join(data_dir, "%s.json" % (set_type)), 'r', encoding='utf-8') as f:
+            for (i, line) in enumerate(f.readlines()):
+                guid = "%s-%s" % (set_type, i)
+                line = json.loads(line.strip())
+                text_a = line['sentence']
+                text_b = None
+                label = line['label'] if set_type != 'test' else None
+                examples.append(
+                    InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
         return examples
+
 
 class THUCNewsProcessor(DataProcessor):
     """Processor for the THUCNews data set (GLUE version)."""
@@ -371,23 +408,60 @@ class THUCNewsProcessor(DataProcessor):
                 InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
         return examples
 
+# class iFLYTEKDataProcessor(DataProcessor):
+#     """Processor for the iFLYTEKData data set (GLUE version)."""
+#
+#     def get_train_examples(self, data_dir):
+#         """See base class."""
+#         return self._create_examples(
+#             self._read_txt(os.path.join(data_dir, "train.txt")), "train")
+#
+#     def get_dev_examples(self, data_dir):
+#         """See base class."""
+#         return self._create_examples(
+#             self._read_txt(os.path.join(data_dir, "dev.txt")), "dev")
+#
+#     def get_test_examples(self, data_dir):
+#         """See base class."""
+#         return self._create_examples(
+#             self._read_txt(os.path.join(data_dir, "test.txt")), "test")
+#
+#     def get_labels(self):
+#         """See base class."""
+#         labels = []
+#         for i in range(119):
+#             labels.append(str(i))
+#         return labels
+#
+#     def _create_examples(self, lines, set_type):
+#         """Creates examples for the training and dev sets."""
+#         examples = []
+#         for (i, line) in enumerate(lines):
+#             if i == 0:
+#                 continue
+#             guid = "%s-%s" % (set_type, i)
+#             text_a = tokenization.convert_to_unicode(line[1])
+#             text_b = None
+#             label = tokenization.convert_to_unicode(line[0])
+#             examples.append(
+#                 InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
+#         return examples
+
+
 class iFLYTEKDataProcessor(DataProcessor):
-    """Processor for the iFLYTEKApp data set (GLUE version)."""
+    """Processor for the iFLYTEKData data set (GLUE version)."""
 
     def get_train_examples(self, data_dir):
         """See base class."""
-        return self._create_examples(
-            self._read_txt(os.path.join(data_dir, "train.txt")), "train")
+        return self._create_examples(data_dir, "train")
 
     def get_dev_examples(self, data_dir):
         """See base class."""
-        return self._create_examples(
-            self._read_txt(os.path.join(data_dir, "dev.txt")), "dev")
+        return self._create_examples(data_dir, "dev")
 
     def get_test_examples(self, data_dir):
         """See base class."""
-        return self._create_examples(
-            self._read_txt(os.path.join(data_dir, "test.txt")), "test")
+        return self._create_examples(data_dir, "test")
 
     def get_labels(self):
         """See base class."""
@@ -396,19 +470,20 @@ class iFLYTEKDataProcessor(DataProcessor):
             labels.append(str(i))
         return labels
 
-    def _create_examples(self, lines, set_type):
+    def _create_examples(self, data_dir, set_type):
         """Creates examples for the training and dev sets."""
         examples = []
-        for (i, line) in enumerate(lines):
-            if i == 0:
-                continue
-            guid = "%s-%s" % (set_type, i)
-            text_a = line[1]
-            text_b = None
-            label = line[0]
-            examples.append(
-                InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
+        with open(os.path.join(data_dir, set_type + '.json'), 'r', encoding='utf-8') as f:
+            for (i, line) in enumerate(f.readlines()):
+                guid = "%s-%s" % (set_type, i)
+                line = json.loads(line.strip())
+                text_a = line['sentence']
+                text_b = None
+                label = line['label'] if set_type != 'test' else None
+                examples.append(
+                    InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
         return examples
+
 
 class LCQMCProcessor(DataProcessor):
     """Processor for the internal data set. sentence pair classification"""
@@ -455,6 +530,7 @@ class LCQMCProcessor(DataProcessor):
             except Exception:
                 print('###error.i:', i, line)
         return examples
+
 
 class BQProcessor(DataProcessor):
     """Processor for the internal data set. sentence pair classification"""
@@ -1108,7 +1184,7 @@ def main(_):
         "lcqmc_pair": LCQMCProcessor,
         "lcqmc": LCQMCProcessor,
         "bq": BQProcessor,
-        "thucnews":THUCNewsProcessor,
+        "thucnews": THUCNewsProcessor,
         "iflydata": iFLYTEKDataProcessor
     }
 
@@ -1167,12 +1243,12 @@ def main(_):
         tf.logging.info("Num of train samples: {}".format(len(train_examples)))
         if task_name == "inews":
             file_based_convert_examples_to_features_for_inews(
-            train_examples, label_list, FLAGS.max_seq_length, tokenize_fn,
-            train_file, FLAGS.num_passes)
+                train_examples, label_list, FLAGS.max_seq_length, tokenize_fn,
+                train_file, FLAGS.num_passes)
         else:
             file_based_convert_examples_to_features(
-            train_examples, label_list, FLAGS.max_seq_length, tokenize_fn,
-            train_file, FLAGS.num_passes)
+                train_examples, label_list, FLAGS.max_seq_length, tokenize_fn,
+                train_file, FLAGS.num_passes)
 
         # here we use epoch number to calculate total train_steps
         train_steps = int(len(train_examples) * FLAGS.num_train_epochs / FLAGS.train_batch_size)
@@ -1206,12 +1282,12 @@ def main(_):
         eval_file = os.path.join(FLAGS.output_dir, eval_file_base)
         if task_name == "inews":
             file_based_convert_examples_to_features_for_inews(
-            eval_examples, label_list, FLAGS.max_seq_length, tokenize_fn,
-            eval_file)
+                eval_examples, label_list, FLAGS.max_seq_length, tokenize_fn,
+                eval_file)
         else:
             file_based_convert_examples_to_features(
-            eval_examples, label_list, FLAGS.max_seq_length, tokenize_fn,
-            eval_file)
+                eval_examples, label_list, FLAGS.max_seq_length, tokenize_fn,
+                eval_file)
 
         assert len(eval_examples) % FLAGS.eval_batch_size == 0
         eval_steps = int(len(eval_examples) // FLAGS.eval_batch_size)
@@ -1244,23 +1320,23 @@ def main(_):
         print("output_eval_file:", output_eval_file)
         tf.logging.info("output_eval_file:" + output_eval_file)
         with tf.gfile.GFile(output_eval_file, "w") as writer:
-          for global_step, filename in sorted(steps_and_files, key=lambda x: x[0]):
-            ret = estimator.evaluate(
-                input_fn=eval_input_fn,
-                steps=eval_steps,
-                checkpoint_path=filename)
+            for global_step, filename in sorted(steps_and_files, key=lambda x: x[0]):
+                ret = estimator.evaluate(
+                    input_fn=eval_input_fn,
+                    steps=eval_steps,
+                    checkpoint_path=filename)
 
-            ret["step"] = global_step
-            ret["path"] = filename
+                ret["step"] = global_step
+                ret["path"] = filename
 
-            eval_results.append(ret)
+                eval_results.append(ret)
 
-            tf.logging.info("=" * 80)
-            log_str = "Eval result | "
-            for key, val in sorted(ret.items(), key=lambda x: x[0]):
-                log_str += "{} {} | ".format(key, val)
-                writer.write("%s = %s\n" % (key, val))
-            tf.logging.info(log_str)
+                tf.logging.info("=" * 80)
+                log_str = "Eval result | "
+                for key, val in sorted(ret.items(), key=lambda x: x[0]):
+                    log_str += "{} {} | ".format(key, val)
+                    writer.write("%s = %s\n" % (key, val))
+                tf.logging.info(log_str)
 
         key_name = "eval_pearsonr" if FLAGS.is_regression else "eval_accuracy"
         eval_results.sort(key=lambda x: x[key_name], reverse=True)
@@ -1354,12 +1430,12 @@ def main(_):
         eval_file = os.path.join(FLAGS.output_dir, eval_file_base)
         if task_name == "inews":
             file_based_convert_examples_to_features_for_inews(
-            eval_examples, label_list, FLAGS.max_seq_length, tokenize_fn,
-            eval_file)
+                eval_examples, label_list, FLAGS.max_seq_length, tokenize_fn,
+                eval_file)
         else:
             file_based_convert_examples_to_features(
-            eval_examples, label_list, FLAGS.max_seq_length, tokenize_fn,
-            eval_file)
+                eval_examples, label_list, FLAGS.max_seq_length, tokenize_fn,
+                eval_file)
 
         pred_input_fn = file_based_input_fn_builder(
             input_file=eval_file,
