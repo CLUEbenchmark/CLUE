@@ -13,15 +13,15 @@ Language Understanding Evaluation benchmark for Chinese: datasets, baselines, pr
 
 | 模型   | Score  | 参数    | LCQMC'  | TNEWS'  | IFYTEK'   | CMNLI-m  | CMNLI-mm  | XNLI     | COPA | WSC | CSL  |
 | :----:| :----: | :----: | :----: |:----: |:----: |:----: |:----: |:----: |:----: |:----: |:----: |
-| <a href="https://github.com/google-research/bert">BERT-base</a>        | - | 108M | 74.89% | 55.58%  | 60.29% | 79.39%  | 79.76% | 77.8%  | 57.40% | -  | -      |
-| <a href="https://github.com/ymcui/Chinese-BERT-wwm">BERT-wwm-ext</a>      | - | 108M  | 76.72% | 56.84%  | 59.43% | 81.41% | 80.67% | 78.7%  | 61.40%  | -  | -      |
+| <a href="https://github.com/google-research/bert">BERT-base</a>        | - | 108M | 74.89% | 55.58%  | 60.29% | 79.39%  | 79.76% | 77.8%  | 57.40% | 62.0% | 80.36% |
+| <a href="https://github.com/ymcui/Chinese-BERT-wwm">BERT-wwm-ext</a>      | - | 108M  | 76.72% | 56.84%  | 59.43% | 81.41% | 80.67% | 78.7%  | 61.40%  | -  | 80.63% |
 | <a href="https://github.com/PaddlePaddle/ERNIE">ERNIE-base</a>         | - | 108M  | 77.94% | 58.23% | 58.96% | 79.65% | 80.70% | 78.6%  | -  | -  | -      |
 | <a href="https://github.com/brightmart/roberta_zh">RoBERTa-large</a>      | - | 334M  | 77.57% | 57.05%  | 62.55% | -  |  - | 79.9%   | 61.40% | -   | -       |
-| <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>  | - | 200M | - | 56.24% | 57.85% | 78.15%  | 76.93%   | 78.7% | -      | -   | -     |
+| <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>  | - | 200M | - | 56.24% | 57.85% | 78.15%  | 76.93%   | 78.7% | 53.80%   | -   | -     |
 | <a href="https://github.com/brightmart/albert_zh">ALBERT-xxlarge</a>      | - | 59M   | -  | - | - | - | - | - | -  | -  | -     |
-| <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a>        | - | 4M |76.57% | 53.35% | 36.18% | 72.71% | 72.72%  | 69.5% | -  | -   | -     |
-| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>   | - | 108M  | 77.43% | 56.86% | 60.31% | 81.09% | 81.38% | 79.3%  | 63.60%  | - | -      |
-| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-large</a> | - | 330M | **78.02%** | **58.61%** | 62.98% | **83.4%** | **83.42%** | **80.0%** | 59.40% | - | - |
+| <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a>        | - | 4M |76.57% | 53.35% | 36.18% | 72.71% | 72.72%  | 69.5% | -  | -   | 74.56% |
+| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>   | - | 108M  | 77.43% | 56.86% | 60.31% | 81.09% | 81.38% | 79.3%  | 63.60%  | - | 81.0% |
+| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-large</a> | - | 330M | **78.02%** | **58.61%** | 62.98% | **83.4%** | **83.42%** | **80.0%** | 59.40% | **74.6%** | 82.13% |
 
 
 注：' 代表对原数据集筛选后获得，数据集与原数据集不同；TNEWS:文本分类(Acc)；LCQMC:语义相似度(Acc)；XNLI/MNLI:自然语言推理(Acc),CMNLI-m:chinese-MNLI-matched，CMNLI-mm:chinese-MNLI-mismatched；
@@ -121,7 +121,7 @@ You can use it for general purpose or domain adaption, or even for text generati
         例子： 
          1.从 概念 上 看 , 奶油 收入 有 两 个 基本 方面 产品 和 地理 .[分隔符] 产品 和 地理 是 什么 使 奶油 抹 霜 工作 . [分隔符] neutral
          2.我们 的 一个 号码 会 非常 详细 地 执行 你 的 指示 [分隔符] 我 团队 的 一个 成员 将 非常 精确 地 执行 你 的 命令  [分隔符] entailment
-
+    
         原始的XNLI覆盖15种语言（含低资源语言）。我们选取其中的中文，并将做格式转换，使得非常容易进入训练和测试阶段。
 
 
@@ -289,7 +289,27 @@ https://arxiv.org/abs/1906.01265
       ]
     }
 ```
-##### 12. 更多数据集添加中，Comming soon!
+
+##### 12.CMNLI 语言推理任务 Chinese Multi-Genre NLI
+
+ChineseMNLI数据对原始MNLI数据进行中英文转化，数据来自于fiction，telephone，travel，government，slate等，用于判断给定的两个句子之间属于蕴涵、中立、矛盾关系。
+
+```
+    数据量：train(391,783)，matched(9336)，mismatched(8,870)
+    例子：
+    {"sentence1": "新的权利已经足够好了", "sentence2": "每个人都很喜欢最新的福利", "gold_label": "neutral"}
+```
+
+##### 13. CSL 论文关键词识别 Keyword Recognition
+中文科技文献数据集包含中文核心论文摘要及其关键词。
+用tf-idf生成伪造关键词与论文真实关键词混合，生成摘要-关键词对，关键词中包含伪造的则标签为0。
+```
+    数据量：训练集(20,000)，验证集(3,000)，测试集(3,000)
+    例子： 
+    通过研究Windows环境下USB设备的工作原理，应用操作系统与USB设备驱动通信获取设备描述和设备ID等信息的机制，提出了一种实用有效的USB设备监控技术。实现了在开机前后两种情况下对USB设备的实时监控，有效地避免了其他监控技术的漏洞。实验结果证明，该方法是可靠有效的。	设备描述 设备ID Windows环境 安全监控	1
+    通过研究Windows环境下USB设备的工作原理，应用操作系统与USB设备驱动通信获取设备描述和设备ID等信息的机制，提出了一种实用有效的USB设备监控技术。实现了在开机前后两种情况下对USB设备的实时监控，有效地避免了其他监控技术的漏洞。实验结果证明，该方法是可靠有效的。	设备 技术 安全监控 设备描述	    0
+```
+##### 14. 更多数据集添加中，Comming soon!
 更多数据集添加中，如果你有定义良好的数据集，请与我们取得联系。
 ##### 数据集下载 <a href="https://storage.googleapis.com/chineseglue/chineseGLUEdatasets.v0.0.1.zip">整体下载</a>
 或使用命令：
@@ -380,6 +400,18 @@ https://arxiv.org/abs/1906.01265
 | xlnet-mid	|- | - | - |
 | RoBERTa-wwm-ext	|83.78 | 83.62 | batch=24, length=64, epoch=3 lr=2e-5  |
 | RoBERTa-wwm-large-ext	|***85.81*** | ***85.37*** | batch=24, length=64, epoch=3 lr=2e-5  |
+#### CMNLI 中文自然语言推理 Chinese Multi-Genre NLI (Accuracy)：
+| 模型 | matched | mismatched |  训练参数 |
+| :----:| :----: | :----: | :----: |
+| BERT-base	| 79.39 | 79.76 | batch=32, length=128, epoch=3 lr=2e-5 |
+| BERT-wwm-ext-base	|81.41 |80.67|	batch=32, length=128, epoch=3 lr=2e-5 |
+| ERNIE-base	|79.65 | 80.70 | batch=32, length=128, epoch=3 lr=2e-5 |
+| ALBERT-xxlarge	|- | - | - |
+| ALBERT-tiny	|72.71 | 72.72 | batch=32, length=128, epoch=3 lr=2e-5 |
+| RoBERTa-large	| - | - | - |
+| xlnet-mid	|78.15 |76.93 | batch=16, length=128, epoch=3 lr=2e-5 |
+| RoBERTa-wwm-ext	|81.09 | 81.38 | batch=32, length=128, epoch=3 lr=2e-5  |
+| RoBERTa-wwm-large-ext	|***83.4*** | ***83.42*** | batch=32, length=128, epoch=3 lr=2e-5  |
 #### BQ 智能客服问句匹配 Question Matching for Customer Service (Accuracy)：
 | 模型 | 开发集（dev） | 测试集（test） | 训练参数 |
 | :----:| :----: | :----: | :----: |
@@ -566,7 +598,7 @@ Danny Lan，CMU博士、google AI 研究员，SOTA语言理解模型AlBERT第一
 
 谢恩宁，大搜车，围绕汽车领域语对话机器人，负责NLU部分。
 
-李露，来自华中师范大学计算机学院，曾参与筹备中文自然语言推理的数据集；暑期在平安科技实习，主要负责利用自然语言处理最新模型进行序列标注和情感分类任务。
+李露，华中师范大学研究生，曾参与筹备中文自然语言推理的数据集；暑期在平安科技实习，主要负责利用自然语言处理模型进行序列标注和情感分类任务。
 
 董倩倩，来自中科院自动化所，phd在读，主要研究语音翻译，曾参与多个中文NLP项目。
 
