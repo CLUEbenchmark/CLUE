@@ -399,6 +399,18 @@ ChineseMNLI数据对原始MNLI数据进行中英文转化，数据来自于ficti
 | xlnet-mid	|- | - | - |
 | RoBERTa-wwm-ext	|83.78 | 83.62 | batch=24, length=64, epoch=3 lr=2e-5  |
 | RoBERTa-wwm-large-ext	|***85.81*** | ***85.37*** | batch=24, length=64, epoch=3 lr=2e-5  |
+#### CMNLI 中文自然语言推理 Chinese Multi NLI (Accuracy)：
+| 模型 | matched | mismatched |  训练参数 |
+| :----:| :----: | :----: | :----: |
+| BERT-base	| 79.39 | 79.76 | batch=32, length=128, epoch=3 lr=2e-5 |
+| BERT-wwm-ext-base	|81.41 |80.67|	batch=32, length=128, epoch=3 lr=2e-5 |
+| ERNIE-base	|79.65 | 80.70 | batch=32, length=128, epoch=3 lr=2e-5 |
+| ALBERT-xxlarge	|- | - | - |
+| ALBERT-tiny	|72.71 | 72.72 | batch=32, length=128, epoch=3 lr=2e-5 |
+| RoBERTa-large	| - | - | - |
+| xlnet-mid	|78.15 |76.93 | batch=16, length=128, epoch=3 lr=2e-5 |
+| RoBERTa-wwm-ext	|81.09 | 81.38 | batch=32, length=128, epoch=3 lr=2e-5  |
+| RoBERTa-wwm-large-ext	|***83.4*** | ***83.42*** | batch=32, length=128, epoch=3 lr=2e-5  |
 #### BQ 智能客服问句匹配 Question Matching for Customer Service (Accuracy)：
 | 模型 | 开发集（dev） | 测试集（test） | 训练参数 |
 | :----:| :----: | :----: | :----: |
