@@ -399,7 +399,7 @@ ChineseMNLI数据对原始MNLI数据进行中英文转化，数据来自于ficti
 | xlnet-mid	|- | - | - |
 | RoBERTa-wwm-ext	|83.78 | 83.62 | batch=24, length=64, epoch=3 lr=2e-5  |
 | RoBERTa-wwm-large-ext	|***85.81*** | ***85.37*** | batch=24, length=64, epoch=3 lr=2e-5  |
-#### CMNLI 中文自然语言推理 Chinese Multi NLI (Accuracy)：
+#### CMNLI 中文自然语言推理 Chinese Multi-Genre NLI (Accuracy)：
 | 模型 | matched | mismatched |  训练参数 |
 | :----:| :----: | :----: | :----: |
 | BERT-base	| 79.39 | 79.76 | batch=32, length=128, epoch=3 lr=2e-5 |
