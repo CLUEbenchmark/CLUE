@@ -24,9 +24,11 @@ Language Understanding Evaluation benchmark for Chinese: datasets, baselines, pr
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-large</a> | - | 330M | **76.55%** | **58.61%** | **62.98%** | **83.4%** | **83.42%** | **80.0%** | 59.40% | **74.6%** | 82.13% |
 
 
-注：' 代表对原数据集筛选后获得，数据集与原数据集不同；TNEWS:文本分类(Acc)；AFQMC:蚂蚁语义相似度(Acc)；XNLI/MNLI:自然语言推理(Acc),CMNLI-m:chinese-MNLI-matched，CMNLI-mm:chinese-MNLI-mismatched；
+注：' 代表对原数据集筛选后获得，数据集与原数据集不同；AFQMC:蚂蚁语义相似度(Acc)；TNEWS:文本分类(Acc)；IFLYTEK:长文本分类(Acc);
 
-DRCD & CMRC2018:抽取式阅读理解(F1, EM)；CHID:成语多分类阅读理解(Acc)；BQ:智能客服问句匹配(Acc)；MSRANER:命名实体识别(F1)；iFLYTEK:长文本分类(Acc)；
+CMNLI-m/mm: MNLI自然语言推理中文版-matched/mismatched; XNLI:自然语言推理(Acc); COPA: 因果推断; WSC: Winograd模式挑战中文版;
+
+CSL: 中国科学文献数据集
 
 Score是通过计算1-9数据集得分平均值获得；
 
@@ -45,6 +47,8 @@ Score是通过计算1-9数据集得分平均值获得；
 | <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a> | 55.73 | 1.8M | 70.08 | 53.68 | 43.53 |
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>  | 81.88 | 108M  | 88.12 | 73.89 | 83.62 |
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-large</a> | ***84.22*** | 330M |	***90.70*** |	***76.58*** | ***85.37*** |
+
+DRCD、CMRC2018: 繁体、简体抽取式阅读理解(F1, EM)；CHID：成语多分类阅读理解(Acc)；
 
 注：阅读理解上述指标中F1和EM共存的情况下，取EM为最终指标
 
@@ -106,15 +110,38 @@ You can use it for general purpose or domain adaption, or even for text generati
 
 数据集介绍与下载 Introduction of datasets 
 --------------------------------------------------------------------
-##### 1. LCQMC 口语化描述的语义相似度任务 Semantic Similarity Task
-输入是两个句子，输出是0或1。其中0代表语义不相似，1代表语义相似。
 
-        数据量：训练集(238,766)，验证集(8,802)，测试集(12,500)
-        例子： 
-         1.聊天室都有哪些好的 [分隔符] 聊天室哪个好 [分隔符] 1
-         2.飞行员没钱买房怎么办？ [分隔符] 父母没钱买房子 [分隔符] 0
+##### 1. AFQMC 蚂蚁金融语义相似度 Ant Financial  Question Matching Corpus
 
-##### 2. XNLI 语言推断任务 Natural Language Inference
+TODO
+
+##### 2.TNEWS 今日头条中文新闻（短文本）分类 Short Text Classificaiton for News
+
+        数据量：训练集(266,000)，验证集(57,000)，测试集(57,000)
+        例子：
+        6552431613437805063_!_102_!_news_entertainment_!_谢娜为李浩菲澄清网络谣言，之后她的两个行为给自己加分_!_佟丽娅,网络谣言,快乐大本营,李浩菲,谢娜,观众们
+        每行为一条数据，以_!_分割的个字段，从前往后分别是 新闻ID，分类code，分类名称，新闻字符串（仅含标题），新闻关键词
+
+
+##### 3.iFLYTEK 长文本分类 Long Text classification
+该数据集共有1.7万多条关于app应用描述的长文本标注数据，包含和日常生活相关的各类应用主题，共119个类别："打车":0,"地图导航":1,"免费WIFI":2,"租车":3,….,"女性":115,"经营":116,"收款":117,"其他":118(分别用0-118表示)。
+```
+    数据量：训练集(12,133)，验证集(2,599)，测试集(2,600)
+    例子： 
+17_!_休闲益智_!_玩家需控制一只酷似神龙大侠的熊猫人在科技感十足的未来城市中穿越打拼。感觉很山寨功夫熊猫，自由度非常高，可以做很多你想做的事情......
+每行为一条数据，以_!_分割字段，从前往后分别是 类别ID，类别名称，文本内容。
+```
+##### 4.CMNLI 语言推理任务 Chinese Multi-Genre NLI
+
+ChineseMNLI数据对原始MNLI数据进行中英文转化，数据来自于fiction，telephone，travel，government，slate等，用于判断给定的两个句子之间属于蕴涵、中立、矛盾关系。
+
+```
+    数据量：train(391,783)，matched(9336)，mismatched(8,870)
+    例子：
+    {"sentence1": "新的权利已经足够好了", "sentence2": "每个人都很喜欢最新的福利", "gold_label": "neutral"}
+```
+
+##### 5. XNLI 语言推断任务 Natural Language Inference
 跨语言理解的数据集，给定一个前提和假设，判断这个假设与前提是否具有蕴涵、对立、中性关系。
 
         数据量：训练集(392,703)，验证集(2,491)，测试集(5,011)
@@ -124,19 +151,71 @@ You can use it for general purpose or domain adaption, or even for text generati
     
         原始的XNLI覆盖15种语言（含低资源语言）。我们选取其中的中文，并将做格式转换，使得非常容易进入训练和测试阶段。
 
+##### 6. COPA 因果推断-中文版 Choice of Plausible Alternatives
 
-##### 3.TNEWS 今日头条中文新闻（短文本）分类 Short Text Classificaiton for News
+TODO 
 
-        数据量：训练集(266,000)，验证集(57,000)，测试集(57,000)
-        例子：
-        6552431613437805063_!_102_!_news_entertainment_!_谢娜为李浩菲澄清网络谣言，之后她的两个行为给自己加分_!_佟丽娅,网络谣言,快乐大本营,李浩菲,谢娜,观众们
-        每行为一条数据，以_!_分割的个字段，从前往后分别是 新闻ID，分类code，分类名称，新闻字符串（仅含标题），新闻关键词
-##### 4.INEWS 互联网情感分析任务 Sentiment Analysis for Internet News
-        数据量：训练集(5,356)，验证集(1,000)，测试集(1,000)     
-        例子：
-        1_!_00005a3efe934a19adc0b69b05faeae7_!_九江办好人民满意教育_!_近3年来，九江市紧紧围绕“人本教育、公平教育、优质教育、幸福教育”的目标，努力办好人民满意教育，促进了义务教育均衡发展，农村贫困地区办学条件改善。目前，该市特色教育学校有70所 ......
-        每行为一条数据，以_!_分割的个字段，从前往后分别是情感类别，数据id，新闻标题，新闻内容
-##### 5.DRCD 繁体阅读理解任务 Reading Comprehension for Traditional Chinese
+##### 7. WSC Winograd模式挑战中文版  The Winograd Schema Challenge
+
+TODO 
+
+##### 8. CSL 论文关键词识别 Keyword Recognition
+中文科技文献数据集包含中文核心论文摘要及其关键词。
+用tf-idf生成伪造关键词与论文真实关键词混合，生成摘要-关键词对，关键词中包含伪造的则标签为0。
+```
+    数据量：训练集(20,000)，验证集(3,000)，测试集(3,000)
+    例子： 
+    通过研究Windows环境下USB设备的工作原理，应用操作系统与USB设备驱动通信获取设备描述和设备ID等信息的机制，提出了一种实用有效的USB设备监控技术。实现了在开机前后两种情况下对USB设备的实时监控，有效地避免了其他监控技术的漏洞。实验结果证明，该方法是可靠有效的。	设备描述 设备ID Windows环境 安全监控	1
+    通过研究Windows环境下USB设备的工作原理，应用操作系统与USB设备驱动通信获取设备描述和设备ID等信息的机制，提出了一种实用有效的USB设备监控技术。实现了在开机前后两种情况下对USB设备的实时监控，有效地避免了其他监控技术的漏洞。实验结果证明，该方法是可靠有效的。	设备 技术 安全监控 设备描述	    0
+```
+
+##### 9.CMRC2018 简体中文阅读理解任务 Reading Comprehension for Simplified Chinese
+https://hfl-rc.github.io/cmrc2018/
+```
+数据量：训练集(短文数2,403，问题数10,142)，试验集(短文数256，问题数1,002)，开发集(短文数848，问题数3,219)  
+例子：
+{
+  "version": "1.0",
+  "data": [
+    {
+        "title": "傻钱策略",
+        "context_id": "TRIAL_0",
+        "context_text": "工商协进会报告，12月消费者信心上升到78.1，明显高于11月的72。另据《华尔街日报》报道，2013年是1995年以来美国股市表现最好的一年。这一年里，投资美国股市的明智做法是追着“傻钱”跑。所谓的“傻钱”策略，其实就是买入并持有美国股票这样的普通组合。这个策略要比对冲基金和其它专业投资者使用的更为复杂的投资方法效果好得多。",
+        "qas":[
+                {
+                "query_id": "TRIAL_0_QUERY_0",
+                "query_text": "什么是傻钱策略？",
+                "answers": [
+                     "所谓的“傻钱”策略，其实就是买入并持有美国股票这样的普通组合",
+                     "其实就是买入并持有美国股票这样的普通组合",
+                     "买入并持有美国股票这样的普通组合"
+                    ]
+                },
+                {
+                "query_id": "TRIAL_0_QUERY_1",
+                "query_text": "12月的消费者信心指数是多少？",
+                "answers": [
+                    "78.1",
+                    "78.1",
+                    "78.1"
+                    ]
+                },
+                {
+                "query_id": "TRIAL_0_QUERY_2",
+                "query_text": "消费者信心指数由什么机构发布？",
+                "answers": [
+                    "工商协进会",
+                    "工商协进会",
+                    "工商协进会"
+                    ]
+                }
+            ]
+        }
+    ]
+}
+```
+
+##### 10.DRCD 繁体阅读理解任务 Reading Comprehension for Traditional Chinese
 台達閱讀理解資料集 Delta Reading Comprehension Dataset (DRCD)(https://github.com/DRCKnowledgeTeam/DRCD) 屬於通用領域繁體中文機器閱讀理解資料集。 本資料集期望成為適用於遷移學習之標準中文閱讀理解資料集。  
 ```
 数据量：训练集(8,016个段落，26,936个问题)，验证集(1,000个段落，3,524个问题)，测试集(1,000个段落，3,493个问题)  
@@ -183,78 +262,7 @@ You can use it for general purpose or domain adaption, or even for text generati
 ```
 数据格式和squad相同，如果使用简体中文模型进行评测的时候可以将其繁转简(本项目已提供)
         
-##### 6.CMRC2018 简体中文阅读理解任务 Reading Comprehension for Simplified Chinese
-https://hfl-rc.github.io/cmrc2018/
-```
-数据量：训练集(短文数2,403，问题数10,142)，试验集(短文数256，问题数1,002)，开发集(短文数848，问题数3,219)  
-例子：
-{
-  "version": "1.0",
-  "data": [
-    {
-        "title": "傻钱策略",
-        "context_id": "TRIAL_0",
-        "context_text": "工商协进会报告，12月消费者信心上升到78.1，明显高于11月的72。另据《华尔街日报》报道，2013年是1995年以来美国股市表现最好的一年。这一年里，投资美国股市的明智做法是追着“傻钱”跑。所谓的“傻钱”策略，其实就是买入并持有美国股票这样的普通组合。这个策略要比对冲基金和其它专业投资者使用的更为复杂的投资方法效果好得多。",
-        "qas":[
-                {
-                "query_id": "TRIAL_0_QUERY_0",
-                "query_text": "什么是傻钱策略？",
-                "answers": [
-                     "所谓的“傻钱”策略，其实就是买入并持有美国股票这样的普通组合",
-                     "其实就是买入并持有美国股票这样的普通组合",
-                     "买入并持有美国股票这样的普通组合"
-                    ]
-                },
-                {
-                "query_id": "TRIAL_0_QUERY_1",
-                "query_text": "12月的消费者信心指数是多少？",
-                "answers": [
-                    "78.1",
-                    "78.1",
-                    "78.1"
-                    ]
-                },
-                {
-                "query_id": "TRIAL_0_QUERY_2",
-                "query_text": "消费者信心指数由什么机构发布？",
-                "answers": [
-                    "工商协进会",
-                    "工商协进会",
-                    "工商协进会"
-                    ]
-                }
-            ]
-        }
-    ]
-}
-```
-数据格式和squad相同
-##### 7. BQ 智能客服问句匹配 Question Matching for Customer Service
-该数据集是自动问答系统语料，共有120,000对句子对，并标注了句子对相似度值，取值为0或1（0表示不相似，1表示相似）。数据中存在错别字、语法不规范等问题，但更加贴近工业场景。
-        数据量：训练集(100,000)，验证集(10,000)，测试集(10,000)
-        例子： 
-         1.我存钱还不扣的 [分隔符] 借了每天都要还利息吗 [分隔符] 0
-         2.为什么我的还没有额度 [分隔符] 为啥没有额度！！ [分隔符] 1
-##### 8. MSRANER 命名实体识别 Name Entity Recognition
-该数据集共有5万多条中文命名实体识别标注数据（包括人名、地名、组织名），分别用nr、ns、nt表示，其他实体用o表示。
-        数据量：训练集(46,364)，测试集(4,365)
-        例子： 
-         1.据说/o 应/o 老友/o 之/o 邀/o ，/o 梁实秋/nr 还/o 坐/o 着/o 滑竿/o 来/o 此/o 品/o 过/o 玉峰/ns 茶/o 。/o
-         2.他/o 每年/o 还/o 为/o 河北农业大学/nt 扶助/o 多/o 名/o 贫困/o 学生/o 。/o
-##### 9. THUCNEWS 长文本分类 Long Text classification
-该数据集共有4万多条中文新闻长文本标注数据，共14个类别: "体育":0, "娱乐":1, "家居":2, "彩票":3, "房产":4, "教育":5, "时尚":6, "时政":7, "星座":8, "游戏":9, "社会":10, "科技":11, "股票":12, "财经":13。
-        数据量：训练集(33,437)，验证集(4,180)，测试集(4,180)
-        例子： 
-     11_!_科技_!_493337.txt_!_爱国者A-Touch MK3533高清播放器试用　　爱国者MP5简介:　　"爱国者"北京华旗资讯，作为国内知名数码产品制>造商。1993年创立于北京中关村，是一家致力于......
-     每行为一条数据，以_!_分割的个字段，从前往后分别是 类别ID，类别名称，文本ID，文本内容。
-##### 10.iFLYTEK 长文本分类 Long Text classification
-该数据集共有1.7万多条关于app应用描述的长文本标注数据，包含和日常生活相关的各类应用主题，共119个类别："打车":0,"地图导航":1,"免费WIFI":2,"租车":3,….,"女性":115,"经营":116,"收款":117,"其他":118(分别用0-118表示)。
-```
-    数据量：训练集(12,133)，验证集(2,599)，测试集(2,600)
-    例子： 
-17_!_休闲益智_!_玩家需控制一只酷似神龙大侠的熊猫人在科技感十足的未来城市中穿越打拼。感觉很山寨功夫熊猫，自由度非常高，可以做很多你想做的事情......
-每行为一条数据，以_!_分割字段，从前往后分别是 类别ID，类别名称，文本内容。
-```
+
 ##### 11.CHID 成语阅读理解填空 Chinese IDiom Dataset for Cloze Test
 https://arxiv.org/abs/1906.01265  
 成语完形填空，文中多处成语被mask，候选项中包含了近义的成语。
@@ -290,30 +298,16 @@ https://arxiv.org/abs/1906.01265
     }
 ```
 
-##### 12.CMNLI 语言推理任务 Chinese Multi-Genre NLI
+##### 更多数据集添加中，Comming soon!
+更多数据集添加中，如果你有定义良好的数据集，请与我们取得联系 ChineseGLUE@163.com
 
-ChineseMNLI数据对原始MNLI数据进行中英文转化，数据来自于fiction，telephone，travel，government，slate等，用于判断给定的两个句子之间属于蕴涵、中立、矛盾关系。
+##### 数据集下载 
 
-```
-    数据量：train(391,783)，matched(9336)，mismatched(8,870)
-    例子：
-    {"sentence1": "新的权利已经足够好了", "sentence2": "每个人都很喜欢最新的福利", "gold_label": "neutral"}
-```
+<a href="#">整体下载</a>
 
-##### 13. CSL 论文关键词识别 Keyword Recognition
-中文科技文献数据集包含中文核心论文摘要及其关键词。
-用tf-idf生成伪造关键词与论文真实关键词混合，生成摘要-关键词对，关键词中包含伪造的则标签为0。
-```
-    数据量：训练集(20,000)，验证集(3,000)，测试集(3,000)
-    例子： 
-    通过研究Windows环境下USB设备的工作原理，应用操作系统与USB设备驱动通信获取设备描述和设备ID等信息的机制，提出了一种实用有效的USB设备监控技术。实现了在开机前后两种情况下对USB设备的实时监控，有效地避免了其他监控技术的漏洞。实验结果证明，该方法是可靠有效的。	设备描述 设备ID Windows环境 安全监控	1
-    通过研究Windows环境下USB设备的工作原理，应用操作系统与USB设备驱动通信获取设备描述和设备ID等信息的机制，提出了一种实用有效的USB设备监控技术。实现了在开机前后两种情况下对USB设备的实时监控，有效地避免了其他监控技术的漏洞。实验结果证明，该方法是可靠有效的。	设备 技术 安全监控 设备描述	    0
-```
-##### 14. 更多数据集添加中，Comming soon!
-更多数据集添加中，如果你有定义良好的数据集，请与我们取得联系。
-##### 数据集下载 <a href="https://storage.googleapis.com/chineseglue/chineseGLUEdatasets.v0.0.1.zip">整体下载</a>
 或使用命令：
-    wget https://storage.googleapis.com/chineseglue/chineseGLUEdatasets.v0.0.1.zip
+    wget <url>
+    
 中文任务基准测评(ChineseGLUE)-排行榜-各任务对比 Evaluation of Dataset for Different Models
 ---------------------------------------------------------------------
 #### TNEWS 短文本分类 Short Text Classificaiton for News (Accuracy)：
@@ -339,28 +333,8 @@ ChineseMNLI数据对原始MNLI数据进行中英文转化，数据来自于ficti
 | RoBERTa-wwm-ext | 79.56 | 79.28 | batch_size=64, length=128, epoch=2 |
 | RoBERTa-wwm-large-ext | ***80.20*** | ***80.04*** | batch_size=16, length=128, epoch=2 |
 注：ALBERT-xlarge，在XNLI任务上训练暂时还存在有问题
-#### LCQMC 口语化描述的语义相似度匹配 Semantic Similarity Task (Accuracy)：
-| 模型 | 开发集（dev) | 测试集（test) | 训练参数 |
-| :----:| :----: | :----: | :----: |
-| ALBERT-xlarge | 89.00  | 86.76  |batch_size=64, length=128, epoch=3 |
-| BERT-base | 89.4  | 86.9  | batch_size=64, length=128, epoch=3 |
-| BERT-wwm-ext-base |89.1   | ***87.3*** |  batch_size=64, length=128, epoch=3 |
-| ERNIE-base  | 89.8  | 87.2 | batch_size=64, length=128, epoch=3|
-| RoBERTa-large |***89.9***  | 87.2|  batch_size=64, length=128, epoch=3 |
-| XLNet-mid | 86.14 | 85.98 | batch_size=64, length=128, epoch=3 |
-| RoBERTa-wwm-ext | 89.08 | 86.33 | batch_size=64, length=128, epoch=3 |
-| RoBERTa-wwm-large-ext | 89.79 | 86.82 | batch_size=16, length=128, epoch=3 |
-#### INEWS 互联网情感分析 Sentiment Analysis for Internet News (Accuracy)：
-| 模型 | 开发集（dev) | 测试集（test) | 训练参数 |
-| :----:| :----: | :----: | :----: |
-| ALBERT-xlarge | 81.80 | 82.40 |batch_size=32, length=512, epoch=8 |
-| BERT-base | 81.29 | 82.70 | batch_size=16, length=512, epoch=3 |
-| BERT-wwm-ext-base | 81.93 | 83.46 | batch_size=16, length=512, epoch=3 |
-| ERNIE-base  | ***84.50*** |***85.14*** | batch_size=16, length=512, epoch=3 |
-| RoBERTa-large | 81.90 | 84.00 | batch_size=4, length=512, epoch=3 |
-| XLNet-mid | 82.00 | 84.00 | batch_size=8, length=512, epoch=3 |
-| RoBERTa-wwm-ext | 82.98 | 82.28 | batch_size=16, length=512, epoch=3 |
-| RoBERTa-wwm-large-ext | 83.73 | 82.78 | batch_size=4, length=512, epoch=3 |
+
+
 #### DRCD 繁体阅读理解 Reading Comprehension for Traditional Chinese (F1, EM)：
 | 模型 | 开发集（dev) | 测试集（test) | 训练参数 |
 | :----:| :----: | :----: | :----: |
@@ -412,43 +386,7 @@ ChineseMNLI数据对原始MNLI数据进行中英文转化，数据来自于ficti
 | xlnet-mid	|78.15 |76.93 | batch=16, length=128, epoch=3 lr=2e-5 |
 | RoBERTa-wwm-ext	|81.09 | 81.38 | batch=32, length=128, epoch=3 lr=2e-5  |
 | RoBERTa-wwm-large-ext	|***83.4*** | ***83.42*** | batch=32, length=128, epoch=3 lr=2e-5  |
-#### BQ 智能客服问句匹配 Question Matching for Customer Service (Accuracy)：
-| 模型 | 开发集（dev） | 测试集（test） | 训练参数 |
-| :----:| :----: | :----: | :----: |
-| BERT-base | 85.86 | 85.08 | batch_size=64, length=128, epoch=3 |
-| BERT-wwm-ext-base | 86.05 | ***85.21*** |batch_size=64, length=128, epoch=3 |
-| ERNIE-base | 85.92 | 84.47 | batch_size=64, length=128, epoch=3 |
-| RoBERTa-large | 85.68 | 85.20 | batch_size=8, length=128, epoch=3 |
-| XLNet-mid | 79.81 | 77.85 | batch_size=32, length=128, epoch=3 |
-| ALBERT-xlarge | 85.21 | 84.21 | batch_size=16, length=128, epoch=3 |
-| ALBERT-tiny | 82.04 | 80.76 | batch_size=64, length=128, epoch=5 |
-| RoBERTa-wwm-ext | 85.31 | 84.02 | batch_size=64, length=128, epoch=3 |
-| RoBERTa-wwm-large-ext | ***86.34*** | 84.90 | batch_size=16, length=128, epoch=3 |
-#### MSRANER 命名实体识别 Name Entity Recognition (F1):
-| 模型 | 测试集（test） | 训练参数 |
-| :----: | :----: | :----: |
-| BERT-base | 95.38 | batch_size=16, length=256, epoch=5, lr=2e-5 |
-| BERT-wwm-ext-base | 95.26 | batch_size=16, length=256, epoch=5, lr=2e-5 |
-| ERNIE-base | 95.17 | batch_size=16, length=256, epoch=5, lr=2e-5 |
-| RoBERTa-large | ***96.07*** | batch_size=8, length=256, epoch=5, lr=2e-5 |
-| XLNet-mid | - | - |
-| ALBERT-xlarge | 89.51 | batch_size=16, length=256, epoch=8, lr=7e-5 |
-| ALBERT-base | 92.47 | batch_size=32, length=256, epoch=8, lr=5e-5 |
-| ALBERT-tiny | 84.77 | batch_size=32, length=256, epoch=8, lr=5e-5 |
-| RoBERTa-wwm-ext | 95.06 | batch_size=16, length=256, epoch=5, lr=2e-5 |
-| RoBERTa-wwm-large-ext | 95.32 | batch_size=8, length=256, epoch=5, lr=2e-5 |
-#### THUCNEWS 长文本分类 Long Text Classification (Accuracy)：
-| 模型 | 开发集（dev) | 测试集（test) | 训练参数 |
-| :----:| :----: | :----: | :----: |
-| ALBERT-xlarge | 95.74  | 95.45 |batch_size=32, length=512, epoch=8 |
-| ALBERT-tiny | 92.63 | 93.54 | batch_size=64, length=128, epoch=5 |
-| BERT-base | 95.28 | 95.35 | batch_size=8, length=128, epoch=3 |
-| BERT-wwm-ext-base | 95.38 | 95.57 | batch_size=8, length=128, epoch=3 |
-| ERNIE-base  | 94.35 | 94.90 | batch_size=16, length=256, epoch=3 |
-| RoBERTa-large | 94.52 | 94.56 | batch_size=2, length=256, epoch=3 |
-| XLNet-mid | 94.04 | 94.54 | batch_size=16, length=128, epoch=3 |
-| RoBERTa-wwm-ext | 95.59 | 95.52 | batch_size=16, length=256, epoch=3 |
-| RoBERTa-wwm-large-ext | ***96.10*** | ***95.93*** | batch_size=32, length=512, epoch=8 |
+
 #### iFLYTEKData 长文本分类 Long Text Classification (Accuracy)：
 |         模型          | 开发集（dev) | 测试集（test) |              训练参数              |
 | :-------------------: | :----------: | :-----------: | :--------------------------------: |
@@ -581,7 +519,7 @@ or join QQ group: 836811304
 
 崔一鸣，哈工大讯飞联合实验室（HFL）资深级研究员。中文机器阅读理解CMRC系列评测发起者，负责多个中文预训练模型项目，所领导的团队多次在SQuAD、CoQA、QuAC、HotpotQA等国际阅读理解评测中荣登榜首。
 
-#### 创始会员 Charter Members（排名不分先后）：
+#### 会员 Charter Members（排名不分先后）：
 徐亮，<a href='https://github.com/brightmart'>brightmart</a>，中文任务基准测评ChineseGLUE发起人。杭州实在智能算法专家，多个预训练模型中文版、文本分类开源项目作者。
 
 Danny Lan，CMU博士、google AI 研究员，SOTA语言理解模型AlBERT第一作者。
@@ -633,8 +571,6 @@ Reference:
 1、<a href="https://openreview.net/pdf?id=rJ4km2R5t7">GLUE: A Multi-Task Benchmark and Analysis Platform for Natural Language Understanding</a>
 
 2、<a href="https://w4ngatang.github.io/static/papers/superglue.pdf">SuperGLUE: A Stickier Benchmark for General-Purpose Language Understanding Systems</a>
-
-3、<a href="https://www.aclweb.org/anthology/C18-1166.pdf">LCQMC: A Large-scale Chinese Question Matching Corpus</a>
 
 4、<a href="https://arxiv.org/pdf/1809.05053.pdf">XNLI: Evaluating Cross-lingual Sentence Representations</a>
 
