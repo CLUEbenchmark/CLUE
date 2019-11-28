@@ -160,11 +160,13 @@ ChineseMNLI数据对原始MNLI数据进行中英文转化，数据来自于ficti
 
 ##### 6. COPA 因果推断-中文版 Choice of Plausible Alternatives
 
-TODO 
+   <a href="https://storage.googleapis.com/cluebenchmark/tasks/copa_public.zip" > COPA数据集下载</a>
+
 
 ##### 7. WSC Winograd模式挑战中文版  The Winograd Schema Challenge,Chinese Version
 
-TODO 
+   <a href="https://storage.googleapis.com/cluebenchmark/tasks/wsc_public.zip" > WSC数据集下载</a>
+
 
 ##### 8. CSL 论文关键词识别 Keyword Recognition
 中文科技文献数据集包含中文核心论文摘要及其关键词。
@@ -175,6 +177,7 @@ TODO
     通过研究Windows环境下USB设备的工作原理，应用操作系统与USB设备驱动通信获取设备描述和设备ID等信息的机制，提出了一种实用有效的USB设备监控技术。实现了在开机前后两种情况下对USB设备的实时监控，有效地避免了其他监控技术的漏洞。实验结果证明，该方法是可靠有效的。	设备描述 设备ID Windows环境 安全监控	1
     通过研究Windows环境下USB设备的工作原理，应用操作系统与USB设备驱动通信获取设备描述和设备ID等信息的机制，提出了一种实用有效的USB设备监控技术。实现了在开机前后两种情况下对USB设备的实时监控，有效地避免了其他监控技术的漏洞。实验结果证明，该方法是可靠有效的。	设备 技术 安全监控 设备描述	    0
 ```
+   <a href="https://storage.googleapis.com/cluebenchmark/tasks/csl_public.zip" > CSL数据集下载</a>
 
 ##### 9.CMRC2018 简体中文阅读理解任务 Reading Comprehension for Simplified Chinese
 https://hfl-rc.github.io/cmrc2018/
