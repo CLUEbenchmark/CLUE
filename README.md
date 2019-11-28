@@ -13,7 +13,7 @@ Language Understanding Evaluation benchmark for Chinese: datasets, baselines, pr
 
 | 模型   | Score  | 参数    | AFQMC  | TNEWS'  | IFLYTEK'   | CMNLI-m  | CMNLI-mm  | XNLI     | COPA | WSC | CSL  |
 | :----:| :----: | :----: | :----: |:----: |:----: |:----: |:----: |:----: |:----: |:----: |:----: |
-| <a href="https://github.com/google-research/bert">BERT-base</a>        | - | 108M |  73.01% | 55.58%  | 60.29% | 79.39%  | 79.76% | 77.8%  | 57.40% | 62.0% | 80.36% |
+| <a href="https://github.com/google-research/bert">BERT-base</a>        | - | 108M |  73.70% | 55.58%  | 60.29% | 79.39%  | 79.76% | 77.8%  | 57.40% | 62.0% | 80.36% |
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">BERT-wwm-ext</a>      | - | 108M  | 74.07% | 56.84%  | 59.43% | 81.41% | 80.67% | 78.7%  | 61.40%  | 61.1%  | 80.63% |
 | <a href="https://github.com/PaddlePaddle/ERNIE">ERNIE-base</a>         | - | 108M  | 73.83% | 58.23% | 58.96% | 79.65% | 80.70% | 78.6%  | **65.00%**  | 60.8%  | 79.1%      |
 | <a href="https://github.com/brightmart/roberta_zh">RoBERTa-large</a>      | - | 334M  | 74.02% | 57.05%  | 62.55% | -  |  - | 79.9%   | 61.40% | 72.7%   | 81.36%       |
@@ -316,7 +316,7 @@ https://arxiv.org/abs/1906.01265
 | :-------------------: | :----------: | :-----------: | :--------------------------------: |
 |     ALBERT-xlarge     |    -     |     -   | batch_size=32, length=128, epoch=3 |
 |      ALBERT-tiny      |    -     |    69.92%    | batch_size=32, length=128, epoch=3 |
-|       BERT-base       |    -     |     73.01%  | batch_size=32, length=128, epoch=3 |
+|       BERT-base       |    74.16%     |     73.70%  | batch_size=32, length=128, epoch=3 |
 |   BERT-wwm-ext-base   |    73.74%     |      74.07%   | batch_size=32, length=128, epoch=3 |
 |      ERNIE-base       |         |      73.83%    | batch_size=24, length=128, epoch=3 |
 |     RoBERTa-large     |         |       74.02%   | batch_size=32, length=128, epoch=3 |
