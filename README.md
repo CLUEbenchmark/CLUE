@@ -109,7 +109,9 @@ You can use it for general purpose or domain adaption, or even for text generati
 
 ##### 1. AFQMC 蚂蚁金融语义相似度 Ant Financial  Question Matching Corpus
 
-TODO
+        数据量：训练集（34334）验证集（4316）测试集（3861）
+        例子：14870	蚂蚁借呗等额还款可以换成先息后本吗	借呗有先息到期还本吗	0
+        每行为一条数据， 以\tab分割的4个字段，从前往后分别是 ID, 第一个句子，第二个句子，类别
 
 ##### 2.TNEWS 今日头条中文新闻（短文本）分类 Short Text Classificaiton for News
 
