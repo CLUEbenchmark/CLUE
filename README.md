@@ -320,7 +320,7 @@ https://arxiv.org/abs/1906.01265
 
 ##### 数据集整体下载 
 
-<a href="#">整体下载：最近几天，会添加中</a>
+<a href="#">整体下载 Comining Soon</a>最近几天，会添加中
 
 或使用命令：wget <url>
     
@@ -655,5 +655,3 @@ Reference:
 9、<a href="https://arxiv.org/pdf/1810.04805.pdf">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</a>
 
 10、<a href="https://arxiv.org/pdf/1907.11692.pdf">RoBERTa: A Robustly Optimized BERT Pretraining Approach</a>
-
-注：阅读理解上述指标中F1和EM共存
