@@ -275,6 +275,7 @@ https://hfl-rc.github.io/cmrc2018/
 ```
 数据格式和squad相同，如果使用简体中文模型进行评测的时候可以将其繁转简(本项目已提供)
         
+   <a href="https://storage.googleapis.com/cluebenchmark/tasks/drcd_public.zip" > DRCD2018数据集下载</a>
 
 ##### 11.CHID 成语阅读理解填空 Chinese IDiom Dataset for Cloze Test
 https://arxiv.org/abs/1906.01265  
