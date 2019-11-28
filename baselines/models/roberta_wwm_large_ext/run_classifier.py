@@ -978,6 +978,44 @@ class ColaProcessor(DataProcessor):
                 InputExample(guid=guid, text_a=text_a, text_b=None, label=label))
         return examples
 
+class CslProcessor(DataProcessor):
+    """Processor for the CSL data set."""
+
+    def get_train_examples(self, data_dir):
+        """See base class."""
+        return self._create_examples(
+            self._read_tsv(os.path.join(data_dir, "train.tsv")), "train")
+
+    def get_dev_examples(self, data_dir):
+        """See base class."""
+        return self._create_examples(
+            self._read_tsv(os.path.join(data_dir, "dev.tsv")), "dev")
+
+    def get_test_examples(self, data_dir):
+        """See base class."""
+        return self._create_examples(
+            self._read_tsv(os.path.join(data_dir, "test.tsv")), "test")
+
+    def _create_examples(self, lines, set_type):
+        """Creates examples for the training and dev sets."""
+        examples = []
+        seq_length=FLAGS.max_seq_length
+        for (i, line) in enumerate(lines):
+            if i == 0:
+                continue
+            guid = "%s-%s" % (set_type, i)
+            abst = tokenization.convert_to_unicode(line[0])
+            keyword = tokenization.convert_to_unicode(line[1])
+            label = tokenization.convert_to_unicode(line[2])
+            if (len(abst) + len(keyword)) >  seq_length:
+                abst = abst[:seq_length - len(keyword)]
+            examples.append(
+                InputExample(guid=guid, text_a=abst, text_b=keyword, label=label))
+        return examples
+
+    def get_labels(self):
+        """See base class."""
+        return ["0", "1"]
 
 def convert_single_example(ex_index, example, label_list, max_seq_length,
                            tokenizer):
@@ -1396,10 +1434,11 @@ def main(_):
         "tnews": TnewsProcessor,
         "jdcomment": JDCOMMENTProcessor,
         "inews": InewsProcessor,
-	      "thucnews":THUCNewsProcessor,
+	    "thucnews":THUCNewsProcessor,
         "lcqmc": LCQMCProcessor,
         "bq": BQProcessor,
-        "iflydata": iFLYTEKDataProcessor
+        "iflydata": iFLYTEKDataProcessor,
+        "csl": CslProcessor,
     }
 
     tokenization.validate_case_matches_checkpoint(FLAGS.do_lower_case,

@@ -915,6 +915,45 @@ class StsbProcessor(GLUEProcessor):
 
         return examples
 
+class CslProcessor(DataProcessor):
+    """Processor for the CSL data set."""
+
+    def get_train_examples(self, data_dir):
+        """See base class."""
+        return self._create_examples(
+            self._read_tsv(os.path.join(data_dir, "train.tsv")), "train")
+
+    def get_devtest_examples(self, data_dir, set_type="dev"):
+        """See base class."""
+        return self._create_examples(
+            self._read_tsv(os.path.join(data_dir, "dev.tsv")), set_type)
+
+    def get_test_examples(self, data_dir):
+        """See base class."""
+        return self._create_examples(
+            self._read_tsv(os.path.join(data_dir, "test.tsv")), "test")
+
+    def _create_examples(self, lines, set_type):
+        """Creates examples for the training and dev sets."""
+        examples = []
+        seq_length=FLAGS.max_seq_length
+        for (i, line) in enumerate(lines):
+            if i == 0:
+                continue
+            guid = "%s-%s" % (set_type, i)
+            abst = (line[0])
+            keyword = (line[1])
+            label = (line[2])
+            if (len(abst) + len(keyword)) >  seq_length:
+                abst = abst[:seq_length - len(keyword)]
+            examples.append(
+                InputExample(guid=guid, text_a=abst, text_b=keyword, label=label))
+        return examples
+
+    def get_labels(self):
+        """See base class."""
+        return ["0", "1"]
+
 
 def file_based_convert_examples_to_features(
         examples, label_list, max_seq_length, tokenize_fn, output_file,
@@ -1185,7 +1224,8 @@ def main(_):
         "lcqmc": LCQMCProcessor,
         "bq": BQProcessor,
         "thucnews": THUCNewsProcessor,
-        "iflydata": iFLYTEKDataProcessor
+        "iflydata": iFLYTEKDataProcessor,
+        "csl":CslProcessor
     }
 
     if not FLAGS.do_train and not FLAGS.do_eval and not FLAGS.do_predict:
