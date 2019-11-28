@@ -312,15 +312,17 @@ https://arxiv.org/abs/1906.01265
     }
 ```
 
+   <a href="https://storage.googleapis.com/cluebenchmark/tasks/chid_public.zip" > CHID数据集下载</a>
+
+
 ##### 更多数据集添加中，Comming soon!
-更多数据集添加中，如果你有定义良好的数据集，请与我们取得联系 ChineseGLUE@163.com
+如果你有定义良好的数据集并愿意为社区做贡献，请与我们取得联系 ChineseGLUE#163.com
 
-##### 数据集下载 
+##### 数据集整体下载 
 
-<a href="#">整体下载</a>
+<a href="#">整体下载：最近几天，会添加中</a>
 
-或使用命令：
-    wget <url>
+或使用命令：wget <url>
     
 
 中文任务基准测评(CLUE benchmark)-各任务对比
