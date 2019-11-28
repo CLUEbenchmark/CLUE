@@ -114,7 +114,7 @@ You can use it for general purpose or domain adaption, or even for text generati
         例子：14870	蚂蚁借呗等额还款可以换成先息后本吗	借呗有先息到期还本吗	0
         每行为一条数据， 以\tab分割的4个字段，从前往后分别是 ID, 第一个句子，第二个句子，类别
         
-   <a href="https://storage.googleapis.com/cluebenchmark/tasks/afqmc_public.zip" > &nbsp  &nbsp   &nbsp AFQMC'数据集下载</a>
+   <a href="https://storage.googleapis.com/cluebenchmark/tasks/afqmc_public.zip" > AFQMC'数据集下载</a>
 
 ##### 2.TNEWS' 今日头条中文新闻（短文本）分类 Short Text Classificaiton for News
 
@@ -123,7 +123,7 @@ You can use it for general purpose or domain adaption, or even for text generati
         6552431613437805063_!_102_!_news_entertainment_!_谢娜为李浩菲澄清网络谣言，之后她的两个行为给自己加分_!_佟丽娅,网络谣言,快乐大本营,李浩菲,谢娜,观众们
         每行为一条数据，以_!_分割的个字段，从前往后分别是 新闻ID，分类code，分类名称，新闻字符串（仅含标题），新闻关键词
 
-   <a href="https://storage.googleapis.com/cluebenchmark/tasks/tnews_public.zip" > &nbsp  &nbsp   &nbsp TNEWS'数据集下载</a>
+   <a href="https://storage.googleapis.com/cluebenchmark/tasks/tnews_public.zip" > TNEWS'数据集下载</a>
 
 ##### 3.IFLYTEK' 长文本分类 Long Text classification
 该数据集共有1.7万多条关于app应用描述的长文本标注数据，包含和日常生活相关的各类应用主题，共119个类别："打车":0,"地图导航":1,"免费WIFI":2,"租车":3,….,"女性":115,"经营":116,"收款":117,"其他":118(分别用0-118表示)。
@@ -133,7 +133,7 @@ You can use it for general purpose or domain adaption, or even for text generati
 17_!_休闲益智_!_玩家需控制一只酷似神龙大侠的熊猫人在科技感十足的未来城市中穿越打拼。感觉很山寨功夫熊猫，自由度非常高，可以做很多你想做的事情......
 每行为一条数据，以_!_分割字段，从前往后分别是 类别ID，类别名称，文本内容。
 ```
-   <a href="https://storage.googleapis.com/cluebenchmark/tasks/iflytek_public.zip" > &nbsp  &nbsp   &nbsp IFLYTEK'数据集下载</a>
+   <a href="https://storage.googleapis.com/cluebenchmark/tasks/iflytek_public.zip" > IFLYTEK'数据集下载</a>
 
 ##### 4.CMNLI 语言推理任务 Chinese Multi-Genre NLI
 
@@ -144,7 +144,7 @@ ChineseMNLI数据对原始MNLI数据进行中英文转化，数据来自于ficti
     例子：
     {"sentence1": "新的权利已经足够好了", "sentence2": "每个人都很喜欢最新的福利", "gold_label": "neutral"}
 ```
-   <a href="https://storage.googleapis.com/cluebenchmark/tasks/cmnli_public.zip" > &nbsp  &nbsp   &nbsp CMNLI数据集下载</a>
+   <a href="https://storage.googleapis.com/cluebenchmark/tasks/cmnli_public.zip" > CMNLI数据集下载</a>
 
 ##### 5. XNLI 语言推断任务中文版 Natural Language Inference
 跨语言理解的数据集，给定一个前提和假设，判断这个假设与前提是否具有蕴涵、对立、中性关系。
@@ -156,7 +156,7 @@ ChineseMNLI数据对原始MNLI数据进行中英文转化，数据来自于ficti
     
         原始的XNLI覆盖15种语言（含低资源语言）。我们选取其中的中文，并将做格式转换，使得非常容易进入训练和测试阶段。
 
-   <a href="https://storage.googleapis.com/cluebenchmark/tasks/xnli_public.zip" > &nbsp  &nbsp   &nbsp XNLI中文数据集下载</a>
+   <a href="https://storage.googleapis.com/cluebenchmark/tasks/xnli_public.zip" > XNLI中文数据集下载</a>
 
 ##### 6. COPA 因果推断-中文版 Choice of Plausible Alternatives
 
