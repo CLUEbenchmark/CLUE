@@ -354,18 +354,19 @@ TNEWS' TODO
 | XLNet-mid | 79.2 | 78.7 | batch_size=64, length=128, epoch=2 |
 | RoBERTa-wwm-ext | 79.56 | 79.28 | batch_size=64, length=128, epoch=2 |
 | RoBERTa-wwm-large-ext | ***80.20*** | ***80.04*** | batch_size=16, length=128, epoch=2 |
+
 注：ALBERT-xlarge，在XNLI任务上训练暂时还存在有问题
 
 COPA TODO 
 
-##### 7. WSC Winograd模式挑战中文版  The Winograd Schema Challenge,Chinese Version
+##### WSC Winograd模式挑战中文版  The Winograd Schema Challenge,Chinese Version
 
 #### WSC Winograd模式挑战中文版  The Winograd Schema Challenge,Chinese Version：
 | 模型 | 开发集（dev) | 测试集（test) | 训练参数 |
 | :----:| :----: | :----: | :----: |
 | ALBERT-xxlarge |    |    |  |
 | ALBERT-tiny |  57.7(52.9)  |  58.5(52.1)  |  |
-| BERT-base | 59.6（56.7））  | 62.0（57.9）  |  |
+| BERT-base | 59.6（56.7)  | 62.0（57.9）  |  |
 | BERT-wwm-ext-base | 59.4(56.7) |  61.1(56.2) |   |
 | ERNIE-base  | 58.1(54.9)| 60.8(55.9) |   |
 | RoBERTa-large | 68.6(58.7)  | 72.7(63.6)  |  |
