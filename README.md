@@ -401,8 +401,8 @@ COPA TODO
 |         模型          | 开发集（dev) | 测试集（test) |              训练参数              |
 | :-------------------: | :----------: | :-----------: | :--------------------------------: |
 |     ALBERT-xlarge     |    80.23     |     80.29     | batch_size=16, length=128, epoch=5 |
-|     ALBERT-tiny     |    80.23     |     80.29     | batch_size=16, length=128, epoch=5 |
-|       BERT-base       |              |     74.56     | batch_size=4, length=256, epoch=5  |
+|     ALBERT-tiny     |             |     74.56     | batch_size=16, length=128, epoch=5 |
+|       BERT-base       |              |     80.23     | batch_size=4, length=256, epoch=5  |
 |   BERT-wwm-ext-base   |    80.60     |     81.00     | batch_size=4, length=256, epoch=5  |
 |      ERNIE-base       |    79.43     |     79.10     | batch_size=4, length=256, epoch=5  |
 |     RoBERTa-large     |    81.87     |     81.36     | batch_size=4, length=256, epoch=5  |
