@@ -314,28 +314,28 @@ https://arxiv.org/abs/1906.01265
 #### AFQMC 蚂蚁语义相似度 Ant Semantic Similarity (Accuracy)：
 |         模型          | 开发集（dev) | 测试集（test) |              训练参数              |
 | :-------------------: | :----------: | :-----------: | :--------------------------------: |
-|     ALBERT-xlarge     |    -     |          | batch_size=32, length=128, epoch=3 |
-|      ALBERT-tiny      |    -     |          | batch_size=32, length=256, epoch=3 |
-|       BERT-base       |    -     |        | batch_size=32, length=128, epoch=3 |
-|   BERT-wwm-ext-base   |         |          | batch_size=32, length=128, epoch=3 |
-|      ERNIE-base       |         |          | batch_size=24, length=256, epoch=3 |
-|     RoBERTa-large     |         |          | batch_size=32, length=128, epoch=3 |
+|     ALBERT-xlarge     |    -     |     -   | batch_size=32, length=128, epoch=3 |
+|      ALBERT-tiny      |    -     |    69.92%    | batch_size=32, length=128, epoch=3 |
+|       BERT-base       |    -     |     73.01%  | batch_size=32, length=128, epoch=3 |
+|   BERT-wwm-ext-base   |         |      73.68%   | batch_size=32, length=128, epoch=3 |
+|      ERNIE-base       |         |      73.83%    | batch_size=24, length=128, epoch=3 |
+|     RoBERTa-large     |         |       74.02%   | batch_size=32, length=128, epoch=3 |
 |       XLNet-mid       |         |          | batch_size=16, length=128, epoch=3 |
-|    RoBERTa-wwm-ext    |         |       -       | batch_size=16, length=128, epoch=3 |
-| RoBERTa-wwm-large-ext |   |   | batch_size=32, length=128, epoch=3 |
+|    RoBERTa-wwm-ext    |         |      73.60%       | batch_size=16, length=128, epoch=3 |
+| RoBERTa-wwm-large-ext |   |  76.55% | batch_size=32, length=128, epoch=3 |
 
 #### TNEWS' 头条新闻分类 Toutiao News Classification (Accuracy)：
 |         模型          | 开发集（dev) | 测试集（test) |              训练参数              |
 | :-------------------: | :----------: | :-----------: | :--------------------------------: |
-|     ALBERT-xlarge     |    -     |          | batch_size=32, length=128, epoch=3 |
-|      ALBERT-tiny      |    -     |          | batch_size=32, length=256, epoch=3 |
-|       BERT-base       |    -     |        | batch_size=32, length=128, epoch=3 |
-|   BERT-wwm-ext-base   |         |          | batch_size=32, length=128, epoch=3 |
-|      ERNIE-base       |         |          | batch_size=24, length=256, epoch=3 |
-|     RoBERTa-large     |         |          | batch_size=32, length=128, epoch=3 |
-|       XLNet-mid       |         |          | batch_size=16, length=128, epoch=3 |
-|    RoBERTa-wwm-ext    |         |              | batch_size=16, length=128, epoch=3 |
-| RoBERTa-wwm-large-ext |   |   | batch_size=32, length=128, epoch=3 |
+|     ALBERT-xlarge     |    -     |         | batch_size=32, length=128, epoch=3 |
+|      ALBERT-tiny      |    -     |       53.35%   | batch_size=32, length=128, epoch=3 |
+|       BERT-base       |    -     |     55.58%    | batch_size=32, length=128, epoch=3 |
+|   BERT-wwm-ext-base   |         |    56.84%      | batch_size=32, length=128, epoch=3 |
+|      ERNIE-base       |         |     58.23%     | batch_size=24, length=128, epoch=3 |
+|     RoBERTa-large     |         |      57.05%    | batch_size=32, length=128, epoch=3 |
+|       XLNet-mid       |         |      56.24%    | batch_size=16, length=128, epoch=3 |
+|    RoBERTa-wwm-ext    |         |      56.86        | batch_size=16, length=128, epoch=3 |
+| RoBERTa-wwm-large-ext |   | 58/61%  | batch_size=32, length=128, epoch=3 |
 
 #### IFLYTEK' 长文本分类 Long Text Classification (Accuracy)：
 |         模型          | 开发集（dev) | 测试集（test) |              训练参数              |
