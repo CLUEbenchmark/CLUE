@@ -1,11 +1,11 @@
-# ChineseGLUE
+# CLUE benchmark
 Language Understanding Evaluation benchmark for Chinese: datasets, baselines, pre-trained models, corpus and leaderboard
 
 中文语言理解测评基准，包括代表性的数据集、基准(预训练)模型、语料库、排行榜。  
 
 我们会选择一系列有一定代表性的任务对应的数据集，做为我们测试基准的数据集。这些数据集会覆盖不同的任务、数据量、任务难度。
 
-中文任务基准测评(ChineseGLUE)-排行榜 Leaderboard
+中文任务基准测评(CLUE benchmark)-排行榜 Leaderboard
 ---------------------------------------------------------------------
 #####  排行榜会定期更新                     数据来源: https://github.com/CLUEbenchmark/CLUE
 
@@ -26,9 +26,7 @@ Language Understanding Evaluation benchmark for Chinese: datasets, baselines, pr
 
 注：' 代表对原数据集筛选后获得，数据集与原数据集不同；AFQMC:蚂蚁语义相似度(Acc)；TNEWS:文本分类(Acc)；
 
-IFLYTEK:长文本分类(Acc); CMNLI-m/mm: MNLI自然语言推理中文版-matched/mismatched; XNLI:自然语言推理(Acc); COPA: 因果推断; 
-
-WSC: Winograd模式挑战中文版; CSL: 中国科学文献数据集
+IFLYTEK:长文本分类(Acc); CMNLI-m/mm: MNLI自然语言推理中文版-matched/mismatched; XNLI:自然语言推理(Acc); COPA: 因果推断; WSC: Winograd模式挑战中文版; CSL: 中国科学文献数据集
 
 Score是通过计算1-9数据集得分平均值获得；
 
@@ -52,7 +50,7 @@ DRCD、CMRC2018: 繁体、简体抽取式阅读理解(F1, EM)；CHID：成语多
 
 注：阅读理解上述指标中F1和EM共存的情况下，取EM为最终指标
 
-ChineseGLUE的定位 Vision
+CLUE benchmark的定位 Vision
 ---------------------------------------------------------------------
 为更好的服务中文语言理解、任务和产业界，做为通用语言模型测评的补充，通过完善中文语言理解基础设施的方式来促进中文语言模型的发展
 
@@ -309,9 +307,10 @@ https://arxiv.org/abs/1906.01265
     wget <url>
     
 
-中文任务基准测评(ChineseGLUE)-排行榜-各任务对比 Evaluation of Dataset for Different Models
+中文任务基准测评(CLUE benchmark)-各任务对比
 ---------------------------------------------------------------------
-
+ Evaluation of Dataset for Different Models
+ 
 AFQMC TODO 
 
 TNEWS' TODO 
@@ -530,7 +529,7 @@ Share your data set with community or make a contribution today! Just send email
 
 or join QQ group: 836811304
 
-中文基准测评成员 Members
+中文基准测评-成员 Members
 ---------------------------------------------------------------------
 #### 顾问 Adviser：
 张俊林，中国中文信息学会理事，中科院软件所博士，新浪微博机器学习团队AI Lab负责人。技术书籍《这就是搜索引擎：核心技术详解》（该书荣获全国第十二届优秀图书奖）、《大数据日知录：架构与算法》的作者。
