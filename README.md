@@ -396,7 +396,20 @@ COPA TODO
 | RoBERTa-wwm-large-ext |69.7(64.5) |  74.6(69.4) |   |
 注：ALBERT-xlarge，在XNLI任务上训练暂时还存在有问题
 
-CSL TODO 
+#### CSL 关键词识别  Keyword Recognition (Accuracy)：
+
+|         模型          | 开发集（dev) | 测试集（test) |              训练参数              |
+| :-------------------: | :----------: | :-----------: | :--------------------------------: |
+|     ALBERT-xlarge     |    80.23     |     80.29     | batch_size=16, length=128, epoch=5 |
+|     ALBERT-tiny     |    80.23     |     80.29     | batch_size=16, length=128, epoch=5 |
+|       BERT-base       |              |     74.56     | batch_size=4, length=256, epoch=5  |
+|   BERT-wwm-ext-base   |    80.60     |     81.00     | batch_size=4, length=256, epoch=5  |
+|      ERNIE-base       |    79.43     |     79.10     | batch_size=4, length=256, epoch=5  |
+|     RoBERTa-large     |    81.87     |     81.36     | batch_size=4, length=256, epoch=5  |
+|       XLNet-mid       |    82.06     |     81.26     | batch_size=4, length=256, epoch=3  |
+|    RoBERTa-wwm-ext    |    80.67     |     80.63     | batch_size=4, length=256, epoch=5  |
+| RoBERTa-wwm-large-ext |    82.17     |     82.13     | batch_size=4, length=256, epoch=5  |
+
 #### DRCD 繁体阅读理解 Reading Comprehension for Traditional Chinese (F1, EM)：
 | 模型 | 开发集（dev) | 测试集（test) | 训练参数 |
 | :----:| :----: | :----: | :----: |
