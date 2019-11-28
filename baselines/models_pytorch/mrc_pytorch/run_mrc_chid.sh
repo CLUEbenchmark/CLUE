@@ -2,7 +2,8 @@
 
 CURRENT_DIR=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 export MODEL_NAME=roberta_wwm_ext_large
-export BERT_DIR=$CURRENT_DIR/prev_trained_model/$MODEL_NAME
+export OUTPUT_DIR=$CURRENT_DIR/check_points
+export BERT_DIR=$OUTPUT_DIR/prev_trained_model/$MODEL_NAME
 export GLUE_DIR=$CURRENT_DIR/mrc_data # set your data dir
 TASK_NAME="CHID"
 
@@ -17,9 +18,8 @@ python run_multichoice_mrc.py \
   --vocab_file=$BERT_DIR/vocab.txt \
   --bert_config_file=$BERT_DIR/bert_config.json \
   --init_checkpoint=$BERT_DIR/pytorch_model.pth \
-  --model_name=$MODEL_NAME \
   --input_dir=$GLUE_DIR/$TASK_NAME/ \
-  --output_dir=$GLUE_DIR/$TASK_NAME/ \
+  --output_dir=$OUTPUT_DIR/$TASK_NAME/$MODEL_NAME/ \
   --train_file=$GLUE_DIR/$TASK_NAME/train.txt \
   --train_ans_file=$GLUE_DIR/$TASK_NAME/train_answer.csv \
   --predict_file=$GLUE_DIR/$TASK_NAME/dev.txt \

@@ -2,7 +2,8 @@
 
 CURRENT_DIR=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 export MODEL_NAME=roberta_wwm_ext_large
-export BERT_DIR=$CURRENT_DIR/prev_trained_model/$MODEL_NAME
+export OUTPUT_DIR=$CURRENT_DIR/check_points
+export BERT_DIR=$OUTPUT_DIR/prev_trained_model/$MODEL_NAME
 export GLUE_DIR=$CURRENT_DIR/mrc_data # set your data dir
 TASK_NAME="DRCD"
 
@@ -22,5 +23,5 @@ python run_mrc.py \
   --dev_dir1=$GLUE_DIR/$TASK_NAME/dev_examples.json \
   --dev_dir2=$GLUE_DIR/$TASK_NAME/dev_features.json \
   --dev_file=$GLUE_DIR/$TASK_NAME/DRCD_dev.json \
-  --checkpoint_dir=$GLUE_DIR/$TASK_NAME/$MODEL_NAME/
+  --checkpoint_dir=$OUTPUT_DIR/$TASK_NAME/$MODEL_NAME/
 
