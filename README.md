@@ -36,11 +36,11 @@ Score是通过计算1-9数据集得分平均值获得；
 | 模型 | Score | 参数 | DRCD | CMRC2018 | CHID |
 | :----:| :----: | :----: | :----: |:----: |:----: |
 | <a href="https://github.com/google-research/bert">BERT-base</a>	| 79.08 | 108M | 85.49 	| 69.72 | 82.04 |
-| <a href="https://github.com/ymcui/Chinese-BERT-wwm">BERT-wwm-ext</a> | - | 108M | 87.15 | 73.23 | - |
+| <a href="https://github.com/ymcui/Chinese-BERT-wwm">BERT-wwm-ext</a> | 81.09 | 108M | 87.15 | 73.23 | 82.90 |
 | <a href="https://github.com/PaddlePaddle/ERNIE">ERNIE-base</a>	| 80.54 | 108M | 86.03 | 73.32 | 82.28 |
-| <a href="https://github.com/brightmart/roberta_zh">RoBERTa-large</a> | 83.32 | 334M 	| 89.35 | 76.11 | 84.5 |
-| <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>	| - | 209M | 83.28 | 66.51  | - |
-| <a href="https://github.com/brightmart/albert_zh">ALBERT-xlarge</a> | - | 59M | 89.78 | 75.22 | - |
+| <a href="https://github.com/brightmart/roberta_zh">RoBERTa-large</a> | 83.32 | 334M 	| 89.35 | 76.11 | 84.50 |
+| <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>	| 77.75 | 209M | 83.28 | 66.51  | 83.47 |
+| <a href="https://github.com/brightmart/albert_zh">ALBERT-xlarge</a> | 81.52 | 59M | 89.78 | 75.22 | 79.55 |
 | <a href="https://github.com/brightmart/albert_zh">ALBERT-xxlarge</a> | - | - | - | - | - |
 | <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a> | 55.73 | 1.8M | 70.08 | 53.68 | 43.53 |
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>  | 81.88 | 108M  | 88.12 | 73.89 | 83.62 |
@@ -312,8 +312,8 @@ ChineseMNLI数据对原始MNLI数据进行中英文转化，数据来自于ficti
 ##### 14. 更多数据集添加中，Comming soon!
 更多数据集添加中，如果你有定义良好的数据集，请与我们取得联系。
 ##### 数据集下载 <a href="https://storage.googleapis.com/chineseglue/chineseGLUEdatasets.v0.0.1.zip">整体下载</a>
-或使用命令：
-    wget https://storage.googleapis.com/chineseglue/chineseGLUEdatasets.v0.0.1.zip
+或使用命令：wget https://storage.googleapis.com/chineseglue/chineseGLUEdatasets.v0.0.1.zip  
+
 中文任务基准测评(ChineseGLUE)-排行榜-各任务对比 Evaluation of Dataset for Different Models
 ---------------------------------------------------------------------
 #### TNEWS 短文本分类 Short Text Classificaiton for News (Accuracy)：
@@ -390,16 +390,15 @@ ChineseMNLI数据对原始MNLI数据进行中英文转化，数据来自于ficti
 #### CHID 成语阅读理解填空 Chinese IDiom Dataset for Cloze Test (Accuracy)：
 | 模型 | 开发集（dev) | 测试集（test) |  训练参数 |
 | :----:| :----: | :----: | :----: |
-| BERT-base	| 82.2 | 82.04 | batch=24, length=64, epoch=3 lr=2e-5 |
-| BERT-wwm-ext-base	|- |-|	- |
-| ERNIE-base	|- | - | - |
-| ALBERT-large	|- | - | - |
-| ALBERT-xlarge	|- | - | - |
-| ALBERT-tiny	|- | - | - |
-| RoBERTa-large	| 85.31 | 84.5 | batch=24, length=64, epoch=3 lr=2e-5  |
-| xlnet-mid	|- | - | - |
-| RoBERTa-wwm-ext	|83.78 | 83.62 | batch=24, length=64, epoch=3 lr=2e-5  |
-| RoBERTa-wwm-large-ext	|***85.81*** | ***85.37*** | batch=24, length=64, epoch=3 lr=2e-5  |
+| BERT-base	|82.20 | 82.04 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
+| BERT-wwm-ext-base	|83.36 |82.9 |	batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
+| ERNIE-base	|82.46 | 82.28 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
+| ALBERT-xlarge	| 79.44 |79.55 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
+| ALBERT-tiny	| 43.47 |43.53 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
+| RoBERTa-large	| 85.31 |84.50 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
+| xlnet-mid	|83.76 | 83.47 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
+| RoBERTa-wwm-ext	|83.78 | 83.62 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
+| RoBERTa-wwm-large-ext	|***85.81*** | ***85.37*** | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
 #### CMNLI 中文自然语言推理 Chinese Multi-Genre NLI (Accuracy)：
 | 模型 | matched | mismatched |  训练参数 |
 | :----:| :----: | :----: | :----: |

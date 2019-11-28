@@ -78,7 +78,6 @@ def reset_model(args, bert_config, model_cls):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--gpu_ids", default='', required=True, type=str)
-    parser.add_argument("--model_name", default='roberta_wwm_ext_large', required=True, type=str)
     parser.add_argument("--bert_config_file", required=True,
                         default='check_points/pretrain_models/roberta_wwm_ext_large/bert_config.json')
     parser.add_argument("--vocab_file", required=True,
@@ -119,7 +118,6 @@ def main():
                         help="Whether to use 16-bit float precision instead of 32-bit")
 
     args = parser.parse_args()
-    args.output_dir = os.path.join(args.output_dir, args.model_name)
     print(args)
     os.environ["CUDA_VISIBLE_DEVICES"] = args.gpu_ids
 
@@ -197,7 +195,7 @@ def main():
     eval_dataloader = DataLoader(eval_data, sampler=eval_sampler, batch_size=args.predict_batch_size)
 
     # Prepare model
-    if 'albert' in args.model_name:
+    if 'albert' in args.bert_config_file:
         bert_config = ALBertConfig.from_json_file(args.bert_config_file)
         model = reset_model(args, bert_config, ALBertForMultipleChoice)
     else:
