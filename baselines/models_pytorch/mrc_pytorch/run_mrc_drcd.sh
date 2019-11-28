@@ -3,7 +3,7 @@
 CURRENT_DIR=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 export MODEL_NAME=roberta_wwm_ext_large
 export BERT_DIR=$CURRENT_DIR/prev_trained_model/$MODEL_NAME
-export GLUE_DIR=$CURRENT_DIR/../../../glue/chineseGLUEdatasets/
+export GLUE_DIR=$CURRENT_DIR/mrc_data # set your data dir
 TASK_NAME="DRCD"
 
 python run_mrc.py \
