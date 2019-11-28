@@ -312,8 +312,8 @@ ChineseMNLI数据对原始MNLI数据进行中英文转化，数据来自于ficti
 ##### 14. 更多数据集添加中，Comming soon!
 更多数据集添加中，如果你有定义良好的数据集，请与我们取得联系。
 ##### 数据集下载 <a href="https://storage.googleapis.com/chineseglue/chineseGLUEdatasets.v0.0.1.zip">整体下载</a>
-或使用命令：
-    wget https://storage.googleapis.com/chineseglue/chineseGLUEdatasets.v0.0.1.zip
+或使用命令：wget https://storage.googleapis.com/chineseglue/chineseGLUEdatasets.v0.0.1.zip  
+
 中文任务基准测评(ChineseGLUE)-排行榜-各任务对比 Evaluation of Dataset for Different Models
 ---------------------------------------------------------------------
 #### TNEWS 短文本分类 Short Text Classificaiton for News (Accuracy)：
