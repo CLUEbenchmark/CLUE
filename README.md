@@ -311,9 +311,31 @@ https://arxiv.org/abs/1906.01265
 ---------------------------------------------------------------------
  Evaluation of Dataset for Different Models
  
-AFQMC TODO 
+#### AFQMC 蚂蚁语义相似度 Ant Semantic Similarity (Accuracy)：
+|         模型          | 开发集（dev) | 测试集（test) |              训练参数              |
+| :-------------------: | :----------: | :-----------: | :--------------------------------: |
+|     ALBERT-xlarge     |    -     |          | batch_size=32, length=128, epoch=3 |
+|      ALBERT-tiny      |    -     |          | batch_size=32, length=256, epoch=3 |
+|       BERT-base       |    -     |        | batch_size=32, length=128, epoch=3 |
+|   BERT-wwm-ext-base   |         |          | batch_size=32, length=128, epoch=3 |
+|      ERNIE-base       |         |          | batch_size=24, length=256, epoch=3 |
+|     RoBERTa-large     |         |          | batch_size=32, length=128, epoch=3 |
+|       XLNet-mid       |         |          | batch_size=16, length=128, epoch=3 |
+|    RoBERTa-wwm-ext    |         |       -       | batch_size=16, length=128, epoch=3 |
+| RoBERTa-wwm-large-ext |   |   | batch_size=32, length=128, epoch=3 |
 
-TNEWS' TODO 
+#### TNEWS' 头条新闻分类 Toutiao News Classification (Accuracy)：
+|         模型          | 开发集（dev) | 测试集（test) |              训练参数              |
+| :-------------------: | :----------: | :-----------: | :--------------------------------: |
+|     ALBERT-xlarge     |    -     |          | batch_size=32, length=128, epoch=3 |
+|      ALBERT-tiny      |    -     |          | batch_size=32, length=256, epoch=3 |
+|       BERT-base       |    -     |        | batch_size=32, length=128, epoch=3 |
+|   BERT-wwm-ext-base   |         |          | batch_size=32, length=128, epoch=3 |
+|      ERNIE-base       |         |          | batch_size=24, length=256, epoch=3 |
+|     RoBERTa-large     |         |          | batch_size=32, length=128, epoch=3 |
+|       XLNet-mid       |         |          | batch_size=16, length=128, epoch=3 |
+|    RoBERTa-wwm-ext    |         |              | batch_size=16, length=128, epoch=3 |
+| RoBERTa-wwm-large-ext |   |   | batch_size=32, length=128, epoch=3 |
 
 #### IFLYTEK' 长文本分类 Long Text Classification (Accuracy)：
 |         模型          | 开发集（dev) | 测试集（test) |              训练参数              |
