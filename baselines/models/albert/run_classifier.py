@@ -380,6 +380,45 @@ class InewsProcessor(DataProcessor):
     def get_train_examples(self, data_dir):
         """See base class."""
         return self._create_examples(
+            data_dir, "train")
+
+    def get_dev_examples(self, data_dir):
+        """See base class."""
+        return self._create_examples(
+            data_dir, "dev")
+
+    def get_test_examples(self, data_dir):
+        """See base class."""
+        return self._create_examples(
+            data_dir, "test")
+
+    def get_labels(self):
+        """See base class."""
+        labels = ["0", "1", "2"]
+        return labels
+
+    def _create_examples(self, data_dir, set_type):
+        """Creates examples for the training and dev sets."""
+        examples = []
+        with open(os.path.join(data_dir, set_type+'.json'), 'r', encoding='utf-8') as f:
+          for (i, line) in enumerate(f.readlines()):
+            if i == 0:
+                continue
+            guid = "%s-%s" % (set_type, i)
+            line = json.loads(line.strip())
+            text_a = tokenization.convert_to_unicode(line["title"])
+            text_b = tokenization.convert_to_unicode(line["content"])
+            label = tokenization.convert_to_unicode(line["label"])
+            examples.append(
+                InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
+        return examples
+
+class InewsProcessor(DataProcessor):
+    """Processor for the MRPC data set (GLUE version)."""
+
+    def get_train_examples(self, data_dir):
+        """See base class."""
+        return self._create_examples(
             self._read_txt(os.path.join(data_dir, "train.txt")), "train")
 
     def get_dev_examples(self, data_dir):
@@ -410,8 +449,6 @@ class InewsProcessor(DataProcessor):
             examples.append(
                 InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
         return examples
-
-
 def convert_single_example_for_inews(ex_index, tokens_a, tokens_b, label_map, max_seq_length,
                                      tokenizer, example):
     if tokens_b:
@@ -567,6 +604,50 @@ def file_based_convert_examples_to_features_for_inews(
     writer.close()
 
 
+class AFQMCProcessor(DataProcessor):
+    """Processor for the internal data set. sentence pair classification"""
+
+    def __init__(self):
+        self.language = "zh"
+
+    def get_train_examples(self, data_dir):
+        """See base class."""
+        return self._create_examples(
+            data_dir, "train")
+
+    def get_dev_examples(self, data_dir):
+        """See base class."""
+        return self._create_examples(
+            data_dir, "dev")
+
+    def get_test_examples(self, data_dir):
+        """See base class."""
+        return self._create_examples(
+            data_dir, "test")
+
+    def get_labels(self):
+        """See base class."""
+        return ["0", "1"]
+
+    def _create_examples(self, data_dir, set_type):
+        """Creates examples for the training and dev sets."""
+        examples = []
+        with open(os.path.join(data_dir, set_type+'.json'), 'r', encoding='utf-8') as f:
+          for (i, line) in enumerate(f.readlines()):
+            if i == 0:
+                continue
+            guid = "%s-%s" % (set_type, i)
+            line = json.load(line.strip())
+            try:
+                label = tokenization.convert_to_unicode(line['lable'])
+                text_a = tokenization.convert_to_unicode(line['sentence1'])
+                text_b = tokenization.convert_to_unicode(line['sentence2'])
+                examples.append(
+                    InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
+            except Exception:
+                print('###error.i:', i, line)
+        return examples
+
 class LCQMCProcessor(DataProcessor):
     """Processor for the internal data set. sentence pair classification"""
 
@@ -612,7 +693,6 @@ class LCQMCProcessor(DataProcessor):
             except Exception:
                 print('###error.i:', i, line)
         return examples
-
 
 class BQProcessor(DataProcessor):
     """Processor for the internal data set. sentence pair classification"""
@@ -1337,6 +1417,7 @@ def main(_):
     processors = {
         "sentence_pair": SentencePairClassificationProcessor,
         "lcqmc_pair": LCQMCProcessor,
+        "afqmc": AFQMCProcessor,
         "lcqmc": LCQMCProcessor,
         "tnews": TnewsProcessor,
         "inews": InewsProcessor,
