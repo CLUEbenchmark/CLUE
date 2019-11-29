@@ -25,8 +25,8 @@ Language Understanding Evaluation benchmark for Chinese: datasets, baselines, pr
 
 
     注：'代表对原数据集筛选后获得，数据集与原数据集不同；AFQMC:蚂蚁语义相似度(Acc)；TNEWS:文本分类(Acc)；
-    IFLYTEK:长文本分类(Acc); CMNLI-m/mm: MNLI自然语言推理中文版-matched/mismatched; XNLI:自然语言推理(Acc); COPA: 因果推断;
-    WSC: Winograd模式挑战中文版; CSL: 中国科学文献数据集; Score总分是通过计算1-9数据集得分平均值获得；
+    IFLYTEK:长文本分类(Acc); CMNLI-m/mm: MNLI自然语言推理中文版-matched/mismatched; XNLI:自然语言推理(Acc); 
+    COPA: 因果推断; WSC: Winograd模式挑战中文版; CSL: 中国科学文献数据集; Score总分是通过计算1-9数据集得分平均值获得；
 
 #### 阅读理解任务
 
@@ -47,16 +47,17 @@ DRCD、CMRC2018: 繁体、简体抽取式阅读理解(F1, EM)；CHID：成语多
 
 注：阅读理解上述指标中F1和EM共存的情况下，取EM为最终指标
 
-基线模型与代码，一键运行 Baseline with codes
+一键运行.基线模型与代码 Baseline with codes
 ---------------------------------------------------------------------
     使用方式：
-    1、克隆项目 git clone https://github.com/CLUEbenchmark/CLUE.git
+    1、克隆项目 
+       git clone https://github.com/CLUEbenchmark/CLUE.git
     2、进入到相应的目录
        分类任务：
            cd CLUE/baselines/models/bert  
        或阅读理解任务：
            cd CLUE/baselines/models_pytorch/mrc_pytorch
-    3、运行对应任务的脚本，会自动下载模型和任务数据并开始运行。
+    3、运行对应任务的脚本: 会自动下载模型和任务数据并开始运行。
        bash run_classifier_xxx.sh
        如运行 bash run_classifier_iflytek.sh 会开始iflytek任务的训练
 
