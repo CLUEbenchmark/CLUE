@@ -9,6 +9,7 @@ model_files
 data
 logs
 glue
+prev_trained_model
 .DS_Store
 .ipynb_checkpoints
 .idea
