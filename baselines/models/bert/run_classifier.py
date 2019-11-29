@@ -716,6 +716,44 @@ class XnliProcessor(DataProcessor):
         """See base class."""
         return ["contradiction", "entailment", "neutral"]
 
+class CMNLIProcessor(DataProcessor):
+  """Processor for the MNLI data set in Chinese version."""
+
+  def get_train_examples(self, data_dir):
+    """See base class."""
+
+    return self._create_examples_json(os.path.join(data_dir, "train.jsonl"),"train")
+
+  def get_dev_examples(self, data_dir):
+    """See base class."""
+    return self._create_examples_json(os.path.join(data_dir, "dev_matched.jsonl"),"dev")
+
+  def get_test_examples(self, data_dir):
+    """See base class."""
+    return self._create_examples_json(os.path.join(data_dir, "dev_mismatched.jsonl"),"test")
+
+  def get_labels(self):
+    """See base class."""
+    return ["contradiction", "entailment", "neutral"]
+
+  def _create_examples_json(self, file_name, set_type):
+    """Creates examples for the training and dev sets."""
+    examples = []
+    lines = open(file_name,"r",encoding="utf-8")
+    index = 0
+    for line in lines:
+      line_obj = json.loads(line)
+      index = index  + 1
+      guid = "%s-%s" % (set_type, index)
+      text_a = tokenization.convert_to_unicode(line_obj["sentence1"])
+      text_b = tokenization.convert_to_unicode(line_obj["sentence2"])
+      label = tokenization.convert_to_unicode(line_obj["gold_label"])
+
+      if label != "-":
+        examples.append(InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
+
+    return examples
+
 class AFQMCProcessor(DataProcessor):
     """Processor for the internal data set. sentence pair classification"""
 
@@ -1482,6 +1520,7 @@ def main(_):
         "bq": BQProcessor,
         "iflydata": iFLYTEKDataProcessor,
         "csl": CslProcessor,
+        "cmnli":CMNLIProcessor,
     }
 
     tokenization.validate_case_matches_checkpoint(FLAGS.do_lower_case,
