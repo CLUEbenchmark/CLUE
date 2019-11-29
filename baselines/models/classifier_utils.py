@@ -400,36 +400,36 @@ class CslProcessor(DataProcessor):
   """Processor for the CSL data set."""
 
 
-def get_train_examples(self, data_dir):
-  """See base class."""
-  return self._create_examples(
-    self._read_json(os.path.join(data_dir, "train.json")), "train")
+  def get_train_examples(self, data_dir):
+    """See base class."""
+    return self._create_examples(
+      self._read_json(os.path.join(data_dir, "train.json")), "train")
 
-def get_dev_examples(self, data_dir):
-  """See base class."""
-  return self._create_examples(
-    self._read_json(os.path.join(data_dir, "dev.json")), "dev")
+  def get_dev_examples(self, data_dir):
+    """See base class."""
+    return self._create_examples(
+      self._read_json(os.path.join(data_dir, "dev.json")), "dev")
 
-def get_test_examples(self, data_dir):
-  """See base class."""
-  return self._create_examples(
-    self._read_json(os.path.join(data_dir, "test.json")), "test")
+  def get_test_examples(self, data_dir):
+    """See base class."""
+    return self._create_examples(
+      self._read_json(os.path.join(data_dir, "test.json")), "test")
 
-def get_labels(self):
-  """See base class."""
-  return ["0", "1"]
+  def get_labels(self):
+    """See base class."""
+    return ["0", "1"]
 
-def _create_examples(self, lines, set_type):
-  """Creates examples for the training and dev sets."""
-  examples = []
-  for (i, line) in enumerate(lines):
-    guid = "%s-%s" % (set_type, i)
-    text_a = convert_to_unicode(line['keyword'])
-    text_b = convert_to_unicode(line['abst'])
-    label = convert_to_unicode(line['label'])
-    examples.append(
-      InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
-  return examples
+  def _create_examples(self, lines, set_type):
+    """Creates examples for the training and dev sets."""
+    examples = []
+    for (i, line) in enumerate(lines):
+      guid = "%s-%s" % (set_type, i)
+      text_a = convert_to_unicode(line['keyword'])
+      text_b = convert_to_unicode(line['abst'])
+      label = convert_to_unicode(line['label'])
+      examples.append(
+        InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
+    return examples
 
 
 # class InewsProcessor(DataProcessor):
