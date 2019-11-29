@@ -114,7 +114,8 @@ if __name__ == "__main__":
                         type=str,
                         help="Path to the output PyTorch model.")
     parser.add_argument("--is_albert",
-                        default=True,
+                        default=False,
+                        action='store_true',
                         type=bool,
                         help="whether is albert?")
     args = parser.parse_args()

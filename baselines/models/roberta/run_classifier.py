@@ -723,6 +723,7 @@ def main(_):
   processors = {
       "tnews": TnewsProcessor,
       "xnli": XnliProcessor,
+      "afqmc": AFQMCProcessor,
       "iflytek": iFLYTEKDataProcessor
   }
 

@@ -9,7 +9,7 @@ import os
 import pickle
 
 import numpy as np
-import pandas as pd
+import json
 from tqdm import tqdm
 
 try:
@@ -83,9 +83,7 @@ def read_chid_examples(input_data_file, input_label_file, is_training=True):
     '''
 
     if is_training:
-        input_label = pd.read_csv(input_label_file, encoding='utf8', header=None)
-        input_label = input_label.values.tolist()
-        input_label = {k: v for k, v in input_label}
+        input_label = json.load(open(input_label_file))
     input_data = open(input_data_file)
 
     def _is_chinese_char(cp):
@@ -395,8 +393,15 @@ def get_final_predictions(all_results, tmp_predict_file, g=True):
 
 def write_predictions(results, output_prediction_file):
     # output_prediction_file = result6.csv
-    results = pd.DataFrame(results)
-    results.to_csv(output_prediction_file, header=None, index=None)
+    # results = pd.DataFrame(results)
+    # results.to_csv(output_prediction_file, header=None, index=None)
+
+    results_dict = {}
+    for result in results:
+        results_dict[result[0]] = result[1]
+    with open(output_prediction_file, 'w') as w:
+        json.dump(results_dict, w, indent=2)
+
     print("Writing predictions to: {}".format(output_prediction_file))
 
 
@@ -418,14 +423,18 @@ def generate_input(data_file, label_file, example_file, feature_file, tokenizer,
 
 
 def evaluate(ans_f, pre_f):
-    ans = pd.read_csv(ans_f, index_col=None, header=None)
-    pre = pd.read_csv(pre_f, index_col=None, header=None)
+    ans = json.load(open(ans_f))
+    pre = json.load(open(pre_f))
 
-    assert ans.shape == pre.shape
+    total_num = 0
+    acc_num = 0
+    for id_ in ans:
+        if id_ not in pre:
+            raise FileNotFoundError
+        total_num += 1
+        if ans[id_] == pre[id_]:
+            acc_num += 1
 
-    ture_num = sum(ans.iloc[:, 1] == pre.iloc[:, 1])
-    acc = ture_num / ans.shape[0]
-
-    print(f'预测精度为：{acc:.4f}')
-
+    acc = acc_num / total_num
+    acc *= 100
     return acc
