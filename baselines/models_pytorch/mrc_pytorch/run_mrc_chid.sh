@@ -20,7 +20,7 @@ python run_multichoice_mrc.py \
   --init_checkpoint=$BERT_DIR/pytorch_model.pth \
   --input_dir=$GLUE_DIR/$TASK_NAME/ \
   --output_dir=$OUTPUT_DIR/$TASK_NAME/$MODEL_NAME/ \
-  --train_file=$GLUE_DIR/$TASK_NAME/train.txt \
-  --train_ans_file=$GLUE_DIR/$TASK_NAME/train_answer.csv \
-  --predict_file=$GLUE_DIR/$TASK_NAME/dev.txt \
-  --predict_ans_file=$GLUE_DIR/$TASK_NAME/dev_answer.csv
+  --train_file=$GLUE_DIR/$TASK_NAME/train.json \
+  --train_ans_file=$GLUE_DIR/$TASK_NAME/train_answer.json \
+  --predict_file=$GLUE_DIR/$TASK_NAME/dev.json \
+  --predict_ans_file=$GLUE_DIR/$TASK_NAME/dev_answer.json
