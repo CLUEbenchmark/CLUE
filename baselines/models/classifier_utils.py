@@ -363,16 +363,15 @@ class CMNLIProcessor(DataProcessor):
 
   def get_train_examples(self, data_dir):
     """See base class."""
-
-    return self._create_examples_json(os.path.join(data_dir, "train.jsonl"),"train")
+    return self._create_examples_json(os.path.join(data_dir, "train.json"),"train")
 
   def get_dev_examples(self, data_dir):
     """See base class."""
-    return self._create_examples_json(os.path.join(data_dir, "dev_matched.jsonl"),"dev")
+    return self._create_examples_json(os.path.join(data_dir, "dev_matched.json"),"dev")
 
   def get_test_examples(self, data_dir):
     """See base class."""
-    return self._create_examples_json(os.path.join(data_dir, "dev_mismatched.jsonl"),"test")
+    return self._create_examples_json(os.path.join(data_dir, "dev_mismatched.json"),"test")
 
   def get_labels(self):
     """See base class."""
@@ -398,8 +397,6 @@ class CMNLIProcessor(DataProcessor):
 
 class CslProcessor(DataProcessor):
   """Processor for the CSL data set."""
-
-
   def get_train_examples(self, data_dir):
     """See base class."""
     return self._create_examples(
