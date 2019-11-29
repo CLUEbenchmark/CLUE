@@ -4,7 +4,7 @@
 # @Last Modified by:   bo.shi
 # @Last Modified time: 2019-11-08 00:07:39
 
-TASK_NAME="iflydata"
+TASK_NAME="iflytek"
 MODEL_NAME="chinese_L-12_H-768_A-12"
 CURRENT_DIR=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 export CUDA_VISIBLE_DEVICES="0"
