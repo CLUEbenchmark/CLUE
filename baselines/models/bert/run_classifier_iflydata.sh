@@ -23,11 +23,11 @@ if [ ! -d $TASK_NAME ]; then
   echo "makedir $GLUE_DATA_DIR/$TASK_NAME"
 fi
 cd $TASK_NAME
-if [ ! -f "train.txt" ] || [ ! -f "dev.txt" ] || [ ! -f "test.txt" ]; then
+if [ ! -f "train.json" ] || [ ! -f "dev.json" ] || [ ! -f "test.json" ]; then
   rm *
-  wget https://storage.googleapis.com/chineseglue/tasks/iflytek.zip
-  unzip iflytek.zip
-  rm iflytek.zip
+  wget https://storage.googleapis.com/cluebenchmark/tasks/iflytek_public.zip
+  unzip iflytek_public.zip
+  rm iflytek_public.zip
 else
   echo "data exists"
 fi
