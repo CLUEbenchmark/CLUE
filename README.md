@@ -340,7 +340,7 @@ https://arxiv.org/abs/1906.01265
 |     RoBERTa-large     |         |       74.02%   | batch_size=32, length=128, epoch=3 |
 |       XLNet-mid       |     70.73%    |          | batch_size=16, length=128, epoch=3 |
 |    RoBERTa-wwm-ext    |   74.30%      |      74.04%       | batch_size=16, length=128, epoch=3 |
-| RoBERTa-wwm-large-ext |   |  76.55% | batch_size=32, length=128, epoch=3 |
+| RoBERTa-wwm-large-ext |  74.92% |  76.55% | batch_size=32, length=128, epoch=3 |
 
 #### TNEWS' 头条新闻分类 Toutiao News Classification (Accuracy)：
 |         模型          | 开发集（dev) | 测试集（test) |              训练参数              |
