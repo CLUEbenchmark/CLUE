@@ -351,7 +351,7 @@ https://arxiv.org/abs/1906.01265
 |   BERT-wwm-ext-base   |     56.77%    |    56.86%      | batch_size=16, length=128, epoch=3 |
 |      ERNIE-base       |     58.24%    |     58.33%     | batch_size=16, length=128, epoch=3 |
 |     RoBERTa-large     |     57.95%    |      57.84%    | batch_size=16, length=128, epoch=3 |
-|       XLNet-mid       |         |      56.24%    | batch_size=16, length=128, epoch=3 |
+|       XLNet-mid       |    56.09%     |      56.24%    | batch_size=16, length=128, epoch=3 |
 |    RoBERTa-wwm-ext    |   57.51%      |      56.94%       | batch_size=16, length=128, epoch=3 |
 | RoBERTa-wwm-large-ext |  58.32% | 58.61%  | batch_size=16, length=128, epoch=3 |
 
