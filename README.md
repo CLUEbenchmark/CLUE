@@ -353,7 +353,7 @@ https://arxiv.org/abs/1906.01265
 |     RoBERTa-large     |     57.95%    |      57.84%    | batch_size=16, length=128, epoch=3 |
 |       XLNet-mid       |         |      56.24%    | batch_size=16, length=128, epoch=3 |
 |    RoBERTa-wwm-ext    |   57.51%      |      56.94%       | batch_size=16, length=128, epoch=3 |
-| RoBERTa-wwm-large-ext |   | 58.61%  | batch_size=16, length=128, epoch=3 |
+| RoBERTa-wwm-large-ext |  58.32% | 58.61%  | batch_size=16, length=128, epoch=3 |
 
 #### IFLYTEK' 长文本分类 Long Text Classification (Accuracy)：
 |         模型          | 开发集（dev) | 测试集（test) |              训练参数              |
