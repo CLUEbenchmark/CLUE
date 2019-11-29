@@ -46,7 +46,15 @@ Language Understanding Evaluation benchmark for Chinese: datasets, baselines, pr
 DRCD、CMRC2018: 繁体、简体抽取式阅读理解(F1, EM)；CHID：成语多分类阅读理解(Acc)；
 
 注：阅读理解上述指标中F1和EM共存的情况下，取EM为最终指标
-
+#### BASELINES
+    使用方式：
+    git clone https://github.com/CLUEbenchmark/CLUE.git
+    分类任务：
+    cd CLUE/baselines/models/bert  
+    阅读理解任务：
+    cd CLUE/baselines/models_pytorch/mrc_pytorch
+    sh run_classifier_xxx.sh即可自动下载数据并运行相关任务
+    
 数据集下载见本项目最后部分 
 
 CLUE benchmark的定位 Vision
