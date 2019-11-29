@@ -715,6 +715,7 @@ def main(_):
       "iflytek": iFLYTEKDataProcessor,
       "cmnli":CMNLIProcessor,
       "wsc": WSCProcessor,
+      "csl": CslProcessor,
   }
 
   tokenization.validate_case_matches_checkpoint(FLAGS.do_lower_case,
