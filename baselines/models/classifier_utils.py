@@ -398,8 +398,6 @@ class CMNLIProcessor(DataProcessor):
 
 class CslProcessor(DataProcessor):
   """Processor for the CSL data set."""
-
-
   def get_train_examples(self, data_dir):
     """See base class."""
     return self._create_examples(
