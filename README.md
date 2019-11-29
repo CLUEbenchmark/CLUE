@@ -333,7 +333,7 @@ https://arxiv.org/abs/1906.01265
 |         模型          | 开发集（dev) | 测试集（test) |              训练参数              |
 | :-------------------: | :----------: | :-----------: | :--------------------------------: |
 |     ALBERT-xlarge     |    -     |     -   | batch_size=16, length=128, epoch=3 |
-|      ALBERT-tiny      |    -     |    69.92%    | batch_size=16, length=128, epoch=3 |
+|      ALBERT-tiny      |    69.13%     |    69.92%    | batch_size=16, length=128, epoch=3 |
 |       BERT-base       |    74.16%     |     73.70%  | batch_size=16, length=128, epoch=3 |
 |   BERT-wwm-ext-base   |    73.74%     |      74.07%   | batch_size=16, length=128, epoch=3 |
 |      ERNIE-base       |         |      73.83%    | batch_size=16, length=128, epoch=3 |
