@@ -4,7 +4,7 @@
 # @Last Modified by:   bo.shi
 # @Last Modified time: 2019-11-08 00:13:55
 
-TASK_NAME="tnews"
+TASK_NAME="afqmc"
 MODEL_NAME="chinese_L-12_H-768_A-12"
 CURRENT_DIR=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 export CUDA_VISIBLE_DEVICES="0"
@@ -25,9 +25,9 @@ fi
 cd $TASK_NAME
 if [ ! -f "train.json" ] || [ ! -f "dev.json" ] || [ ! -f "test.json" ]; then
   rm *
-  wget https://storage.googleapis.com/cluebenchmark/tasks/tnews_public.zip
-  unzip tnews_public.zip
-  rm tnews_public.zip
+  wget https://storage.googleapis.com/cluebenchmark/tasks/afqmc_public.zip
+  unzip afqmc_public.zip
+  rm afqmc_public.zip
 else
   echo "data exists"
 fi
