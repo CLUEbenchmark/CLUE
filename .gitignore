@@ -13,4 +13,6 @@ prev_trained_model
 .DS_Store
 .ipynb_checkpoints
 .idea
+.idea/CLUE.iml
+.idea/misc.iml
 __pycache__
