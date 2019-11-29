@@ -23,7 +23,7 @@ if [ ! -d $TASK_NAME ]; then
   echo "makedir $GLUE_DATA_DIR/$TASK_NAME"
 fi
 cd $TASK_NAME
-if [ ! -f "train.json" ] || [ ! -f "dev.json" ] || [ ! -f "test.json" ]; then
+if [ ! -f "train.json" ] || [ ! -f "val.json" ] || [ ! -f "test.json" ]; then
   rm *
   wget https://storage.googleapis.com/cluebenchmark/tasks/csl_public.zip
   unzip csl_public.zip
