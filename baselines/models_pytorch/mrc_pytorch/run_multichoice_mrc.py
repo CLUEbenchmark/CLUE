@@ -88,13 +88,13 @@ def main():
     parser.add_argument("--output_dir", required=True, default='check_points/CHID')
 
     ## Other parameters
-    parser.add_argument("--train_file", default='./origin_data/CHID/train.txt', type=str,
+    parser.add_argument("--train_file", default='./origin_data/CHID/train.json', type=str,
                         help="SQuAD json for training. E.g., train-v1.1.json")
-    parser.add_argument("--train_ans_file", default='./origin_data/CHID/train_answer.csv', type=str,
+    parser.add_argument("--train_ans_file", default='./origin_data/CHID/train_answer.json', type=str,
                         help="SQuAD answer for training. E.g., train-v1.1.json")
-    parser.add_argument("--predict_file", default='./origin_data/CHID/dev.txt', type=str,
+    parser.add_argument("--predict_file", default='./origin_data/CHID/dev.json', type=str,
                         help="SQuAD json for predictions. E.g., dev-v1.1.json or test-v1.1.json")
-    parser.add_argument("--predict_ans_file", default='origin_data/CHID/dev_answer.csv', type=str,
+    parser.add_argument("--predict_ans_file", default='origin_data/CHID/dev_answer.json', type=str,
                         help="SQuAD json for predictions. E.g., dev-v1.1.json or test-v1.1.json")
     parser.add_argument("--max_seq_length", default=64, type=int,
                         help="The maximum total input sequence length after WordPiece tokenization. Sequences "
@@ -290,7 +290,7 @@ def main():
                                              tag=all_tags[unique_id],
                                              logit=logits))
 
-        predict_file = 'dev_predictions.csv'
+        predict_file = 'dev_predictions.json'
         print('decoder raw results')
         tmp_predict_file = os.path.join(args.output_dir, "raw_predictions.pkl")
         output_prediction_file = os.path.join(args.output_dir, predict_file)
