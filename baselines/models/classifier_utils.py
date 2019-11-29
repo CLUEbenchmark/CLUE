@@ -774,3 +774,64 @@ class CMNLIProcessor(DataProcessor):
 #       examples.append(
 #           InputExample(guid=guid, text_a=text_a, text_b=None, label=label))
 #     return examples
+
+class WSCProcessor(DataProcessor):
+  """Processor for the internal data set. sentence pair classification"""
+
+  def get_train_examples(self, data_dir):
+    """See base class."""
+    return self._create_examples(
+        self._read_json(os.path.join(data_dir, "train.json")), "train")
+
+  def get_dev_examples(self, data_dir):
+    """See base class."""
+    return self._create_examples(
+        self._read_json(os.path.join(data_dir, "dev.json")), "dev")
+
+  def get_test_examples(self, data_dir):
+    """See base class."""
+    return self._create_examples(
+        self._read_json(os.path.join(data_dir, "test.json")), "test")
+
+  def get_labels(self):
+    """See base class."""
+    return ["true", "false"]
+
+  def _create_examples(self, lines, set_type):
+    """Creates examples for the training and dev sets."""
+    examples = []
+    for (i, line) in enumerate(lines):
+      guid = "%s-%s" % (set_type, i)
+      text_a = convert_to_unicode(line['text'])
+      text_a_list = list(text_a)
+      target = line['target']
+      query = target['span1_text']
+      query_idx = target['span1_index']
+      pronoun = target['span2_text']
+      pronoun_idx = target['span2_index']
+
+      assert text_a[pronoun_idx : (pronoun_idx + len(pronoun))] == pronoun, "pronoun: {}".format(pronoun)
+      assert text_a[query_idx: (query_idx + len(query))] == query, "query: {}".format(query)
+
+      if pronoun_idx > query_idx:
+        text_a_list.insert(query_idx, "_")
+        text_a_list.insert(query_idx + len(query) + 1, "_")
+        text_a_list.insert(pronoun_idx + 2, "[")
+        text_a_list.insert(pronoun_idx + len(pronoun) + 2 + 1, "]")
+      else:
+        text_a_list.insert(pronoun_idx, "[")
+        text_a_list.insert(pronoun_idx + len(pronoun) + 1, "]")
+        text_a_list.insert(query_idx + 2, "_")
+        text_a_list.insert(query_idx + len(query) + 2 + 1, "_")
+
+      text_a = "".join(text_a_list)
+
+      if set_type == "test":
+        text_a = convert_to_unicode(line[1])
+        label = "true"
+      else:
+        label = line['label']
+
+      examples.append(
+          InputExample(guid=guid, text_a=text_a, text_b=None, label=label))
+    return examples
