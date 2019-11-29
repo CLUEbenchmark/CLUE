@@ -17,7 +17,7 @@ Language Understanding Evaluation benchmark for Chinese: datasets, baselines, pr
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">BERT-wwm-ext</a>      | - | 108M  | 74.07% | 56.84%  | 59.43% | 81.41% | 80.67% | 78.7%  | 61.40%  | 61.1%  | 80.63% |
 | <a href="https://github.com/PaddlePaddle/ERNIE">ERNIE-base</a>         | - | 108M  | 73.83% | 58.23% | 58.96% | 79.65% | 80.70% | 78.6%  | **65.00%**  | 60.8%  | 79.1%      |
 | <a href="https://github.com/brightmart/roberta_zh">RoBERTa-large</a>      | - | 334M  | 74.02% | 57.05%  | 62.55% | -  |  - | 79.9%   | 61.40% | 72.7%   | 81.36%       |
-| <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>  | - | 200M | 70.50% | 56.24% | 57.85% | 78.15%  | 76.93%   | 78.7% | 53.80%   | -   | 81.26%     |
+| <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>  | - | 200M | 70.50% | 56.24% | 57.85% | 78.15%  | 76.93%   | 78.7% | 53.80%   | 64.4%   | 81.26%     |
 | <a href="https://github.com/brightmart/albert_zh">ALBERT-xxlarge</a>      | - | 59M   | -  | - | - | - | - | - | -  | -  | -     |
 | <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a>        | - | 4M | 69.92% | 53.35% | 36.18% | 72.71% | 72.72%  | 69.5% | 49.80%  | 58.5%   | 74.56% |
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>   | - | 108M  | 74.04% | 56.86% | 60.31% | 81.09% | 81.38% | 79.3%  | 63.60%  | 67.8% | 81.0% |
@@ -404,15 +404,14 @@ COPA TODO
 | 模型 | 开发集（dev) | 测试集（test) | 训练参数 |
 | :----:| :----: | :----: | :----: |
 | ALBERT-xxlarge |    |    |  |
-| ALBERT-tiny |  57.7(52.9)  |  58.5(52.1)  |  |
-| BERT-base | 59.6（56.7)  | 62.0（57.9）  |  |
-| BERT-wwm-ext-base | 59.4(56.7) |  61.1(56.2) |   |
-| ERNIE-base  | 58.1(54.9)| 60.8(55.9) |   |
-| RoBERTa-large | 68.6(58.7)  | 72.7(63.6)  |  |
-| XLNet-mid |   |   |   |
-| RoBERTa-wwm-ext | 67.2(57.7)  | 67.8(63.5)  |   |
-| RoBERTa-wwm-large-ext |69.7(64.5) |  74.6(69.4) |   |
-注：ALBERT-xlarge，在XNLI任务上训练暂时还存在有问题
+| ALBERT-tiny |  57.7(52.9)  |  58.5(52.1)  | lr=1e-4, batch_size=8, length=128, epoch=50   |
+| BERT-base | 59.6（56.7)  | 62.0（57.9）  |  lr=2e-5, batch_size=8, length=128, epoch=50 |
+| BERT-wwm-ext-base | 59.4(56.7) |  61.1(56.2) | lr=2e-5, batch_size=8, length=128, epoch=50   |
+| ERNIE-base  | 58.1(54.9)| 60.8(55.9) | lr=2e-5, batch_size=8, length=128, epoch=50   |
+| RoBERTa-large | 68.6(58.7)  | 72.7(63.6)  | lr=2e-5, batch_size=8, length=128, epoch=50   |
+| XLNet-mid | 60.9(56.8）  |  64.4(57.3） | lr=2e-5, batch_size=8, length=128, epoch=50   |
+| RoBERTa-wwm-ext | 67.2(57.7)  | 67.8(63.5)  | lr=2e-5, batch_size=8, length=128, epoch=50   |
+| RoBERTa-wwm-large-ext |69.7(64.5) |  74.6(69.4) | lr=2e-5, batch_size=8, length=128, epoch=50   |
 
 #### CSL 关键词识别  Keyword Recognition (Accuracy)：
 
