@@ -13,14 +13,14 @@ Language Understanding Evaluation benchmark for Chinese: datasets, baselines, pr
 
 | 模型   | Score  | 参数    | AFQMC  | TNEWS'  | IFLYTEK'   | CMNLI-m  | CMNLI-mm  | XNLI     | COPA | WSC | CSL  |
 | :----:| :----: | :----: | :----: |:----: |:----: |:----: |:----: |:----: |:----: |:----: |:----: |
-| <a href="https://github.com/google-research/bert">BERT-base</a>        | - | 108M |  73.70% | 55.58%  | 60.29% | 79.39%  | 79.76% | 77.8%  | 57.40% | 62.0% | 80.36% |
+| <a href="https://github.com/google-research/bert">BERT-base</a>        | - | 108M |  73.70% | 56.58%  | 60.29% | 79.39%  | 79.76% | 77.8%  | 57.40% | 62.0% | 80.36% |
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">BERT-wwm-ext</a>      | - | 108M  | 74.07% | 56.84%  | 59.43% | 81.41% | 80.67% | 78.7%  | 61.40%  | 61.1%  | 80.63% |
-| <a href="https://github.com/PaddlePaddle/ERNIE">ERNIE-base</a>         | - | 108M  | 73.83% | 58.23% | 58.96% | 79.65% | 80.70% | 78.6%  | **65.00%**  | 60.8%  | 79.1%      |
-| <a href="https://github.com/brightmart/roberta_zh">RoBERTa-large</a>      | - | 334M  | 74.02% | 57.05%  | 62.55% | -  |  - | 79.9%   | 61.40% | 72.7%   | 81.36%       |
+| <a href="https://github.com/PaddlePaddle/ERNIE">ERNIE-base</a>         | - | 108M  | 73.83% | 58.33% | 58.96% | 79.65% | 80.70% | 78.6%  | **65.00%**  | 60.8%  | 79.1%      |
+| <a href="https://github.com/brightmart/roberta_zh">RoBERTa-large</a>      | - | 334M  | 74.02% | 57.86%  | 62.55% | -  |  - | 79.9%   | 61.40% | 72.7%   | 81.36%       |
 | <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>  | - | 200M | 70.50% | 56.24% | 57.85% | 78.15%  | 76.93%   | 78.7% | 53.80%   | 64.4%   | 81.26%     |
 | <a href="https://github.com/brightmart/albert_zh">ALBERT-xxlarge</a>      | - | 59M   | -  | - | - | - | - | - | -  | -  | -     |
 | <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a>        | - | 4M | 69.92% | 53.35% | 36.18% | 72.71% | 72.72%  | 69.5% | 49.80%  | 58.5%   | 74.56% |
-| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>   | - | 108M  | 74.04% | 56.86% | 60.31% | 81.09% | 81.38% | 79.3%  | 63.60%  | 67.8% | 81.0% |
+| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>   | - | 108M  | 74.04% | 56.94% | 60.31% | 81.09% | 81.38% | 79.3%  | 63.60%  | 67.8% | 81.0% |
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-large</a> | - | 330M | **76.55%** | **58.61%** | **62.98%** | **83.4%** | **83.42%** | **80.0%** | 59.40% | **74.6%** | **82.13%** |
 
 
@@ -332,12 +332,12 @@ https://arxiv.org/abs/1906.01265
 #### AFQMC 蚂蚁语义相似度 Ant Semantic Similarity (Accuracy)：
 |         模型          | 开发集（dev) | 测试集（test) |              训练参数              |
 | :-------------------: | :----------: | :-----------: | :--------------------------------: |
-|     ALBERT-xlarge     |    -     |     -   | batch_size=16, length=128, epoch=3 |
-|      ALBERT-tiny      |    -     |    69.92%    | batch_size=16, length=128, epoch=3 |
+|     ALBERT-xxlarge     |    -     |     -   | batch_size=16, length=128, epoch=3 |
+|      ALBERT-tiny      |    69.13%     |    69.92%    | batch_size=16, length=128, epoch=3 |
 |       BERT-base       |    74.16%     |     73.70%  | batch_size=16, length=128, epoch=3 |
 |   BERT-wwm-ext-base   |    73.74%     |      74.07%   | batch_size=16, length=128, epoch=3 |
-|      ERNIE-base       |         |      73.83%    | batch_size=16, length=128, epoch=3 |
-|     RoBERTa-large     |         |       74.02%   | batch_size=16, length=128, epoch=3 |
+|      ERNIE-base       |         74.88% |      73.83%    | batch_size=16, length=128, epoch=3 |
+|     RoBERTa-large     |     73.32%    |       74.02%   | batch_size=16, length=128, epoch=3 |
 |       XLNet-mid       |     70.73%    |   70.50%       | batch_size=16, length=128, epoch=3 |
 |    RoBERTa-wwm-ext    |   74.30%      |      74.04%       | batch_size=16, length=128, epoch=3 |
 | RoBERTa-wwm-large-ext |  74.92% |  76.55% | batch_size=16, length=128, epoch=3 |
@@ -345,15 +345,15 @@ https://arxiv.org/abs/1906.01265
 #### TNEWS' 头条新闻分类 Toutiao News Classification (Accuracy)：
 |         模型          | 开发集（dev) | 测试集（test) |              训练参数              |
 | :-------------------: | :----------: | :-----------: | :--------------------------------: |
-|     ALBERT-xlarge     |    -     |         | batch_size=16, length=128, epoch=3 |
+|     ALBERT-xxlarge     |    -     |         | batch_size=16, length=128, epoch=3 |
 |      ALBERT-tiny      |    -     |       53.35%   | batch_size=16, length=128, epoch=3 |
-|       BERT-base       |    -     |     55.58%    | batch_size=16, length=128, epoch=3 |
-|   BERT-wwm-ext-base   |         |    56.84%      | batch_size=16, length=128, epoch=3 |
-|      ERNIE-base       |         |     58.23%     | batch_size=16, length=128, epoch=3 |
-|     RoBERTa-large     |         |      57.05%    | batch_size=16, length=128, epoch=3 |
-|       XLNet-mid       |         |      56.24%    | batch_size=16, length=128, epoch=3 |
-|    RoBERTa-wwm-ext    |         |      56.86%       | batch_size=16, length=128, epoch=3 |
-| RoBERTa-wwm-large-ext |   | 58.61%  | batch_size=16, length=128, epoch=3 |
+|       BERT-base       |    56.09%     |     56.58%    | batch_size=16, length=128, epoch=3 |
+|   BERT-wwm-ext-base   |     56.77%    |    56.86%      | batch_size=16, length=128, epoch=3 |
+|      ERNIE-base       |     58.24%    |     58.33%     | batch_size=16, length=128, epoch=3 |
+|     RoBERTa-large     |     57.95%    |      57.84%    | batch_size=16, length=128, epoch=3 |
+|       XLNet-mid       |    56.09%     |      56.24%    | batch_size=16, length=128, epoch=3 |
+|    RoBERTa-wwm-ext    |   57.51%      |      56.94%       | batch_size=16, length=128, epoch=3 |
+| RoBERTa-wwm-large-ext |  58.32% | 58.61%  | batch_size=16, length=128, epoch=3 |
 
 #### IFLYTEK' 长文本分类 Long Text Classification (Accuracy)：
 |         模型          | 开发集（dev) | 测试集（test) |              训练参数              |
