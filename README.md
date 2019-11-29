@@ -16,7 +16,7 @@ Language Understanding Evaluation benchmark for Chinese: datasets, baselines, pr
 | <a href="https://github.com/google-research/bert">BERT-base</a>        | 69.70 | 108M |  73.70% | 56.58%  | 60.29% | 79.39%  | 79.76% | 77.8%  | 57.40% | 62.0% | 80.36% |
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">BERT-wwm-ext</a>      | 70.47 | 108M  | 74.07% | 56.84%  | 59.43% | 81.41% | 80.67% | 78.7%  | 61.40%  | 61.1%  | 80.63% |
 | <a href="https://github.com/PaddlePaddle/ERNIE">ERNIE-base</a>         | 70.55 | 108M  | 73.83% | 58.33% | 58.96% | 79.65% | 80.70% | 78.6%  | **65.00%**  | 60.8%  | 79.1%      |
-| <a href="https://github.com/brightmart/roberta_zh">RoBERTa-large</a>      | 54.42 | 334M  | 74.02% | 57.86%  | 62.55% | -  |  81.73% | 79.9%   | 61.40% | 72.7%   | 81.36%       |
+| <a href="https://github.com/brightmart/roberta_zh">RoBERTa-large</a>      | 54.42 | 334M  | 74.02% | 57.86%  | 62.55% | 82.11%  |  81.73% | 79.9%   | 61.40% | 72.7%   | 81.36%       |
 | <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>  | 68.65 | 200M | 70.50% | 56.24% | 57.85% | 78.15%  | 76.93%   | 78.7% | 53.80%   | 64.4%   | 81.26%     |
 | <a href="https://github.com/brightmart/albert_zh">ALBERT-xxlarge</a>      | - | 59M   | -  | - | - | - | - | - | -  | -  | -     |
 | <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a>        | 61.92 | 4M | 69.92% | 53.35% | 36.18% | 72.71% | 72.72%  | 69.5% | 49.80%  | 58.5%   | 74.56% |
@@ -376,7 +376,7 @@ https://arxiv.org/abs/1906.01265
 | ERNIE-base	|79.65 | 80.70 | batch=32, length=128, epoch=3 lr=2e-5 |
 | ALBERT-xxlarge	|- | - | - |
 | ALBERT-tiny	|72.71 | 72.72 | batch=32, length=128, epoch=3 lr=2e-5 |
-| RoBERTa-large	| - | 81.73% | batch=16, length=128, epoch=3 lr=2e-5 |
+| RoBERTa-large	| 82.11% | 81.73% | batch=16, length=128, epoch=3 lr=2e-5 |
 | xlnet-mid	|78.15 |76.93 | batch=16, length=128, epoch=3 lr=2e-5 |
 | RoBERTa-wwm-ext	|81.09 | 81.38 | batch=32, length=128, epoch=3 lr=2e-5  |
 | RoBERTa-wwm-large-ext	|***83.4*** | ***83.42*** | batch=32, length=128, epoch=3 lr=2e-5  |
