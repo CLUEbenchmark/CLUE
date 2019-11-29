@@ -26,11 +26,11 @@ if [ ! -d $TASK_NAME ]; then
   echo "makedir $GLUE_DATA_DIR/$TASK_NAME"
 fi
 cd $TASK_NAME
-if [ ! -f "train.tsv" ] || [ ! -f "dev.tsv" ] || [ ! -f "test.tsv" ]; then
+if [ ! -f "train.json" ] || [ ! -f "dev.json" ] || [ ! -f "test.json" ]; then
   rm *
-  wget https://storage.googleapis.com/chineseglue/tasks/xnli.zip
-  unzip xnli.zip
-  rm xnli.zip
+  wget https://storage.googleapis.com/cluebenchmark/tasks/xnli_public.zip
+  unzip xnli_public.zip
+  rm xnli_public.zip
 else
   echo "data exists"
 fi
@@ -67,12 +67,12 @@ python run_classifier.py \
     --data_dir=$GLUE_DATA_DIR/$TASK_NAME \
     --output_dir=$CURRENT_DIR/${TASK_NAME}_output/ \
     --model_dir=$CURRENT_DIR/${TASK_NAME}_output/ \
-    --train_batch_size=32 \
-    --eval_batch_size=8 \
+    --train_batch_size=64 \
+    --eval_batch_size=64 \
     --num_hosts=1 \
     --num_core_per_host=1 \
-    --num_train_epochs=3 \
+    --num_train_epochs=2 \
     --max_seq_length=128 \
-    --learning_rate=2e-5 \
+    --learning_rate=3e-5 \
     --save_steps=1000 \
     --use_tpu=False

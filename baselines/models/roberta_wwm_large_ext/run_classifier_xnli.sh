@@ -23,11 +23,11 @@ if [ ! -d $TASK_NAME ]; then
   echo "makedir $GLUE_DATA_DIR/$TASK_NAME"
 fi
 cd $TASK_NAME
-if [ ! -f "train.tsv" ] || [ ! -f "dev.tsv" ] || [ ! -f "test.tsv" ]; then
+if [ ! -f "train.json" ] || [ ! -f "dev.json" ] || [ ! -f "test.json" ]; then
   rm *
-  wget https://storage.googleapis.com/chineseglue/tasks/xnli.zip
-  unzip xnli.zip
-  rm xnli.zip
+  wget https://storage.googleapis.com/cluebenchmark/tasks/xnli_public.zip
+  unzip xnli_public.zip
+  rm xnli_public.zip
 else
   echo "data exists"
 fi
@@ -61,7 +61,7 @@ python run_classifier.py \
   --bert_config_file=$ROBERTA_WWM_LARGE_DIR/bert_config.json \
   --init_checkpoint=$ROBERTA_WWM_LARGE_DIR/bert_model.ckpt \
   --max_seq_length=128 \
-  --train_batch_size=32 \
-  --learning_rate=2e-5 \
-  --num_train_epochs=3.0 \
+  --train_batch_size=64 \
+  --learning_rate=3e-5 \
+  --num_train_epochs=2.0 \
   --output_dir=$CURRENT_DIR/${TASK_NAME}_output/
