@@ -164,6 +164,19 @@ ChineseMNLI数据对原始MNLI数据进行中英文转化，数据来自于ficti
 
 
 ##### 7. WSC Winograd模式挑战中文版  The Winograd Schema Challenge,Chinese Version
+威诺格拉德模式挑战赛是图灵测试的一个变种，旨在判定AI系统的常识推理能力。参与挑战的计算机程序需要回答一种特殊但简易的常识问题：代词消歧问题，即对给定的名词和代词判断是否指代一致。
+```
+数据量：训练集(532)，验证集(104)，测试集(143) 
+例子：
+{"target": 
+    {"span2_index": 28, 
+     "span1_index": 0, 
+     "span1_text": "马克", 
+     "span2_text": "他"}, 
+     "idx": 0, 
+     "label": "false", 
+     "text": "马克告诉皮特许多关于他自己的谎言，皮特也把这些谎言写进了他的书里。他应该多怀疑。"}
+```
 
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/wsc_public.zip" > WSC数据集下载</a>
 
