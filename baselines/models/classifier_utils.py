@@ -424,7 +424,7 @@ class CslProcessor(DataProcessor):
     examples = []
     for (i, line) in enumerate(lines):
       guid = "%s-%s" % (set_type, i)
-      text_a = convert_to_unicode(line['keyword'])
+      text_a = convert_to_unicode(" ".join(line['keyword']))
       text_b = convert_to_unicode(line['abst'])
       label = convert_to_unicode(line['label'])
       examples.append(
