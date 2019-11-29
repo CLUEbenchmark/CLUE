@@ -365,7 +365,7 @@ https://arxiv.org/abs/1906.01265
 |      ERNIE-base       |    61.75     |     61.80     | batch_size=24, length=256, epoch=3 |
 |     RoBERTa-large     |    63.80     |     63.91     | batch_size=32, length=128, epoch=3 |
 |       XLNet-mid       |    60.16     |     60.04     | batch_size=16, length=128, epoch=3 |
-|    RoBERTa-wwm-ext    |    64.18     |       -       | batch_size=16, length=128, epoch=3 |
+|    RoBERTa-wwm-ext    |    64.18     |       60.31%       | batch_size=16, length=128, epoch=3 |
 | RoBERTa-wwm-large-ext | ***65.19***  |  ***65.10***  | batch_size=32, length=128, epoch=3 |
 
 #### CMNLI 中文自然语言推理 Chinese Multi-Genre NLI (Accuracy)：
