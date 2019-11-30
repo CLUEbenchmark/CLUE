@@ -123,8 +123,8 @@ ChineseMNLI数据对原始MNLI数据进行中英文转化，数据来自于ficti
 ```
     数据量：训练集(400)，验证集(100)，测试集(500)
     例子： 
-    	1. {"idx": 7, "premise": "那人在杂货店买东西时打折了。", "choice0": "他向收银员打招呼。", "choice1": "他用了一张优惠券。", "question": "cause", "label": 1}
-	2. {"idx": 8, "premise": "医师误诊了病人。", "choice0": "该患者对医生提起了医疗事故诉讼。", "choice1": "患者向医生披露了机密信息。", "question": "effect", "label": 0}
+    1. {"idx": 7, "premise": "那人在杂货店买东西时打折了。", "choice0": "他向收银员打招呼。", "choice1": "他用了一张优惠券。", "question": "cause", "label": 1}
+    2. {"idx": 8, "premise": "医师误诊了病人。", "choice0": "该患者对医生提起了医疗事故诉讼。", "choice1": "患者向医生披露了机密信息。", "question": "effect", "label": 0}
 其中label的标注，0表示choice0，1 表示choice1。原先的COPA数据集是英文的，我们使用机器翻译以及人工翻译的方法，并做了些微的用法习惯上的调整，并根据中文的习惯进行了标注，得到了这份数据集。
 ```
 
@@ -446,14 +446,14 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 |         模型          | 开发集（dev %) | 测试集（test %) |                         训练参数                         |
 | :-------------------: | :------------: | :-------------: | :------------------------------------------------------: |
 |    ALBERT-xxlarge     |       -        |        -        |                            -                             |
-|      ALBERT-tiny      |                |      49.8       |                                                          |
-|       BERT-base       |     60.00      |      57.4       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|   BERT-wwm-ext-base   |     60.00      |      61.4       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|      ALBERT-tiny      |                |      49.80       |                                                          |
+|       BERT-base       |     60.00      |      57.40       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|   BERT-wwm-ext-base   |     60.00      |      61.40       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
 |      ERNIE-base       |                |       65        |                                                          |
-|     RoBERTa-large     |                |      59.4       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|       XLNet-mid       |     56.00      |      53.8       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|    RoBERTa-wwm-ext    |     63.00      |      63.6       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-| RoBERTa-wwm-large-ext |     66.00      |      59.4       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|     RoBERTa-large     |     61.00      |      59.40       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|       XLNet-mid       |     56.00      |      53.80       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|    RoBERTa-wwm-ext    |     63.00      |      63.60       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+| RoBERTa-wwm-large-ext |     66.00      |      59.40       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
 
 #### WSC Winograd模式挑战中文版  The Winograd Schema Challenge,Chinese Version：
 | 模型 | 开发集（dev) | 测试集（test) | 训练参数 |
