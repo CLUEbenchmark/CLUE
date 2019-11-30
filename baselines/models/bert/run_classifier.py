@@ -713,6 +713,7 @@ def main(_):
       "tnews": TnewsProcessor,
       "afqmc": AFQMCProcessor,
       "iflytek": iFLYTEKDataProcessor,
+      "copa":COPAProcessor,
       "cmnli":CMNLIProcessor,
       "wsc": WSCProcessor,
       "csl": CslProcessor,
