@@ -23,11 +23,11 @@ if [ ! -d $TASK_NAME ]; then
   echo "makedir $GLUE_DATA_DIR/$TASK_NAME"
 fi
 cd $TASK_NAME
-if [ ! -f "train.txt" ] || [ ! -f "dev.txt" ] || [ ! -f "test.txt" ]; then
+if [ ! -f "train.json" ] || [ ! -f "dev.json" ] || [ ! -f "test.json" ]; then
   rm *
   wget https://storage.googleapis.com/cluebenchmark/tasks/copa_public.zip
-  unzip bq.zip
-  rm bq.zip
+  unzip copa_public.zip
+  rm copa_public.zip
 else
   echo "data exists"
 fi
@@ -72,5 +72,5 @@ python run_classifier.py \
   --max_seq_length=128 \
   --train_batch_size=32 \
   --learning_rate=2e-5 \
-  --num_train_epochs=3.0 \
+  --num_train_epochs=4.0 \
   --output_dir=$CURRENT_DIR/${TASK_NAME}_output/
