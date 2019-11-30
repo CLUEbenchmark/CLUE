@@ -26,8 +26,8 @@ cd $TASK_NAME
 if [ ! -f "train.json" ] || [ ! -f "dev.json" ] || [ ! -f "test.json" ]; then
   rm *
   wget https://storage.googleapis.com/cluebenchmark/tasks/copa_public.zip
-  unzip bq.zip
-  rm bq.zip
+  unzip copa.zip
+  rm copa.zip
 else
   echo "data exists"
 fi
