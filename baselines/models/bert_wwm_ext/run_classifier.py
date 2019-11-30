@@ -715,6 +715,7 @@ def main(_):
       "tnews": TnewsProcessor,
       "afqmc": AFQMCProcessor,
       "iflytek": iFLYTEKDataProcessor,
+      "csl": CslProcessor,
   }
 
   tokenization.validate_case_matches_checkpoint(FLAGS.do_lower_case,

@@ -25,8 +25,8 @@ Language Understanding Evaluation benchmark for Chinese: datasets, baselines, pr
 
 
     注：'代表对原数据集筛选后获得，数据集与原数据集不同；AFQMC:蚂蚁语义相似度(Acc)；TNEWS:文本分类(Acc)；
-    IFLYTEK:长文本分类(Acc); CMNLI-m/mm: MNLI自然语言推理中文版-matched/mismatched; XNLI:自然语言推理(Acc); COPA: 因果推断; WSC: Winograd模式挑战中文版; CSL: 中国科学文献数据集
-    Score是通过计算1-9数据集得分平均值获得；
+    IFLYTEK:长文本分类(Acc); CMNLI-m/mm: MNLI自然语言推理中文版-matched/mismatched; XNLI:自然语言推理(Acc); 
+    COPA: 因果推断; WSC: Winograd模式挑战中文版; CSL: 中国科学文献数据集; Score总分是通过计算1-9数据集得分平均值获得；
 
 #### 阅读理解任务
 
@@ -47,6 +47,21 @@ DRCD、CMRC2018: 繁体、简体抽取式阅读理解(F1, EM)；CHID：成语多
 
 注：阅读理解上述指标中F1和EM共存的情况下，取EM为最终指标
 
+一键运行.基线模型与代码 Baseline with codes
+---------------------------------------------------------------------
+    使用方式：
+    1、克隆项目 
+       git clone https://github.com/CLUEbenchmark/CLUE.git
+    2、进入到相应的目录
+       分类任务：
+           cd CLUE/baselines/models/bert  
+       或阅读理解任务：
+           cd CLUE/baselines/models_pytorch/mrc_pytorch
+    3、运行对应任务的脚本: 会自动下载模型和任务数据并开始运行。
+       bash run_classifier_xxx.sh
+       如运行 bash run_classifier_iflytek.sh 会开始iflytek任务的训练
+
+    
 数据集下载见本项目最后部分 
 
 CLUE benchmark的定位 Vision
@@ -57,29 +72,8 @@ CLUE benchmark的定位 Vision
 
   <a href="http://106.13.187.75:8003/"> 评测入口</a>
 
-Why do we need a benchmark for Chinese lanague understand evaluation?
 
-为什么我们需要一个中文任务的基准测试？ 
----------------------------------------------------------------------
-首先，中文是一个大语种，有其自身的特定、大量的应用。
-
-    如中文使用人数近14亿，是联合国官方语言之一，产业界有大量的的朋友在做中文的任务。
-    中文是象形文字，有文字图形；字与字之间没有分隔符，不同的分词(分字或词)会影响下游任务。
-
-其次，相对于英文的数据集，中文的公开可用的数据集还比较少。
-
-     很多数据集是非公开的或缺失基准测评的；多数的论文描述的模型是在英文数据集上做的测试和评估，那么对于中文效果如何？不得而知。
-
-再次，语言理解发展到当前阶段，预训练模型极大的促进了自然语言理解。
-
-     不同的预训练模型相继产生，但不少最先进(state of the art)的模型，并没有官方的中文的版本，也没有对这些预训练模型在不同任务上的公开测试，
-     导致技术的发展和应用还有不少距离，或者说技术应用上的滞后。
-
-那么，如果有一个中文任务的基准测试，包含一批大众能广泛使用和测评的数据集、适用中文任务的特点、能紧跟当前世界技术的发展，
-
-     能缓解当前中文任务的一些问题，并促进相关应用的发展。
-
-中文任务的基准测试-内容体系 Contents
+内容体系 Contents
 --------------------------------------------------------------------
 Language Understanding Evaluation benchmark for Chinese(ChineseGLUE) got ideas from GLUE, which is a collection of 
 
@@ -90,23 +84,33 @@ resources for training, evaluating, and analyzing natural language understanding
 A benchmark of several sentence or sentence pair language understanding tasks. 
 Currently the datasets used in these tasks are come from public. We will include datasets with private test set before the end of 2019.
 
-##### 2）公开的排行榜 
+##### 2）公开的排行榜 Leaderboard 
 
 A public leaderboard for tracking performance. You will able to submit your prediction files on these tasks, each task will be evaluated and scored, a final score will also be available.
 
-##### 3）基线模型，包含开始的代码、预训练模型 
+##### 3）基线模型，包含开始的代码、预训练模型  Baselines with code
 
 baselines for ChineseGLUE tasks. baselines will be available in TensorFlow,PyTorch,Keras and PaddlePaddle.
 
-##### 4）语料库，用于语言建模、预训练或生成型任务 
+##### 4）语料库，用于语言建模、预训练或生成型任务  Corpus
 
 A huge amount of raw corpus for pre-train or language modeling research purpose. It will contains around 10G raw corpus in 2019; 
 
 In the first half year of 2020, it will include at least 30G raw corpus; By the end of 2020, we will include enough raw corpus, such as 100G, so big enough that you will need no more raw corpus for general purpose language modeling.
 You can use it for general purpose or domain adaption, or even for text generating. when you use for domain adaption, you will able to select corpus you are interested in.
 
+##### 5）工具包 toolkit
+
+An easy to use toolkit that can run specific task or model with one line of code. You can easily change configuration, task or model.
+
+##### 6) 技术报告
+
+Techical report with details
+
 数据集介绍与下载 Introduction of datasets 
 --------------------------------------------------------------------
+
+ <a href="https://storage.googleapis.com/cluebenchmark/tasks/clue_submit_examples.zip">提交样例下载</a>
 
 ##### 1. AFQMC 蚂蚁金融语义相似度 Ant Financial  Question Matching Corpus
 
@@ -367,7 +371,30 @@ Notes：
 2.难样本，是指在交叉验证过程中模型预测错误的样本，也是我们希望尽可能保留的样本。模型预测正确的样本最终会被优先排除一部分
 ```
 
-中文任务基准测评(CLUE benchmark)-各任务对比
+Why do we need a benchmark for Chinese lanague understand evaluation?
+
+为什么我们需要一个中文任务的基准测试？ 
+---------------------------------------------------------------------
+首先，中文是一个大语种，有其自身的特定、大量的应用。
+
+    如中文使用人数近14亿，是联合国官方语言之一，产业界有大量的的朋友在做中文的任务。
+    中文是象形文字，有文字图形；字与字之间没有分隔符，不同的分词(分字或词)会影响下游任务。
+
+其次，相对于英文的数据集，中文的公开可用的数据集还比较少。
+
+     很多数据集是非公开的或缺失基准测评的；多数的论文描述的模型是在英文数据集上做的测试和评估，那么对于中文效果如何？不得而知。
+
+再次，语言理解发展到当前阶段，预训练模型极大的促进了自然语言理解。
+
+     不同的预训练模型相继产生，但不少最先进(state of the art)的模型，并没有官方的中文的版本，也没有对这些预训练模型在不同任务上的公开测试，
+     导致技术的发展和应用还有不少距离，或者说技术应用上的滞后。
+
+那么，如果有一个中文任务的基准测试，包含一批大众能广泛使用和测评的数据集、适用中文任务的特点、能紧跟当前世界技术的发展，
+
+     能缓解当前中文任务的一些问题，并促进相关应用的发展。
+
+
+各任务详细对比
 ---------------------------------------------------------------------
  Evaluation of Dataset for Different Models
 

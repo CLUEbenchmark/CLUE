@@ -684,7 +684,8 @@ def main(_):
       "xnli": XnliProcessor,
       "tnews": TnewsProcessor,
       "afqmc": AFQMCProcessor,
-      "iflytek": iFLYTEKDataProcessor
+      "iflytek": iFLYTEKDataProcessor,
+      "csl": CslProcessor,
   }
 
   if not FLAGS.do_train and not FLAGS.do_eval and not FLAGS.do_predict:

@@ -23,11 +23,11 @@ if [ ! -d $TASK_NAME ]; then
   echo "makedir $GLUE_DATA_DIR/$TASK_NAME"
 fi
 cd $TASK_NAME
-if [ ! -f "train.tsv" ] || [ ! -f "dev.tsv" ] || [ ! -f "test.tsv" ]; then
+if [ ! -f "train.json" ] || [ ! -f "val.json" ] || [ ! -f "test.json" ]; then
   rm *
-  wget https://storage.googleapis.com/chineseglue/tasks/csl.zip
-  unzip csl.zip
-  rm csl.zip
+  wget https://storage.googleapis.com/cluebenchmark/tasks/csl_public.zip
+  unzip csl_public.zip
+  rm csl_public.zip
 else
   echo "data exists"
 fi
