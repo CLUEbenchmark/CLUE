@@ -472,14 +472,14 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 |         模型          | 开发集（dev %) | 测试集（test %) |                         训练参数                         |
 | :-------------------: | :------------: | :-------------: | :------------------------------------------------------: |
 |    ALBERT-xxlarge     |       -        |        -        |                            -                             |
-|      ALBERT-tiny      |                |                 |                                                          |
-|       BERT-base       |       60       |      57.4       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|   BERT-wwm-ext-base   |       60       |      61.4       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|      ERNIE-base       |   58.1(54.9)   |   60.8(55.9)    |                                                          |
-|     RoBERTa-large     |   68.6(58.7)   |   72.7(63.6)    | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|       XLNet-mid       |  60.9(56.8）   |   64.4(57.3）   | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|    RoBERTa-wwm-ext    |   67.2(57.7)   |   67.8(63.5)    | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-| RoBERTa-wwm-large-ext |   69.7(64.5)   |   74.6(69.4)    | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|      ALBERT-tiny      |                |      49.8       |                                                          |
+|       BERT-base       |     60.00      |      57.4       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|   BERT-wwm-ext-base   |     60.00      |      61.4       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|      ERNIE-base       |                |       65        |                                                          |
+|     RoBERTa-large     |                |      59.4       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|       XLNet-mid       |                |      53.8       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|    RoBERTa-wwm-ext    |     63.00      |      63.6       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+| RoBERTa-wwm-large-ext |     66.00      |      59.4       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
 
 #### WSC Winograd模式挑战中文版  The Winograd Schema Challenge,Chinese Version：
 | 模型 | 开发集（dev) | 测试集（test) | 训练参数 |

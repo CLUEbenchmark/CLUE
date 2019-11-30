@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # @Author: bo.shi
 # @Date:   2019-11-04 09:56:36
-# @Last Modified by:   bo.shi
-# @Last Modified time: 2019-11-07 23:38:36
+# @Last Modified by:   JUNYI LI
+# @Last Modified time: 2019-11-30 12:38:36
 
 TASK_NAME="copa"
 MODEL_NAME="chinese_L-12_H-768_A-12"
