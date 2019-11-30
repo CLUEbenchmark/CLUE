@@ -865,10 +865,10 @@ class COPAProcessor(DataProcessor):
 #         try:
       text_a = convert_to_unicode(line['premise'])
       text_b = convert_to_unicode(line['choice0'])
-      label = convert_to_unicode(str(1 if line['label'] == 0 else 0)) if set_type != 'test' else '-1'
+      label = convert_to_unicode(str(1 if line['label'] == 0 else 0)) if set_type != 'test' else '0'
       text_a2 = convert_to_unicode(line['premise'])
       text_b2 = convert_to_unicode(line['choice1'])
-      label2 = convert_to_unicode(str(0 if line['label'] == 0 else 1)) if set_type != 'test' else '-1'
+      label2 = convert_to_unicode(str(0 if line['label'] == 0 else 1)) if set_type != 'test' else '0'
       examples.append(
         InputExample(guid=guid1, text_a=text_a, text_b=text_b, label=label))
       examples.append(
