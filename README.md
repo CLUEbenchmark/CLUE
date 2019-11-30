@@ -552,15 +552,15 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 基线模型-代码 Start Codes for Baselines 
 ---------------------------------------------------------------------
 我们为您提供了可以“一键运行”的脚本来辅助您更快的在指定模型上运行特定任务。
-以在 Bert 模型上运行“BQ 智能客服问句匹配”任务为例，您可以直接在 chineseGLUE/baselines/models/**bert**/ 下运行 run_classifier_**bq**.sh 脚本。
+以在 Bert 模型上运行“IFLYTEK' 长文本分类”任务为例，您可以直接在 CLUE/baselines/models/**bert**/ 下运行 run_classifier_**iflytek**.sh 脚本。
 
   ```bash
-  cd chineseGLUE/baselines/models/bert/
-  sh run_classifier_bq.sh
+  cd CLUE/baselines/models/bert/
+  sh run_classifier_iflytek.sh
   ```
 
 
-该脚本将会自动下载“BQ 智能客服问句匹配”数据集（保存在chineseGLUE/baselines/glue/chineseGLUEdatasets/**bq**/ 文件夹下）和Bert模型（保存在 chineseGLUE/baselines/models/bert/prev_trained_model/ 下）。
+该脚本将会自动下载“IFLYTEK' 长文本分类”数据集（保存在CLUE/baselines/glue/chineseGLUEdatasets/**iflytek**/ 文件夹下）和Bert模型（保存在 CLUE/baselines/models/bert/prev_trained_model/ 下）。
 
 <!--1. 数据集整体下载，解压到glue文件夹里  -->
 <!--  ```cd glue ```  -->
