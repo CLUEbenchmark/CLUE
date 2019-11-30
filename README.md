@@ -160,6 +160,17 @@ ChineseMNLI数据对原始MNLI数据进行中英文转化，数据来自于ficti
 
 ##### 6. COPA 因果推断-中文版 Choice of Plausible Alternatives
 
+自然语言推理的数据集，给定一个假设以及一个问题表明是因果还是影响，并从两个选项中选择合适的一个。遵照原数据集，我们使用了acc作为评估标准。
+
+```
+    数据量：训练集(400)，验证集(100)，测试集(500)
+    例子： 
+		1. {"premise": "我想节约能源。", "choice0": "我打扫了空房间的地板。", "choice1": "我把空房间里的灯关了。", "question": "effect", "label": 1, "idx": 3}
+		2. {"premise": "汉堡肉变黄了。", "choice0": "厨师冷冻了汉堡肉。", "choice1": "厨师烤了汉堡肉。", "question": "cause", "label": 1, "idx": 4}
+
+		其中label的标注，0表示choice0，1 表示choice1。原先的COPA数据集是英文的，我们使用机器翻译以及人工翻译的方法，并做了些微的用法习惯上的调整，并根据中文的习惯进行了标注，得到了这份数据集。
+```
+
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/copa_public.zip" > COPA数据集下载</a>
 
 
@@ -287,7 +298,6 @@ https://hfl-rc.github.io/cmrc2018/
 }
 ```
 数据格式和squad相同，如果使用简体中文模型进行评测的时候可以将其繁转简(本项目已提供)
-        
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/drcd_public.zip" > DRCD2018数据集下载</a>
 
 ##### 11.CHID 成语阅读理解填空 Chinese IDiom Dataset for Cloze Test
@@ -428,9 +438,19 @@ Notes：
 
 注：ALBERT-xlarge，在XNLI任务上训练暂时还存在有问题
 
-COPA TODO 
+#### COPA中文版  The Chinese Choice of Plausible Alternatives：
 
-##### WSC Winograd模式挑战中文版  The Winograd Schema Challenge,Chinese Version
+|         模型          | 开发集（dev %) | 测试集（test %) |                         训练参数                         |
+| :-------------------: | :------------: | :-------------: | :------------------------------------------------------: |
+|    ALBERT-xxlarge     |       -        |        -        |                            -                             |
+|      ALBERT-tiny      |                |                 |                                                          |
+|       BERT-base       |       60       |      57.4       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|   BERT-wwm-ext-base   |       60       |      61.4       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|      ERNIE-base       |   58.1(54.9)   |   60.8(55.9)    |                                                          |
+|     RoBERTa-large     |   68.6(58.7)   |   72.7(63.6)    | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|       XLNet-mid       |  60.9(56.8）   |   64.4(57.3）   | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|    RoBERTa-wwm-ext    |   67.2(57.7)   |   67.8(63.5)    | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+| RoBERTa-wwm-large-ext |   69.7(64.5)   |   74.6(69.4)    | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
 
 #### WSC Winograd模式挑战中文版  The Winograd Schema Challenge,Chinese Version：
 | 模型 | 开发集（dev) | 测试集（test) | 训练参数 |
