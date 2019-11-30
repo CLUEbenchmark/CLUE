@@ -536,6 +536,8 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 | RoBERTa-wwm-ext	|F1:87.28 EM:67.89 | F1:89.74 EM:73.89 | epoch2, batch=32, length=512, lr=3e-5, warmup=0.1 |
 | RoBERTa-wwm-large-ext	|***F1:89.42 EM:70.59*** | ***F1:91.56 EM:76.58*** | epoch2, batch=32, length=512, lr=2.5e-5, warmup=0.1 |
 
+注: 现在榜上数据为cmrc2018完整测试集结果，之后CLUE将使用2k的测试集子集作为测试，而并非cmrc2018官方完整测试集。如需完整测试cmrc2018阅读理解数据集仍需通过cmrc2018平台提交(https://worksheets.codalab.org/worksheets/0x96f61ee5e9914aee8b54bd11e66ec647)。
+
 #### CHID 成语阅读理解填空 Chinese IDiom Dataset for Cloze Test (Accuracy)：
 | 模型 | 开发集（dev) | 测试集（test) |  训练参数 |
 | :----:| :----: | :----: | :----: |
