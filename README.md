@@ -61,7 +61,8 @@ DRCD、CMRC2018: 繁体、简体抽取式阅读理解(F1, EM)；CHID：成语多
        bash run_classifier_xxx.sh
        如运行 bash run_classifier_iflytek.sh 会开始iflytek任务的训练
 
-    
+
+​    
 数据集下载见本项目最后部分 
 
 CLUE benchmark的定位 Vision
@@ -169,10 +170,9 @@ ChineseMNLI数据对原始MNLI数据进行中英文转化，数据来自于ficti
 ```
     数据量：训练集(400)，验证集(100)，测试集(500)
     例子： 
-		1. {"premise": "我想节约能源。", "choice0": "我打扫了空房间的地板。", "choice1": "我把空房间里的灯关了。", "question": "effect", "label": 1, "idx": 3}
-		2. {"premise": "汉堡肉变黄了。", "choice0": "厨师冷冻了汉堡肉。", "choice1": "厨师烤了汉堡肉。", "question": "cause", "label": 1, "idx": 4}
-
-		其中label的标注，0表示choice0，1 表示choice1。原先的COPA数据集是英文的，我们使用机器翻译以及人工翻译的方法，并做了些微的用法习惯上的调整，并根据中文的习惯进行了标注，得到了这份数据集。
+		1. {"idx": 7, "premise": "那人在杂货店买东西时打折了。", "choice0": "他向收银员打招呼。", "choice1": "他用了一张优惠券。", "question": "cause", "label": 1}
+		2. {"idx": 8, "premise": "医师误诊了病人。", "choice0": "该患者对医生提起了医疗事故诉讼。", "choice1": "患者向医生披露了机密信息。", "question": "effect", "label": 0}
+其中label的标注，0表示choice0，1 表示choice1。原先的COPA数据集是英文的，我们使用机器翻译以及人工翻译的方法，并做了些微的用法习惯上的调整，并根据中文的习惯进行了标注，得到了这份数据集。
 ```
 
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/copa_public.zip" > COPA数据集下载</a>
