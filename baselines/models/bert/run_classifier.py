@@ -716,7 +716,8 @@ def main(_):
       "cmnli":CMNLIProcessor,
       "wsc": WSCProcessor,
       "csl": CslProcessor,
-  }
+      "copa":COPAProcessor,
+ }
 
   tokenization.validate_case_matches_checkpoint(FLAGS.do_lower_case,
                                                 FLAGS.init_checkpoint)
