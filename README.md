@@ -416,15 +416,15 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 #### IFLYTEK' 长文本分类 Long Text Classification (Accuracy)：
 |         模型          | 开发集（dev) | 测试集（test) |              训练参数              |
 | :-------------------: | :----------: | :-----------: | :--------------------------------: |
-|     ALBERT-xlarge     |    61.94     |     61.34     | batch_size=32, length=128, epoch=3 |
-|      ALBERT-tiny      |    44.83     |     44.62     | batch_size=32, length=256, epoch=3 |
-|       BERT-base       |    63.57     |     63.48     | batch_size=32, length=128, epoch=3 |
-|   BERT-wwm-ext-base   |    63.83     |     63.75     | batch_size=32, length=128, epoch=3 |
-|      ERNIE-base       |    61.75     |     61.80     | batch_size=24, length=256, epoch=3 |
-|     RoBERTa-large     |    63.80     |     63.91     | batch_size=32, length=128, epoch=3 |
-|       XLNet-mid       |    60.16     |     60.04     | batch_size=16, length=128, epoch=3 |
-|    RoBERTa-wwm-ext    |    64.18     |       60.31       | batch_size=16, length=128, epoch=3 |
-| RoBERTa-wwm-large-ext | ***65.19***  |  ***65.10***  | batch_size=32, length=128, epoch=3 |
+|     ALBERT-xlarge     |    -     |     -     | batch_size=32, length=128, epoch=3 |
+|      ALBERT-tiny      |    37.54    |     36.18     | batch_size=32, length=128, epoch=3 |
+|       BERT-base       |    60.37    |     60.29     | batch_size=32, length=128, epoch=3 |
+|   BERT-wwm-ext-base   |    59.88    |     59.43     | batch_size=32, length=128, epoch=3 |
+|      ERNIE-base       |    59.52    |     58.96     | batch_size=32, length=128, epoch=3 |
+|     RoBERTa-large     |    62.6    |     62.55     | batch_size=24, length=128, epoch=3 |
+|       XLNet-mid       |    57.72    |     57.85     | batch_size=32, length=128, epoch=3 |
+|    RoBERTa-wwm-ext    |    60.8    |       60.31       | batch_size=32, length=128, epoch=3 |
+| RoBERTa-wwm-large-ext | **62.75** |  **62.98**  | batch_size=24, length=128, epoch=3 |
 
 #### CMNLI 中文自然语言推理 Chinese Multi-Genre NLI (Accuracy)：
 | 模型 | matched | mismatched |  训练参数 |
