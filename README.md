@@ -151,19 +151,7 @@ ChineseMNLI数据对原始MNLI数据进行中英文转化，数据来自于ficti
 ```
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/cmnli_public.zip" > CMNLI数据集下载</a>
 
-##### 5. XNLI 语言推断任务中文版 Natural Language Inference
-跨语言理解的数据集，给定一个前提和假设，判断这个假设与前提是否具有蕴涵、对立、中性关系。
-
-        数据量：训练集(392,703)，验证集(2,491)，测试集(5,011)
-        例子： 
-         1.从 概念 上 看 , 奶油 收入 有 两 个 基本 方面 产品 和 地理 .[分隔符] 产品 和 地理 是 什么 使 奶油 抹 霜 工作 . [分隔符] neutral
-         2.我们 的 一个 号码 会 非常 详细 地 执行 你 的 指示 [分隔符] 我 团队 的 一个 成员 将 非常 精确 地 执行 你 的 命令  [分隔符] entailment
-    
-        原始的XNLI覆盖15种语言（含低资源语言）。我们选取其中的中文，并将做格式转换，使得非常容易进入训练和测试阶段。
-
-   <a href="https://storage.googleapis.com/cluebenchmark/tasks/xnli_public.zip" > XNLI中文数据集下载</a>
-
-##### 6. COPA 因果推断-中文版 Choice of Plausible Alternatives
+##### 5. COPA 因果推断-中文版 Choice of Plausible Alternatives
 
 自然语言推理的数据集，给定一个假设以及一个问题表明是因果还是影响，并从两个选项中选择合适的一个。遵照原数据集，我们使用了acc作为评估标准。
 
@@ -178,7 +166,7 @@ ChineseMNLI数据对原始MNLI数据进行中英文转化，数据来自于ficti
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/copa_public.zip" > COPA数据集下载</a>
 
 
-##### 7. WSC Winograd模式挑战中文版  The Winograd Schema Challenge,Chinese Version
+##### 6. WSC Winograd模式挑战中文版  The Winograd Schema Challenge,Chinese Version
 威诺格拉德模式挑战赛是图灵测试的一个变种，旨在判定AI系统的常识推理能力。参与挑战的计算机程序需要回答一种特殊但简易的常识问题：代词消歧问题，即对给定的名词和代词判断是否指代一致。
 ```
 数据量：训练集(532)，验证集(104)，测试集(143) 
@@ -196,7 +184,7 @@ ChineseMNLI数据对原始MNLI数据进行中英文转化，数据来自于ficti
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/wsc_public.zip" > WSC数据集下载</a>
 
 
-##### 8. CSL 论文关键词识别 Keyword Recognition
+##### 7. CSL 论文关键词识别 Keyword Recognition
 中文科技文献数据集包含中文核心论文摘要及其关键词。
 用tf-idf生成伪造关键词与论文真实关键词混合，生成摘要-关键词对，关键词中包含伪造的则标签为0。
 ```
@@ -207,7 +195,7 @@ ChineseMNLI数据对原始MNLI数据进行中英文转化，数据来自于ficti
 ```
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/csl_public.zip" > CSL数据集下载</a>
 
-##### 9.CMRC2018 简体中文阅读理解任务 Reading Comprehension for Simplified Chinese
+##### 8.CMRC2018 简体中文阅读理解任务 Reading Comprehension for Simplified Chinese
 https://hfl-rc.github.io/cmrc2018/
 ```
 数据量：训练集(短文数2,403，问题数10,142)，试验集(短文数256，问题数1,002)，开发集(短文数848，问题数3,219)  
@@ -256,7 +244,7 @@ https://hfl-rc.github.io/cmrc2018/
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/cmrc2018_public.zip" > CMRC2018数据集下载</a>
 
 
-##### 10.DRCD 繁体阅读理解任务 Reading Comprehension for Traditional Chinese
+##### 9.DRCD 繁体阅读理解任务 Reading Comprehension for Traditional Chinese
 台達閱讀理解資料集 Delta Reading Comprehension Dataset (DRCD)(https://github.com/DRCKnowledgeTeam/DRCD) 屬於通用領域繁體中文機器閱讀理解資料集。 本資料集期望成為適用於遷移學習之標準中文閱讀理解資料集。  
 ```
 数据量：训练集(8,016个段落，26,936个问题)，验证集(1,000个段落，3,524个问题)，测试集(1,000个段落，3,493个问题)  
@@ -304,7 +292,7 @@ https://hfl-rc.github.io/cmrc2018/
 数据格式和squad相同，如果使用简体中文模型进行评测的时候可以将其繁转简(本项目已提供)
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/drcd_public.zip" > DRCD2018数据集下载</a>
 
-##### 11.CHID 成语阅读理解填空 Chinese IDiom Dataset for Cloze Test
+##### 10.CHID 成语阅读理解填空 Chinese IDiom Dataset for Cloze Test
 https://arxiv.org/abs/1906.01265  
 成语完形填空，文中多处成语被mask，候选项中包含了近义的成语。
 ```
@@ -451,19 +439,6 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 | xlnet-mid	|78.15 |76.93 | batch=16, length=128, epoch=3 lr=2e-5 |
 | RoBERTa-wwm-ext	|81.09 | 81.38 | batch=32, length=128, epoch=3 lr=2e-5  |
 | RoBERTa-wwm-large-ext	|***83.4*** | ***83.42*** | batch=32, length=128, epoch=3 lr=2e-5  |
-
-
-#### XNLI 自然语言推理  Natural Language Inference (Accuracy)：
-| 模型 | 开发集（dev) | 测试集（test) | 训练参数 |
-| :----:| :----: | :----: | :----: |
-| ALBERT-xlarge | 79.6 | 78.7 |batch_size=64, length=128, epoch=2 |
-| BERT-base | 77.80 | 77.80 | batch_size=64, length=128, epoch=2 |
-| BERT-wwm-ext-base | 79.4 | 78.7 | batch_size=64, length=128, epoch=2 |
-| ERNIE-base  | 79.7  |78.6 | batch_size=64, length=128, epoch=2 |
-| RoBERTa-large |***80.2*** |79.9 | batch_size=64, length=128, epoch=2 |
-| XLNet-mid | 79.2 | 78.7 | batch_size=64, length=128, epoch=2 |
-| RoBERTa-wwm-ext | 79.56 | 79.28 | batch_size=64, length=128, epoch=2 |
-| RoBERTa-wwm-large-ext | ***80.20*** | ***80.04*** | batch_size=16, length=128, epoch=2 |
 
 注：ALBERT-xlarge，在XNLI任务上训练暂时还存在有问题
 
