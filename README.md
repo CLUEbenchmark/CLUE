@@ -549,39 +549,7 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 | RoBERTa-wwm-ext	|83.78 | 83.62 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
 | RoBERTa-wwm-large-ext	|***85.81*** | ***85.37*** | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
 
-基线模型-代码 Start Codes for Baselines 
----------------------------------------------------------------------
-我们为您提供了可以“一键运行”的脚本来辅助您更快的在指定模型上运行特定任务。
-以在 Bert 模型上运行“BQ 智能客服问句匹配”任务为例，您可以直接在 chineseGLUE/baselines/models/**bert**/ 下运行 run_classifier_**bq**.sh 脚本。
 
-  ```bash
-  cd chineseGLUE/baselines/models/bert/
-  sh run_classifier_bq.sh
-  ```
-
-
-该脚本将会自动下载“BQ 智能客服问句匹配”数据集（保存在chineseGLUE/baselines/glue/chineseGLUEdatasets/**bq**/ 文件夹下）和Bert模型（保存在 chineseGLUE/baselines/models/bert/prev_trained_model/ 下）。
-
-<!--1. 数据集整体下载，解压到glue文件夹里  -->
-<!--  ```cd glue ```  -->
-<!--  ```wget https://storage.googleapis.com/chineseglue/chineseGLUEdatasets.v0.0.1.zip```-->
-<!--   注：lcqmc数据集，请从<a href="http://icrc.hitsz.edu.cn/info/1037/1146.htm">这里</a>申请或搜索网络-->
-
-<!--2. 训练模型  -->
-
-<!--    ```a.将预训练模型下载解压到对应的模型中prev_trained_model文件夹里。``` -->
-<!--         ```以bert和albert为例子：```-->
-
-<!--         ``` a1. albert  ``` -->
-<!--         ```https://github.com/brightmart/albert_zh ```  -->
-<!--         ```a1. bert  ``` -->
-<!--         ```https://github.com/google-research/bert ```    -->
-
-<!--     ```b.修改run_classifier.sh指定模型路径  ``` -->
-
-<!--     ```c.运行各个模型文件夹下的run_classifier.sh即可 ```  -->
-<!--       ```sh run_classifier.sh```-->
-具体内容详见：<a href="https://github.com/chineseGLUE/chineseGLUE/tree/master/baselines">基准模型-模型训练</a>
 
 #### 开放测评提交入口：<a href="http://106.13.187.75:8003/">我要提交</a>
 
