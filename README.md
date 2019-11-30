@@ -73,41 +73,6 @@ CLUE benchmark的定位 Vision
 
   <a href="http://106.13.187.75:8003/"> 评测入口</a>
 
-
-内容体系 Contents
---------------------------------------------------------------------
-Language Understanding Evaluation benchmark for Chinese(ChineseGLUE) got ideas from GLUE, which is a collection of 
-
-resources for training, evaluating, and analyzing natural language understanding systems. ChineseGLUE consists of: 
-
-##### 1）中文任务的基准测试，覆盖多个不同程度的语言任务 
-
-A benchmark of several sentence or sentence pair language understanding tasks. 
-Currently the datasets used in these tasks are come from public. We will include datasets with private test set before the end of 2019.
-
-##### 2）公开的排行榜 Leaderboard 
-
-A public leaderboard for tracking performance. You will able to submit your prediction files on these tasks, each task will be evaluated and scored, a final score will also be available.
-
-##### 3）基线模型，包含开始的代码、预训练模型  Baselines with code
-
-baselines for ChineseGLUE tasks. baselines will be available in TensorFlow,PyTorch,Keras and PaddlePaddle.
-
-##### 4）语料库，用于语言建模、预训练或生成型任务  Corpus
-
-A huge amount of raw corpus for pre-train or language modeling research purpose. It will contains around 10G raw corpus in 2019; 
-
-In the first half year of 2020, it will include at least 30G raw corpus; By the end of 2020, we will include enough raw corpus, such as 100G, so big enough that you will need no more raw corpus for general purpose language modeling.
-You can use it for general purpose or domain adaption, or even for text generating. when you use for domain adaption, you will able to select corpus you are interested in.
-
-##### 5）工具包 toolkit
-
-An easy to use toolkit that can run specific task or model with one line of code. You can easily change configuration, task or model.
-
-##### 6) 技术报告
-
-Techical report with details
-
 数据集介绍与下载 Introduction of datasets 
 --------------------------------------------------------------------
 
@@ -360,6 +325,40 @@ Notes：
 1.k一般选择4-6
 2.难样本，是指在交叉验证过程中模型预测错误的样本，也是我们希望尽可能保留的样本。模型预测正确的样本最终会被优先排除一部分
 ```
+
+内容体系 Contents
+--------------------------------------------------------------------
+Language Understanding Evaluation benchmark for Chinese(ChineseGLUE) got ideas from GLUE, which is a collection of 
+
+resources for training, evaluating, and analyzing natural language understanding systems. ChineseGLUE consists of: 
+
+##### 1）中文任务的基准测试，覆盖多个不同程度的语言任务 
+
+A benchmark of several sentence or sentence pair language understanding tasks. 
+Currently the datasets used in these tasks are come from public. We will include datasets with private test set before the end of 2019.
+
+##### 2）公开的排行榜 Leaderboard 
+
+A public leaderboard for tracking performance. You will able to submit your prediction files on these tasks, each task will be evaluated and scored, a final score will also be available.
+
+##### 3）基线模型，包含开始的代码、预训练模型  Baselines with code
+
+baselines for ChineseGLUE tasks. baselines will be available in TensorFlow,PyTorch,Keras and PaddlePaddle.
+
+##### 4）语料库，用于语言建模、预训练或生成型任务  Corpus
+
+A huge amount of raw corpus for pre-train or language modeling research purpose. It will contains around 10G raw corpus in 2019; 
+
+In the first half year of 2020, it will include at least 30G raw corpus; By the end of 2020, we will include enough raw corpus, such as 100G, so big enough that you will need no more raw corpus for general purpose language modeling.
+You can use it for general purpose or domain adaption, or even for text generating. when you use for domain adaption, you will able to select corpus you are interested in.
+
+##### 5）工具包 toolkit
+
+An easy to use toolkit that can run specific task or model with one line of code. You can easily change configuration, task or model.
+
+##### 6) 技术报告
+
+Techical report with details
 
 Why do we need a benchmark for Chinese lanague understand evaluation?
 
