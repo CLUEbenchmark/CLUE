@@ -838,18 +838,18 @@ class COPAProcessor(DataProcessor):
   def get_train_examples(self, data_dir):
     """See base class."""
     return self._create_examples(
-        self._read_json(os.path.join(data_dir, "train.txt")), "train")
+        self._read_json(os.path.join(data_dir, "train.json")), "train")
     # dev_0827.tsv
 
   def get_dev_examples(self, data_dir):
     """See base class."""
     return self._create_examples(
-        self._read_json(os.path.join(data_dir, "dev.txt")), "dev")
+        self._read_json(os.path.join(data_dir, "dev.json")), "dev")
 
   def get_test_examples(self, data_dir):
     """See base class."""
     return self._create_examples(
-        self._read_json(os.path.join(data_dir, "test.txt")), "test")
+        self._read_json(os.path.join(data_dir, "test.json")), "test")
 
   def get_labels(self):
     """See base class."""
