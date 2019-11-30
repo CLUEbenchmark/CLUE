@@ -436,7 +436,7 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 |      ERNIE-base       |    61.75     |     61.80     | batch_size=24, length=256, epoch=3 |
 |     RoBERTa-large     |    63.80     |     63.91     | batch_size=32, length=128, epoch=3 |
 |       XLNet-mid       |    60.16     |     60.04     | batch_size=16, length=128, epoch=3 |
-|    RoBERTa-wwm-ext    |    64.18     |       60.31%       | batch_size=16, length=128, epoch=3 |
+|    RoBERTa-wwm-ext    |    64.18     |       60.31       | batch_size=16, length=128, epoch=3 |
 | RoBERTa-wwm-large-ext | ***65.19***  |  ***65.10***  | batch_size=32, length=128, epoch=3 |
 
 #### CMNLI 中文自然语言推理 Chinese Multi-Genre NLI (Accuracy)：
@@ -447,7 +447,7 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 | ERNIE-base	|79.65 | 80.70 | batch=32, length=128, epoch=3 lr=2e-5 |
 | ALBERT-xxlarge	|- | - | - |
 | ALBERT-tiny	|72.71 | 72.72 | batch=32, length=128, epoch=3 lr=2e-5 |
-| RoBERTa-large	| 82.11% | 81.73% | batch=16, length=128, epoch=3 lr=2e-5 |
+| RoBERTa-large	| 82.11 | 81.73 | batch=16, length=128, epoch=3 lr=2e-5 |
 | xlnet-mid	|78.15 |76.93 | batch=16, length=128, epoch=3 lr=2e-5 |
 | RoBERTa-wwm-ext	|81.09 | 81.38 | batch=32, length=128, epoch=3 lr=2e-5  |
 | RoBERTa-wwm-large-ext	|***83.4*** | ***83.42*** | batch=32, length=128, epoch=3 lr=2e-5  |
@@ -475,7 +475,7 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 |      ALBERT-tiny      |                |                 |                                                          |
 |       BERT-base       |       60       |      57.4       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
 |   BERT-wwm-ext-base   |       60       |      61.4       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|      ERNIE-base       |   58.1(54.9)   |   60.8(55.9)    |                                                          |
+|      ERNIE-base       |   58.1(54.9)   |   60.8(55.9)    | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4               |
 |     RoBERTa-large     |   68.6(58.7)   |   72.7(63.6)    | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
 |       XLNet-mid       |  60.9(56.8）   |   64.4(57.3）   | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
 |    RoBERTa-wwm-ext    |   67.2(57.7)   |   67.8(63.5)    | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
