@@ -170,8 +170,8 @@ ChineseMNLI数据对原始MNLI数据进行中英文转化，数据来自于ficti
 ```
     数据量：训练集(400)，验证集(100)，测试集(500)
     例子： 
-		1. {"idx": 7, "premise": "那人在杂货店买东西时打折了。", "choice0": "他向收银员打招呼。", "choice1": "他用了一张优惠券。", "question": "cause", "label": 1}
-		2. {"idx": 8, "premise": "医师误诊了病人。", "choice0": "该患者对医生提起了医疗事故诉讼。", "choice1": "患者向医生披露了机密信息。", "question": "effect", "label": 0}
+    	1. {"idx": 7, "premise": "那人在杂货店买东西时打折了。", "choice0": "他向收银员打招呼。", "choice1": "他用了一张优惠券。", "question": "cause", "label": 1}
+	2. {"idx": 8, "premise": "医师误诊了病人。", "choice0": "该患者对医生提起了医疗事故诉讼。", "choice1": "患者向医生披露了机密信息。", "question": "effect", "label": 0}
 其中label的标注，0表示choice0，1 表示choice1。原先的COPA数据集是英文的，我们使用机器翻译以及人工翻译的方法，并做了些微的用法习惯上的调整，并根据中文的习惯进行了标注，得到了这份数据集。
 ```
 
@@ -436,7 +436,7 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 |      ERNIE-base       |    61.75     |     61.80     | batch_size=24, length=256, epoch=3 |
 |     RoBERTa-large     |    63.80     |     63.91     | batch_size=32, length=128, epoch=3 |
 |       XLNet-mid       |    60.16     |     60.04     | batch_size=16, length=128, epoch=3 |
-|    RoBERTa-wwm-ext    |    64.18     |       60.31%       | batch_size=16, length=128, epoch=3 |
+|    RoBERTa-wwm-ext    |    64.18     |       60.31       | batch_size=16, length=128, epoch=3 |
 | RoBERTa-wwm-large-ext | ***65.19***  |  ***65.10***  | batch_size=32, length=128, epoch=3 |
 
 #### CMNLI 中文自然语言推理 Chinese Multi-Genre NLI (Accuracy)：
@@ -447,7 +447,7 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 | ERNIE-base	|79.65 | 80.70 | batch=32, length=128, epoch=3 lr=2e-5 |
 | ALBERT-xxlarge	|- | - | - |
 | ALBERT-tiny	|72.71 | 72.72 | batch=32, length=128, epoch=3 lr=2e-5 |
-| RoBERTa-large	| 82.11% | 81.73% | batch=16, length=128, epoch=3 lr=2e-5 |
+| RoBERTa-large	| 82.11 | 81.73 | batch=16, length=128, epoch=3 lr=2e-5 |
 | xlnet-mid	|78.15 |76.93 | batch=16, length=128, epoch=3 lr=2e-5 |
 | RoBERTa-wwm-ext	|81.09 | 81.38 | batch=32, length=128, epoch=3 lr=2e-5  |
 | RoBERTa-wwm-large-ext	|***83.4*** | ***83.42*** | batch=32, length=128, epoch=3 lr=2e-5  |
