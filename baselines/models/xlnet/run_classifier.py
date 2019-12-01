@@ -686,6 +686,7 @@ def main(_):
       "afqmc": AFQMCProcessor,
       "iflytek": iFLYTEKDataProcessor,
       "csl": CslProcessor,
+      "copa":COPAProcessor,
   }
 
   if not FLAGS.do_train and not FLAGS.do_eval and not FLAGS.do_predict:

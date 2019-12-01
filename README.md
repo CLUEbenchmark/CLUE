@@ -11,22 +11,22 @@ Language Understanding Evaluation benchmark for Chinese: datasets, baselines, pr
 
 #### 分类任务(v1版本,正式版)
 
-| 模型   | Score  | 参数    | AFQMC  | TNEWS'  | IFLYTEK'   | CMNLI-m  | CMNLI-mm  | XNLI     | COPA | WSC | CSL  |
-| :----:| :----: | :----: | :----: |:----: |:----: |:----: |:----: |:----: |:----: |:----: |:----: |
-| <a href="https://github.com/google-research/bert">BERT-base</a>        | 69.70% | 108M |  73.70% | 56.58%  | 60.29% | 79.39%  | 79.76% | 77.8%  | 57.40% | 62.0% | 80.36% |
-| <a href="https://github.com/ymcui/Chinese-BERT-wwm">BERT-wwm-ext</a>      | 70.47% | 108M  | 74.07% | 56.84%  | 59.43% | 81.41% | 80.67% | 78.7%  | 61.40%  | 61.1%  | 80.63% |
-| <a href="https://github.com/PaddlePaddle/ERNIE">ERNIE-base</a>         | 70.55% | 108M  | 73.83% | 58.33% | 58.96% | 79.65% | 80.70% | 78.6%  | **65.00%**  | 60.8%  | 79.1%      |
-| <a href="https://github.com/brightmart/roberta_zh">RoBERTa-large</a>      | 72.63% | 334M  | 74.02% | 57.86%  | 62.55% | 82.11%  |  81.73% | 79.9%   | 61.40% | 72.7%   | 81.36%       |
-| <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>  | 68.65% | 200M | 70.50% | 56.24% | 57.85% | 78.15%  | 76.93%   | 78.7% | 53.80%   | 64.4%   | 81.26%     |
+| 模型   | Score  | 参数    | AFQMC  | TNEWS'  | IFLYTEK'   | CMNLI   | COPA | WSC | CSL  |
+| :----:| :----: | :----: | :----: |:----: |:----: |:----: |:----: |:----: |:----: |
+| <a href="https://github.com/google-research/bert">BERT-base</a>        | 69.70% | 108M |  73.70% | 56.58%  | 60.29% |   | 57.40% | 62.0% | 80.36% |
+| <a href="https://github.com/ymcui/Chinese-BERT-wwm">BERT-wwm-ext</a>      | 70.47% | 108M  | 74.07% | 56.84%  | 59.43% | | 61.40%  | 61.1%  | 80.63% |
+| <a href="https://github.com/PaddlePaddle/ERNIE">ERNIE-base</a>         | 70.55% | 108M  | 73.83% | 58.33% | 58.96% |  | **65.00%**  | 60.8%  | 79.1%      |
+| <a href="https://github.com/brightmart/roberta_zh">RoBERTa-large</a>      | 72.63% | 334M  | 74.02% | 57.86%  | 62.55% | | 61.40% | 72.7%   | 81.36%       |
+| <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>  | 68.65% | 200M | 70.50% | 56.24% | 57.85% | | 53.80%   | 64.4%   | 81.26%     |
 | <a href="https://github.com/brightmart/albert_zh">ALBERT-xxlarge</a>      | - | 59M   | -  | - | - | - | - | - | -  | -  | -     |
-| <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a>        | 61.92% | 4M | 69.92% | 53.35% | 36.18% | 72.71% | 72.72%  | 69.5% | 49.80%  | 58.5%   | 74.56% |
-| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>   | 71.72% | 108M  | 74.04% | 56.94% | 60.31% | 81.09% | 81.38% | 79.3%  | 63.60%  | 67.8% | 81.0% |
-| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-large</a> | **73.45%** | 330M | **76.55%** | **58.61%** | **62.98%** | **83.4%** | **83.42%** | **80.0%** | 59.40% | **74.6%** | **82.13%** |
+| <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a>        | 61.92% | 4M | 69.92% | 53.35% | 36.18% |  | 49.80%  | 58.5%   | 74.56% |
+| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>   | 71.72% | 108M  | 74.04% | 56.94% | 60.31% | | 63.60%  | 67.8% | 81.0% |
+| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-large</a> | **73.45%** | 330M | **76.55%** | **58.61%** | **62.98%** |  | 59.40% | **74.6%** | **82.13%** |
 
 
-    注：'代表对原数据集筛选后获得，数据集与原数据集不同；AFQMC:蚂蚁语义相似度(Acc)；TNEWS:文本分类(Acc)；
-    IFLYTEK:长文本分类(Acc); CMNLI-m/mm: MNLI自然语言推理中文版-matched/mismatched; XNLI:自然语言推理(Acc); 
-    COPA: 因果推断; WSC: Winograd模式挑战中文版; CSL: 中国科学文献数据集; Score总分是通过计算1-9数据集得分平均值获得；
+    注：AFQMC:蚂蚁语义相似度(Acc)；TNEWS:文本分类(Acc)；IFLYTEK:长文本分类(Acc); CMNLI: 自然语言推理中文版; 
+       COPA: 因果推断; WSC: Winograd模式挑战中文版; CSL: 中国科学文献数据集; Score总分是通过计算1-9数据集得分平均值获得；
+      '代表对原数据集使用albert_tiny模型筛选后获得，数据集与原数据集不同,从而可能导致在这些数据集上albert_tiny表现略低.
 
 #### 阅读理解任务
 
@@ -73,41 +73,6 @@ CLUE benchmark的定位 Vision
 
   <a href="http://106.13.187.75:8003/"> 评测入口</a>
 
-
-内容体系 Contents
---------------------------------------------------------------------
-Language Understanding Evaluation benchmark for Chinese(ChineseGLUE) got ideas from GLUE, which is a collection of 
-
-resources for training, evaluating, and analyzing natural language understanding systems. ChineseGLUE consists of: 
-
-##### 1）中文任务的基准测试，覆盖多个不同程度的语言任务 
-
-A benchmark of several sentence or sentence pair language understanding tasks. 
-Currently the datasets used in these tasks are come from public. We will include datasets with private test set before the end of 2019.
-
-##### 2）公开的排行榜 Leaderboard 
-
-A public leaderboard for tracking performance. You will able to submit your prediction files on these tasks, each task will be evaluated and scored, a final score will also be available.
-
-##### 3）基线模型，包含开始的代码、预训练模型  Baselines with code
-
-baselines for ChineseGLUE tasks. baselines will be available in TensorFlow,PyTorch,Keras and PaddlePaddle.
-
-##### 4）语料库，用于语言建模、预训练或生成型任务  Corpus
-
-A huge amount of raw corpus for pre-train or language modeling research purpose. It will contains around 10G raw corpus in 2019; 
-
-In the first half year of 2020, it will include at least 30G raw corpus; By the end of 2020, we will include enough raw corpus, such as 100G, so big enough that you will need no more raw corpus for general purpose language modeling.
-You can use it for general purpose or domain adaption, or even for text generating. when you use for domain adaption, you will able to select corpus you are interested in.
-
-##### 5）工具包 toolkit
-
-An easy to use toolkit that can run specific task or model with one line of code. You can easily change configuration, task or model.
-
-##### 6) 技术报告
-
-Techical report with details
-
 数据集介绍与下载 Introduction of datasets 
 --------------------------------------------------------------------
 
@@ -151,34 +116,22 @@ ChineseMNLI数据对原始MNLI数据进行中英文转化，数据来自于ficti
 ```
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/cmnli_public.zip" > CMNLI数据集下载</a>
 
-##### 5. XNLI 语言推断任务中文版 Natural Language Inference
-跨语言理解的数据集，给定一个前提和假设，判断这个假设与前提是否具有蕴涵、对立、中性关系。
-
-        数据量：训练集(392,703)，验证集(2,491)，测试集(5,011)
-        例子： 
-         1.从 概念 上 看 , 奶油 收入 有 两 个 基本 方面 产品 和 地理 .[分隔符] 产品 和 地理 是 什么 使 奶油 抹 霜 工作 . [分隔符] neutral
-         2.我们 的 一个 号码 会 非常 详细 地 执行 你 的 指示 [分隔符] 我 团队 的 一个 成员 将 非常 精确 地 执行 你 的 命令  [分隔符] entailment
-    
-        原始的XNLI覆盖15种语言（含低资源语言）。我们选取其中的中文，并将做格式转换，使得非常容易进入训练和测试阶段。
-
-   <a href="https://storage.googleapis.com/cluebenchmark/tasks/xnli_public.zip" > XNLI中文数据集下载</a>
-
-##### 6. COPA 因果推断-中文版 Choice of Plausible Alternatives
+##### 5. COPA 因果推断-中文版 Choice of Plausible Alternatives
 
 自然语言推理的数据集，给定一个假设以及一个问题表明是因果还是影响，并从两个选项中选择合适的一个。遵照原数据集，我们使用了acc作为评估标准。
 
 ```
     数据量：训练集(400)，验证集(100)，测试集(500)
     例子： 
-		1. {"idx": 7, "premise": "那人在杂货店买东西时打折了。", "choice0": "他向收银员打招呼。", "choice1": "他用了一张优惠券。", "question": "cause", "label": 1}
-		2. {"idx": 8, "premise": "医师误诊了病人。", "choice0": "该患者对医生提起了医疗事故诉讼。", "choice1": "患者向医生披露了机密信息。", "question": "effect", "label": 0}
+    1. {"idx": 7, "premise": "那人在杂货店买东西时打折了。", "choice0": "他向收银员打招呼。", "choice1": "他用了一张优惠券。", "question": "cause", "label": 1}
+    2. {"idx": 8, "premise": "医师误诊了病人。", "choice0": "该患者对医生提起了医疗事故诉讼。", "choice1": "患者向医生披露了机密信息。", "question": "effect", "label": 0}
 其中label的标注，0表示choice0，1 表示choice1。原先的COPA数据集是英文的，我们使用机器翻译以及人工翻译的方法，并做了些微的用法习惯上的调整，并根据中文的习惯进行了标注，得到了这份数据集。
 ```
 
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/copa_public.zip" > COPA数据集下载</a>
 
 
-##### 7. WSC Winograd模式挑战中文版  The Winograd Schema Challenge,Chinese Version
+##### 6. WSC Winograd模式挑战中文版  The Winograd Schema Challenge,Chinese Version
 威诺格拉德模式挑战赛是图灵测试的一个变种，旨在判定AI系统的常识推理能力。参与挑战的计算机程序需要回答一种特殊但简易的常识问题：代词消歧问题，即对给定的名词和代词判断是否指代一致。
 ```
 数据量：训练集(532)，验证集(104)，测试集(143) 
@@ -196,7 +149,7 @@ ChineseMNLI数据对原始MNLI数据进行中英文转化，数据来自于ficti
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/wsc_public.zip" > WSC数据集下载</a>
 
 
-##### 8. CSL 论文关键词识别 Keyword Recognition
+##### 7. CSL 论文关键词识别 Keyword Recognition
 中文科技文献数据集包含中文核心论文摘要及其关键词。
 用tf-idf生成伪造关键词与论文真实关键词混合，生成摘要-关键词对，关键词中包含伪造的则标签为0。
 ```
@@ -207,7 +160,7 @@ ChineseMNLI数据对原始MNLI数据进行中英文转化，数据来自于ficti
 ```
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/csl_public.zip" > CSL数据集下载</a>
 
-##### 9.CMRC2018 简体中文阅读理解任务 Reading Comprehension for Simplified Chinese
+##### 8.CMRC2018 简体中文阅读理解任务 Reading Comprehension for Simplified Chinese
 https://hfl-rc.github.io/cmrc2018/
 ```
 数据量：训练集(短文数2,403，问题数10,142)，试验集(短文数256，问题数1,002)，开发集(短文数848，问题数3,219)  
@@ -256,7 +209,7 @@ https://hfl-rc.github.io/cmrc2018/
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/cmrc2018_public.zip" > CMRC2018数据集下载</a>
 
 
-##### 10.DRCD 繁体阅读理解任务 Reading Comprehension for Traditional Chinese
+##### 9.DRCD 繁体阅读理解任务 Reading Comprehension for Traditional Chinese
 台達閱讀理解資料集 Delta Reading Comprehension Dataset (DRCD)(https://github.com/DRCKnowledgeTeam/DRCD) 屬於通用領域繁體中文機器閱讀理解資料集。 本資料集期望成為適用於遷移學習之標準中文閱讀理解資料集。  
 ```
 数据量：训练集(8,016个段落，26,936个问题)，验证集(1,000个段落，3,524个问题)，测试集(1,000个段落，3,493个问题)  
@@ -304,7 +257,7 @@ https://hfl-rc.github.io/cmrc2018/
 数据格式和squad相同，如果使用简体中文模型进行评测的时候可以将其繁转简(本项目已提供)
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/drcd_public.zip" > DRCD2018数据集下载</a>
 
-##### 11.CHID 成语阅读理解填空 Chinese IDiom Dataset for Cloze Test
+##### 10.CHID 成语阅读理解填空 Chinese IDiom Dataset for Cloze Test
 https://arxiv.org/abs/1906.01265  
 成语完形填空，文中多处成语被mask，候选项中包含了近义的成语。
 ```
@@ -373,6 +326,40 @@ Notes：
 2.难样本，是指在交叉验证过程中模型预测错误的样本，也是我们希望尽可能保留的样本。模型预测正确的样本最终会被优先排除一部分
 ```
 
+内容体系 Contents
+--------------------------------------------------------------------
+Language Understanding Evaluation benchmark for Chinese(ChineseGLUE) got ideas from GLUE, which is a collection of 
+
+resources for training, evaluating, and analyzing natural language understanding systems. ChineseGLUE consists of: 
+
+##### 1）中文任务的基准测试，覆盖多个不同程度的语言任务 
+
+A benchmark of several sentence or sentence pair language understanding tasks. 
+Currently the datasets used in these tasks are come from public. We will include datasets with private test set before the end of 2019.
+
+##### 2）公开的排行榜 Leaderboard 
+
+A public leaderboard for tracking performance. You will able to submit your prediction files on these tasks, each task will be evaluated and scored, a final score will also be available.
+
+##### 3）基线模型，包含开始的代码、预训练模型  Baselines with code
+
+baselines for ChineseGLUE tasks. baselines will be available in TensorFlow,PyTorch,Keras and PaddlePaddle.
+
+##### 4）语料库，用于语言建模、预训练或生成型任务  Corpus
+
+A huge amount of raw corpus for pre-train or language modeling research purpose. It will contains around 10G raw corpus in 2019; 
+
+In the first half year of 2020, it will include at least 30G raw corpus; By the end of 2020, we will include enough raw corpus, such as 100G, so big enough that you will need no more raw corpus for general purpose language modeling.
+You can use it for general purpose or domain adaption, or even for text generating. when you use for domain adaption, you will able to select corpus you are interested in.
+
+##### 5）工具包 toolkit
+
+An easy to use toolkit that can run specific task or model with one line of code. You can easily change configuration, task or model.
+
+##### 6) 技术报告
+
+Techical report with details
+
 Why do we need a benchmark for Chinese lanague understand evaluation?
 
 为什么我们需要一个中文任务的基准测试？ 
@@ -429,15 +416,15 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 #### IFLYTEK' 长文本分类 Long Text Classification (Accuracy)：
 |         模型          | 开发集（dev) | 测试集（test) |              训练参数              |
 | :-------------------: | :----------: | :-----------: | :--------------------------------: |
-|     ALBERT-xlarge     |    61.94     |     61.34     | batch_size=32, length=128, epoch=3 |
-|      ALBERT-tiny      |    44.83     |     44.62     | batch_size=32, length=256, epoch=3 |
-|       BERT-base       |    63.57     |     63.48     | batch_size=32, length=128, epoch=3 |
-|   BERT-wwm-ext-base   |    63.83     |     63.75     | batch_size=32, length=128, epoch=3 |
-|      ERNIE-base       |    61.75     |     61.80     | batch_size=24, length=256, epoch=3 |
-|     RoBERTa-large     |    63.80     |     63.91     | batch_size=32, length=128, epoch=3 |
-|       XLNet-mid       |    60.16     |     60.04     | batch_size=16, length=128, epoch=3 |
-|    RoBERTa-wwm-ext    |    64.18     |       60.31       | batch_size=16, length=128, epoch=3 |
-| RoBERTa-wwm-large-ext | ***65.19***  |  ***65.10***  | batch_size=32, length=128, epoch=3 |
+|     ALBERT-xlarge     |    -     |     -     | batch_size=32, length=128, epoch=3 |
+|      ALBERT-tiny      |    37.54    |     36.18     | batch_size=32, length=128, epoch=3 |
+|       BERT-base       |    60.37    |     60.29     | batch_size=32, length=128, epoch=3 |
+|   BERT-wwm-ext-base   |    59.88    |     59.43     | batch_size=32, length=128, epoch=3 |
+|      ERNIE-base       |    59.52    |     58.96     | batch_size=32, length=128, epoch=3 |
+|     RoBERTa-large     |    62.6    |     62.55     | batch_size=24, length=128, epoch=3 |
+|       XLNet-mid       |    57.72    |     57.85     | batch_size=32, length=128, epoch=3 |
+|    RoBERTa-wwm-ext    |    60.8    |       60.31       | batch_size=32, length=128, epoch=3 |
+| RoBERTa-wwm-large-ext | **62.75** |  **62.98**  | batch_size=24, length=128, epoch=3 |
 
 #### CMNLI 中文自然语言推理 Chinese Multi-Genre NLI (Accuracy)：
 | 模型 | matched | mismatched |  训练参数 |
@@ -452,19 +439,6 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 | RoBERTa-wwm-ext	|81.09 | 81.38 | batch=32, length=128, epoch=3 lr=2e-5  |
 | RoBERTa-wwm-large-ext	|***83.4*** | ***83.42*** | batch=32, length=128, epoch=3 lr=2e-5  |
 
-
-#### XNLI 自然语言推理  Natural Language Inference (Accuracy)：
-| 模型 | 开发集（dev) | 测试集（test) | 训练参数 |
-| :----:| :----: | :----: | :----: |
-| ALBERT-xlarge | 79.6 | 78.7 |batch_size=64, length=128, epoch=2 |
-| BERT-base | 77.80 | 77.80 | batch_size=64, length=128, epoch=2 |
-| BERT-wwm-ext-base | 79.4 | 78.7 | batch_size=64, length=128, epoch=2 |
-| ERNIE-base  | 79.7  |78.6 | batch_size=64, length=128, epoch=2 |
-| RoBERTa-large |***80.2*** |79.9 | batch_size=64, length=128, epoch=2 |
-| XLNet-mid | 79.2 | 78.7 | batch_size=64, length=128, epoch=2 |
-| RoBERTa-wwm-ext | 79.56 | 79.28 | batch_size=64, length=128, epoch=2 |
-| RoBERTa-wwm-large-ext | ***80.20*** | ***80.04*** | batch_size=16, length=128, epoch=2 |
-
 注：ALBERT-xlarge，在XNLI任务上训练暂时还存在有问题
 
 #### COPA中文版  The Chinese Choice of Plausible Alternatives：
@@ -472,14 +446,14 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 |         模型          | 开发集（dev %) | 测试集（test %) |                         训练参数                         |
 | :-------------------: | :------------: | :-------------: | :------------------------------------------------------: |
 |    ALBERT-xxlarge     |       -        |        -        |                            -                             |
-|      ALBERT-tiny      |                |                 |                                                          |
-|       BERT-base       |       60       |      57.4       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|   BERT-wwm-ext-base   |       60       |      61.4       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|      ERNIE-base       |   58.1(54.9)   |   60.8(55.9)    | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4               |
-|     RoBERTa-large     |   68.6(58.7)   |   72.7(63.6)    | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|       XLNet-mid       |  60.9(56.8）   |   64.4(57.3）   | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|    RoBERTa-wwm-ext    |   67.2(57.7)   |   67.8(63.5)    | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-| RoBERTa-wwm-large-ext |   69.7(64.5)   |   74.6(69.4)    | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|      ALBERT-tiny      |                |      49.80       |                                                          |
+|       BERT-base       |     60.00      |      57.40       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|   BERT-wwm-ext-base   |     60.00      |      61.40       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|      ERNIE-base       |                |       65        |                                                          |
+|     RoBERTa-large     |     64.00      |      59.40       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|       XLNet-mid       |     56.00      |      53.80       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|    RoBERTa-wwm-ext    |     63.00      |      63.60       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+| RoBERTa-wwm-large-ext |     66.00      |      59.40       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
 
 #### WSC Winograd模式挑战中文版  The Winograd Schema Challenge,Chinese Version：
 | 模型 | 开发集（dev) | 测试集（test) | 训练参数 |
@@ -536,6 +510,8 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 | RoBERTa-wwm-ext	|F1:87.28 EM:67.89 | F1:89.74 EM:73.89 | epoch2, batch=32, length=512, lr=3e-5, warmup=0.1 |
 | RoBERTa-wwm-large-ext	|***F1:89.42 EM:70.59*** | ***F1:91.56 EM:76.58*** | epoch2, batch=32, length=512, lr=2.5e-5, warmup=0.1 |
 
+注: 现在榜上数据为cmrc2018完整测试集结果，之后CLUE将使用2k的测试集子集作为测试，而并非cmrc2018官方完整测试集。如需完整测试cmrc2018阅读理解数据集仍需通过cmrc2018平台提交(https://worksheets.codalab.org/worksheets/0x96f61ee5e9914aee8b54bd11e66ec647)。
+
 #### CHID 成语阅读理解填空 Chinese IDiom Dataset for Cloze Test (Accuracy)：
 | 模型 | 开发集（dev) | 测试集（test) |  训练参数 |
 | :----:| :----: | :----: | :----: |
@@ -548,7 +524,6 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 | xlnet-mid	|83.76 | 83.47 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
 | RoBERTa-wwm-ext	|83.78 | 83.62 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
 | RoBERTa-wwm-large-ext	|***85.81*** | ***85.37*** | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
-
 
 
 #### 开放测评提交入口：<a href="http://106.13.187.75:8003/">我要提交</a>

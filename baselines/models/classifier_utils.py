@@ -856,6 +856,25 @@ class COPAProcessor(DataProcessor):
     return ["0", "1"]
     
   @classmethod
+  def _create_examples_one(self, lines, set_type):
+    examples = []
+    for (i, line) in enumerate(lines):
+      guid1 = "%s-%s" % (set_type, i)
+#         try:
+      if line['question'] == 'cause':
+        text_a = convert_to_unicode(line['premise'] + '原因是什么呢？' + line['choice0'])
+        text_b = convert_to_unicode(line['premise'] + '原因是什么呢？' + line['choice1'])
+      else:
+        text_a = convert_to_unicode(line['premise'] + '造成了什么影响呢？' + line['choice0'])
+        text_b = convert_to_unicode(line['premise'] + '造成了什么影响呢？' + line['choice1'])
+      label = convert_to_unicode(str(1 if line['label'] == 0 else 0)) if set_type != 'test' else '0'
+      examples.append(
+        InputExample(guid=guid1, text_a=text_a, text_b=text_b, label=label))
+#         except Exception as e:
+#             print('###error.i:',e, i, line)
+    return examples
+
+  @classmethod
   def _create_examples(self, lines, set_type):
     examples = []
     for (i, line) in enumerate(lines):
@@ -863,12 +882,25 @@ class COPAProcessor(DataProcessor):
       guid1 = "%s-%s" % (set_type, i)
       guid2 = "%s-%s" % (set_type, i+1)
 #         try:
-      text_a = convert_to_unicode(line['premise'])
-      text_b = convert_to_unicode(line['choice0'])
-      label = convert_to_unicode(str(1 if line['label'] == 0 else 0)) if set_type != 'test' else '-1'
-      text_a2 = convert_to_unicode(line['premise'])
-      text_b2 = convert_to_unicode(line['choice1'])
-      label2 = convert_to_unicode(str(0 if line['label'] == 0 else 1)) if set_type != 'test' else '-1'
+      premise = convert_to_unicode(line['premise'])
+      choice0 = convert_to_unicode(line['choice0'])
+      label = convert_to_unicode(str(1 if line['label'] == 0 else 0)) if set_type != 'test' else '0'
+      #text_a2 = convert_to_unicode(line['premise'])
+      choice1 = convert_to_unicode(line['choice1'])
+      label2 = convert_to_unicode(str(0 if line['label'] == 0 else 1)) if set_type != 'test' else '0'
+      if line['question'] == 'effect':
+          text_a = premise
+          text_b = choice0
+          text_a2 = premise
+          text_b2 = choice1
+      elif line['question'] == 'cause':
+          text_a = choice0
+          text_b = premise
+          text_a2 = choice1
+          text_b2 = premise
+      else:
+          print ('wrong format!!')
+          return None
       examples.append(
         InputExample(guid=guid1, text_a=text_a, text_b=text_b, label=label))
       examples.append(
