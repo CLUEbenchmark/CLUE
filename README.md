@@ -61,8 +61,16 @@ DRCD、CMRC2018: 繁体、简体抽取式阅读理解(F1, EM)；CHID：成语多
        bash run_classifier_xxx.sh
        如运行 bash run_classifier_iflytek.sh 会开始iflytek任务的训练
 
+### 生成提交文件
 
-​    
+分类任务:
+  在run_classifier.py中设置do_predict为true,详见一键运行中shell脚本，或见<a href="https://github.com/CLUEbenchmark/CLUE/blob/master/baselines/models/bert/run_classifier.py#L932-L951">代码实现</a>
+
+阅读理解任务:
+
+     TODO
+    ​    
+
 数据集下载见本项目最后部分 
 
 CLUE benchmark的定位 Vision
