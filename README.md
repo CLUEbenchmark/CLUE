@@ -15,11 +15,11 @@ Language Understanding Evaluation benchmark for Chinese: datasets, baselines, pr
 | :----:| :----: | :----: | :----: |:----: |:----: |:----: |:----: |:----: |:----: |
 | <a href="https://github.com/google-research/bert">BERT-base</a>        | 69.70% | 108M |  73.70% | 56.58%  | 60.29% |   | 57.40% | 62.0% | 80.36% |
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">BERT-wwm-ext</a>      | 70.47% | 108M  | 74.07% | 56.84%  | 59.43% | | 61.40%  | 61.1%  | 80.63% |
-| <a href="https://github.com/PaddlePaddle/ERNIE">ERNIE-base</a>         | 70.55% | 108M  | 73.83% | 58.33% | 58.96% |  | **65.00%**  | 60.8%  | 79.1%      |
+| <a href="https://github.com/PaddlePaddle/ERNIE">ERNIE-base</a>         | 70.55% | 108M  | 73.83% | 58.33% | 58.96% |  | **73.40%**  | 60.8%  | 79.1%      |
 | <a href="https://github.com/brightmart/roberta_zh">RoBERTa-large</a>      | 72.63% | 334M  | 74.02% | 57.86%  | 62.55% | | 61.40% | 72.7%   | 81.36%       |
 | <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>  | 68.65% | 200M | 70.50% | 56.24% | 57.85% | | 53.80%   | 64.4%   | 81.26%     |
 | <a href="https://github.com/brightmart/albert_zh">ALBERT-xxlarge</a>      | - | 59M   | -  | - | - | - | - | - | -  | -  | -     |
-| <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a>        | 61.92% | 4M | 69.92% | 53.35% | 36.18% |  | 49.80%  | 58.5%   | 74.56% |
+| <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a>        | 61.92% | 4M | 69.92% | 53.35% | 36.18% |  | 54.40%  | 58.5%   | 74.56% |
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>   | 71.72% | 108M  | 74.04% | 56.94% | 60.31% | | 63.60%  | 67.8% | 81.0% |
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-large</a> | **73.45%** | 330M | **76.55%** | **58.61%** | **62.98%** |  | 59.40% | **74.6%** | **82.13%** |
 
@@ -63,9 +63,11 @@ DRCD、CMRC2018: 繁体、简体抽取式阅读理解(F1, EM)；CHID：成语多
 
 ### 生成提交文件
 
-    分类任务:
-    在run_classifier_xxx.sh中设置do_predict为true（如果不要再训练或者评估可以将do_train, do_eval置为false)
-    运行即可得到相应的提交文件json格式结果 
+    分类任务: 
+        在CLUE/baselines/models/bert目录下执行
+        sh run_classifier_xxx.sh predict 
+        即可在output_dir下得到相应的提交文件json格式结果xxx_prdict.json
+    
    或见<a href="https://github.com/CLUEbenchmark/CLUE/blob/master/baselines/models/bert/run_classifier.py#L932-L951">代码实现</a>
 
     阅读理解任务:
@@ -400,28 +402,28 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 #### AFQMC 蚂蚁语义相似度 Ant Semantic Similarity (Accuracy)：
 |         模型          | 开发集（dev) | 测试集（test) |              训练参数              |
 | :-------------------: | :----------: | :-----------: | :--------------------------------: |
-|     ALBERT-xxlarge     |    -     |     -   | batch_size=16, length=128, epoch=3 |
-|      ALBERT-tiny      |    69.13%     |    69.92%    | batch_size=16, length=128, epoch=3 |
-|       BERT-base       |    74.16%     |     73.70%  | batch_size=16, length=128, epoch=3 |
-|   BERT-wwm-ext-base   |    73.74%     |      74.07%   | batch_size=16, length=128, epoch=3 |
-|      ERNIE-base       |         74.88% |      73.83%    | batch_size=16, length=128, epoch=3 |
-|     RoBERTa-large     |     73.32%    |       74.02%   | batch_size=16, length=128, epoch=3 |
-|       XLNet-mid       |     70.73%    |   70.50%       | batch_size=16, length=128, epoch=3 |
-|    RoBERTa-wwm-ext    |   74.30%      |      74.04%       | batch_size=16, length=128, epoch=3 |
-| RoBERTa-wwm-large-ext |  74.92% |  76.55% | batch_size=16, length=128, epoch=3 |
+|     ALBERT-xxlarge     |    -     |     -   | batch_size=16, length=128, epoch=3 lr=2e-5|
+|      ALBERT-tiny      |    69.13%     |    69.92%    | batch_size=16, length=128, epoch=3 lr=2e-5 |
+|       BERT-base       |    74.16%     |     73.70%  | batch_size=16, length=128, epoch=3 lr=2e-5 |
+|   BERT-wwm-ext-base   |    73.74%     |      74.07%   | batch_size=16, length=128, epoch=3 lr=2e-5 |
+|      ERNIE-base       |         74.88% |      73.83%    | batch_size=16, length=128, epoch=3 lr=2e-5|
+|     RoBERTa-large     |     73.32%    |       74.02%   | batch_size=16, length=128, epoch=3 lr=2e-5|
+|       XLNet-mid       |     70.73%    |   70.50%       | batch_size=16, length=128, epoch=3 lr=2e-5|
+|    RoBERTa-wwm-ext    |   74.30%      |      74.04%       | batch_size=16, length=128, epoch=3 lr=2e-5|
+| RoBERTa-wwm-large-ext |  74.92% |  76.55% | batch_size=16, length=128, epoch=3 lr=2e-5|
 
 #### TNEWS' 头条新闻分类 Toutiao News Classification (Accuracy)：
 |         模型          | 开发集（dev) | 测试集（test) |              训练参数              |
 | :-------------------: | :----------: | :-----------: | :--------------------------------: |
-|     ALBERT-xxlarge     |    -     |         | batch_size=16, length=128, epoch=3 |
-|      ALBERT-tiny      |    53.55%     |       53.35%   | batch_size=16, length=128, epoch=3 |
-|       BERT-base       |    56.09%     |     56.58%    | batch_size=16, length=128, epoch=3 |
-|   BERT-wwm-ext-base   |     56.77%    |    56.86%      | batch_size=16, length=128, epoch=3 |
-|      ERNIE-base       |     58.24%    |     58.33%     | batch_size=16, length=128, epoch=3 |
-|     RoBERTa-large     |     57.95%    |      57.84%    | batch_size=16, length=128, epoch=3 |
-|       XLNet-mid       |    56.09%     |      56.24%    | batch_size=16, length=128, epoch=3 |
-|    RoBERTa-wwm-ext    |   57.51%      |      56.94%       | batch_size=16, length=128, epoch=3 |
-| RoBERTa-wwm-large-ext |  58.32% | 58.61%  | batch_size=16, length=128, epoch=3 |
+|     ALBERT-xxlarge     |    -     |         | batch_size=16, length=128, epoch=3 lr=2e-5|
+|      ALBERT-tiny      |    53.55%     |       53.35%   | batch_size=16, length=128, epoch=3 lr=2e-5|
+|       BERT-base       |    56.09%     |     56.58%    | batch_size=16, length=128, epoch=3 lr=2e-5|
+|   BERT-wwm-ext-base   |     56.77%    |    56.86%      | batch_size=16, length=128, epoch=3 lr=2e-5|
+|      ERNIE-base       |     58.24%    |     58.33%     | batch_size=16, length=128, epoch=3 lr=2e-5|
+|     RoBERTa-large     |     57.95%    |      57.84%    | batch_size=16, length=128, epoch=3 lr=2e-5|
+|       XLNet-mid       |    56.09%     |      56.24%    | batch_size=16, length=128, epoch=3 lr=2e-5|
+|    RoBERTa-wwm-ext    |   57.51%      |      56.94%       | batch_size=16, length=128, epoch=3 lr=2e-5|
+| RoBERTa-wwm-large-ext |  58.32% | 58.61%  | batch_size=16, length=128, epoch=3 lr=2e-5|
 
 #### IFLYTEK' 长文本分类 Long Text Classification (Accuracy)：
 |         模型          | 开发集（dev) | 测试集（test) |              训练参数              |
@@ -456,10 +458,10 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 |         模型          | 开发集（dev %) | 测试集（test %) |                         训练参数                         |
 | :-------------------: | :------------: | :-------------: | :------------------------------------------------------: |
 |    ALBERT-xxlarge     |       -        |        -        |                            -                             |
-|      ALBERT-tiny      |     52.00         |      49.80       |lr=1e-8, batch_size=8, max_seq_length=128, max_epochs=8 |
+|      ALBERT-tiny      |     51.00         |    54.40       |lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
 |       BERT-base       |     60.00      |      57.40       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
 |   BERT-wwm-ext-base   |     60.00      |      61.40       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|      ERNIE-base       |       60.00         |       65        |lr=2e-5, batch_size=32, max_seq_length=128, max_epochs=3|
+|      ERNIE-base       |       67.00         |       73.4    |lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4|
 |     RoBERTa-large     |     64.00      |      59.40       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
 |       XLNet-mid       |     56.00      |      53.80       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
 |    RoBERTa-wwm-ext    |     63.00      |      63.60       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
@@ -482,15 +484,15 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 
 |         模型          | 开发集（dev) | 测试集（test) |              训练参数              |
 | :-------------------: | :----------: | :-----------: | :--------------------------------: |
-|     ALBERT-xlarge     |    80.23     |     80.29     | batch_size=16, length=128, epoch=2 |
-|     ALBERT-tiny       |    74.36     |     74.56     | batch_size=16, length=128, epoch=5 |
-|       BERT-base       |    79.63     |     80.23     | batch_size=4, length=256, epoch=5  |
-|   BERT-wwm-ext-base   |    80.60     |     81.00     | batch_size=4, length=256, epoch=5  |
-|      ERNIE-base       |    79.43     |     79.10     | batch_size=4, length=256, epoch=5  |
-|     RoBERTa-large     |    81.87     |     81.36     | batch_size=4, length=256, epoch=5  |
-|       XLNet-mid       |    82.06     |     81.26     | batch_size=4, length=256, epoch=3  |
-|    RoBERTa-wwm-ext    |    80.67     |     80.63     | batch_size=4, length=256, epoch=5  |
-| RoBERTa-wwm-large-ext |    82.17     |     82.13     | batch_size=4, length=256, epoch=5  |
+|     ALBERT-xlarge     |    80.23     |     80.29     | batch_size=16, length=128, epoch=2, lr=5e-6  |
+|     ALBERT-tiny       |    74.36     |     74.56     | batch_size=4, length=256, epoch=5, lr=1e-5 |
+|       BERT-base       |    79.63     |     80.23     | batch_size=4, length=256, epoch=5, lr=1e-5 |
+|   BERT-wwm-ext-base   |    80.60     |     81.00     | batch_size=4, length=256, epoch=5, lr=1e-5 |
+|      ERNIE-base       |    79.43     |     79.10     | batch_size=4, length=256, epoch=5, lr=1e-5 |
+|     RoBERTa-large     |    81.87     |     81.36     | batch_size=4, length=256, epoch=5, lr=5e-6 |
+|       XLNet-mid       |    82.06     |     81.26     | batch_size=4, length=256, epoch=3, lr=1e-5 |
+|    RoBERTa-wwm-ext    |    80.67     |     80.63     | batch_size=4, length=256, epoch=5, lr=1e-5 |
+| RoBERTa-wwm-large-ext |    82.17     |     82.13     | batch_size=4, length=256, epoch=5, lr=1e-5 |
 
 #### DRCD 繁体阅读理解 Reading Comprehension for Traditional Chinese (F1, EM)：
 | 模型 | 开发集（dev) | 测试集（test) | 训练参数 |

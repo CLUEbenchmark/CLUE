@@ -931,7 +931,8 @@ def main(_):
     index2label_map = {}
     for (i, label) in enumerate(label_list):
       index2label_map[i] = label
-    output_predict_file_label = os.path.join(FLAGS.output_dir, "test_results_label.json")
+    output_predict_file_label_name = task_name + "_predict.json"
+    output_predict_file_label = os.path.join(FLAGS.output_dir, output_predict_file_label_name)
     output_predict_file = os.path.join(FLAGS.output_dir, "test_results.tsv")
     with tf.gfile.GFile(output_predict_file_label, "w") as writer_label:
       with tf.gfile.GFile(output_predict_file, "w") as writer:
