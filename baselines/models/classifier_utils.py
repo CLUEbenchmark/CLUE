@@ -318,7 +318,7 @@ class iFLYTEKDataProcessor(DataProcessor):
       guid = "%s-%s" % (set_type, i)
       text_a = convert_to_unicode(line['sentence'])
       text_b = None
-      label = convert_to_unicode(line['label']) if set_type != 'test' else None
+      label = convert_to_unicode(line['label']) if set_type != 'test' else "0" 
       examples.append(
           InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
     return examples
