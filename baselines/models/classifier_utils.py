@@ -388,7 +388,7 @@ class CMNLIProcessor(DataProcessor):
       guid = "%s-%s" % (set_type, index)
       text_a = convert_to_unicode(line_obj["sentence1"])
       text_b = convert_to_unicode(line_obj["sentence2"])
-      label = convert_to_unicode(line_obj["gold_label"])
+      label = convert_to_unicode(line_obj["gold_label"]) if set_type != 'test' else 'neutral'
 
       if label != "-":
         examples.append(InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
@@ -423,7 +423,7 @@ class CslProcessor(DataProcessor):
       guid = "%s-%s" % (set_type, i)
       text_a = convert_to_unicode(" ".join(line['keyword']))
       text_b = convert_to_unicode(line['abst'])
-      label = convert_to_unicode(line['label'])
+      label = convert_to_unicode(line['label']) if set_type != 'test' else '0'
       examples.append(
         InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
     return examples
@@ -820,7 +820,6 @@ class WSCProcessor(DataProcessor):
       text_a = "".join(text_a_list)
 
       if set_type == "test":
-        text_a = convert_to_unicode(line[1])
         label = "true"
       else:
         label = line['label']
