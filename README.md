@@ -63,9 +63,9 @@ DRCD、CMRC2018: 繁体、简体抽取式阅读理解(F1, EM)；CHID：成语多
 
 ### 生成提交文件
 
-    分类任务:
-    在run_classifier_xxx.sh中设置do_predict为true（如果不要再训练或者评估可以将do_train, do_eval置为false)
-    运行即可得到相应的提交文件json格式结果 
+    分类任务: 在CLUE/baselines/models/bert目录下执行
+        sh run_classifier_xxx.sh predict 
+    即可在output_dir下得到相应的提交文件json格式结果test_result_label.json
    或见<a href="https://github.com/CLUEbenchmark/CLUE/blob/master/baselines/models/bert/run_classifier.py#L932-L951">代码实现</a>
 
     阅读理解任务:
