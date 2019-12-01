@@ -118,10 +118,10 @@ CLUE benchmark的定位 Vision
 
 ##### 4.CMNLI 语言推理任务 Chinese Multi-Genre NLI
 
-ChineseMNLI数据对原始MNLI数据进行中英文转化，数据来自于fiction，telephone，travel，government，slate等，用于判断给定的两个句子之间属于蕴涵、中立、矛盾关系。
+CMNLI数据由两部分组成：XNLI和MNLI。数据来自于fiction，telephone，travel，government，slate等，对原始MNLI数据和XNLI数据进行了中英文转化，合并两部分数据并打乱顺序后，重新划分训练、验证和测试集。该数据集可用于判断给定的两个句子之间属于蕴涵、中立、矛盾关系。
 
 ```
-    数据量：train(391,783)，matched(9336)，mismatched(8,870)
+    数据量：train(391,782)，matched(12,426)，mismatched(13,880)
     例子：
     {"sentence1": "新的权利已经足够好了", "sentence2": "每个人都很喜欢最新的福利", "gold_label": "neutral"}
 ```
