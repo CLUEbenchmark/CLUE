@@ -62,8 +62,8 @@ python run_classifier.py \
   --vocab_file=$ALBERT_CONFIG_DIR/vocab.txt \
   --bert_config_file=$ALBERT_CONFIG_DIR/albert_config_tiny.json \
   --init_checkpoint=$ALBERT_XLARGE_DIR/albert_model.ckpt \
-  --max_seq_length=128 \
-  --train_batch_size=8 \
-  --learning_rate=1e-8 \
-  --num_train_epochs=8.0 \
+  --max_seq_length=512 \
+  --train_batch_size=12 \
+  --learning_rate=1e-5 \
+  --num_train_epochs=4.0 \
   --output_dir=$CURRENT_DIR/${TASK_NAME}_output/
