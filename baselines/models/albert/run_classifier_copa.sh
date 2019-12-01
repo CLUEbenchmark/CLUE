@@ -5,7 +5,7 @@
 # @Last Modified time: 2019-11-05 22:31:52
 
 TASK_NAME="copa"
-MODEL_NAME="albert_xlarge_zh"
+MODEL_NAME="albert_tiny_zh"
 CURRENT_DIR=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 export CUDA_VISIBLE_DEVICES="0"
 export ALBERT_CONFIG_DIR=$CURRENT_DIR/albert_config
@@ -40,11 +40,11 @@ if [ ! -d $ALBERT_XLARGE_DIR ]; then
   echo "makedir $ALBERT_XLARGE_DIR"
 fi
 cd $ALBERT_XLARGE_DIR
-if [ ! -f "albert_config_xlarge.json" ] || [ ! -f "vocab.txt" ] || [ ! -f "checkpoint" ] || [ ! -f "albert_model.ckpt.index" ] || [ ! -f "albert_model.ckpt.meta" ] || [ ! -f "albert_model.ckpt.data-00000-of-00001" ]; then
+if [ ! -f "albert_config_tiny.json" ] || [ ! -f "vocab.txt" ] || [ ! -f "checkpoint" ] || [ ! -f "albert_model.ckpt.index" ] || [ ! -f "albert_model.ckpt.meta" ] || [ ! -f "albert_model.ckpt.data-00000-of-00001" ]; then
   rm *
-  wget https://storage.googleapis.com/albert_zh/albert_xlarge_zh_177k.zip
-  unzip albert_xlarge_zh_177k.zip
-  rm albert_xlarge_zh_177k.zip
+  wget https://storage.googleapis.com/albert_zh/albert_tiny_489k.zip
+  unzip albert_tiny_489k.zip
+  rm albert_tiny_489k.zip
 else
   echo "model exists"
 fi
