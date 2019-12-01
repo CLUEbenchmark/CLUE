@@ -948,6 +948,8 @@ def main(_):
           test_label_dict = {}
           test_label_dict["id"] = i
           test_label_dict["label"] = str(index2label_map[label_index])
+          if task_name == "inews":
+            test_label_dict["label_desc"] = ""
           writer.write(output_line)
           json.dump(test_label_dict, writer_label)
           writer_label.write("\n")

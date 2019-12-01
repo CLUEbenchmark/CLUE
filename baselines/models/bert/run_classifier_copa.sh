@@ -70,7 +70,7 @@ python run_classifier.py \
   --bert_config_file=$BERT_BASE_DIR/bert_config.json \
   --init_checkpoint=$BERT_BASE_DIR/bert_model.ckpt \
   --max_seq_length=128 \
-  --train_batch_size=32 \
-  --learning_rate=2e-5 \
-  --num_train_epochs=4.0 \
+  --train_batch_size=8 \
+  --learning_rate=1e-8 \
+  --num_train_epochs=8.0 \
   --output_dir=$CURRENT_DIR/${TASK_NAME}_output/
