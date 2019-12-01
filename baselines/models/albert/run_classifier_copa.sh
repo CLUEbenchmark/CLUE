@@ -24,7 +24,7 @@ if [ ! -d $TASK_NAME ]; then
   echo "makedir $GLUE_DATA_DIR/$TASK_NAME"
 fi
 cd $TASK_NAME
-if [ ! -f "train.txt" ] || [ ! -f "dev.txt" ] || [ ! -f "test.txt" ]; then
+if [ ! -f "train.json" ] || [ ! -f "dev.json" ] || [ ! -f "test.json" ]; then
   rm *
   wget https://storage.googleapis.com/cluebenchmark/tasks/copa_public.zip
   unzip copa_public.zip
@@ -59,10 +59,10 @@ python run_classifier.py \
   --do_eval=true \
   --data_dir=$GLUE_DATA_DIR/$TASK_NAME \
   --vocab_file=$ALBERT_CONFIG_DIR/vocab.txt \
-  --bert_config_file=$ALBERT_CONFIG_DIR/albert_config_xlarge.json \
+  --bert_config_file=$ALBERT_CONFIG_DIR/albert_config_tiny.json \
   --init_checkpoint=$ALBERT_XLARGE_DIR/albert_model.ckpt \
   --max_seq_length=128 \
-  --train_batch_size=32 \
-  --learning_rate=2e-5 \
-  --num_train_epochs=3.0 \
+  --train_batch_size=8 \
+  --learning_rate=1e-8 \
+  --num_train_epochs=8.0 \
   --output_dir=$CURRENT_DIR/${TASK_NAME}_output/
