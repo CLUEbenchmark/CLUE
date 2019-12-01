@@ -737,6 +737,7 @@ def main(_):
       "xnli": XnliProcessor,
       "tnews": TnewsProcessor,
       "afqmc": AFQMCProcessor,
+      "copa": COPAProcessor,
       "iflytek": iFLYTEKDataProcessor,
       "csl": CslProcessor,
   }
