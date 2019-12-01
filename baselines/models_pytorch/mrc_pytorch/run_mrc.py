@@ -126,8 +126,6 @@ if __name__ == '__main__':
     else:
         raise NotImplementedError
 
-    args.checkpoint_dir += ('/epoch{}_batch{}_lr{}_warmup{}_anslen{}/'
-                            .format(args.train_epochs, args.n_batch, args.lr, args.warmup_rate, args.max_ans_length))
     args.train_dir = args.train_dir.replace('features.json', 'features_' + str(args.max_seq_length) + '.json')
     args.dev_dir1 = args.dev_dir1.replace('examples.json', 'examples_' + str(args.max_seq_length) + '.json')
     args.dev_dir2 = args.dev_dir2.replace('features.json', 'features_' + str(args.max_seq_length) + '.json')

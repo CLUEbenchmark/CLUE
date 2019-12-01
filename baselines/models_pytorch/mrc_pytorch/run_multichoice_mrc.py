@@ -43,9 +43,9 @@ from .tools.pytorch_optimization import get_optimization, warmup_linear
 def reset_model(args, bert_config, model_cls):
     # Prepare model
     model = model_cls(bert_config, num_choices=args.max_num_choices)
-    if args.init_checkpoint is not None:
+    if args.init_restore_dir is not None:
         print('load bert weight')
-        state_dict = torch.load(args.init_checkpoint, map_location='cpu')
+        state_dict = torch.load(args.init_restore_dir, map_location='cpu')
         missing_keys = []
         unexpected_keys = []
         error_msgs = []
@@ -82,7 +82,7 @@ def main():
                         default='check_points/pretrain_models/roberta_wwm_ext_large/bert_config.json')
     parser.add_argument("--vocab_file", required=True,
                         default='check_points/pretrain_models/roberta_wwm_ext_large/vocab.txt')
-    parser.add_argument("--init_checkpoint", required=True,
+    parser.add_argument("--init_restore_dir", required=True,
                         default='check_points/pretrain_models/roberta_wwm_ext_large/pytorch_model.pth')
     parser.add_argument("--input_dir", required=True, default='dataset/CHID')
     parser.add_argument("--output_dir", required=True, default='check_points/CHID')

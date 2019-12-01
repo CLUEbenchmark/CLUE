@@ -17,10 +17,21 @@ python run_multichoice_mrc.py \
   --max_seq_length=64 \
   --vocab_file=$BERT_DIR/vocab.txt \
   --bert_config_file=$BERT_DIR/bert_config.json \
-  --init_checkpoint=$BERT_DIR/pytorch_model.pth \
+  --init_restore_dir=$BERT_DIR/pytorch_model.pth \
   --input_dir=$GLUE_DIR/$TASK_NAME/ \
   --output_dir=$OUTPUT_DIR/$TASK_NAME/$MODEL_NAME/ \
   --train_file=$GLUE_DIR/$TASK_NAME/train.json \
   --train_ans_file=$GLUE_DIR/$TASK_NAME/train_answer.json \
   --predict_file=$GLUE_DIR/$TASK_NAME/dev.json \
   --predict_ans_file=$GLUE_DIR/$TASK_NAME/dev_answer.json
+
+python test_multichoice_mrc.py \
+  --gpu_ids="0" \
+  --predict_batch_size=16 \
+  --max_seq_length=64 \
+  --vocab_file=$BERT_DIR/vocab.txt \
+  --bert_config_file=$BERT_DIR/bert_config.json \
+  --input_dir=$GLUE_DIR/$TASK_NAME/ \
+  --init_restore_dir=$OUTPUT_DIR/$TASK_NAME/$MODEL_NAME/ \
+  --output_dir=$OUTPUT_DIR/$TASK_NAME/$MODEL_NAME/ \
+  --predict_file=$GLUE_DIR/$TASK_NAME/test.json \

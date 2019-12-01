@@ -25,3 +25,19 @@ python run_mrc.py \
   --dev_file=$GLUE_DIR/$TASK_NAME/cmrc2018_dev.json \
   --checkpoint_dir=$OUTPUT_DIR/$TASK_NAME/$MODEL_NAME/
 
+python test_mrc.py \
+  --gpu_ids="0" \
+  --n_batch=32 \
+  --max_seq_length=256 \
+  --task_name=$TASK_NAME \
+  --vocab_file=$BERT_DIR/vocab.txt \
+  --bert_config_file=$BERT_DIR/bert_config.json \
+  --init_restore_dir=$OUTPUT_DIR/$TASK_NAME/$MODEL_NAME/ \
+  --output_dir=$OUTPUT_DIR/$TASK_NAME/$MODEL_NAME/ \
+  --test_dir1=$GLUE_DIR/$TASK_NAME/test_examples.json \
+  --test_dir2=$GLUE_DIR/$TASK_NAME/test_features.json \
+  --test_file=$GLUE_DIR/$TASK_NAME/cmrc2018_test_2k.json \
+
+
+
+
