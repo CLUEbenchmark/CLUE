@@ -20,8 +20,10 @@
 ├── tools　　　　　　　　#　通用脚本
 ├── convert_tf_checkpoint_to_pytorch.py　#　模型文件转换
 ├── pytorch_modeling.py　#　模型文件
-├── run_mrc.py       # 主程序
+├── run_mrc.py       # 训练主程序
+├── test_mrc.py   #　测试主程序
 ├── run_mrc_xxxx.sh   #　任务运行脚本
+
 ```
 ### 依赖模块
 
@@ -43,7 +45,7 @@ python convert_tf_checkpoint_to_pytorch.py \
 ```shell
 sh run_mrc_cmrc2018.sh
 ```
-**注意**: 请根据需求调整参数和路径
+**注意**: 请根据需求调整参数和路径，测试命令中init_restore_dir请根据需要调整。如果init_restore_dir结尾为.pth .bin .pt则会直接读取，如果是目录，则会读取目录下唯一的一个权重文件。(超过一个会返回异常)
 
 
 
