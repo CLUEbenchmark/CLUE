@@ -65,7 +65,8 @@ DRCD、CMRC2018: 繁体、简体抽取式阅读理解(F1, EM)；CHID：成语多
 
 分类任务:
 
-   在run_classifier.py中设置do_predict为true,详见一键运行中shell脚本，
+   在run_classifier_xxx.sh中设置do_predict为true（如果不要再训练或者评估可以将do_train, do_eval置为false)
+   运行即可得到相应的提交文件json格式结果
    
    或见<a href="https://github.com/CLUEbenchmark/CLUE/blob/master/baselines/models/bert/run_classifier.py#L932-L951">代码实现</a>
 
