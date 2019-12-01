@@ -71,8 +71,9 @@ DRCD、CMRC2018: 繁体、简体抽取式阅读理解(F1, EM)；CHID：成语多
    或见<a href="https://github.com/CLUEbenchmark/CLUE/blob/master/baselines/models/bert/run_classifier.py#L932-L951">代码实现</a>
 
     阅读理解任务:
-
-     TODO
+         在CLUE/baselines/models_pytorch/mrc_pytorch目录下执行
+         test_mrc.py
+         具体参数和使用方法可见对应的run_mrc_xxx.sh
     ​    
 
 数据集下载见本项目最后部分 
