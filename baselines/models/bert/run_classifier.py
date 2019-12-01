@@ -946,7 +946,7 @@ def main(_):
               str(class_probability)
               for class_probability in probabilities) + "\n"
           test_label_dict = {}
-          test_label_dict["index"] = i
+          test_label_dict["id"] = i
           test_label_dict["label"] = str(label_index)
           writer.write(output_line)
           json.dump(test_label_dict, writer_label)
