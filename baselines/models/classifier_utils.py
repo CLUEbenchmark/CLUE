@@ -856,6 +856,25 @@ class COPAProcessor(DataProcessor):
     return ["0", "1"]
     
   @classmethod
+  def _create_examples_one(self, lines, set_type):
+    examples = []
+    for (i, line) in enumerate(lines):
+      guid1 = "%s-%s" % (set_type, i)
+#         try:
+      if line['question'] == 'cause':
+        text_a = convert_to_unicode(line['premise'] + '原因是什么呢？' + line['choice0'])
+        text_b = convert_to_unicode(line['premise'] + '原因是什么呢？' + line['choice1'])
+      else:
+        text_a = convert_to_unicode(line['premise'] + '造成了什么影响呢？' + line['choice0'])
+        text_b = convert_to_unicode(line['premise'] + '造成了什么影响呢？' + line['choice1'])
+      label = convert_to_unicode(str(1 if line['label'] == 0 else 0)) if set_type != 'test' else '0'
+      examples.append(
+        InputExample(guid=guid1, text_a=text_a, text_b=text_b, label=label))
+#         except Exception as e:
+#             print('###error.i:',e, i, line)
+    return examples
+
+  @classmethod
   def _create_examples(self, lines, set_type):
     examples = []
     for (i, line) in enumerate(lines):
