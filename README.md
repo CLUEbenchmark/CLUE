@@ -458,10 +458,10 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 |         模型          | 开发集（dev %) | 测试集（test %) |                         训练参数                         |
 | :-------------------: | :------------: | :-------------: | :------------------------------------------------------: |
 |    ALBERT-xxlarge     |       -        |        -        |                            -                             |
-|      ALBERT-tiny      |     52.00         |      49.80       |lr=1e-8, batch_size=8, max_seq_length=128, max_epochs=8 |
+|      ALBERT-tiny      |     51.00         |    54.40       |lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
 |       BERT-base       |     60.00      |      57.40       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
 |   BERT-wwm-ext-base   |     60.00      |      61.40       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|      ERNIE-base       |       60.00         |       65        |lr=2e-5, batch_size=32, max_seq_length=128, max_epochs=3|
+|      ERNIE-base       |       67.00         |       73.4    |lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4|
 |     RoBERTa-large     |     64.00      |      59.40       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
 |       XLNet-mid       |     56.00      |      53.80       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
 |    RoBERTa-wwm-ext    |     63.00      |      63.60       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
