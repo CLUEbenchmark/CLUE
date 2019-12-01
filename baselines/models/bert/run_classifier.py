@@ -713,6 +713,7 @@ def main(_):
       "tnews": TnewsProcessor,
       "afqmc": AFQMCProcessor,
       "iflytek": iFLYTEKDataProcessor,
+      "copa":COPAProcessor,
       "cmnli":CMNLIProcessor,
       "wsc": WSCProcessor,
       "csl": CslProcessor,
@@ -930,11 +931,10 @@ def main(_):
     index2label_map = {}
     for (i, label) in enumerate(label_list):
       index2label_map[i] = label
-    output_predict_file_label = os.path.join(FLAGS.output_dir, "test_results_label.tsv")
+    output_predict_file_label = os.path.join(FLAGS.output_dir, "test_results_label.json")
     output_predict_file = os.path.join(FLAGS.output_dir, "test_results.tsv")
     with tf.gfile.GFile(output_predict_file_label, "w") as writer_label:
       with tf.gfile.GFile(output_predict_file, "w") as writer:
-        writer_label.write("predict_label" + "\n")
         num_written_lines = 0
         tf.logging.info("***** Predict results *****")
         for (i, prediction) in enumerate(result):
@@ -945,8 +945,12 @@ def main(_):
           output_line = "\t".join(
               str(class_probability)
               for class_probability in probabilities) + "\n"
+          test_label_dict = {}
+          test_label_dict["id"] = i
+          test_label_dict["label"] = str(label_index)
           writer.write(output_line)
-          writer_label.write(str(index2label_map[label_index]) + "\n")
+          json.dump(test_label_dict, writer_label)
+          writer_label.write("\n")
           num_written_lines += 1
     assert num_written_lines == num_actual_predict_examples
 

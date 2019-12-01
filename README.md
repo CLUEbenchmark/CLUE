@@ -24,9 +24,9 @@ Language Understanding Evaluation benchmark for Chinese: datasets, baselines, pr
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-large</a> | **73.45%** | 330M | **76.55%** | **58.61%** | **62.98%** |  | 59.40% | **74.6%** | **82.13%** |
 
 
-    注：'代表对原数据集筛选后获得，数据集与原数据集不同；AFQMC:蚂蚁语义相似度(Acc)；TNEWS:文本分类(Acc)；
-    IFLYTEK:长文本分类(Acc); CMNLI-m/mm: MNLI自然语言推理中文版-matched/mismatched; XNLI:自然语言推理(Acc); 
-    COPA: 因果推断; WSC: Winograd模式挑战中文版; CSL: 中国科学文献数据集; Score总分是通过计算1-9数据集得分平均值获得；
+    注：AFQMC:蚂蚁语义相似度(Acc)；TNEWS:文本分类(Acc)；IFLYTEK:长文本分类(Acc); CMNLI: 自然语言推理中文版; 
+       COPA: 因果推断; WSC: Winograd模式挑战中文版; CSL: 中国科学文献数据集; Score总分是通过计算1-9数据集得分平均值获得；
+      '代表对原数据集使用albert_tiny模型筛选后获得，数据集与原数据集不同,从而可能导致在这些数据集上albert_tiny表现略低.
 
 #### 阅读理解任务
 
@@ -61,8 +61,18 @@ DRCD、CMRC2018: 繁体、简体抽取式阅读理解(F1, EM)；CHID：成语多
        bash run_classifier_xxx.sh
        如运行 bash run_classifier_iflytek.sh 会开始iflytek任务的训练
 
+### 生成提交文件
 
-​    
+    分类任务:
+    在run_classifier_xxx.sh中设置do_predict为true（如果不要再训练或者评估可以将do_train, do_eval置为false)
+    运行即可得到相应的提交文件json格式结果 
+   或见<a href="https://github.com/CLUEbenchmark/CLUE/blob/master/baselines/models/bert/run_classifier.py#L932-L951">代码实现</a>
+
+    阅读理解任务:
+
+     TODO
+    ​    
+
 数据集下载见本项目最后部分 
 
 CLUE benchmark的定位 Vision
@@ -107,10 +117,10 @@ CLUE benchmark的定位 Vision
 
 ##### 4.CMNLI 语言推理任务 Chinese Multi-Genre NLI
 
-ChineseMNLI数据对原始MNLI数据进行中英文转化，数据来自于fiction，telephone，travel，government，slate等，用于判断给定的两个句子之间属于蕴涵、中立、矛盾关系。
+CMNLI数据由两部分组成：XNLI和MNLI。数据来自于fiction，telephone，travel，government，slate等，对原始MNLI数据和XNLI数据进行了中英文转化，合并两部分数据并打乱顺序后，重新划分训练、验证和测试集。该数据集可用于判断给定的两个句子之间属于蕴涵、中立、矛盾关系。
 
 ```
-    数据量：train(391,783)，matched(9336)，mismatched(8,870)
+    数据量：train(391,782)，matched(12,426)，mismatched(13,880)
     例子：
     {"sentence1": "新的权利已经足够好了", "sentence2": "每个人都很喜欢最新的福利", "gold_label": "neutral"}
 ```
@@ -525,39 +535,6 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 | RoBERTa-wwm-ext	|83.78 | 83.62 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
 | RoBERTa-wwm-large-ext	|***85.81*** | ***85.37*** | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
 
-基线模型-代码 Start Codes for Baselines 
----------------------------------------------------------------------
-我们为您提供了可以“一键运行”的脚本来辅助您更快的在指定模型上运行特定任务。
-以在 Bert 模型上运行“IFLYTEK' 长文本分类”任务为例，您可以直接在 CLUE/baselines/models/**bert**/ 下运行 run_classifier_**iflytek**.sh 脚本。
-
-  ```bash
-  cd CLUE/baselines/models/bert/
-  sh run_classifier_iflytek.sh
-  ```
-
-
-该脚本将会自动下载“IFLYTEK' 长文本分类”数据集（保存在CLUE/baselines/glue/chineseGLUEdatasets/**iflytek**/ 文件夹下）和Bert模型（保存在 CLUE/baselines/models/bert/prev_trained_model/ 下）。
-
-<!--1. 数据集整体下载，解压到glue文件夹里  -->
-<!--  ```cd glue ```  -->
-<!--  ```wget https://storage.googleapis.com/chineseglue/chineseGLUEdatasets.v0.0.1.zip```-->
-<!--   注：lcqmc数据集，请从<a href="http://icrc.hitsz.edu.cn/info/1037/1146.htm">这里</a>申请或搜索网络-->
-
-<!--2. 训练模型  -->
-
-<!--    ```a.将预训练模型下载解压到对应的模型中prev_trained_model文件夹里。``` -->
-<!--         ```以bert和albert为例子：```-->
-
-<!--         ``` a1. albert  ``` -->
-<!--         ```https://github.com/brightmart/albert_zh ```  -->
-<!--         ```a1. bert  ``` -->
-<!--         ```https://github.com/google-research/bert ```    -->
-
-<!--     ```b.修改run_classifier.sh指定模型路径  ``` -->
-
-<!--     ```c.运行各个模型文件夹下的run_classifier.sh即可 ```  -->
-<!--       ```sh run_classifier.sh```-->
-具体内容详见：<a href="https://github.com/chineseGLUE/chineseGLUE/tree/master/baselines">基准模型-模型训练</a>
 
 #### 开放测评提交入口：<a href="http://106.13.187.75:8003/">我要提交</a>
 
