@@ -57,6 +57,7 @@ python run_classifier.py \
   --task_name=$TASK_NAME \
   --do_train=true \
   --do_eval=true \
+  --do_predict=true \
   --data_dir=$GLUE_DATA_DIR/$TASK_NAME \
   --vocab_file=$ALBERT_CONFIG_DIR/vocab.txt \
   --bert_config_file=$ALBERT_CONFIG_DIR/albert_config_tiny.json \
