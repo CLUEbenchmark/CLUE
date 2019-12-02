@@ -78,7 +78,7 @@ DRCD、CMRC2018: 繁体、简体抽取式阅读理解(F1, EM)；CHID：成语多
 
 测评系统
 ---------------------------------------------------------------------
-测评入口：<a href="www.CLUEbenchmark.com">我要提交</a>
+测评入口：<a href="http://www.CLUEbenchmark.com">我要提交</a>
 
 <img src="https://github.com/CLUEbenchmark/CLUE/blob/master/resources/img/CLUEbenchmark.jpg"  width="80%" height="40%" />
 
