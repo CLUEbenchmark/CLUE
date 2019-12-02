@@ -460,13 +460,13 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 | :-------------------: | :------------: | :-------------: | :------------------------------------------------------: |
 |    ALBERT-xxlarge     |       -        |        -        |                            -                             |
 |      ALBERT-tiny      |     58.00      |      54.40      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|       BERT-base       |                |      65.20      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|   BERT-wwm-ext-base   |                |      63.2       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|      ERNIE-base       |                |    **73.40**    | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|     RoBERTa-large     |                |      57.00      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|       BERT-base       |     67.00      |      65.20      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|   BERT-wwm-ext-base   |     62.00      |      63.20      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|      ERNIE-base       |     69.00      |    **73.40**    | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|     RoBERTa-large     |     52.00      |      57.00      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
 |       XLNet-mid       |                |      55.40      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|    RoBERTa-wwm-ext    |                |      62.60      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-| RoBERTa-wwm-large-ext |                |      64.60      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|    RoBERTa-wwm-ext    |     59.00      |      62.60      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+| RoBERTa-wwm-large-ext |     61.00      |      64.60      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
 
 #### WSC Winograd模式挑战中文版  The Winograd Schema Challenge,Chinese Version：
 | 模型 | 开发集（dev) | 测试集（test) | 训练参数 |
