@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# @Author: bo.shi
-# @Date:   2019-11-04 09:56:36
+# @Author: Li Yudong
+# @Date:   2019-11-28
 # @Last Modified by:   bo.shi
-# @Last Modified time: 2019-12-02 18:39:21
+# @Last Modified time: 2019-12-02 18:24:47
 
-TASK_NAME="tnews"
+TASK_NAME="cmnli"
 MODEL_NAME="albert_xlarge_zh"
 CURRENT_DIR=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 export CUDA_VISIBLE_DEVICES="0"
@@ -26,15 +26,15 @@ fi
 cd $TASK_NAME
 if [ ! -f "train.json" ] || [ ! -f "dev.json" ] || [ ! -f "test.json" ]; then
   rm *
-  wget https://storage.googleapis.com/cluebenchmark/tasks/tnews_public.zip
-  unzip tnews_public.zip
-  rm tnews_public.zip
+  wget https://storage.googleapis.com/cluebenchmark/tasks/cmnli_public.zip
+  unzip cmnli_public.zip
+  rm cmnli_public.zip
 else
   echo "data exists"
 fi
 echo "Finish download dataset."
 
-# download modeltn
+# download model
 if [ ! -d $ALBERT_XLARGE_DIR ]; then
   mkdir -p $ALBERT_XLARGE_DIR
   echo "makedir $ALBERT_XLARGE_DIR"
@@ -83,4 +83,3 @@ else
       --num_train_epochs=2.0 \
       --output_dir=$CURRENT_DIR/${TASK_NAME}_output/
 fi
-

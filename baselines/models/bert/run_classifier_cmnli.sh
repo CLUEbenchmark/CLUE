@@ -2,7 +2,7 @@
 # @Author: bo.shi
 # @Date:   2019-11-04 09:56:36
 # @Last Modified by:   bo.shi
-# @Last Modified time: 2019-12-02 10:38:51
+# @Last Modified time: 2019-12-02 18:09:37
 
 TASK_NAME="cmnli"
 MODEL_NAME="chinese_L-12_H-768_A-12"
@@ -23,7 +23,7 @@ if [ ! -d $TASK_NAME ]; then
   echo "makedir $GLUE_DATA_DIR/$TASK_NAME"
 fi
 cd $TASK_NAME
-if [ ! -f "train.json" ] || [ ! -f "dev_matched.json" ] || [ ! -f "dev_mismatched.json" ]; then
+if [ ! -f "train.json" ] || [ ! -f "dev.json" ] || [ ! -f "test.json" ]; then
   rm *
   wget https://storage.googleapis.com/cluebenchmark/tasks/cmnli_public.zip
   unzip cmnli_public.zip

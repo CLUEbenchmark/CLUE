@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# @Author: bo.shi
-# @Date:   2019-11-04 09:56:36
+# @Author: Li Yudong
+# @Date:   2019-11-28
 # @Last Modified by:   bo.shi
-# @Last Modified time: 2019-12-02 10:01:27
+# @Last Modified time: 2019-12-02 18:39:26
 
-TASK_NAME="xnli"
+TASK_NAME="wsc"
 MODEL_NAME="albert_xlarge_zh"
 CURRENT_DIR=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 export CUDA_VISIBLE_DEVICES="0"
@@ -26,9 +26,9 @@ fi
 cd $TASK_NAME
 if [ ! -f "train.json" ] || [ ! -f "dev.json" ] || [ ! -f "test.json" ]; then
   rm *
-  wget https://storage.googleapis.com/cluebenchmark/tasks/xnli_public.zip
-  unzip xnli_public.zip
-  rm xnli_public.zip
+  wget https://storage.googleapis.com/cluebenchmark/tasks/wsc_public.zip
+  unzip wsc_public.zip
+  rm wsc_public.zip
 else
   echo "data exists"
 fi
@@ -53,16 +53,34 @@ echo "Finish download model."
 # run task
 cd $CURRENT_DIR
 echo "Start running..."
-python run_classifier.py \
-  --task_name=$TASK_NAME \
-  --do_train=true \
-  --do_eval=true \
-  --data_dir=$GLUE_DATA_DIR/$TASK_NAME \
-  --vocab_file=$ALBERT_CONFIG_DIR/vocab.txt \
-  --bert_config_file=$ALBERT_CONFIG_DIR/albert_config_xlarge.json \
-  --init_checkpoint=$ALBERT_XLARGE_DIR/albert_model.ckpt \
-  --max_seq_length=128 \
-  --train_batch_size=64 \
-  --learning_rate=3e-5 \
-  --num_train_epochs=2.0 \
-  --output_dir=$CURRENT_DIR/${TASK_NAME}_output/
+if [ ! -n "$1" ] || [ $1 == "predict" ]; then
+    python run_classifier.py \
+      --task_name=$TASK_NAME \
+      --do_train=false \
+      --do_eval=false \
+      --do_predict=true \
+      --data_dir=$GLUE_DATA_DIR/$TASK_NAME \
+      --vocab_file=$ALBERT_XLARGE_DIR/vocab.txt \
+      --bert_config_file=$ALBERT_XLARGE_DIR/albert_config_xlarge.json \
+      --init_checkpoint=$ALBERT_XLARGE_DIR/albert_model.ckpt \
+      --max_seq_length=128 \
+      --train_batch_size=16 \
+      --learning_rate=3e-5 \
+      --num_train_epochs=2.0 \
+      --output_dir=$CURRENT_DIR/${TASK_NAME}_output/
+else
+    python run_classifier.py \
+      --task_name=$TASK_NAME \
+      --do_train=true \
+      --do_eval=true \
+      --data_dir=$GLUE_DATA_DIR/$TASK_NAME \
+      --vocab_file=$ALBERT_XLARGE_DIR/vocab.txt \
+      --bert_config_file=$ALBERT_XLARGE_DIR/albert_config_xlarge.json \
+      --init_checkpoint=$ALBERT_XLARGE_DIR/albert_model.ckpt \
+      --max_seq_length=128 \
+      --train_batch_size=16 \
+      --learning_rate=3e-5 \
+      --num_train_epochs=2.0 \
+      --output_dir=$CURRENT_DIR/${TASK_NAME}_output/
+fi
+

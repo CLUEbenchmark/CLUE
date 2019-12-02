@@ -1,3 +1,8 @@
+# -*- coding: utf-8 -*-
+# @Author: bo.shi
+# @Date:   2019-12-01 22:28:41
+# @Last Modified by:   bo.shi
+# @Last Modified time: 2019-12-02 18:36:50
 # coding=utf-8
 # Copyright 2019 The Google Research Authors.
 #
@@ -318,7 +323,7 @@ class iFLYTEKDataProcessor(DataProcessor):
       guid = "%s-%s" % (set_type, i)
       text_a = convert_to_unicode(line['sentence'])
       text_b = None
-      label = convert_to_unicode(line['label']) if set_type != 'test' else "0" 
+      label = convert_to_unicode(line['label']) if set_type != 'test' else "0"
       examples.append(
           InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
     return examples
@@ -358,20 +363,21 @@ class AFQMCProcessor(DataProcessor):
           InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
     return examples
 
+
 class CMNLIProcessor(DataProcessor):
   """Processor for the CMNLI data set."""
 
   def get_train_examples(self, data_dir):
     """See base class."""
-    return self._create_examples_json(os.path.join(data_dir, "train.json"),"train")
+    return self._create_examples_json(os.path.join(data_dir, "train.json"), "train")
 
   def get_dev_examples(self, data_dir):
     """See base class."""
-    return self._create_examples_json(os.path.join(data_dir, "dev_matched.json"),"dev")
+    return self._create_examples_json(os.path.join(data_dir, "dev.json"), "dev")
 
   def get_test_examples(self, data_dir):
     """See base class."""
-    return self._create_examples_json(os.path.join(data_dir, "dev_mismatched.json"),"test")
+    return self._create_examples_json(os.path.join(data_dir, "test.json"), "test")
 
   def get_labels(self):
     """See base class."""
@@ -380,11 +386,11 @@ class CMNLIProcessor(DataProcessor):
   def _create_examples_json(self, file_name, set_type):
     """Creates examples for the training and dev sets."""
     examples = []
-    lines = open(file_name,"r",encoding="utf-8")
+    lines = open(file_name, "r", encoding="utf-8")
     index = 0
     for line in lines:
       line_obj = json.loads(line)
-      index = index  + 1
+      index = index + 1
       guid = "%s-%s" % (set_type, index)
       text_a = convert_to_unicode(line_obj["sentence1"])
       text_b = convert_to_unicode(line_obj["sentence2"])
@@ -395,22 +401,24 @@ class CMNLIProcessor(DataProcessor):
 
     return examples
 
+
 class CslProcessor(DataProcessor):
   """Processor for the CSL data set."""
+
   def get_train_examples(self, data_dir):
     """See base class."""
     return self._create_examples(
-      self._read_json(os.path.join(data_dir, "train.json")), "train")
+        self._read_json(os.path.join(data_dir, "train.json")), "train")
 
   def get_dev_examples(self, data_dir):
     """See base class."""
     return self._create_examples(
-      self._read_json(os.path.join(data_dir, "dev.json")), "dev")
+        self._read_json(os.path.join(data_dir, "val.json")), "dev")
 
   def get_test_examples(self, data_dir):
     """See base class."""
     return self._create_examples(
-      self._read_json(os.path.join(data_dir, "test.json")), "test")
+        self._read_json(os.path.join(data_dir, "test.json")), "test")
 
   def get_labels(self):
     """See base class."""
@@ -425,7 +433,7 @@ class CslProcessor(DataProcessor):
       text_b = convert_to_unicode(line['abst'])
       label = convert_to_unicode(line['label']) if set_type != 'test' else '0'
       examples.append(
-        InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
+          InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
     return examples
 
 
@@ -803,7 +811,8 @@ class WSCProcessor(DataProcessor):
       pronoun = target['span2_text']
       pronoun_idx = target['span2_index']
 
-      assert text_a[pronoun_idx : (pronoun_idx + len(pronoun))] == pronoun, "pronoun: {}".format(pronoun)
+      assert text_a[pronoun_idx: (pronoun_idx + len(pronoun))
+                    ] == pronoun, "pronoun: {}".format(pronoun)
       assert text_a[query_idx: (query_idx + len(query))] == query, "query: {}".format(query)
 
       if pronoun_idx > query_idx:
@@ -827,6 +836,7 @@ class WSCProcessor(DataProcessor):
       examples.append(
           InputExample(guid=guid, text_a=text_a, text_b=None, label=label))
     return examples
+
 
 class COPAProcessor(DataProcessor):
   """Processor for the internal data set. sentence pair classification"""
@@ -853,7 +863,7 @@ class COPAProcessor(DataProcessor):
   def get_labels(self):
     """See base class."""
     return ["0", "1"]
-    
+
   @classmethod
   def _create_examples_one(self, lines, set_type):
     examples = []
@@ -868,7 +878,7 @@ class COPAProcessor(DataProcessor):
         text_b = convert_to_unicode(line['premise'] + '造成了什么影响呢？' + line['choice1'])
       label = convert_to_unicode(str(1 if line['label'] == 0 else 0)) if set_type != 'test' else '0'
       examples.append(
-        InputExample(guid=guid1, text_a=text_a, text_b=text_b, label=label))
+          InputExample(guid=guid1, text_a=text_a, text_b=text_b, label=label))
 #         except Exception as e:
 #             print('###error.i:',e, i, line)
     return examples
@@ -877,34 +887,34 @@ class COPAProcessor(DataProcessor):
   def _create_examples(self, lines, set_type):
     examples = []
     for (i, line) in enumerate(lines):
-      i=2 * i
+      i = 2 * i
       guid1 = "%s-%s" % (set_type, i)
-      guid2 = "%s-%s" % (set_type, i+1)
+      guid2 = "%s-%s" % (set_type, i + 1)
 #         try:
       premise = convert_to_unicode(line['premise'])
       choice0 = convert_to_unicode(line['choice0'])
       label = convert_to_unicode(str(1 if line['label'] == 0 else 0)) if set_type != 'test' else '0'
       #text_a2 = convert_to_unicode(line['premise'])
       choice1 = convert_to_unicode(line['choice1'])
-      label2 = convert_to_unicode(str(0 if line['label'] == 0 else 1)) if set_type != 'test' else '0'
+      label2 = convert_to_unicode(
+          str(0 if line['label'] == 0 else 1)) if set_type != 'test' else '0'
       if line['question'] == 'effect':
-          text_a = premise
-          text_b = choice0
-          text_a2 = premise
-          text_b2 = choice1
+        text_a = premise
+        text_b = choice0
+        text_a2 = premise
+        text_b2 = choice1
       elif line['question'] == 'cause':
-          text_a = choice0
-          text_b = premise
-          text_a2 = choice1
-          text_b2 = premise
+        text_a = choice0
+        text_b = premise
+        text_a2 = choice1
+        text_b2 = premise
       else:
-          print ('wrong format!!')
-          return None
+        print('wrong format!!')
+        return None
       examples.append(
-        InputExample(guid=guid1, text_a=text_a, text_b=text_b, label=label))
+          InputExample(guid=guid1, text_a=text_a, text_b=text_b, label=label))
       examples.append(
-        InputExample(guid=guid2, text_a=text_a2, text_b=text_b2, label=label2))
+          InputExample(guid=guid2, text_a=text_a2, text_b=text_b2, label=label2))
 #         except Exception as e:
 #             print('###error.i:',e, i, line)
     return examples
-

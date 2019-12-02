@@ -2,7 +2,7 @@
 # @Author: bo.shi
 # @Date:   2019-11-04 09:56:36
 # @Last Modified by:   bo.shi
-# @Last Modified time: 2019-11-05 23:35:23
+# @Last Modified time: 2019-12-02 18:07:42
 # coding=utf-8
 # Copyright 2018 The Google AI Language Team Authors.
 #
@@ -738,8 +738,11 @@ def main(_):
       "tnews": TnewsProcessor,
       "afqmc": AFQMCProcessor,
       "iflytek": iFLYTEKDataProcessor,
+      "copa": COPAProcessor,
+      "cmnli": CMNLIProcessor,
+      "wsc": WSCProcessor,
       "csl": CslProcessor,
-      "copa":COPAProcessor,
+      "copa": COPAProcessor,
   }
 
   tokenization.validate_case_matches_checkpoint(FLAGS.do_lower_case,
