@@ -2,7 +2,7 @@
 # @Author: bo.shi
 # @Date:   2019-11-04 09:56:36
 # @Last Modified by:   bo.shi
-# @Last Modified time: 2019-11-11 09:58:56
+# @Last Modified time: 2019-12-02 11:42:10
 
 TASK_NAME="bq"
 MODEL_NAME="chinese_xlnet_mid_L-24_H-768_A-12"
@@ -10,7 +10,7 @@ CURRENT_DIR=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 export CUDA_VISIBLE_DEVICES="0"
 export PRETRAINED_MODELS_DIR=$CURRENT_DIR/prev_trained_model
 export XLNET_DIR=$PRETRAINED_MODELS_DIR/$MODEL_NAME
-export GLUE_DATA_DIR=$CURRENT_DIR/../../glue/chineseGLUEdatasets
+export GLUE_DATA_DIR=$CURRENT_DIR/../../CLUEdataset
 
 # install related packages
 pip install sentencepiece --user
