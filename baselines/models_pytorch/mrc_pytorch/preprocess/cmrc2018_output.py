@@ -4,7 +4,7 @@ import math
 
 from tqdm import tqdm
 
-from ..tools.offical_tokenization import BasicTokenizer
+from ..tools.official_tokenization import BasicTokenizer
 
 
 def write_predictions_topk(FLAGS, all_examples, all_features, all_results, n_best_size,
