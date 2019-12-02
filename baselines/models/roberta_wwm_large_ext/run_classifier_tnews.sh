@@ -2,7 +2,7 @@
 # @Author: bo.shi
 # @Date:   2019-11-04 09:56:36
 # @Last Modified by:   bo.shi
-# @Last Modified time: 2019-11-11 09:57:50
+# @Last Modified time: 2019-12-02 11:40:25
 
 TASK_NAME="tnews"
 MODEL_NAME="chinese_roberta_wwm_large_ext_L-24_H-1024_A-16"
@@ -10,7 +10,7 @@ CURRENT_DIR=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 export CUDA_VISIBLE_DEVICES="0"
 export PRETRAINED_MODELS_DIR=$CURRENT_DIR/prev_trained_model
 export ROBERTA_WWM_LARGE_DIR=$PRETRAINED_MODELS_DIR/$MODEL_NAME
-export GLUE_DATA_DIR=$CURRENT_DIR/../../glue/chineseGLUEdatasets
+export GLUE_DATA_DIR=$CURRENT_DIR/../../CLUEdataset
 
 # download and unzip dataset
 if [ ! -d $GLUE_DATA_DIR ]; then
