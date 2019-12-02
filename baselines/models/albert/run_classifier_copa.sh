@@ -2,7 +2,7 @@
 # @Author: bo.shi
 # @Date:   2019-11-04 09:56:36
 # @Last Modified by:   bo.shi
-# @Last Modified time: 2019-11-05 22:31:52
+# @Last Modified time: 2019-12-02 10:00:30
 
 TASK_NAME="copa"
 MODEL_NAME="albert_tiny_zh"
@@ -11,7 +11,7 @@ export CUDA_VISIBLE_DEVICES="0"
 export ALBERT_CONFIG_DIR=$CURRENT_DIR/albert_config
 export ALBERT_PRETRAINED_MODELS_DIR=$CURRENT_DIR/prev_trained_model
 export ALBERT_XLARGE_DIR=$ALBERT_PRETRAINED_MODELS_DIR/$MODEL_NAME
-export GLUE_DATA_DIR=$CURRENT_DIR/../../glue/chineseGLUEdatasets
+export GLUE_DATA_DIR=$CURRENT_DIR/../../CLUEdataset
 
 # download and unzip dataset
 if [ ! -d $GLUE_DATA_DIR ]; then
