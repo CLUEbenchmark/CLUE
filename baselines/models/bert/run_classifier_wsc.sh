@@ -1,3 +1,7 @@
+# @Author: bo.shi
+# @Date:   2019-12-01 22:28:41
+# @Last Modified by:   bo.shi
+# @Last Modified time: 2019-12-02 10:39:35
 #!/usr/bin/env bash
 
 TASK_NAME="wsc"
@@ -6,7 +10,7 @@ CURRENT_DIR=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 export CUDA_VISIBLE_DEVICES="0"
 export BERT_PRETRAINED_MODELS_DIR=$CURRENT_DIR/prev_trained_model
 export BERT_BASE_DIR=$BERT_PRETRAINED_MODELS_DIR/$MODEL_NAME
-export GLUE_DATA_DIR=$CURRENT_DIR/../../glue/chineseGLUEdatasets
+export GLUE_DATA_DIR=$CURRENT_DIR/../../CLUEdataset
 
 # download and unzip dataset
 if [ ! -d $GLUE_DATA_DIR ]; then
