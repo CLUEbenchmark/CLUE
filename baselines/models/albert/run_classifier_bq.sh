@@ -10,7 +10,7 @@ CURRENT_DIR=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 export CUDA_VISIBLE_DEVICES="0"
 export ALBERT_CONFIG_DIR=$CURRENT_DIR/albert_config
 export ALBERT_PRETRAINED_MODELS_DIR=$CURRENT_DIR/prev_trained_model
-export ALBERT_XLARGE_DIR=$ALBERT_PRETRAsINED_MODELS_DIR/$MODEL_NAME
+export ALBERT_XLARGE_DIR=$ALBERT_PRETRAINED_MODELS_DIR/$MODEL_NAME
 export GLUE_DATA_DIR=$CURRENT_DIR/../../CLUEdataset
 
 # download and unzip dataset
