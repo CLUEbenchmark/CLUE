@@ -62,12 +62,13 @@ python run_classifier.py \
     --task_name=$TASK_NAME \
     --do_train=True \
     --do_eval=True \
-    --do_predict=Ture \
+    --do_predict=True \
     --eval_all_ckpt=False \
     --uncased=False \
     --data_dir=$GLUE_DATA_DIR/$TASK_NAME \
     --output_dir=$CURRENT_DIR/${TASK_NAME}_output/ \
     --model_dir=$CURRENT_DIR/${TASK_NAME}_output/ \
+    --predict_dir=$CURRENT_DIR/${TASK_NAME}_output_predict/ \
     --train_batch_size=12 \
     --num_hosts=1 \
     --num_core_per_host=1 \
