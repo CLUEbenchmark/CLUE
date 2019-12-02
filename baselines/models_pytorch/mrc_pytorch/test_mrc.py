@@ -9,9 +9,10 @@ from torch import nn
 from torch.utils.data import TensorDataset, DataLoader
 from tqdm import tqdm
 
-from .pytorch_modeling import BertConfig, BertForQuestionAnswering, ALBertConfig, ALBertForQA
-from .tools import offical_tokenization as tokenization
-from .tools import utils
+from baselines.models_pytorch.mrc_pytorch.pytorch_modeling import BertConfig, BertForQuestionAnswering, ALBertConfig, \
+    ALBertForQA
+from baselines.models_pytorch.mrc_pytorch.tools import official_tokenization as tokenization
+from baselines.models_pytorch.mrc_pytorch.tools import utils
 
 
 def test(model, args, eval_examples, eval_features, device):

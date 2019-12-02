@@ -32,12 +32,12 @@ import torch
 from torch.utils.data import TensorDataset, DataLoader, RandomSampler, SequentialSampler
 from tqdm import tqdm
 
-from .preprocess.CHID_preprocess import RawResult, get_final_predictions, write_predictions, generate_input, \
-    evaluate
-from .pytorch_modeling import ALBertConfig, ALBertForMultipleChoice
-from .pytorch_modeling import BertConfig, BertForMultipleChoice
-from .tools.offical_tokenization import BertTokenizer
-from .tools.pytorch_optimization import get_optimization, warmup_linear
+from baselines.models_pytorch.mrc_pytorch.preprocess.CHID_preprocess import RawResult, get_final_predictions, \
+    write_predictions, generate_input, evaluate
+from baselines.models_pytorch.mrc_pytorch.pytorch_modeling import ALBertConfig, ALBertForMultipleChoice
+from baselines.models_pytorch.mrc_pytorch.pytorch_modeling import BertConfig, BertForMultipleChoice
+from baselines.models_pytorch.mrc_pytorch.tools.official_tokenization import BertTokenizer
+from baselines.models_pytorch.mrc_pytorch.tools.pytorch_optimization import get_optimization, warmup_linear
 
 
 def reset_model(args, bert_config, model_cls):
