@@ -33,7 +33,7 @@
     sh run_classifier_iflytek.sh
     ```
     
-    该脚本将会自动下载“IFLYTEK' 长文本分类”数据集（保存在CLUE/baselines/glue/chineseGLUEdatasets/**iflytek**/ 文件夹下）和Bert模型（保存在 CLUE/baselines/models/bert/prev_trained_model/ 下）。
+    该脚本将会自动下载“IFLYTEK' 长文本分类”数据集（保存在CLUE/baselines/CLUEdataset/**iflytek**/ 文件夹下）和Bert模型（保存在 CLUE/baselines/models/**bert**/prev_trained_model/ 下）。
     
     如果您想在其他模型上执行其他的任务，只需要在对应模型的目录下找到对应任务的执行脚本（ run_classifier_**??**.sh ），即可直接运行。
     

@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # @Author: Li Yudong
 # @Date:   2019-11-28
-# @Last Modified by:   Li Yudong
-# @Last Modified time: 2019-11-28
+# @Last Modified by:   bo.shi
+# @Last Modified time: 2019-12-02 11:21:59
 
 TASK_NAME="csl"
 MODEL_NAME="baidu_ernie"
@@ -10,7 +10,7 @@ CURRENT_DIR=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 export CUDA_VISIBLE_DEVICES="0"
 export PRETRAINED_MODELS_DIR=$CURRENT_DIR/prev_trained_model
 export ERNIE_DIR=$PRETRAINED_MODELS_DIR/$MODEL_NAME
-export GLUE_DATA_DIR=$CURRENT_DIR/../../glue/chineseGLUEdatasets
+export GLUE_DATA_DIR=$CURRENT_DIR/../../CLUEdataset
 
 # download and unzip dataset
 if [ ! -d $GLUE_DATA_DIR ]; then
