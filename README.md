@@ -14,13 +14,13 @@ Language Understanding Evaluation benchmark for Chinese: datasets, baselines, pr
 | 模型   | Score  | 参数    | AFQMC  | TNEWS'  | IFLYTEK'   | CMNLI   | COPA | WSC | CSL  |
 | :----:| :----: | :----: | :----: |:----: |:----: |:----: |:----: |:----: |:----: |
 | <a href="https://github.com/google-research/bert">BERT-base</a>        | 69.70% | 108M |  73.70% | 56.58%  | 60.29% | 79.69% | 65.20% | 62.0% | 80.36% |
-| <a href="https://github.com/ymcui/Chinese-BERT-wwm">BERT-wwm-ext</a>      | 70.47% | 108M  | 74.07% | 56.84%  | 59.43% | | 61.40%  | 61.1%  | 80.63% |
+| <a href="https://github.com/ymcui/Chinese-BERT-wwm">BERT-wwm-ext</a>      | 70.47% | 108M  | 74.07% | 56.84%  | 59.43% | | 63.20% | 61.1%  | 80.63% |
 | <a href="https://github.com/PaddlePaddle/ERNIE">ERNIE-base</a>         | 70.55% | 108M  | 73.83% | 58.33% | 58.96% |  | **73.40%**  | 60.8%  | 79.1%      |
-| <a href="https://github.com/brightmart/roberta_zh">RoBERTa-large</a>      | 72.63% | 334M  | 74.02% | 57.86%  | 62.55% | | 61.40% | 72.7%   | 81.36%       |
-| <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>  | 68.65% | 200M | 70.50% | 56.24% | 57.85% | 81.25% | 53.80%   | 64.4%   | 81.26%     |
+| <a href="https://github.com/brightmart/roberta_zh">RoBERTa-large</a>      | 72.63% | 334M  | 74.02% | 57.86%  | 62.55% | | 57.00% | 72.7%   | 81.36%       |
+| <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>  | 68.65% | 200M | 70.50% | 56.24% | 57.85% | 81.25% | 55.40% | 64.4%   | 81.26%     |
 | <a href="https://github.com/brightmart/albert_zh">ALBERT-xxlarge</a>      | - | 59M   | -  | - | - | - | - | - | -  |
 | <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a>        | 61.92% | 4M | 69.92% | 53.35% | 48.71% | 70.61% | 54.40%  | 58.5%   | 74.56% |
-| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>   | 71.72% | 108M  | 74.04% | 56.94% | 60.31% | | 63.60%  | 67.8% | 81.0% |
+| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>   | 71.72% | 108M  | 74.04% | 56.94% | 60.31% | | 62.60% | 67.8% | 81.0% |
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-large</a> | **73.45%** | 330M | **76.55%** | **58.61%** | **62.98%** | **82.12%** | 64.60% | **74.6%** | **82.13%** |
 
 
@@ -459,14 +459,14 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 |         模型          | 开发集（dev %) | 测试集（test %) |                         训练参数                         |
 | :-------------------: | :------------: | :-------------: | :------------------------------------------------------: |
 |    ALBERT-xxlarge     |       -        |        -        |                            -                             |
-|      ALBERT-tiny      |     51.00         |    54.40       |lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|       BERT-base       |     60.00      |      57.40       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|   BERT-wwm-ext-base   |     60.00      |      61.40       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|      ERNIE-base       |       67.00         |       73.4    |lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4|
-|     RoBERTa-large     |     64.00      |      59.40       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|       XLNet-mid       |     56.00      |      53.80       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|    RoBERTa-wwm-ext    |     63.00      |      63.60       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-| RoBERTa-wwm-large-ext |     66.00      |      59.40       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|      ALBERT-tiny      |     58.00      |      54.40      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|       BERT-base       |                |      65.20      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|   BERT-wwm-ext-base   |                |      63.2       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|      ERNIE-base       |                |    **73.40**    | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|     RoBERTa-large     |                |      57.00      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|       XLNet-mid       |                |      55.40      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|    RoBERTa-wwm-ext    |                |      62.60      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+| RoBERTa-wwm-large-ext |                |      64.60      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
 
 #### WSC Winograd模式挑战中文版  The Winograd Schema Challenge,Chinese Version：
 | 模型 | 开发集（dev) | 测试集（test) | 训练参数 |
