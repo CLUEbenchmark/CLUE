@@ -10,7 +10,7 @@ CURRENT_DIR=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 export CUDA_VISIBLE_DEVICES="0"
 export PRETRAINED_MODELS_DIR=$CURRENT_DIR/prev_trained_model
 export ROBERTA_LARGE_DIR=$PRETRAINED_MODELS_DIR/$MODEL_NAME
-export GLUE_DATA_DIR=$CURRENT_DIR/../../glue/chineseGLUEdatasets
+export GLUE_DATA_DIR=$CURRENT_DIR/../../CLUEdataset
 
 # download and unzip dataset
 if [ ! -d $GLUE_DATA_DIR ]; then

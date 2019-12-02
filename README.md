@@ -13,19 +13,19 @@ Language Understanding Evaluation benchmark for Chinese: datasets, baselines, pr
 
 | 模型   | Score  | 参数    | AFQMC  | TNEWS'  | IFLYTEK'   | CMNLI   | COPA | WSC | CSL  |
 | :----:| :----: | :----: | :----: |:----: |:----: |:----: |:----: |:----: |:----: |
-| <a href="https://github.com/google-research/bert">BERT-base</a>        | 69.70% | 108M |  73.70% | 56.58%  | 60.29% |   | 57.40% | 62.0% | 80.36% |
+| <a href="https://github.com/google-research/bert">BERT-base</a>        | 69.70% | 108M |  73.70% | 56.58%  | 60.29% | 79.69% | 57.40% | 62.0% | 80.36% |
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">BERT-wwm-ext</a>      | 70.47% | 108M  | 74.07% | 56.84%  | 59.43% | | 61.40%  | 61.1%  | 80.63% |
 | <a href="https://github.com/PaddlePaddle/ERNIE">ERNIE-base</a>         | 70.55% | 108M  | 73.83% | 58.33% | 58.96% |  | **73.40%**  | 60.8%  | 79.1%      |
 | <a href="https://github.com/brightmart/roberta_zh">RoBERTa-large</a>      | 72.63% | 334M  | 74.02% | 57.86%  | 62.55% | | 61.40% | 72.7%   | 81.36%       |
-| <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>  | 68.65% | 200M | 70.50% | 56.24% | 57.85% | | 53.80%   | 64.4%   | 81.26%     |
-| <a href="https://github.com/brightmart/albert_zh">ALBERT-xxlarge</a>      | - | 59M   | -  | - | - | - | - | - | -  | -  | -     |
-| <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a>        | 61.92% | 4M | 69.92% | 53.35% | 36.18% |  | 54.40%  | 58.5%   | 74.56% |
+| <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>  | 68.65% | 200M | 70.50% | 56.24% | 57.85% | 81.25% | 53.80%   | 64.4%   | 81.26%     |
+| <a href="https://github.com/brightmart/albert_zh">ALBERT-xxlarge</a>      | - | 59M   | -  | - | - | - | - | - | -  |
+| <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a>        | 61.92% | 4M | 69.92% | 53.35% | 48.71% | 70.61% | 54.40%  | 58.5%   | 74.56% |
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>   | 71.72% | 108M  | 74.04% | 56.94% | 60.31% | | 63.60%  | 67.8% | 81.0% |
-| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-large</a> | **73.45%** | 330M | **76.55%** | **58.61%** | **62.98%** |  | 59.40% | **74.6%** | **82.13%** |
+| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-large</a> | **73.45%** | 330M | **76.55%** | **58.61%** | **62.98%** | **82.12%** | 59.40% | **74.6%** | **82.13%** |
 
 
     注：AFQMC:蚂蚁语义相似度(Acc)；TNEWS:文本分类(Acc)；IFLYTEK:长文本分类(Acc); CMNLI: 自然语言推理中文版; 
-       COPA: 因果推断; WSC: Winograd模式挑战中文版; CSL: 中国科学文献数据集; Score总分是通过计算1-9数据集得分平均值获得；
+       COPA: 因果推断; WSC: Winograd模式挑战中文版; CSL: 中国科学文献数据集; Score总分是通过计算7个数据集得分平均值获得；
       '代表对原数据集使用albert_tiny模型筛选后获得，数据集与原数据集不同,从而可能导致在这些数据集上albert_tiny表现略低.
 
 #### 阅读理解任务
@@ -67,7 +67,7 @@ DRCD、CMRC2018: 繁体、简体抽取式阅读理解(F1, EM)；CHID：成语多
         在CLUE/baselines/models/bert目录下执行
         sh run_classifier_xxx.sh predict 
         即可在output_dir下得到相应的提交文件json格式结果xxx_prdict.json
-    
+
    或见<a href="https://github.com/CLUEbenchmark/CLUE/blob/master/baselines/models/bert/run_classifier.py#L932-L951">代码实现</a>
 
     阅读理解任务:
@@ -120,7 +120,7 @@ CLUE benchmark的定位 Vision
 
 ##### 4.CMNLI 语言推理任务 Chinese Multi-Genre NLI
 
-CMNLI数据由两部分组成：XNLI和MNLI。数据来自于fiction，telephone，travel，government，slate等，对原始MNLI数据和XNLI数据进行了中英文转化，合并两部分数据并打乱顺序后，重新划分训练、验证和测试集。该数据集可用于判断给定的两个句子之间属于蕴涵、中立、矛盾关系。
+CMNLI数据由两部分组成：XNLI和MNLI。数据来自于fiction，telephone，travel，government，slate等，对原始MNLI数据和XNLI数据进行了中英文转化，保留原始训练集，合并XNLI中的dev和MNLI中的matched作为CMNLI的dev，合并XNLI中的test和MNLI中的mismatched作为CMNLI的test，并打乱顺序。该数据集可用于判断给定的两个句子之间属于蕴涵、中立、矛盾关系。
 
 ```
     数据量：train(391,782)，matched(12,426)，mismatched(13,880)
@@ -429,15 +429,15 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 #### IFLYTEK' 长文本分类 Long Text Classification (Accuracy)：
 |         模型          | 开发集（dev) | 测试集（test) |              训练参数              |
 | :-------------------: | :----------: | :-----------: | :--------------------------------: |
-|     ALBERT-xlarge     |    -     |     -     | batch_size=32, length=128, epoch=3 |
-|      ALBERT-tiny      |    37.54    |     36.18     | batch_size=32, length=128, epoch=3 |
-|       BERT-base       |    60.37    |     60.29     | batch_size=32, length=128, epoch=3 |
-|   BERT-wwm-ext-base   |    59.88    |     59.43     | batch_size=32, length=128, epoch=3 |
-|      ERNIE-base       |    59.52    |     58.96     | batch_size=32, length=128, epoch=3 |
-|     RoBERTa-large     |    62.6    |     62.55     | batch_size=24, length=128, epoch=3 |
-|       XLNet-mid       |    57.72    |     57.85     | batch_size=32, length=128, epoch=3 |
-|    RoBERTa-wwm-ext    |    60.8    |       60.31       | batch_size=32, length=128, epoch=3 |
-| RoBERTa-wwm-large-ext | **62.75** |  **62.98**  | batch_size=24, length=128, epoch=3 |
+|     ALBERT-xlarge     |    -     |     -     | batch=32, length=128, epoch=3 lr=2e-5 |
+|      ALBERT-tiny      |    48.76    |     48.71     | batch=32, length=128, epoch=10 lr=2e-5 |
+|       BERT-base       |    60.37    |     60.29     | batch=32, length=128, epoch=3 lr=2e-5 |
+|   BERT-wwm-ext-base   |    59.88    |     59.43     | batch=32, length=128, epoch=3 lr=2e-5 |
+|      ERNIE-base       |    59.52    |     58.96     | batch=32, length=128, epoch=3 lr=2e-5  |
+|     RoBERTa-large     |    62.6    |     62.55     | batch=24, length=128, epoch=3 lr=2e-5  |
+|       XLNet-mid       |    57.72    |     57.85     | batch=32, length=128, epoch=3 lr=2e-5  |
+|    RoBERTa-wwm-ext    |    60.8    |       60.31       | batch=32, length=128, epoch=3 lr=2e-5  |
+| RoBERTa-wwm-large-ext | **62.75** |  **62.98**  | batch=24, length=128, epoch=3 lr=2e-5 |
 
 #### CMNLI 中文自然语言推理 Chinese Multi-Genre NLI (Accuracy)：
 | 模型 | matched | mismatched |  训练参数 |

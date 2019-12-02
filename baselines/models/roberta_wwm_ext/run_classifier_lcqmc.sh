@@ -2,7 +2,7 @@
 # @Author: bo.shi
 # @Date:   2019-11-04 09:56:36
 # @Last Modified by:   bo.shi
-# @Last Modified time: 2019-11-11 09:55:59
+# @Last Modified time: 2019-12-02 11:38:44
 
 TASK_NAME="lcqmc"
 MODEL_NAME="chinese_roberta_wwm_ext_L-12_H-768_A-12"
@@ -10,7 +10,7 @@ CURRENT_DIR=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 export CUDA_VISIBLE_DEVICES="0"
 export PRETRAINED_MODELS_DIR=$CURRENT_DIR/prev_trained_model
 export ROBERTA_WWM_DIR=$PRETRAINED_MODELS_DIR/$MODEL_NAME
-export GLUE_DATA_DIR=$CURRENT_DIR/../../glue/chineseGLUEdatasets
+export GLUE_DATA_DIR=$CURRENT_DIR/../../CLUEdataset
 
 # download and unzip dataset
 if [ ! -d $GLUE_DATA_DIR ]; then
