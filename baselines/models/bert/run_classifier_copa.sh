@@ -65,7 +65,7 @@ if [ $# == 0 ];then
           --task_name=$TASK_NAME \
           --do_train=true \
           --do_eval=true \
-          --do_predict=true \
+          --do_predict=false \
           --data_dir=$GLUE_DATA_DIR/$TASK_NAME \
           --vocab_file=$BERT_BASE_DIR/vocab.txt \
           --bert_config_file=$BERT_BASE_DIR/bert_config.json \
@@ -86,9 +86,9 @@ elif [ $1 == "predict" ];then
       --vocab_file=$BERT_BASE_DIR/vocab.txt \
       --bert_config_file=$BERT_BASE_DIR/bert_config.json \
       --init_checkpoint=$BERT_BASE_DIR/bert_model.ckpt \
-      --max_seq_length=128 \
-      --train_batch_size=8 \
-      --learning_rate=1e-8 \
-      --num_train_epochs=8.0 \
+      --max_seq_length=512 \
+      --train_batch_size=12 \
+      --learning_rate=1e-5 \
+      --num_train_epochs=4.0 \
       --output_dir=$CURRENT_DIR/${TASK_NAME}_output/
 fi
