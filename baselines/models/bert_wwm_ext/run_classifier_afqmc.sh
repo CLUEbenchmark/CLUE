@@ -2,7 +2,7 @@
 # @Author: bo.shi
 # @Date:   2019-11-04 09:56:36
 # @Last Modified by:   bo.shi
-# @Last Modified time: 2019-12-03 10:55:43
+# @Last Modified time: 2019-12-03 14:27:42
 
 TASK_NAME="afqmc"
 MODEL_NAME="chinese_wwm_ext_L-12_H-768_A-12"
