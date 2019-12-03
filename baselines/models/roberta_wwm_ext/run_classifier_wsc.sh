@@ -2,9 +2,9 @@
 # @Author: bo.shi
 # @Date:   2019-11-04 09:56:36
 # @Last Modified by:   bo.shi
-# @Last Modified time: 2019-12-02 11:38:35
+# @Last Modified time: 2019-12-03 19:48:31
 
-TASK_NAME="iflydata"
+TASK_NAME="wsc"
 MODEL_NAME="chinese_roberta_wwm_ext_L-12_H-768_A-12"
 CURRENT_DIR=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 export CUDA_VISIBLE_DEVICES="0"
@@ -23,16 +23,15 @@ if [ ! -d $TASK_NAME ]; then
   echo "makedir $GLUE_DATA_DIR/$TASK_NAME"
 fi
 cd $TASK_NAME
-if [ ! -f "train.txt" ] || [ ! -f "dev.txt" ] || [ ! -f "test.txt" ]; then
+if [ ! -f "train.json" ] || [ ! -f "dev.json" ] || [ ! -f "test.json" ]; then
   rm *
-  wget https://storage.googleapis.com/chineseglue/tasks/iflytek.zip
-  unzip iflytek.zip
-  rm iflytek.zip
+  wget https://storage.googleapis.com/cluebenchmark/tasks/wsc_public.zip
+  unzip wsc_public.zip
+  rm wsc_public.zip
 else
   echo "data exists"
 fi
 echo "Finish download dataset."
-
 # download model
 if [ ! -d $ROBERTA_WWM_DIR ]; then
   mkdir -p $ROBERTA_WWM_DIR
@@ -52,16 +51,35 @@ echo "Finish download model."
 # run task
 cd $CURRENT_DIR
 echo "Start running..."
-python run_classifier.py \
-  --task_name=$TASK_NAME \
-  --do_train=true \
-  --do_eval=true \
-  --data_dir=$GLUE_DATA_DIR/$TASK_NAME \
-  --vocab_file=$ROBERTA_WWM_DIR/vocab.txt \
-  --bert_config_file=$ROBERTA_WWM_DIR/bert_config.json \
-  --init_checkpoint=$ROBERTA_WWM_DIR/bert_model.ckpt \
-  --max_seq_length=128 \
-  --train_batch_size=32 \
-  --learning_rate=2e-5 \
-  --num_train_epochs=3.0 \
-  --output_dir=$CURRENT_DIR/${TASK_NAME}_output/
+if [ $1 == "predict" ]; then
+    echo "Start predict..."
+    python run_classifier.py \
+      --task_name=$TASK_NAME \
+      --do_train=false \
+      --do_eval=false \
+      --do_predict=true \
+      --data_dir=$GLUE_DATA_DIR/$TASK_NAME \
+      --vocab_file=$ROBERTA_WWM_DIR/vocab.txt \
+      --bert_config_file=$ROBERTA_WWM_DIR/bert_config.json \
+      --init_checkpoint=$ROBERTA_WWM_DIR/bert_model.ckpt \
+      --max_seq_length=128 \
+      --train_batch_size=32 \
+      --learning_rate=2e-5 \
+      --num_train_epochs=3.0 \
+      --output_dir=$CURRENT_DIR/${TASK_NAME}_output/
+else
+    python run_classifier.py \
+      --task_name=$TASK_NAME \
+      --do_train=true \
+      --do_eval=true \
+      --data_dir=$GLUE_DATA_DIR/$TASK_NAME \
+      --vocab_file=$ROBERTA_WWM_DIR/vocab.txt \
+      --bert_config_file=$ROBERTA_WWM_DIR/bert_config.json \
+      --init_checkpoint=$ROBERTA_WWM_DIR/bert_model.ckpt \
+      --max_seq_length=128 \
+      --train_batch_size=32 \
+      --learning_rate=2e-5 \
+      --num_train_epochs=3.0 \
+      --output_dir=$CURRENT_DIR/${TASK_NAME}_output/
+fi
+

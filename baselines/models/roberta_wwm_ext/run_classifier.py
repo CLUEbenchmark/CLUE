@@ -2,7 +2,7 @@
 # @Author: bo.shi
 # @Date:   2019-11-04 09:56:36
 # @Last Modified by:   bo.shi
-# @Last Modified time: 2019-11-09 23:01:09
+# @Last Modified time: 2019-12-03 19:38:48
 # coding=utf-8
 # Copyright 2018 The Google AI Language Team Authors.
 #
@@ -258,10 +258,12 @@ def convert_example_list_for_inews(ex_index, example, label_list, max_seq_length
     for num in range(extra_num):
       max_len = min((num + 1) * extra_len, len(tokens_b))
       tokens_b_sub = tokens_b[num * extra_len: max_len]
-      feature = convert_single_example_for_inews(ex_index, tokens_a, tokens_b_sub, label_map, max_seq_length, tokenizer, example)
+      feature = convert_single_example_for_inews(
+          ex_index, tokens_a, tokens_b_sub, label_map, max_seq_length, tokenizer, example)
       feature_list.append(feature)
   else:
-    feature = convert_single_example_for_inews(ex_index, tokens_a, tokens_b, label_map, max_seq_length, tokenizer, example)
+    feature = convert_single_example_for_inews(
+        ex_index, tokens_a, tokens_b, label_map, max_seq_length, tokenizer, example)
     feature_list.append(feature)
   return feature_list
 
@@ -713,8 +715,11 @@ def main(_):
       "tnews": TnewsProcessor,
       "afqmc": AFQMCProcessor,
       "iflytek": iFLYTEKDataProcessor,
+      "copa": COPAProcessor,
+      "cmnli": CMNLIProcessor,
+      "wsc": WSCProcessor,
       "csl": CslProcessor,
-      "copa":COPAProcessor,
+      "copa": COPAProcessor,
   }
 
   tokenization.validate_case_matches_checkpoint(FLAGS.do_lower_case,
@@ -871,7 +876,8 @@ def main(_):
     tf.logging.info("output_eval_file:" + output_eval_file)
     with tf.gfile.GFile(output_eval_file, "w") as writer:
       for global_step, filename in sorted(steps_and_files, key=lambda x: x[0]):
-        result = estimator.evaluate(input_fn=eval_input_fn, steps=eval_steps, checkpoint_path=filename)
+        result = estimator.evaluate(input_fn=eval_input_fn,
+                                    steps=eval_steps, checkpoint_path=filename)
 
         tf.logging.info("***** Eval results %s *****" % (filename))
         writer.write("***** Eval results %s *****\n" % (filename))
