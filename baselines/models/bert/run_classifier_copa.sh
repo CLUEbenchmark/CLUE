@@ -1,16 +1,15 @@
 #!/usr/bin/env bash
-# @Author: Li Yudong
-# @Date:   2019-11-28
+# @Author: bo.shi
+# @Date:   2019-11-04 09:56:36
 # @Last Modified by:   bo.shi
-# @Last Modified time: 2019-12-02 18:17:44
+# @Last Modified time: 2019-12-03 09:33:03
 
-TASK_NAME="cmnli"
-MODEL_NAME="albert_xlarge_zh"
+TASK_NAME="copa"
+MODEL_NAME="chinese_L-12_H-768_A-12"
 CURRENT_DIR=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 export CUDA_VISIBLE_DEVICES="0"
-export ALBERT_CONFIG_DIR=$CURRENT_DIR/albert_config
-export ALBERT_PRETRAINED_MODELS_DIR=$CURRENT_DIR/prev_trained_model
-export ALBERT_XLARGE_DIR=$ALBERT_PRETRAINED_MODELS_DIR/$MODEL_NAME
+export BERT_PRETRAINED_MODELS_DIR=$CURRENT_DIR/prev_trained_model
+export BERT_BASE_DIR=$BERT_PRETRAINED_MODELS_DIR/$MODEL_NAME
 export GLUE_DATA_DIR=$CURRENT_DIR/../../CLUEdataset
 
 # download and unzip dataset
@@ -26,47 +25,56 @@ fi
 cd $TASK_NAME
 if [ ! -f "train.json" ] || [ ! -f "dev.json" ] || [ ! -f "test.json" ]; then
   rm *
-  wget https://storage.googleapis.com/cluebenchmark/tasks/cmnli_public.zip
-  unzip cmnli_public.zip
-  rm cmnli_public.zip
+  wget https://storage.googleapis.com/cluebenchmark/tasks/copa_public.zip
+  unzip copa_public.zip
+  rm copa_public.zip
 else
   echo "data exists"
 fi
 echo "Finish download dataset."
 
 # download model
-if [ ! -d $ALBERT_XLARGE_DIR ]; then
-  mkdir -p $ALBERT_XLARGE_DIR
-  echo "makedir $ALBERT_XLARGE_DIR"
+if [ ! -d $BERT_PRETRAINED_MODELS_DIR ]; then
+  mkdir -p $BERT_PRETRAINED_MODELS_DIR
+  echo "makedir $BERT_PRETRAINED_MODELS_DIR"
 fi
-cd $ALBERT_XLARGE_DIR
-if [ ! -f "albert_config_xlarge.json" ] || [ ! -f "vocab.txt" ] || [ ! -f "checkpoint" ] || [ ! -f "albert_model.ckpt.index" ] || [ ! -f "albert_model.ckpt.meta" ] || [ ! -f "albert_model.ckpt.data-00000-of-00001" ]; then
-  rm *
-  wget https://storage.googleapis.com/albert_zh/albert_xlarge_zh_177k.zip
-  unzip albert_xlarge_zh_177k.zip
-  rm albert_xlarge_zh_177k.zip
+cd $BERT_PRETRAINED_MODELS_DIR
+if [ ! -d $MODEL_NAME ]; then
+  wget https://storage.googleapis.com/bert_models/2018_11_03/chinese_L-12_H-768_A-12.zip
+  unzip chinese_L-12_H-768_A-12.zip
+  rm chinese_L-12_H-768_A-12.zip
 else
-  echo "model exists"
+  cd $MODEL_NAME
+  if [ ! -f "bert_config.json" ] || [ ! -f "vocab.txt" ] || [ ! -f "bert_model.ckpt.index" ] || [ ! -f "bert_model.ckpt.meta" ] || [ ! -f "bert_model.ckpt.data-00000-of-00001" ]; then
+    cd ..
+    rm -rf $MODEL_NAME
+    wget https://storage.googleapis.com/bert_models/2018_11_03/chinese_L-12_H-768_A-12.zip
+    unzip chinese_L-12_H-768_A-12.zip
+    rm chinese_L-12_H-768_A-12.zip
+  else
+    echo "model exists"
+  fi
 fi
 echo "Finish download model."
 
 # run task
 cd $CURRENT_DIR
 echo "Start running..."
-if [ ! -n "$1" ] || [ $1 == "predict" ]; then
+if [ $1 == "predict" ]; then
+    echo "Start predict..."
     python run_classifier.py \
       --task_name=$TASK_NAME \
       --do_train=false \
       --do_eval=false \
       --do_predict=true \
       --data_dir=$GLUE_DATA_DIR/$TASK_NAME \
-      --vocab_file=$ALBERT_XLARGE_DIR/vocab.txt \
-      --bert_config_file=$ALBERT_XLARGE_DIR/albert_config_xlarge.json \
-      --init_checkpoint=$ALBERT_XLARGE_DIR/albert_model.ckpt \
+      --vocab_file=$BERT_BASE_DIR/vocab.txt \
+      --bert_config_file=$BERT_BASE_DIR/bert_config.json \
+      --init_checkpoint=$BERT_BASE_DIR/bert_model.ckpt \
       --max_seq_length=128 \
-      --train_batch_size=16 \
-      --learning_rate=3e-5 \
-      --num_train_epochs=2.0 \
+      --train_batch_size=32 \
+      --learning_rate=2e-5 \
+      --num_train_epochs=3.0 \
       --output_dir=$CURRENT_DIR/${TASK_NAME}_output/
 else
     python run_classifier.py \
@@ -74,12 +82,14 @@ else
       --do_train=true \
       --do_eval=true \
       --data_dir=$GLUE_DATA_DIR/$TASK_NAME \
-      --vocab_file=$ALBERT_XLARGE_DIR/vocab.txt \
-      --bert_config_file=$ALBERT_XLARGE_DIR/albert_config_xlarge.json \
-      --init_checkpoint=$ALBERT_XLARGE_DIR/albert_model.ckpt \
+      --vocab_file=$BERT_BASE_DIR/vocab.txt \
+      --bert_config_file=$BERT_BASE_DIR/bert_config.json \
+      --init_checkpoint=$BERT_BASE_DIR/bert_model.ckpt \
       --max_seq_length=128 \
-      --train_batch_size=16 \
-      --learning_rate=3e-5 \
-      --num_train_epochs=2.0 \
+      --train_batch_size=32 \
+      --learning_rate=2e-5 \
+      --num_train_epochs=3.0 \
       --output_dir=$CURRENT_DIR/${TASK_NAME}_output/
 fi
+
+

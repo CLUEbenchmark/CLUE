@@ -2,7 +2,7 @@
 # @Author: bo.shi
 # @Date:   2019-11-04 09:56:36
 # @Last Modified by:   bo.shi
-# @Last Modified time: 2019-12-02 18:09:37
+# @Last Modified time: 2019-12-02 18:44:07
 
 TASK_NAME="cmnli"
 MODEL_NAME="chinese_L-12_H-768_A-12"
