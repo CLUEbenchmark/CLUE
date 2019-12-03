@@ -388,7 +388,7 @@ class CMNLIProcessor(DataProcessor):
       guid = "%s-%s" % (set_type, index)
       text_a = convert_to_unicode(line_obj["sentence1"])
       text_b = convert_to_unicode(line_obj["sentence2"])
-      label = convert_to_unicode(line_obj["gold_label"]) if set_type != 'test' else 'neutral'
+      label = convert_to_unicode(line_obj["label"]) if set_type != 'test' else 'neutral'
 
       if label != "-":
         examples.append(InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
