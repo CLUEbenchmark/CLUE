@@ -2,7 +2,7 @@
 # @Author: bo.shi
 # @Date:   2019-11-04 09:56:36
 # @Last Modified by:   bo.shi
-# @Last Modified time: 2019-12-02 11:21:55
+# @Last Modified time: 2019-12-03 14:27:20
 
 TASK_NAME="copa"
 MODEL_NAME="baidu_ernie"
@@ -52,17 +52,34 @@ echo "Finish download model."
 # run task
 cd $CURRENT_DIR
 echo "Start running..."
-python run_classifier.py \
-  --task_name=$TASK_NAME \
-  --do_train=true \
-  --do_eval=true \
-  --do_predict=true \
-  --data_dir=$GLUE_DATA_DIR/$TASK_NAME \
-  --vocab_file=$ERNIE_DIR/vocab.txt \
-  --bert_config_file=$ERNIE_DIR/bert_config.json \
-  --init_checkpoint=$ERNIE_DIR/bert_model.ckpt \
-  --max_seq_length=512 \
-  --train_batch_size=12 \
-  --learning_rate=1e-5 \
-  --num_train_epochs=4.0 \
-  --output_dir=$CURRENT_DIR/${TASK_NAME}_output/
+if [ $1 == "predict" ]; then
+    echo "Start predict..."
+    python run_classifier.py \
+      --task_name=$TASK_NAME \
+      --do_train=false \
+      --do_eval=false \
+      --do_predict=true \
+      --data_dir=$GLUE_DATA_DIR/$TASK_NAME \
+      --vocab_file=$ERNIE_DIR/vocab.txt \
+      --bert_config_file=$ERNIE_DIR/bert_config.json \
+      --init_checkpoint=$ERNIE_DIR/bert_model.ckpt \
+      --max_seq_length=128 \
+      --train_batch_size=32 \
+      --learning_rate=2e-5 \
+      --num_train_epochs=3.0 \
+      --output_dir=$CURRENT_DIR/${TASK_NAME}_output/
+else
+    python run_classifier.py \
+      --task_name=$TASK_NAME \
+      --do_train=true \
+      --do_eval=true \
+      --data_dir=$GLUE_DATA_DIR/$TASK_NAME \
+      --vocab_file=$ERNIE_DIR/vocab.txt \
+      --bert_config_file=$ERNIE_DIR/bert_config.json \
+      --init_checkpoint=$ERNIE_DIR/bert_model.ckpt \
+      --max_seq_length=128 \
+      --train_batch_size=32 \
+      --learning_rate=2e-5 \
+      --num_train_epochs=3.0 \
+      --output_dir=$CURRENT_DIR/${TASK_NAME}_output/
+fi
