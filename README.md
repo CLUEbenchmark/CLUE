@@ -442,17 +442,17 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 | RoBERTa-wwm-large-ext | **62.75** |  **62.98**  | batch=24, length=128, epoch=3 lr=2e-5 |
 
 #### CMNLI 中文自然语言推理 Chinese Multi-Genre NLI (Accuracy)：
-| 模型 | matched | mismatched |  训练参数 |
+| 模型 | 开发集 (dev %) | 测试集（test %) |  训练参数 |
 | :----:| :----: | :----: | :----: |
-| BERT-base	| 79.39 | 79.76 | batch=32, length=128, epoch=3 lr=2e-5 |
-| BERT-wwm-ext-base	|81.41 |80.67|	batch=32, length=128, epoch=3 lr=2e-5 |
-| ERNIE-base	|79.65 | 80.70 | batch=32, length=128, epoch=3 lr=2e-5 |
+| BERT-base	| 79.5 | 79.69 | batch=64, length=128, epoch=2 lr=3e-5 |
+| BERT-wwm-ext-base	| 80.92 |80.42|	batch=64, length=128, epoch=2 lr=3e-5 |
+| ERNIE-base	| - | - | batch=64, length=128, epoch=2 lr=3e-5 |
 | ALBERT-xxlarge	|- | - | - |
-| ALBERT-tiny	|72.71 | 72.72 | batch=32, length=128, epoch=3 lr=2e-5 |
-| RoBERTa-large	| 82.11 | 81.73 | batch=16, length=128, epoch=3 lr=2e-5 |
-| xlnet-mid	|78.15 |76.93 | batch=16, length=128, epoch=3 lr=2e-5 |
-| RoBERTa-wwm-ext	|81.09 | 81.38 | batch=32, length=128, epoch=3 lr=2e-5  |
-| RoBERTa-wwm-large-ext	|***83.4*** | ***83.42*** | batch=32, length=128, epoch=3 lr=2e-5  |
+| ALBERT-tiny	| 70.26 | 70.61 | batch=64, length=128, epoch=2 lr=3e-5 |
+| RoBERTa-large	| 82.40 | 81.70 | batch=64, length=128, epoch=2 lr=3e-5 |
+| xlnet-mid	| 82.21 | 81.25 | batch=64, length=128, epoch=2 lr=3e-5 |
+| RoBERTa-wwm-ext	| 80.70 | 80.51 | batch=64, length=128, epoch=2 lr=3e-5  |
+| RoBERTa-wwm-large-ext	|***83.20*** | ***82.12*** | batch=64, length=128, epoch=2 lr=3e-5  |
 
 注：ALBERT-xlarge，在XNLI任务上训练暂时还存在有问题
 
