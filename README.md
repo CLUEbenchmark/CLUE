@@ -94,29 +94,30 @@ CLUE benchmark的定位 Vision
  <a href="https://storage.googleapis.com/cluebenchmark/tasks/clue_submit_examples.zip">提交样例下载</a>
 
 ##### 1. AFQMC 蚂蚁金融语义相似度 Ant Financial  Question Matching Corpus
-
-        数据量：训练集（34334）验证集（4316）测试集（3861）
-        例子：14870	蚂蚁借呗等额还款可以换成先息后本吗	借呗有先息到期还本吗	0
-        每行为一条数据， 以\tab分割的4个字段，从前往后分别是 ID, 第一个句子，第二个句子，类别
-
-   <a href="https://storage.googleapis.com/cluebenchmark/tasks/afqmc_public.zip" > AFQMC'数据集下载</a>
+```
+     数据量：训练集（34334）验证集（4316）测试集（3861）
+     例子：
+     {"sentence1": "双十一花呗提额在哪", "sentence2": "里可以提花呗额度", "label": "0"}
+     每一条数据有三个属性，从前往后分别是 句子1，句子2，句子相似度标签。其中label标签，1 表示sentence1和sentence2的含义类似，0表示两个句子的含义不同。
+```  
+  <a href="https://storage.googleapis.com/cluebenchmark/tasks/afqmc_public.zip" > AFQMC'数据集下载</a>
 
 ##### 2.TNEWS' 今日头条中文新闻（短文本）分类 Short Text Classificaiton for News
-
-        数据量：训练集(266,000)，验证集(57,000)，测试集(57,000)
-        例子：
-        6552431613437805063_!_102_!_news_entertainment_!_谢娜为李浩菲澄清网络谣言，之后她的两个行为给自己加分_!_佟丽娅,网络谣言,快乐大本营,李浩菲,谢娜,观众们
-        每行为一条数据，以_!_分割的个字段，从前往后分别是 新闻ID，分类code，分类名称，新闻字符串（仅含标题），新闻关键词
-
+```
+     数据量：训练集(266,000)，验证集(57,000)，测试集(57,000)
+     例子：
+     {"label": "102", "label_des": "news_entertainment", "sentence": "江疏影甜甜圈自拍，迷之角度竟这么好看，美吸引一切事物"}
+     每一条数据有三个属性，从前往后分别是 分类ID，分类名称，新闻字符串（仅含标题）。
+```
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/tnews_public.zip" > TNEWS'数据集下载</a>
 
 ##### 3.IFLYTEK' 长文本分类 Long Text classification
 该数据集共有1.7万多条关于app应用描述的长文本标注数据，包含和日常生活相关的各类应用主题，共119个类别："打车":0,"地图导航":1,"免费WIFI":2,"租车":3,….,"女性":115,"经营":116,"收款":117,"其他":118(分别用0-118表示)。
 ```
     数据量：训练集(12,133)，验证集(2,599)，测试集(2,600)
-    例子： 
-17_!_休闲益智_!_玩家需控制一只酷似神龙大侠的熊猫人在科技感十足的未来城市中穿越打拼。感觉很山寨功夫熊猫，自由度非常高，可以做很多你想做的事情......
-每行为一条数据，以_!_分割字段，从前往后分别是 类别ID，类别名称，文本内容。
+    例子：
+    {"label": "110", "label_des": "社区超市", "sentence": "朴朴快送超市创立于2016年，专注于打造移动端30分钟即时配送一站式购物平台，商品品类包含水果、蔬菜、肉禽蛋奶、海鲜水产、粮油调味、酒水饮料、休闲食品、日用品、外卖等。朴朴公司希望能以全新的商业模式，更高效快捷的仓储配送模式，致力于成为更快、更好、更多、更省的在线零售平台，带给消费者更好的消费体验，同时推动中国食品安全进程，成为一家让社会尊敬的互联网公司。,朴朴一下，又好又快,1.配送时间提示更加清晰友好2.保障用户隐私的一些优化3.其他提高使用体验的调整4.修复了一些已知bug"}
+    每一条数据有三个属性，从前往后分别是 类别ID，类别名称，文本内容。
 ```
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/iflytek_public.zip" > IFLYTEK'数据集下载</a>
 
@@ -128,6 +129,7 @@ CMNLI数据由两部分组成：XNLI和MNLI。数据来自于fiction，telephone
     数据量：train(391,782)，matched(12,426)，mismatched(13,880)
     例子：
     {"sentence1": "新的权利已经足够好了", "sentence2": "每个人都很喜欢最新的福利", "label": "neutral"}
+    每一条数据有三个属性，从前往后分别是 句子1，句子2，蕴含关系标签。其中label标签有三种：neutral，entailment，contradiction。
 ```
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/cmnli_public.zip" > CMNLI数据集下载</a>
 
@@ -155,10 +157,13 @@ CMNLI数据由两部分组成：XNLI和MNLI。数据来自于fiction，telephone
     {"span2_index": 28, 
      "span1_index": 0, 
      "span1_text": "马克", 
-     "span2_text": "他"}, 
+     "span2_text": "他"
+    }, 
      "idx": 0, 
      "label": "false", 
-     "text": "马克告诉皮特许多关于他自己的谎言，皮特也把这些谎言写进了他的书里。他应该多怀疑。"}
+     "text": "马克告诉皮特许多关于他自己的谎言，皮特也把这些谎言写进了他的书里。他应该多怀疑。"
+}
+    其中label标签，true表示指代一致，false表示指代不一致。
 ```
 
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/wsc_public.zip" > WSC数据集下载</a>
@@ -170,8 +175,9 @@ CMNLI数据由两部分组成：XNLI和MNLI。数据来自于fiction，telephone
 ```
     数据量：训练集(20,000)，验证集(3,000)，测试集(3,000)
     例子： 
-    通过研究Windows环境下USB设备的工作原理，应用操作系统与USB设备驱动通信获取设备描述和设备ID等信息的机制，提出了一种实用有效的USB设备监控技术。实现了在开机前后两种情况下对USB设备的实时监控，有效地避免了其他监控技术的漏洞。实验结果证明，该方法是可靠有效的。	设备描述 设备ID Windows环境 安全监控	1
-    通过研究Windows环境下USB设备的工作原理，应用操作系统与USB设备驱动通信获取设备描述和设备ID等信息的机制，提出了一种实用有效的USB设备监控技术。实现了在开机前后两种情况下对USB设备的实时监控，有效地避免了其他监控技术的漏洞。实验结果证明，该方法是可靠有效的。	设备 技术 安全监控 设备描述	    0
+    {"id": 1, "abst": "为解决传统均匀FFT波束形成算法引起的3维声呐成像分辨率降低的问题,该文提出分区域FFT波束形成算法.远场条件下,以保证成像分辨率为约束条件,以划分数量最少为目标,采用遗传算法作为优化手段将成像区域划分为多个区域.在每个区域内选取一个波束方向,获得每一个接收阵元收到该方向回波时的解调输出,以此为原始数据在该区域内进行传统均匀FFT波束形成.对FFT计算过程进行优化,降低新算法的计算量,使其满足3维成像声呐实时性的要求.仿真与实验结果表明,采用分区域FFT波束形成算法的成像分辨率较传统均匀FFT波束形成算法有显著提高,且满足实时性要求.", "keyword": ["水声学", "FFT", "波束形成", "3维成像声呐"], "label": "1"}
+    每一条数据有四个属性，从前往后分别是 数据ID，论文摘要，关键词，真假标签。
+    
 ```
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/csl_public.zip" > CSL数据集下载</a>
 
