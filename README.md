@@ -464,7 +464,7 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 |   BERT-wwm-ext-base   |     62.00      |      63.20      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
 |      ERNIE-base       |     69.00      |    **73.40**    | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
 |     RoBERTa-large     |     52.00      |      57.00      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|       XLNet-mid       |                |      55.40      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|       XLNet-mid       |     56.00      |      55.40      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
 |    RoBERTa-wwm-ext    |     59.00      |      62.60      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
 | RoBERTa-wwm-large-ext |     61.00      |      64.60      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
 
