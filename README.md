@@ -129,7 +129,7 @@ CMNLI数据由两部分组成：XNLI和MNLI。数据来自于fiction，telephone
 ```
     数据量：train(391,782)，matched(12,426)，mismatched(13,880)
     例子：
-    {"sentence1": "新的权利已经足够好了", "sentence2": "每个人都很喜欢最新的福利", "gold_label": "neutral"}
+    {"sentence1": "新的权利已经足够好了", "sentence2": "每个人都很喜欢最新的福利", "label": "neutral"}
 ```
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/cmnli_public.zip" > CMNLI数据集下载</a>
 
