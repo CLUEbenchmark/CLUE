@@ -444,7 +444,7 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 #### CMNLI 中文自然语言推理 Chinese Multi-Genre NLI (Accuracy)：
 | 模型 | 开发集 (dev %) | 测试集（test %) |  训练参数 |
 | :----:| :----: | :----: | :----: |
-| BERT-base	| 79.5 | 79.69 | batch=64, length=128, epoch=2 lr=3e-5 |
+| BERT-base	| 79.47 | 79.69 | batch=64, length=128, epoch=2 lr=3e-5 |
 | BERT-wwm-ext-base	| 80.92 |80.42|	batch=64, length=128, epoch=2 lr=3e-5 |
 | ERNIE-base	| - | - | batch=64, length=128, epoch=2 lr=3e-5 |
 | ALBERT-xxlarge	|- | - | - |
