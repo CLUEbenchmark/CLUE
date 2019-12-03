@@ -7,11 +7,11 @@ import torch
 from torch.utils.data import TensorDataset, DataLoader, SequentialSampler
 from tqdm import tqdm
 
-from .preprocess.CHID_preprocess import RawResult, get_final_predictions, InputFeatures, write_predictions, \
-    generate_input
-from .pytorch_modeling import ALBertConfig, ALBertForMultipleChoice
-from .pytorch_modeling import BertConfig, BertForMultipleChoice
-from .tools.offical_tokenization import BertTokenizer
+from baselines.models_pytorch.mrc_pytorch.preprocess.CHID_preprocess import RawResult, get_final_predictions, \
+    InputFeatures, write_predictions, generate_input
+from baselines.models_pytorch.mrc_pytorch.pytorch_modeling import ALBertConfig, ALBertForMultipleChoice
+from baselines.models_pytorch.mrc_pytorch.pytorch_modeling import BertConfig, BertForMultipleChoice
+from baselines.models_pytorch.mrc_pytorch.tools.official_tokenization import BertTokenizer
 from glob import glob
 
 

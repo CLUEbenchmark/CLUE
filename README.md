@@ -76,7 +76,11 @@ DRCD、CMRC2018: 繁体、简体抽取式阅读理解(F1, EM)；CHID：成语多
          具体参数和使用方法可见对应的run_mrc_xxx.sh
     ​    
 
-数据集下载见本项目最后部分 
+测评系统 Leaderboard
+---------------------------------------------------------------------
+测评入口：<a href="http://www.CLUEbenchmark.com">我要提交</a>
+<img src="https://github.com/CLUEbenchmark/CLUE/blob/master/resources/img/CLUEbenchmark.jpg"  width="90%" height="45%" />
+
 
 CLUE benchmark的定位 Vision
 ---------------------------------------------------------------------
@@ -537,11 +541,6 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 | xlnet-mid	|83.76 | 83.47 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
 | RoBERTa-wwm-ext	|83.78 | 83.62 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
 | RoBERTa-wwm-large-ext	|***85.81*** | ***85.37*** | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
-
-
-#### 开放测评提交入口：<a href="http://106.13.187.75:8003/">我要提交</a>
-
-<img src="https://github.com/chineseGLUE/chineseGLUE/blob/master/resources/img/chineseGLUE_landing.jpeg"  width="80%" height="40%" />
 
 
 语料库：语言建模、预训练或生成型任务 Corpus for Langauge Modelling, Pre-training, Generating tasks
