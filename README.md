@@ -15,7 +15,7 @@ Language Understanding Evaluation benchmark for Chinese: datasets, baselines, pr
 | :----:| :----: | :----: | :----: |:----: |:----: |:----: |:----: |:----: |:----: |
 | <a href="https://github.com/google-research/bert">BERT-base</a>        | 69.70% | 108M |  73.70% | 56.58%  | 60.29% | 79.69% | 65.20% | 62.0% | 80.36% |
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">BERT-wwm-ext</a>      | 70.47% | 108M  | 74.07% | 56.84%  | 59.43% | 80.42% | 63.20% | 61.1%  | 80.63% |
-| <a href="https://github.com/PaddlePaddle/ERNIE">ERNIE-base</a>         | 70.55% | 108M  | 73.83% | 58.33% | 58.96% |  | **73.40%**  | 60.8%  | 79.1%      |
+| <a href="https://github.com/PaddlePaddle/ERNIE">ERNIE-base</a>         | 70.55% | 108M  | 73.83% | 58.33% | 58.96% | - | **73.40%**  | 60.8%  | 79.1%      |
 | <a href="https://github.com/brightmart/roberta_zh">RoBERTa-large</a>      | 72.63% | 334M  | 74.02% | 57.86%  | 62.55% | 81.70% | 57.00% | 72.7%   | 81.36%       |
 | <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>  | 68.65% | 200M | 70.50% | 56.24% | 57.85% | 81.25% | 55.40% | 64.4%   | 81.26%     |
 | <a href="https://github.com/brightmart/albert_zh">ALBERT-xxlarge</a>      | - | 59M   | -  | - | - | - | - | - | -  |
@@ -451,7 +451,7 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 | :----:| :----: | :----: | :----: |
 | BERT-base	| 79.47 | 79.69 | batch=64, length=128, epoch=2 lr=3e-5 |
 | BERT-wwm-ext-base	| 80.92 |80.42|	batch=64, length=128, epoch=2 lr=3e-5 |
-| ERNIE-base	| - | - | batch=64, length=128, epoch=2 lr=3e-5 |
+| ERNIE-base	| 80.37 | - | batch=64, length=128, epoch=2 lr=3e-5 |
 | ALBERT-xxlarge	|- | - | - |
 | ALBERT-tiny	| 70.26 | 70.61 | batch=64, length=128, epoch=2 lr=3e-5 |
 | RoBERTa-large	| 82.40 | 81.70 | batch=64, length=128, epoch=2 lr=3e-5 |
