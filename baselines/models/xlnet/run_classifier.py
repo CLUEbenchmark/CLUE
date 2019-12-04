@@ -2,7 +2,7 @@
 # @Author: bo.shi
 # @Date:   2019-11-04 09:56:36
 # @Last Modified by:   bo.shi
-# @Last Modified time: 2019-12-03 20:48:23
+# @Last Modified time: 2019-12-04 14:39:31
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
@@ -873,36 +873,78 @@ def main(_):
         is_training=False,
         drop_remainder=False)
 
+    result = estimator.predict(input_fn=predict_input_fn)
+    index2label_map = {}
+    for (i, label) in enumerate(label_list):
+      index2label_map[i] = label
+    output_predict_file_label_name = task_name + "_predict.json"
+    output_predict_file_label = os.path.join(FLAGS.output_dir, output_predict_file_label_name)
+    output_predict_file = os.path.join(FLAGS.output_dir, "test_results.tsv")
+    with tf.gfile.GFile(output_predict_file_label, "w") as writer_label:
+      with tf.gfile.GFile(output_predict_file, "w") as writer:
+        num_written_lines = 0
+        tf.logging.info("***** Predict results *****")
+        for (i, prediction) in enumerate(result):
+          probabilities = prediction["probabilities"]
+          label_index = probabilities.argmax(0)
+          if i >= num_actual_predict_examples:
+            break
+          output_line = "\t".join(
+              str(class_probability)
+              for class_probability in probabilities) + "\n"
+          test_label_dict = {}
+          test_label_dict["id"] = i
+          test_label_dict["label"] = str(index2label_map[label_index])
+          if task_name == "tnews":
+            test_label_dict["label_desc"] = ""
+          writer.write(output_line)
+          json.dump(test_label_dict, writer_label)
+          writer_label.write("\n")
+          num_written_lines += 1
+    assert num_written_lines == num_actual_predict_examples
+
+    output_predict_file_label_name = task_name + "_predict.json"
+    output_predict_file_label = os.path.join(FLAGS.output_dir, output_predict_file_label_name)
     predict_results = []
-    with tf.gfile.Open(os.path.join(predict_dir, "{}.tsv".format(
-            task_name)), "w") as fout:
-      fout.write("index\tprediction\n")
+    with tf.gfile.GFile(output_predict_file_label, "w") as writer_label:
+      with tf.gfile.Open(os.path.join(predict_dir, "{}.tsv".format(
+              task_name)), "w") as fout:
+        fout.write("index\tprediction\n")
 
-      for pred_cnt, result in enumerate(estimator.predict(
-              input_fn=pred_input_fn,
-              yield_single_examples=True,
-              checkpoint_path=FLAGS.predict_ckpt)):
-        if pred_cnt % 1000 == 0:
-          tf.logging.info("Predicting submission for example: {}".format(
-              pred_cnt))
+        for pred_cnt, result in enumerate(estimator.predict(
+                input_fn=pred_input_fn,
+                yield_single_examples=True,
+                checkpoint_path=FLAGS.predict_ckpt)):
+          if pred_cnt % 1000 == 0:
+            tf.logging.info("Predicting submission for example: {}".format(
+                pred_cnt))
 
-        logits = [float(x) for x in result["logits"].flat]
-        predict_results.append(logits)
+          logits = [float(x) for x in result["logits"].flat]
+          predict_results.append(logits)
 
-        if len(logits) == 1:
-          label_out = logits[0]
-        elif len(logits) == 2:
-          if logits[1] - logits[0] > FLAGS.predict_threshold:
-            label_out = label_list[1]
+          if len(logits) == 1:
+            label_out = logits[0]
+          elif len(logits) == 2:
+            if logits[1] - logits[0] > FLAGS.predict_threshold:
+              label_out = label_list[1]
+            else:
+              label_out = label_list[0]
+          elif len(logits) > 2:
+            max_index = np.argmax(np.array(logits, dtype=np.float32))
+            label_out = label_list[max_index]
           else:
-            label_out = label_list[0]
-        elif len(logits) > 2:
-          max_index = np.argmax(np.array(logits, dtype=np.float32))
-          label_out = label_list[max_index]
-        else:
-          raise NotImplementedError
+            raise NotImplementedError
 
-        fout.write("{}\t{}\n".format(pred_cnt, label_out))
+          fout.write("{}\t{}\n".format(pred_cnt, label_out))
+
+          test_label_dict = {}
+          test_label_dict["id"] = pred_cnt
+          test_label_dict["label"] = str(label_out)
+          if task_name == "tnews":
+            test_label_dict["label_desc"] = ""
+          writer.write(output_line)
+          json.dump(test_label_dict, writer_label)
+          writer_label.write("\n")
 
     predict_json_path = os.path.join(predict_dir, "{}.logits.json".format(
         task_name))
