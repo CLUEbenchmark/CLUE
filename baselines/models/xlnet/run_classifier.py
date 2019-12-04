@@ -2,7 +2,7 @@
 # @Author: bo.shi
 # @Date:   2019-11-04 09:56:36
 # @Last Modified by:   bo.shi
-# @Last Modified time: 2019-11-10 13:46:50
+# @Last Modified time: 2019-12-03 20:48:23
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
@@ -381,10 +381,12 @@ def convert_example_list_for_inews(ex_index, example, label_list, max_seq_length
     for num in range(extra_num):
       max_len = min((num + 1) * extra_len, len(tokens_b))
       tokens_b_sub = tokens_b[num * extra_len: max_len]
-      feature = convert_single_example_for_inews(ex_index, tokens_a, tokens_b_sub, label_map, max_seq_length, tokenizer, example)
+      feature = convert_single_example_for_inews(
+          ex_index, tokens_a, tokens_b_sub, label_map, max_seq_length, tokenizer, example)
       feature_list.append(feature)
   else:
-    feature = convert_single_example_for_inews(ex_index, tokens_a, tokens_b, label_map, max_seq_length, tokenizer, example)
+    feature = convert_single_example_for_inews(
+        ex_index, tokens_a, tokens_b, label_map, max_seq_length, tokenizer, example)
     feature_list.append(feature)
   return feature_list
 
@@ -685,8 +687,11 @@ def main(_):
       "tnews": TnewsProcessor,
       "afqmc": AFQMCProcessor,
       "iflytek": iFLYTEKDataProcessor,
+      "copa": COPAProcessor,
+      "cmnli": CMNLIProcessor,
+      "wsc": WSCProcessor,
       "csl": CslProcessor,
-      "copa":COPAProcessor,
+      "copa": COPAProcessor,
   }
 
   if not FLAGS.do_train and not FLAGS.do_eval and not FLAGS.do_predict:

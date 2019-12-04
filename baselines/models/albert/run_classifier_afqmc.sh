@@ -2,7 +2,7 @@
 # @Author: Li Yudong
 # @Date:   2019-11-28
 # @Last Modified by:   bo.shi
-# @Last Modified time: 2019-12-02 17:56:28
+# @Last Modified time: 2019-12-04 10:27:32
 
 TASK_NAME="afqmc"
 MODEL_NAME="albert_xlarge_zh"
@@ -53,7 +53,7 @@ echo "Finish download model."
 # run task
 cd $CURRENT_DIR
 echo "Start running..."
-if [ ! -n "$1" ] || [ $1 == "predict" ]; then
+if [ $1 == "predict" ]; then
     python run_classifier.py \
       --task_name=$TASK_NAME \
       --do_train=false \

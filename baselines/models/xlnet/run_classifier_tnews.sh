@@ -2,7 +2,7 @@
 # @Author: bo.shi
 # @Date:   2019-11-04 09:56:36
 # @Last Modified by:   bo.shi
-# @Last Modified time: 2019-12-02 11:42:45
+# @Last Modified time: 2019-12-04 10:37:30
 
 TASK_NAME="tnews"
 MODEL_NAME="chinese_xlnet_mid_L-24_H-768_A-12"
@@ -26,11 +26,11 @@ if [ ! -d $TASK_NAME ]; then
   echo "makedir $GLUE_DATA_DIR/$TASK_NAME"
 fi
 cd $TASK_NAME
-if [ ! -f "train.txt" ] || [ ! -f "dev.txt" ] || [ ! -f "test.txt" ]; then
+if [ ! -f "train.json" ] || [ ! -f "dev.json" ] || [ ! -f "test.json" ]; then
   rm *
-  wget https://storage.googleapis.com/chineseglue/tasks/tnews.zip
-  unzip tnews.zip
-  rm tnews.zip
+  wget https://storage.googleapis.com/cluebenchmark/tasks/tnews_public.zip
+  unzip tnews_public.zip
+  rm tnews_public.zip
 else
   echo "data exists"
 fi
@@ -55,24 +55,50 @@ echo "Finish download model."
 # run task
 cd $CURRENT_DIR
 echo "Start running..."
-python run_classifier.py \
-    --spiece_model_file=${XLNET_DIR}/spiece.model \
-    --model_config_path=${XLNET_DIR}/xlnet_config.json \
-    --init_checkpoint=${XLNET_DIR}/xlnet_model.ckpt \
-    --task_name=$TASK_NAME \
-    --do_train=True \
-    --do_eval=True \
-    --eval_all_ckpt=False \
-    --uncased=False \
-    --data_dir=$GLUE_DATA_DIR/$TASK_NAME \
-    --output_dir=$CURRENT_DIR/${TASK_NAME}_output/ \
-    --model_dir=$CURRENT_DIR/${TASK_NAME}_output/ \
-    --train_batch_size=32 \
-    --eval_batch_size=8 \
-    --num_hosts=1 \
-    --num_core_per_host=1 \
-    --num_train_epochs=3 \
-    --max_seq_length=128 \
-    --learning_rate=2e-5 \
-    --save_steps=1000 \
-    --use_tpu=False
+if [ $1 == "predict" ]; then
+  echo "Start predict..."
+  python run_classifier.py \
+      --spiece_model_file=${XLNET_DIR}/spiece.model \
+      --model_config_path=${XLNET_DIR}/xlnet_config.json \
+      --init_checkpoint=${XLNET_DIR}/xlnet_model.ckpt \
+      --task_name=$TASK_NAME \
+      --do_train=False \
+      --do_eval=False \
+      --do_predict=True \
+      --eval_all_ckpt=False \
+      --uncased=False \
+      --data_dir=$GLUE_DATA_DIR/$TASK_NAME \
+      --output_dir=$CURRENT_DIR/${TASK_NAME}_output/ \
+      --model_dir=$CURRENT_DIR/${TASK_NAME}_output/ \
+      --train_batch_size=32 \
+      --eval_batch_size=8 \
+      --num_hosts=1 \
+      --num_core_per_host=1 \
+      --num_train_epochs=3 \
+      --max_seq_length=128 \
+      --learning_rate=2e-5 \
+      --save_steps=1000 \
+      --use_tpu=False
+else
+  python run_classifier.py \
+      --spiece_model_file=${XLNET_DIR}/spiece.model \
+      --model_config_path=${XLNET_DIR}/xlnet_config.json \
+      --init_checkpoint=${XLNET_DIR}/xlnet_model.ckpt \
+      --task_name=$TASK_NAME \
+      --do_train=True \
+      --do_eval=True \
+      --eval_all_ckpt=False \
+      --uncased=False \
+      --data_dir=$GLUE_DATA_DIR/$TASK_NAME \
+      --output_dir=$CURRENT_DIR/${TASK_NAME}_output/ \
+      --model_dir=$CURRENT_DIR/${TASK_NAME}_output/ \
+      --train_batch_size=32 \
+      --eval_batch_size=8 \
+      --num_hosts=1 \
+      --num_core_per_host=1 \
+      --num_train_epochs=3 \
+      --max_seq_length=128 \
+      --learning_rate=2e-5 \
+      --save_steps=1000 \
+      --use_tpu=False
+fi

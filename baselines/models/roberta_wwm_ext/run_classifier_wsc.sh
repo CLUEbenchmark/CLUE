@@ -2,7 +2,7 @@
 # @Author: bo.shi
 # @Date:   2019-11-04 09:56:36
 # @Last Modified by:   bo.shi
-# @Last Modified time: 2019-12-03 19:48:31
+# @Last Modified time: 2019-12-03 20:46:25
 
 TASK_NAME="wsc"
 MODEL_NAME="chinese_roberta_wwm_ext_L-12_H-768_A-12"
@@ -32,6 +32,7 @@ else
   echo "data exists"
 fi
 echo "Finish download dataset."
+
 # download model
 if [ ! -d $ROBERTA_WWM_DIR ]; then
   mkdir -p $ROBERTA_WWM_DIR

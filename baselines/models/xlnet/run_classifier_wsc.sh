@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# @Author: Li Yudong
-# @Date:   2019-11-28
+# @Author: bo.shi
+# @Date:   2019-11-04 09:56:36
 # @Last Modified by:   bo.shi
-# @Last Modified time: 2019-12-04 10:37:20
+# @Last Modified time: 2019-12-04 11:09:31
 
-TASK_NAME="csl"
+TASK_NAME="wsc"
 MODEL_NAME="chinese_xlnet_mid_L-24_H-768_A-12"
 CURRENT_DIR=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 export CUDA_VISIBLE_DEVICES="0"
@@ -26,11 +26,11 @@ if [ ! -d $TASK_NAME ]; then
   echo "makedir $GLUE_DATA_DIR/$TASK_NAME"
 fi
 cd $TASK_NAME
-if [ ! -f "train.json" ] || [ ! -f "val.json" ] || [ ! -f "test.json" ]; then
+if [ ! -f "train.json" ] || [ ! -f "dev.json" ] || [ ! -f "test.json" ]; then
   rm *
-  wget https://storage.googleapis.com/cluebenchmark/tasks/csl_public.zip
-  unzip csl_public.zip
-  rm csl_public.zip
+  wget https://storage.googleapis.com/cluebenchmark/tasks/wsc_public.zip
+  unzip wsc_public.zip
+  rm wsc_public.zip
 else
   echo "data exists"
 fi
