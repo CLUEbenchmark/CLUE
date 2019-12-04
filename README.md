@@ -61,6 +61,16 @@ DRCD、CMRC2018: 繁体、简体抽取式阅读理解(F1, EM)；CHID：成语多
        bash run_classifier_xxx.sh
        如运行 bash run_classifier_iflytek.sh 会开始iflytek任务的训练
 
+### 工具包形式使用
+
+pip install PyCLUE 
+
+cd PyCLUE/examples/classifications
+
+python3 run_clue_task.py
+
+支持10个任务、9大模型、自定义任务，见 <a href="https://github.com/CLUEbenchmark/PyCLUE">PyCLUE toolkit</a>
+
 ### 生成提交文件
 
     分类任务: 
