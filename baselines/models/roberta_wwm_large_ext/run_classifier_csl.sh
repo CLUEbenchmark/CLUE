@@ -2,7 +2,7 @@
 # @Author: bo.shi
 # @Date:   2019-11-04 09:56:36
 # @Last Modified by:   bo.shi
-# @Last Modified time: 2019-12-03 20:44:36
+# @Last Modified time: 2019-12-04 11:30:23
 
 TASK_NAME="csl"
 MODEL_NAME="chinese_roberta_wwm_large_ext_L-24_H-1024_A-16"
@@ -23,7 +23,7 @@ if [ ! -d $TASK_NAME ]; then
   echo "makedir $GLUE_DATA_DIR/$TASK_NAME"
 fi
 cd $TASK_NAME
-if [ ! -f "train.json" ] || [ ! -f "val.json" ] || [ ! -f "test.json" ]; then
+if [ ! -f "train.json" ] || [ ! -f "dev.json" ] || [ ! -f "test.json" ]; then
   rm *
   wget https://storage.googleapis.com/cluebenchmark/tasks/csl_public.zip
   unzip csl_public.zip
