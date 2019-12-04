@@ -410,7 +410,7 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 #### AFQMC 蚂蚁语义相似度 Ant Semantic Similarity (Accuracy)：
 |         模型          | 开发集（dev) | 测试集（test) |              训练参数              |
 | :-------------------: | :----------: | :-----------: | :--------------------------------: |
-|     ALBERT-xxlarge     |    -     |     -   | batch_size=16, length=128, epoch=3 lr=2e-5|
+|     ALBERT-xxlarge     |    -     |     -   |  -  |
 |      ALBERT-tiny      |    69.13%     |    69.92%    | batch_size=16, length=128, epoch=3 lr=2e-5 |
 |       BERT-base       |    74.16%     |     73.70%  | batch_size=16, length=128, epoch=3 lr=2e-5 |
 |   BERT-wwm-ext-base   |    73.74%     |      74.07%   | batch_size=16, length=128, epoch=3 lr=2e-5 |
@@ -423,7 +423,7 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 #### TNEWS' 头条新闻分类 Toutiao News Classification (Accuracy)：
 |         模型          | 开发集（dev) | 测试集（test) |              训练参数              |
 | :-------------------: | :----------: | :-----------: | :--------------------------------: |
-|     ALBERT-xxlarge     |    -     |         | batch_size=16, length=128, epoch=3 lr=2e-5|
+|     ALBERT-xxlarge     |    -     |     -    |     -  |
 |      ALBERT-tiny      |    53.55%     |       53.35%   | batch_size=16, length=128, epoch=3 lr=2e-5|
 |       BERT-base       |    56.09%     |     56.58%    | batch_size=16, length=128, epoch=3 lr=2e-5|
 |   BERT-wwm-ext-base   |     56.77%    |    56.86%      | batch_size=16, length=128, epoch=3 lr=2e-5|
@@ -478,7 +478,7 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 #### WSC Winograd模式挑战中文版  The Winograd Schema Challenge,Chinese Version：
 | 模型 | 开发集（dev) | 测试集（test) | 训练参数 |
 | :----:| :----: | :----: | :----: |
-| ALBERT-xxlarge |    |    |  |
+| ALBERT-xxlarge |  -  |  -  |  -    |
 | ALBERT-tiny |  57.7(52.9)  |  58.5(52.1)  | lr=1e-4, batch_size=8, length=128, epoch=50   |
 | BERT-base | 59.6（56.7)  | 62.0（57.9）  |  lr=2e-5, batch_size=8, length=128, epoch=50 |
 | BERT-wwm-ext-base | 59.4(56.7) |  61.1(56.2) | lr=2e-5, batch_size=8, length=128, epoch=50   |
