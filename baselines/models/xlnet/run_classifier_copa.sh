@@ -2,7 +2,7 @@
 # @Author: bo.shi
 # @Date:   2019-11-04 09:56:36
 # @Last Modified by:   bo.shi
-# @Last Modified time: 2019-12-04 10:38:05
+# @Last Modified time: 2019-12-05 11:25:01
 
 TASK_NAME="copa"
 MODEL_NAME="chinese_xlnet_mid_L-24_H-768_A-12"
@@ -56,15 +56,13 @@ echo "Finish download model."
 cd $CURRENT_DIR
 echo "Start running..."
 if [ $1 == "predict" ]; then
-  echo "Start predict..."
   python run_classifier.py \
       --spiece_model_file=${XLNET_DIR}/spiece.model \
       --model_config_path=${XLNET_DIR}/xlnet_config.json \
       --init_checkpoint=${XLNET_DIR}/xlnet_model.ckpt \
       --task_name=$TASK_NAME \
-      --do_train=False \
-      --do_eval=False \
-      --do_predict=True \
+      --do_train=True \
+      --do_eval=True \
       --eval_all_ckpt=False \
       --uncased=False \
       --data_dir=$GLUE_DATA_DIR/$TASK_NAME \
@@ -79,14 +77,16 @@ if [ $1 == "predict" ]; then
       --learning_rate=2e-5 \
       --save_steps=1000 \
       --use_tpu=False
-else
+elif [ $1 == "predict" ]; then
+  echo "Start predict..."
   python run_classifier.py \
       --spiece_model_file=${XLNET_DIR}/spiece.model \
       --model_config_path=${XLNET_DIR}/xlnet_config.json \
       --init_checkpoint=${XLNET_DIR}/xlnet_model.ckpt \
       --task_name=$TASK_NAME \
-      --do_train=True \
-      --do_eval=True \
+      --do_train=False \
+      --do_eval=False \
+      --do_predict=True \
       --eval_all_ckpt=False \
       --uncased=False \
       --data_dir=$GLUE_DATA_DIR/$TASK_NAME \

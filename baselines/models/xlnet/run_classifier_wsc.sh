@@ -2,7 +2,7 @@
 # @Author: bo.shi
 # @Date:   2019-11-04 09:56:36
 # @Last Modified by:   bo.shi
-# @Last Modified time: 2019-12-04 11:09:31
+# @Last Modified time: 2019-12-05 11:25:37
 
 TASK_NAME="wsc"
 MODEL_NAME="chinese_xlnet_mid_L-24_H-768_A-12"
