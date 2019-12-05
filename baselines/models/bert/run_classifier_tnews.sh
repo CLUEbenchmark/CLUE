@@ -2,7 +2,7 @@
 # @Author: bo.shi
 # @Date:   2019-11-04 09:56:36
 # @Last Modified by:   bo.shi
-# @Last Modified time: 2019-12-02 10:39:31
+# @Last Modified time: 2019-12-05 11:01:06
 
 TASK_NAME="tnews"
 MODEL_NAME="chinese_L-12_H-768_A-12"
@@ -60,7 +60,21 @@ echo "Finish download model."
 # run task
 cd $CURRENT_DIR
 echo "Start running..."
-if [ $1 == "predict" ];then
+if [ $# == 0 ]; then
+    python run_classifier.py \
+      --task_name=$TASK_NAME \
+      --do_train=true \
+      --do_eval=true \
+      --data_dir=$GLUE_DATA_DIR/$TASK_NAME \
+      --vocab_file=$BERT_BASE_DIR/vocab.txt \
+      --bert_config_file=$BERT_BASE_DIR/bert_config.json \
+      --init_checkpoint=$BERT_BASE_DIR/bert_model.ckpt \
+      --max_seq_length=128 \
+      --train_batch_size=32 \
+      --learning_rate=2e-5 \
+      --num_train_epochs=3.0 \
+      --output_dir=$CURRENT_DIR/${TASK_NAME}_output/
+elif [ $1 == "predict" ]; then
     echo "Start predict..."
     python run_classifier.py \
       --task_name=$TASK_NAME \
@@ -72,22 +86,8 @@ if [ $1 == "predict" ];then
       --bert_config_file=$BERT_BASE_DIR/bert_config.json \
       --init_checkpoint=$BERT_BASE_DIR/bert_model.ckpt \
       --max_seq_length=128 \
-      --train_batch_size=16 \
-      --learning_rate=3e-5 \
-      --num_train_epochs=2.0 \
-      --output_dir=$CURRENT_DIR/${TASK_NAME}_output/
-else
-    python run_classifier.py \
-      --task_name=$TASK_NAME \
-      --do_train=true \
-      --do_eval=true \
-      --data_dir=$GLUE_DATA_DIR/$TASK_NAME \
-      --vocab_file=$BERT_BASE_DIR/vocab.txt \
-      --bert_config_file=$BERT_BASE_DIR/bert_config.json \
-      --init_checkpoint=$BERT_BASE_DIR/bert_model.ckpt \
-      --max_seq_length=128 \
-      --train_batch_size=16 \
-      --learning_rate=3e-5 \
-      --num_train_epochs=2.0 \
+      --train_batch_size=32 \
+      --learning_rate=2e-5 \
+      --num_train_epochs=3.0 \
       --output_dir=$CURRENT_DIR/${TASK_NAME}_output/
 fi
