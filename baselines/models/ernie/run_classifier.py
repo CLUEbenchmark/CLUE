@@ -2,7 +2,7 @@
 # @Author: bo.shi
 # @Date:   2019-11-04 09:56:36
 # @Last Modified by:   bo.shi
-# @Last Modified time: 2019-11-10 15:50:33
+# @Last Modified time: 2019-12-04 14:30:20
 # coding=utf-8
 # Copyright 2018 The Google AI Language Team Authors.
 #
@@ -258,10 +258,12 @@ def convert_example_list_for_inews(ex_index, example, label_list, max_seq_length
     for num in range(extra_num):
       max_len = min((num + 1) * extra_len, len(tokens_b))
       tokens_b_sub = tokens_b[num * extra_len: max_len]
-      feature = convert_single_example_for_inews(ex_index, tokens_a, tokens_b_sub, label_map, max_seq_length, tokenizer, example)
+      feature = convert_single_example_for_inews(
+          ex_index, tokens_a, tokens_b_sub, label_map, max_seq_length, tokenizer, example)
       feature_list.append(feature)
   else:
-    feature = convert_single_example_for_inews(ex_index, tokens_a, tokens_b, label_map, max_seq_length, tokenizer, example)
+    feature = convert_single_example_for_inews(
+        ex_index, tokens_a, tokens_b, label_map, max_seq_length, tokenizer, example)
     feature_list.append(feature)
   return feature_list
 
@@ -713,8 +715,11 @@ def main(_):
       "tnews": TnewsProcessor,
       "afqmc": AFQMCProcessor,
       "iflytek": iFLYTEKDataProcessor,
+      "copa": COPAProcessor,
+      "cmnli": CMNLIProcessor,
+      "wsc": WSCProcessor,
       "csl": CslProcessor,
-      "copa":COPAProcessor,
+      "copa": COPAProcessor,
   }
 
   tokenization.validate_case_matches_checkpoint(FLAGS.do_lower_case,
@@ -870,7 +875,8 @@ def main(_):
     tf.logging.info("output_eval_file:" + output_eval_file)
     with tf.gfile.GFile(output_eval_file, "w") as writer:
       for global_step, filename in sorted(steps_and_files, key=lambda x: x[0]):
-        result = estimator.evaluate(input_fn=eval_input_fn, steps=eval_steps, checkpoint_path=filename)
+        result = estimator.evaluate(input_fn=eval_input_fn,
+                                    steps=eval_steps, checkpoint_path=filename)
 
         tf.logging.info("***** Eval results %s *****" % (filename))
         writer.write("***** Eval results %s *****\n" % (filename))
@@ -923,20 +929,33 @@ def main(_):
         drop_remainder=predict_drop_remainder)
 
     result = estimator.predict(input_fn=predict_input_fn)
-
+    index2label_map = {}
+    for (i, label) in enumerate(label_list):
+      index2label_map[i] = label
+    output_predict_file_label_name = task_name + "_predict.json"
+    output_predict_file_label = os.path.join(FLAGS.output_dir, output_predict_file_label_name)
     output_predict_file = os.path.join(FLAGS.output_dir, "test_results.tsv")
-    with tf.gfile.GFile(output_predict_file, "w") as writer:
-      num_written_lines = 0
-      tf.logging.info("***** Predict results *****")
-      for (i, prediction) in enumerate(result):
-        probabilities = prediction["probabilities"]
-        if i >= num_actual_predict_examples:
-          break
-        output_line = "\t".join(
-            str(class_probability)
-            for class_probability in probabilities) + "\n"
-        writer.write(output_line)
-        num_written_lines += 1
+    with tf.gfile.GFile(output_predict_file_label, "w") as writer_label:
+      with tf.gfile.GFile(output_predict_file, "w") as writer:
+        num_written_lines = 0
+        tf.logging.info("***** Predict results *****")
+        for (i, prediction) in enumerate(result):
+          probabilities = prediction["probabilities"]
+          label_index = probabilities.argmax(0)
+          if i >= num_actual_predict_examples:
+            break
+          output_line = "\t".join(
+              str(class_probability)
+              for class_probability in probabilities) + "\n"
+          test_label_dict = {}
+          test_label_dict["id"] = i
+          test_label_dict["label"] = str(index2label_map[label_index])
+          if task_name == "tnews":
+            test_label_dict["label_desc"] = ""
+          writer.write(output_line)
+          json.dump(test_label_dict, writer_label)
+          writer_label.write("\n")
+          num_written_lines += 1
     assert num_written_lines == num_actual_predict_examples
 
 

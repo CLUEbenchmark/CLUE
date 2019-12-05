@@ -2,7 +2,7 @@
 # @Author: bo.shi
 # @Date:   2019-11-04 09:56:36
 # @Last Modified by:   bo.shi
-# @Last Modified time: 2019-12-02 10:38:51
+# @Last Modified time: 2019-12-05 11:00:48
 
 TASK_NAME="cmnli"
 MODEL_NAME="chinese_L-12_H-768_A-12"
@@ -61,7 +61,6 @@ echo "Finish download model."
 cd $CURRENT_DIR
 echo "Start running..."
 if [ $# == 0 ]; then
-    echo "Start predict..."
     python run_classifier.py \
       --task_name=$TASK_NAME \
       --do_train=true \
@@ -76,6 +75,7 @@ if [ $# == 0 ]; then
       --num_train_epochs=3.0 \
       --output_dir=$CURRENT_DIR/${TASK_NAME}_output/
 elif [ $1 == "predict" ]; then
+    echo "Start predict..."
     python run_classifier.py \
       --task_name=$TASK_NAME \
       --do_train=false \
