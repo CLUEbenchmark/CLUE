@@ -2,7 +2,7 @@
 # @Author: Li Yudong
 # @Date:   2019-11-28
 # @Last Modified by:   bo.shi
-# @Last Modified time: 2019-12-04 10:28:16
+# @Last Modified time: 2019-12-05 10:33:37
 
 TASK_NAME="wsc"
 MODEL_NAME="albert_xlarge_zh"
@@ -53,7 +53,21 @@ echo "Finish download model."
 # run task
 cd $CURRENT_DIR
 echo "Start running..."
-if [ $1 == "predict" ]; then
+if [ $# == 0 ]; then
+    python run_classifier.py \
+      --task_name=$TASK_NAME \
+      --do_train=true \
+      --do_eval=true \
+      --data_dir=$GLUE_DATA_DIR/$TASK_NAME \
+      --vocab_file=$ALBERT_XLARGE_DIR/vocab.txt \
+      --bert_config_file=$ALBERT_XLARGE_DIR/albert_config_xlarge.json \
+      --init_checkpoint=$ALBERT_XLARGE_DIR/albert_model.ckpt \
+      --max_seq_length=128 \
+      --train_batch_size=16 \
+      --learning_rate=3e-5 \
+      --num_train_epochs=2.0 \
+      --output_dir=$CURRENT_DIR/${TASK_NAME}_output/
+elif [ $1 == "predict" ]; then
     python run_classifier.py \
       --task_name=$TASK_NAME \
       --do_train=false \
@@ -68,19 +82,4 @@ if [ $1 == "predict" ]; then
       --learning_rate=3e-5 \
       --num_train_epochs=2.0 \
       --output_dir=$CURRENT_DIR/${TASK_NAME}_output/
-else
-    python run_classifier.py \
-      --task_name=$TASK_NAME \
-      --do_train=true \
-      --do_eval=true \
-      --data_dir=$GLUE_DATA_DIR/$TASK_NAME \
-      --vocab_file=$ALBERT_XLARGE_DIR/vocab.txt \
-      --bert_config_file=$ALBERT_XLARGE_DIR/albert_config_xlarge.json \
-      --init_checkpoint=$ALBERT_XLARGE_DIR/albert_model.ckpt \
-      --max_seq_length=128 \
-      --train_batch_size=16 \
-      --learning_rate=3e-5 \
-      --num_train_epochs=2.0 \
-      --output_dir=$CURRENT_DIR/${TASK_NAME}_output/
 fi
-
