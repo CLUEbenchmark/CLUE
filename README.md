@@ -461,7 +461,7 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 | :----:| :----: | :----: | :----: |
 | BERT-base	| 79.47 | 79.69 | batch=64, length=128, epoch=2 lr=3e-5 |
 | BERT-wwm-ext-base	| 80.92 |80.42|	batch=64, length=128, epoch=2 lr=3e-5 |
-| ERNIE-base	| 80.37 | - | batch=64, length=128, epoch=2 lr=3e-5 |
+| ERNIE-base	| 80.37 | 80.29 | batch=64, length=128, epoch=2 lr=3e-5 |
 | ALBERT-xxlarge	|- | - | - |
 | ALBERT-tiny	| 70.26 | 70.61 | batch=64, length=128, epoch=2 lr=3e-5 |
 | RoBERTa-large	| 82.40 | 81.70 | batch=64, length=128, epoch=2 lr=3e-5 |
