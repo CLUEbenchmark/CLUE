@@ -13,19 +13,19 @@ Language Understanding Evaluation benchmark for Chinese: datasets, baselines, pr
 
 | 模型   | Score  | 参数    | AFQMC  | TNEWS'  | IFLYTEK'   | CMNLI   | COPA | WSC | CSL  |
 | :----:| :----: | :----: | :----: |:----: |:----: |:----: |:----: |:----: |:----: |
-| <a href="https://github.com/google-research/bert">BERT-base</a>        | 69.70% | 108M |  73.70% | 56.58%  | 60.29% |   | 57.40% | 62.0% | 80.36% |
-| <a href="https://github.com/ymcui/Chinese-BERT-wwm">BERT-wwm-ext</a>      | 70.47% | 108M  | 74.07% | 56.84%  | 59.43% | | 61.40%  | 61.1%  | 80.63% |
-| <a href="https://github.com/PaddlePaddle/ERNIE">ERNIE-base</a>         | 70.55% | 108M  | 73.83% | 58.33% | 58.96% |  | **73.40%**  | 60.8%  | 79.1%      |
-| <a href="https://github.com/brightmart/roberta_zh">RoBERTa-large</a>      | 72.63% | 334M  | 74.02% | 57.86%  | 62.55% | | 61.40% | 72.7%   | 81.36%       |
-| <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>  | 68.65% | 200M | 70.50% | 56.24% | 57.85% | | 53.80%   | 64.4%   | 81.26%     |
-| <a href="https://github.com/brightmart/albert_zh">ALBERT-xxlarge</a>      | - | 59M   | -  | - | - | - | - | - | -  | -  | -     |
-| <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a>        | 61.92% | 4M | 69.92% | 53.35% | 36.18% |  | 54.40%  | 58.5%   | 74.56% |
-| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>   | 71.72% | 108M  | 74.04% | 56.94% | 60.31% | | 63.60%  | 67.8% | 81.0% |
-| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-large</a> | **73.45%** | 330M | **76.55%** | **58.61%** | **62.98%** |  | 59.40% | **74.6%** | **82.13%** |
+| <a href="https://github.com/google-research/bert">BERT-base</a>        | 69.70% | 108M |  73.70% | 56.58%  | 60.29% | 79.69% | 60.80% | 62.0% | 80.36% |
+| <a href="https://github.com/ymcui/Chinese-BERT-wwm">BERT-wwm-ext</a>      | 70.47% | 108M  | 74.07% | 56.84%  | 59.43% | 80.42% | 55.60% | 61.1%  | 80.63% |
+| <a href="https://github.com/PaddlePaddle/ERNIE">ERNIE-base</a>         | 70.55% | 108M  | 73.83% | 58.33% | 58.96% | 80.29% | **70.60%** | 60.8%  | 79.1%      |
+| <a href="https://github.com/brightmart/roberta_zh">RoBERTa-large</a>      | 72.63% | 334M  | 74.02% | 57.86%  | 62.55% | 81.70% | 53.00% | 72.7%   | 81.36%       |
+| <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>  | 68.65% | 200M | 70.50% | 56.24% | 57.85% | 81.25% | 52.20% | 64.4%   | 81.26%     |
+| <a href="https://github.com/brightmart/albert_zh">ALBERT-xxlarge</a>      | - | 59M   | -  | - | - | - | - | - | -  |
+| <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a>        | 61.92% | 4M | 69.92% | 53.35% | 48.71% | 70.61% | 53.00% | 58.5%   | 74.56% |
+| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>   | 71.72% | 108M  | 74.04% | 56.94% | 60.31% | 80.51% | 65.60% | 67.8% | 81.0% |
+| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-large</a> | **73.45%** | 330M | **76.55%** | **58.61%** | **62.98%** | **82.12%** | 70.20% | **74.6%** | **82.13%** |
 
 
     注：AFQMC:蚂蚁语义相似度(Acc)；TNEWS:文本分类(Acc)；IFLYTEK:长文本分类(Acc); CMNLI: 自然语言推理中文版; 
-       COPA: 因果推断; WSC: Winograd模式挑战中文版; CSL: 中国科学文献数据集; Score总分是通过计算1-9数据集得分平均值获得；
+       COPA: 因果推断; WSC: Winograd模式挑战中文版; CSL: 中国科学文献数据集; Score总分是通过计算7个数据集得分平均值获得；
       '代表对原数据集使用albert_tiny模型筛选后获得，数据集与原数据集不同,从而可能导致在这些数据集上albert_tiny表现略低.
 
 #### 阅读理解任务
@@ -61,13 +61,23 @@ DRCD、CMRC2018: 繁体、简体抽取式阅读理解(F1, EM)；CHID：成语多
        bash run_classifier_xxx.sh
        如运行 bash run_classifier_iflytek.sh 会开始iflytek任务的训练
 
+### 工具包 Toolkit
+
+运行方式：
+
+    pip install PyCLUE 
+    cd PyCLUE/examples/classifications
+    python3 run_clue_task.py
+
+支持10个任务、9大模型、自定义任务，见 <a href="https://github.com/CLUEbenchmark/PyCLUE">PyCLUE toolkit</a>
+
 ### 生成提交文件
 
     分类任务: 
         在CLUE/baselines/models/bert目录下执行
         sh run_classifier_xxx.sh predict 
         即可在output_dir下得到相应的提交文件json格式结果xxx_prdict.json
-    
+
    或见<a href="https://github.com/CLUEbenchmark/CLUE/blob/master/baselines/models/bert/run_classifier.py#L932-L951">代码实现</a>
 
     阅读理解任务:
@@ -75,16 +85,18 @@ DRCD、CMRC2018: 繁体、简体抽取式阅读理解(F1, EM)；CHID：成语多
          test_mrc.py
          具体参数和使用方法可见对应的run_mrc_xxx.sh
     ​    
+ <a href="https://storage.googleapis.com/cluebenchmark/tasks/clue_submit_examples.zip">提交样例下载</a>
 
-数据集下载见本项目最后部分 
+测评系统 Leaderboard
+---------------------------------------------------------------------
+测评入口：<a href="http://www.CLUEbenchmark.com">我要提交</a>
+<img src="https://github.com/CLUEbenchmark/CLUE/blob/master/resources/img/CLUEbenchmark.jpg"  width="90%" height="45%" />
+
 
 CLUE benchmark的定位 Vision
 ---------------------------------------------------------------------
 为更好的服务中文语言理解、任务和产业界，做为通用语言模型测评的补充，通过完善中文语言理解基础设施的方式来促进中文语言模型的发展
 
-*** 2019-10-13: 新增评测官网入口; INEWS基线模型 ***
-
-  <a href="http://106.13.187.75:8003/"> 评测入口</a>
 
 数据集介绍与下载 Introduction of datasets 
 --------------------------------------------------------------------
@@ -92,40 +104,42 @@ CLUE benchmark的定位 Vision
  <a href="https://storage.googleapis.com/cluebenchmark/tasks/clue_submit_examples.zip">提交样例下载</a>
 
 ##### 1. AFQMC 蚂蚁金融语义相似度 Ant Financial  Question Matching Corpus
-
-        数据量：训练集（34334）验证集（4316）测试集（3861）
-        例子：14870	蚂蚁借呗等额还款可以换成先息后本吗	借呗有先息到期还本吗	0
-        每行为一条数据， 以\tab分割的4个字段，从前往后分别是 ID, 第一个句子，第二个句子，类别
-
-   <a href="https://storage.googleapis.com/cluebenchmark/tasks/afqmc_public.zip" > AFQMC'数据集下载</a>
+```
+     数据量：训练集（34334）验证集（4316）测试集（3861）
+     例子：
+     {"sentence1": "双十一花呗提额在哪", "sentence2": "里可以提花呗额度", "label": "0"}
+     每一条数据有三个属性，从前往后分别是 句子1，句子2，句子相似度标签。其中label标签，1 表示sentence1和sentence2的含义类似，0表示两个句子的含义不同。
+```
+  <a href="https://storage.googleapis.com/cluebenchmark/tasks/afqmc_public.zip" > AFQMC'数据集下载</a>
 
 ##### 2.TNEWS' 今日头条中文新闻（短文本）分类 Short Text Classificaiton for News
-
-        数据量：训练集(266,000)，验证集(57,000)，测试集(57,000)
-        例子：
-        6552431613437805063_!_102_!_news_entertainment_!_谢娜为李浩菲澄清网络谣言，之后她的两个行为给自己加分_!_佟丽娅,网络谣言,快乐大本营,李浩菲,谢娜,观众们
-        每行为一条数据，以_!_分割的个字段，从前往后分别是 新闻ID，分类code，分类名称，新闻字符串（仅含标题），新闻关键词
-
+```
+     数据量：训练集(266,000)，验证集(57,000)，测试集(57,000)
+     例子：
+     {"label": "102", "label_des": "news_entertainment", "sentence": "江疏影甜甜圈自拍，迷之角度竟这么好看，美吸引一切事物"}
+     每一条数据有三个属性，从前往后分别是 分类ID，分类名称，新闻字符串（仅含标题）。
+```
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/tnews_public.zip" > TNEWS'数据集下载</a>
 
 ##### 3.IFLYTEK' 长文本分类 Long Text classification
 该数据集共有1.7万多条关于app应用描述的长文本标注数据，包含和日常生活相关的各类应用主题，共119个类别："打车":0,"地图导航":1,"免费WIFI":2,"租车":3,….,"女性":115,"经营":116,"收款":117,"其他":118(分别用0-118表示)。
 ```
     数据量：训练集(12,133)，验证集(2,599)，测试集(2,600)
-    例子： 
-17_!_休闲益智_!_玩家需控制一只酷似神龙大侠的熊猫人在科技感十足的未来城市中穿越打拼。感觉很山寨功夫熊猫，自由度非常高，可以做很多你想做的事情......
-每行为一条数据，以_!_分割字段，从前往后分别是 类别ID，类别名称，文本内容。
+    例子：
+    {"label": "110", "label_des": "社区超市", "sentence": "朴朴快送超市创立于2016年，专注于打造移动端30分钟即时配送一站式购物平台，商品品类包含水果、蔬菜、肉禽蛋奶、海鲜水产、粮油调味、酒水饮料、休闲食品、日用品、外卖等。朴朴公司希望能以全新的商业模式，更高效快捷的仓储配送模式，致力于成为更快、更好、更多、更省的在线零售平台，带给消费者更好的消费体验，同时推动中国食品安全进程，成为一家让社会尊敬的互联网公司。,朴朴一下，又好又快,1.配送时间提示更加清晰友好2.保障用户隐私的一些优化3.其他提高使用体验的调整4.修复了一些已知bug"}
+    每一条数据有三个属性，从前往后分别是 类别ID，类别名称，文本内容。
 ```
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/iflytek_public.zip" > IFLYTEK'数据集下载</a>
 
 ##### 4.CMNLI 语言推理任务 Chinese Multi-Genre NLI
 
-CMNLI数据由两部分组成：XNLI和MNLI。数据来自于fiction，telephone，travel，government，slate等，对原始MNLI数据和XNLI数据进行了中英文转化，合并两部分数据并打乱顺序后，重新划分训练、验证和测试集。该数据集可用于判断给定的两个句子之间属于蕴涵、中立、矛盾关系。
+CMNLI数据由两部分组成：XNLI和MNLI。数据来自于fiction，telephone，travel，government，slate等，对原始MNLI数据和XNLI数据进行了中英文转化，保留原始训练集，合并XNLI中的dev和MNLI中的matched作为CMNLI的dev，合并XNLI中的test和MNLI中的mismatched作为CMNLI的test，并打乱顺序。该数据集可用于判断给定的两个句子之间属于蕴涵、中立、矛盾关系。
 
 ```
     数据量：train(391,782)，matched(12,426)，mismatched(13,880)
     例子：
-    {"sentence1": "新的权利已经足够好了", "sentence2": "每个人都很喜欢最新的福利", "gold_label": "neutral"}
+    {"sentence1": "新的权利已经足够好了", "sentence2": "每个人都很喜欢最新的福利", "label": "neutral"}
+    每一条数据有三个属性，从前往后分别是 句子1，句子2，蕴含关系标签。其中label标签有三种：neutral，entailment，contradiction。
 ```
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/cmnli_public.zip" > CMNLI数据集下载</a>
 
@@ -136,9 +150,8 @@ CMNLI数据由两部分组成：XNLI和MNLI。数据来自于fiction，telephone
 ```
     数据量：训练集(400)，验证集(100)，测试集(500)
     例子： 
-    1. {"idx": 7, "premise": "那人在杂货店买东西时打折了。", "choice0": "他向收银员打招呼。", "choice1": "他用了一张优惠券。", "question": "cause", "label": 1}
-    2. {"idx": 8, "premise": "医师误诊了病人。", "choice0": "该患者对医生提起了医疗事故诉讼。", "choice1": "患者向医生披露了机密信息。", "question": "effect", "label": 0}
-其中label的标注，0表示choice0，1 表示choice1。原先的COPA数据集是英文的，我们使用机器翻译以及人工翻译的方法，并做了些微的用法习惯上的调整，并根据中文的习惯进行了标注，得到了这份数据集。
+    {"idx": 7, "premise": "那人在杂货店买东西时打折了。", "choice0": "他向收银员打招呼。", "choice1": "他用了一张优惠券。", "question": "cause", "label": 1}
+    其中label的标注，0表示choice0，1 表示choice1。原先的COPA数据集是英文的，我们使用机器翻译以及人工翻译的方法，并做了些微的用法习惯上的调整，并根据中文的习惯进行了标注，得到了这份数据集。
 ```
 
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/copa_public.zip" > COPA数据集下载</a>
@@ -153,23 +166,27 @@ CMNLI数据由两部分组成：XNLI和MNLI。数据来自于fiction，telephone
     {"span2_index": 28, 
      "span1_index": 0, 
      "span1_text": "马克", 
-     "span2_text": "他"}, 
+     "span2_text": "他"
+    }, 
      "idx": 0, 
      "label": "false", 
-     "text": "马克告诉皮特许多关于他自己的谎言，皮特也把这些谎言写进了他的书里。他应该多怀疑。"}
+     "text": "马克告诉皮特许多关于他自己的谎言，皮特也把这些谎言写进了他的书里。他应该多怀疑。"
+}
+    其中label标签，true表示指代一致，false表示指代不一致。
 ```
 
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/wsc_public.zip" > WSC数据集下载</a>
 
 
 ##### 7. CSL 论文关键词识别 Keyword Recognition
-中文科技文献数据集包含中文核心论文摘要及其关键词。
-用tf-idf生成伪造关键词与论文真实关键词混合，生成摘要-关键词对，关键词中包含伪造的则标签为0。
+中文科技文献数据集取自中文论文摘要及其关键词，论文选自部分中文社会科学和自然科学核心期刊。
+使用tf-idf生成伪造关键词与论文真实关键词混合，构造摘要-关键词对，任务目标是根据摘要判断关键词是否全部为真实关键词。
 ```
     数据量：训练集(20,000)，验证集(3,000)，测试集(3,000)
     例子： 
-    通过研究Windows环境下USB设备的工作原理，应用操作系统与USB设备驱动通信获取设备描述和设备ID等信息的机制，提出了一种实用有效的USB设备监控技术。实现了在开机前后两种情况下对USB设备的实时监控，有效地避免了其他监控技术的漏洞。实验结果证明，该方法是可靠有效的。	设备描述 设备ID Windows环境 安全监控	1
-    通过研究Windows环境下USB设备的工作原理，应用操作系统与USB设备驱动通信获取设备描述和设备ID等信息的机制，提出了一种实用有效的USB设备监控技术。实现了在开机前后两种情况下对USB设备的实时监控，有效地避免了其他监控技术的漏洞。实验结果证明，该方法是可靠有效的。	设备 技术 安全监控 设备描述	    0
+    {"id": 1, "abst": "为解决传统均匀FFT波束形成算法引起的3维声呐成像分辨率降低的问题,该文提出分区域FFT波束形成算法.远场条件下,以保证成像分辨率为约束条件,以划分数量最少为目标,采用遗传算法作为优化手段将成像区域划分为多个区域.在每个区域内选取一个波束方向,获得每一个接收阵元收到该方向回波时的解调输出,以此为原始数据在该区域内进行传统均匀FFT波束形成.对FFT计算过程进行优化,降低新算法的计算量,使其满足3维成像声呐实时性的要求.仿真与实验结果表明,采用分区域FFT波束形成算法的成像分辨率较传统均匀FFT波束形成算法有显著提高,且满足实时性要求.", "keyword": ["水声学", "FFT", "波束形成", "3维成像声呐"], "label": "1"}
+    每一条数据有四个属性，从前往后分别是 数据ID，论文摘要，关键词，真假标签。
+    
 ```
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/csl_public.zip" > CSL数据集下载</a>
 
@@ -403,7 +420,7 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 #### AFQMC 蚂蚁语义相似度 Ant Semantic Similarity (Accuracy)：
 |         模型          | 开发集（dev) | 测试集（test) |              训练参数              |
 | :-------------------: | :----------: | :-----------: | :--------------------------------: |
-|     ALBERT-xxlarge     |    -     |     -   | batch_size=16, length=128, epoch=3 lr=2e-5|
+|     ALBERT-xxlarge     |    -     |     -   |  -  |
 |      ALBERT-tiny      |    69.13%     |    69.92%    | batch_size=16, length=128, epoch=3 lr=2e-5 |
 |       BERT-base       |    74.16%     |     73.70%  | batch_size=16, length=128, epoch=3 lr=2e-5 |
 |   BERT-wwm-ext-base   |    73.74%     |      74.07%   | batch_size=16, length=128, epoch=3 lr=2e-5 |
@@ -416,7 +433,7 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 #### TNEWS' 头条新闻分类 Toutiao News Classification (Accuracy)：
 |         模型          | 开发集（dev) | 测试集（test) |              训练参数              |
 | :-------------------: | :----------: | :-----------: | :--------------------------------: |
-|     ALBERT-xxlarge     |    -     |         | batch_size=16, length=128, epoch=3 lr=2e-5|
+|     ALBERT-xxlarge     |    -     |     -    |     -  |
 |      ALBERT-tiny      |    53.55%     |       53.35%   | batch_size=16, length=128, epoch=3 lr=2e-5|
 |       BERT-base       |    56.09%     |     56.58%    | batch_size=16, length=128, epoch=3 lr=2e-5|
 |   BERT-wwm-ext-base   |     56.77%    |    56.86%      | batch_size=16, length=128, epoch=3 lr=2e-5|
@@ -429,28 +446,28 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 #### IFLYTEK' 长文本分类 Long Text Classification (Accuracy)：
 |         模型          | 开发集（dev) | 测试集（test) |              训练参数              |
 | :-------------------: | :----------: | :-----------: | :--------------------------------: |
-|     ALBERT-xlarge     |    -     |     -     | batch_size=32, length=128, epoch=3 |
-|      ALBERT-tiny      |    37.54    |     36.18     | batch_size=32, length=128, epoch=3 |
-|       BERT-base       |    60.37    |     60.29     | batch_size=32, length=128, epoch=3 |
-|   BERT-wwm-ext-base   |    59.88    |     59.43     | batch_size=32, length=128, epoch=3 |
-|      ERNIE-base       |    59.52    |     58.96     | batch_size=32, length=128, epoch=3 |
-|     RoBERTa-large     |    62.6    |     62.55     | batch_size=24, length=128, epoch=3 |
-|       XLNet-mid       |    57.72    |     57.85     | batch_size=32, length=128, epoch=3 |
-|    RoBERTa-wwm-ext    |    60.8    |       60.31       | batch_size=32, length=128, epoch=3 |
-| RoBERTa-wwm-large-ext | **62.75** |  **62.98**  | batch_size=24, length=128, epoch=3 |
+|     ALBERT-xlarge     |    -     |     -     | batch=32, length=128, epoch=3 lr=2e-5 |
+|      ALBERT-tiny      |    48.76    |     48.71     | batch=32, length=128, epoch=10 lr=2e-5 |
+|       BERT-base       |    60.37    |     60.29     | batch=32, length=128, epoch=3 lr=2e-5 |
+|   BERT-wwm-ext-base   |    59.88    |     59.43     | batch=32, length=128, epoch=3 lr=2e-5 |
+|      ERNIE-base       |    59.52    |     58.96     | batch=32, length=128, epoch=3 lr=2e-5  |
+|     RoBERTa-large     |    62.6    |     62.55     | batch=24, length=128, epoch=3 lr=2e-5  |
+|       XLNet-mid       |    57.72    |     57.85     | batch=32, length=128, epoch=3 lr=2e-5  |
+|    RoBERTa-wwm-ext    |    60.8    |       60.31       | batch=32, length=128, epoch=3 lr=2e-5  |
+| RoBERTa-wwm-large-ext | **62.75** |  **62.98**  | batch=24, length=128, epoch=3 lr=2e-5 |
 
 #### CMNLI 中文自然语言推理 Chinese Multi-Genre NLI (Accuracy)：
-| 模型 | matched | mismatched |  训练参数 |
+| 模型 | 开发集 (dev %) | 测试集（test %) |  训练参数 |
 | :----:| :----: | :----: | :----: |
-| BERT-base	| 79.39 | 79.76 | batch=32, length=128, epoch=3 lr=2e-5 |
-| BERT-wwm-ext-base	|81.41 |80.67|	batch=32, length=128, epoch=3 lr=2e-5 |
-| ERNIE-base	|79.65 | 80.70 | batch=32, length=128, epoch=3 lr=2e-5 |
+| BERT-base	| 79.47 | 79.69 | batch=64, length=128, epoch=2 lr=3e-5 |
+| BERT-wwm-ext-base	| 80.92 |80.42|	batch=64, length=128, epoch=2 lr=3e-5 |
+| ERNIE-base	| 80.37 | 80.29 | batch=64, length=128, epoch=2 lr=3e-5 |
 | ALBERT-xxlarge	|- | - | - |
-| ALBERT-tiny	|72.71 | 72.72 | batch=32, length=128, epoch=3 lr=2e-5 |
-| RoBERTa-large	| 82.11 | 81.73 | batch=16, length=128, epoch=3 lr=2e-5 |
-| xlnet-mid	|78.15 |76.93 | batch=16, length=128, epoch=3 lr=2e-5 |
-| RoBERTa-wwm-ext	|81.09 | 81.38 | batch=32, length=128, epoch=3 lr=2e-5  |
-| RoBERTa-wwm-large-ext	|***83.4*** | ***83.42*** | batch=32, length=128, epoch=3 lr=2e-5  |
+| ALBERT-tiny	| 70.26 | 70.61 | batch=64, length=128, epoch=2 lr=3e-5 |
+| RoBERTa-large	| 82.40 | 81.70 | batch=64, length=128, epoch=2 lr=3e-5 |
+| xlnet-mid	| 82.21 | 81.25 | batch=64, length=128, epoch=2 lr=3e-5 |
+| RoBERTa-wwm-ext	| 80.70 | 80.51 | batch=64, length=128, epoch=2 lr=3e-5  |
+| RoBERTa-wwm-large-ext	|***83.20*** | ***82.12*** | batch=64, length=128, epoch=2 lr=3e-5  |
 
 注：ALBERT-xlarge，在XNLI任务上训练暂时还存在有问题
 
@@ -459,19 +476,19 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 |         模型          | 开发集（dev %) | 测试集（test %) |                         训练参数                         |
 | :-------------------: | :------------: | :-------------: | :------------------------------------------------------: |
 |    ALBERT-xxlarge     |       -        |        -        |                            -                             |
-|      ALBERT-tiny      |     51.00         |    54.40       |lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|       BERT-base       |     60.00      |      57.40       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|   BERT-wwm-ext-base   |     60.00      |      61.40       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|      ERNIE-base       |       67.00         |       73.4    |lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4|
-|     RoBERTa-large     |     64.00      |      59.40       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|       XLNet-mid       |     56.00      |      53.80       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|    RoBERTa-wwm-ext    |     63.00      |      63.60       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-| RoBERTa-wwm-large-ext |     66.00      |      59.40       | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|      ALBERT-tiny      |     66.00      |      53.00      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|       BERT-base       |     52.00      |      60.80      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|   BERT-wwm-ext-base   |     57.00      |      55.60      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|      ERNIE-base       |     70.00      |    **70.60**    | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|     RoBERTa-large     |     51.00      |      53.00      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|       XLNet-mid       |     54.00      |      52.20      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+|    RoBERTa-wwm-ext    |     60.00      |      65.60      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
+| RoBERTa-wwm-large-ext |     64.00      |      70.20      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
 
 #### WSC Winograd模式挑战中文版  The Winograd Schema Challenge,Chinese Version：
 | 模型 | 开发集（dev) | 测试集（test) | 训练参数 |
 | :----:| :----: | :----: | :----: |
-| ALBERT-xxlarge |    |    |  |
+| ALBERT-xxlarge |  -  |  -  |  -    |
 | ALBERT-tiny |  57.7(52.9)  |  58.5(52.1)  | lr=1e-4, batch_size=8, length=128, epoch=50   |
 | BERT-base | 59.6（56.7)  | 62.0（57.9）  |  lr=2e-5, batch_size=8, length=128, epoch=50 |
 | BERT-wwm-ext-base | 59.4(56.7) |  61.1(56.2) | lr=2e-5, batch_size=8, length=128, epoch=50   |
@@ -537,11 +554,6 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 | xlnet-mid	|83.76 | 83.47 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
 | RoBERTa-wwm-ext	|83.78 | 83.62 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
 | RoBERTa-wwm-large-ext	|***85.81*** | ***85.37*** | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
-
-
-#### 开放测评提交入口：<a href="http://106.13.187.75:8003/">我要提交</a>
-
-<img src="https://github.com/chineseGLUE/chineseGLUE/blob/master/resources/img/chineseGLUE_landing.jpeg"  width="80%" height="40%" />
 
 
 语料库：语言建模、预训练或生成型任务 Corpus for Langauge Modelling, Pre-training, Generating tasks

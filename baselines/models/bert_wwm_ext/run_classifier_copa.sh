@@ -83,4 +83,3 @@ elif [ $1 == "predict" ]; then
       --num_train_epochs=3.0 \
       --output_dir=$CURRENT_DIR/${TASK_NAME}_output/
 fi
-
