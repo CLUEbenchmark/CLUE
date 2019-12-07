@@ -113,6 +113,7 @@ CLUE benchmark的定位 Vision
   <a href="https://storage.googleapis.com/cluebenchmark/tasks/afqmc_public.zip" > AFQMC'数据集下载</a>
 
 ##### 2.TNEWS' 今日头条中文新闻（短文本）分类 Short Text Classificaiton for News
+该数据集来自今日头条的新闻版块，共提取了15个类别的新闻，包括旅游，教育，金融，军事等。
 ```
      数据量：训练集(53,560)，验证集(10,000)，测试集(10,000)
      例子：
