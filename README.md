@@ -114,7 +114,7 @@ CLUE benchmark的定位 Vision
 
 ##### 2.TNEWS' 今日头条中文新闻（短文本）分类 Short Text Classificaiton for News
 ```
-     数据量：训练集(266,000)，验证集(57,000)，测试集(57,000)
+     数据量：训练集(53,560)，验证集(10,000)，测试集(10,000)
      例子：
      {"label": "102", "label_des": "news_entertainment", "sentence": "江疏影甜甜圈自拍，迷之角度竟这么好看，美吸引一切事物"}
      每一条数据有三个属性，从前往后分别是 分类ID，分类名称，新闻字符串（仅含标题）。
