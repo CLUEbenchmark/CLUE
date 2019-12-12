@@ -1,37 +1,40 @@
-# chineseGLUE_pytorch
+# CLUE_pytorch
 
-**详细信息见于https://github.com/chineseGLUE/chineseGLUE**
+中文语言理解测评基准(Language Understanding Evaluation benchmark for Chinese)
+
+**备注**：此版本为个人开发版(目前支持所有的分类型任务)，正式版见https://github.com/CLUEbenchmark/CLUE
 
 ## 代码目录说明
 
 ```text
-├── chineseGLUEdatasets   #　存放数据
-|  └── inews　　　
-|  └── lcqmc　
+├── CLUEdatasets   #　存放数据
+|  └── tnews　　　
+|  └── wsc　
 |  └── ...
 ├── metrics　　　　　　　　　# metric计算
-|  └── glue_compute_metrics.py　　　
+|  └── clue_compute_metrics.py　　　
 ├── outputs              # 模型输出保存
-|  └── inews_output
-|  └── lcqmc_output　
+|  └── tnews_output
+|  └── wsc_output　
 |  └── ...
 ├── prev_trained_model　# 预训练模型
 |  └── albert_base
 |  └── bert-wwm
 |  └── ...
 ├── processors　　　　　# 数据处理
-|  └── glue.py
+|  └── clue.py
 |  └── ...
 ├── tools　　　　　　　　#　通用脚本
 |  └── progressbar.py
 |  └── ...
-├── transformers　　　# 模型
+├── transformers　　　# 主模型
 |  └── modeling_albert.py
 |  └── modeling_bert.py
 |  └── ...
 ├── convert_albert_original_tf_checkpoint_to_pytorch.py　#　模型文件转换
 ├── run_classifier.py       # 主程序
-├── run_classifier_inews.sh   #　任务运行脚本
+├── run_classifier_tnews.sh   #　任务运行脚本
+├── download_clue_data.py   # 数据集下载
 ```
 ### 依赖模块
 
@@ -40,23 +43,69 @@
 - regex
 - sacremoses
 - sentencepiece
+- python3.7+
 
-### 运行
+### 运行方式
 
-1. 若下载对应tf模型权重，则运行转换脚本，比如转换`albert_base_tf`:
+**1. 下载CLUE数据集，运行以下命令：**
+```python
+python download_clue_data.py --data_dir=./CLUEdatasets --tasks=all
+```
+上述命令默认下载全CLUE数据集，你也可以指定`--tasks`进行下载对应任务数据集，默认存在在`./CLUEdatasets/{对应task}`目录下。
+
+**2. 若下载对应tf模型权重(若下载为pytorch权重，则跳过该步)，运行转换脚本，比如转换`albert_base_tf`:**
+
 ```python
 python convert_albert_original_tf_checkpoint_to_pytorch.py \
       --tf_checkpoint_path=./prev_trained_model/albert_base_tf \
       --bert_config_file=./prev_trained_model/albert_base_tf/albert_config_base.json \
       --pytorch_dump_path=./prev_trained_model/albert_base/pytorch_model.bin
 ```
-**注意**: 当转换完模型之后，需要在对应的文件夹内存放`config.json`和`vocab.txt`文件
+**注意**: 当转换完模型(包括下载的pytorch模型权重)之后，需要在对应的文件夹内存放`config.json`和`vocab.txt`文件，比如：
 
-2. 直接运行对应任务sh脚本，如：
+```text
+├── prev_trained_model　# 预训练模型
+|  └── bert-base
+|  | └── vocab.txt
+|  | └── config.json
+|  | └── pytorch_model.bin
+
+```
+**3. 直接运行对应任务sh脚本，如：**
 
 ```shell
-sh run_classifier_inews.sh
+sh run_classifier_tnews.sh
 ```
+**4. 评估**
+
+当前默认使用最后一个checkpoint模型作为评估模型，你也可以指定`--predict_checkpoints`参数进行对应的checkpoint进行评估，比如：
+```python
+CURRENT_DIR=`pwd`
+export BERT_BASE_DIR=$CURRENT_DIR/prev_trained_model/bert-base
+export GLUE_DIR=$CURRENT_DIR/CLUEdatasets
+export OUTPUR_DIR=$CURRENT_DIR/outputs
+TASK_NAME="copa"
+
+python run_classifier.py \
+  --model_type=bert \
+  --model_name_or_path=$BERT_BASE_DIR \
+  --task_name=$TASK_NAME \
+  --do_predict \
+  --predict_checkpoints=100 \
+  --do_lower_case \
+  --data_dir=$GLUE_DIR/${TASK_NAME}/ \
+  --max_seq_length=128 \
+  --per_gpu_train_batch_size=16 \
+  --per_gpu_eval_batch_size=16 \
+  --learning_rate=1e-5 \
+  --num_train_epochs=2.0 \
+  --logging_steps=50 \
+  --save_steps=50 \
+  --output_dir=$OUTPUR_DIR/${TASK_NAME}_output/ \
+  --overwrite_output_dir \
+  --seed=42
+```
+
 ### 模型列表
 
 ```
@@ -73,45 +122,9 @@ MODEL_CLASSES = {
 ```
 **注意**: bert ernie bert_wwm bert_wwwm_ext等模型只是权重不一样，而模型本身主体一样，因此参数`model_type=bert`其余同理。
 
-## 基线结果
+### 结果
 
-**说明**：
-
-1. 目前结果大体上跟tf差不多，但是有+-0.4%上下波动，可能时由于参数不同等原因造成
-
-2. 增加collate_fn，对每一个batch进行动态长度padding
-
-### Tnews文本分类任务
-
-| 模型 | 开发集(Dev) | 测试集(Test) | 训练参数 |
-| :------- | :---------: | :---------: | :---------: |
-| albert_tiny | 86.89 | 87.02 | epoch=5,length=128,lr=1e-4 |
-| albert_base | 88.42 | 88.26 | epoch=5,length=128,lr=1e-4 |
-| bert_base | 89.8 | 89.77 | epoch=4,length=128,lr=2e-5 |
-| ernie_base | 89.99 | 89.90 | epoch=4,length=128,lr=2e-5 |
-| xlnet_base | 89.44 | 89.59 | epoch=4,length=128,lr=2e-5 |
-| bert_wwm_ext | 89.83 | 89.80 | epoch=4,length=128,lr=2e-5 |
-
-### Lcqmc语义相似度匹配
-
-| 模型 | 开发集(Dev) | 测试集(Test) | 训练参数 |
-| :------- | :---------: | :---------: | :---------: |
-| albert_base | 87.8 | 86.6 | epoch=5,length=128,lr=1e-4 |
-| bert_base | 89.4 | 86.9 | epoch=4,length=128,lr=2e-5 |
-| ernie_base | 89.8 | 87.1 | epoch=4,length=128,lr=2e-5 |
-| bert_wwm | 89.0 | 87.2 | epoch=4,length=128,lr=2e-5 |
-| bert_wwm_ext | 89.3 | 87.1 | epoch=4,length=128,lr=2e-5 |
-
-### Inews 互联网情感分析
-
-| 模型 | 开发集(Dev) | 测试集(Test) | 训练参数 |
-| :------- | :---------: | :---------: | :---------: |
-| bert_base | 85.1 | 84.5 | epoch=4,length=512,lr=2e-5 |
-| ernie_base | 85.9 | 84.7 | epoch=4,length=512,lr=2e-5 |
-| xlnet_base | 85.1 | 84.5 | epoch=4,length=512,lr=2e-5 |
-| bert_wwm | 85.7 | 85.1 | epoch=4,length=512,lr=2e-5 |
-| bert_wwm_ext | 85.4 | 85.8 | epoch=4,length=512,lr=2e-5 |
-| robertta_wwm_ext | 84.5 | 84.9 | epoch=4,length=512,lr=2e-5 |
+当前按照https://github.com/CLUEbenchmark/CLUE  提供的参数，除了**COPA**任务无法复现，其余任务基本保持一致。
 
 
 

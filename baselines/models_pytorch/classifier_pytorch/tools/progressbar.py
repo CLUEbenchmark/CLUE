@@ -4,7 +4,7 @@ class ProgressBar(object):
     '''
     custom progress bar
     Example:
-        >>> pbar = ProgressBar(n_total=30,desc='training')
+        >>> pbar = ProgressBar(n_total=30,desc='Training')
         >>> step = 2
         >>> pbar(step=step)
     '''

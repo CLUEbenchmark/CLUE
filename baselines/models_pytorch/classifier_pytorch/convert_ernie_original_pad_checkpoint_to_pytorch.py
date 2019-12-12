@@ -1,5 +1,5 @@
-#!/usr/bin/env python
-# encoding: utf-8
+"""Convert ERNIE checkpoint."""
+
 import collections
 import os
 import sys

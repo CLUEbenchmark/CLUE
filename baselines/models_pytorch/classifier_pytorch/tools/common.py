@@ -164,6 +164,26 @@ def save_json(data, file_path):
     with open(str(file_path), 'w') as f:
         json.dump(data, f)
 
+def save_numpy(data, file_path):
+    '''
+    保存成.npy文件
+    :param data:
+    :param file_path:
+    :return:
+    '''
+    if not isinstance(file_path, Path):
+        file_path = Path(file_path)
+    np.save(str(file_path),data)
+
+def load_numpy(file_path):
+    '''
+    加载.npy文件
+    :param file_path:
+    :return:
+    '''
+    if not isinstance(file_path, Path):
+        file_path = Path(file_path)
+    np.load(str(file_path))
 
 def load_json(file_path):
     '''
@@ -177,6 +197,20 @@ def load_json(file_path):
     with open(str(file_path), 'r') as f:
         data = json.load(f)
     return data
+
+def json_to_text(file_path,data):
+    '''
+    将json list写入text文件中
+    :param file_path:
+    :param data:
+    :return:
+    '''
+    if not isinstance(file_path, Path):
+        file_path = Path(file_path)
+    with open(str(file_path), 'w') as fw:
+        for line in data:
+            line = json.dumps(line, ensure_ascii=False)
+            fw.write(line + '\n')
 
 def save_model(model, model_path):
     """ 存储不含有显卡信息的state_dict或model
