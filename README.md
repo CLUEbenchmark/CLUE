@@ -472,20 +472,6 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 
 注：ALBERT-xlarge，在XNLI任务上训练暂时还存在有问题
 
-#### COPA中文版  The Chinese Choice of Plausible Alternatives：
-
-|         模型          | 开发集（dev %) | 测试集（test %) |                         训练参数                         |
-| :-------------------: | :------------: | :-------------: | :------------------------------------------------------: |
-|    ALBERT-xxlarge     |       -        |        -        |                            -                             |
-|      ALBERT-tiny      |     66.00      |      53.00      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|       BERT-base       |     52.00      |      60.80      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|   BERT-wwm-ext-base   |     57.00      |      55.60      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|      ERNIE-base       |     70.00      |    **70.60**    | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|     RoBERTa-large     |     51.00      |      53.00      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|       XLNet-mid       |     54.00      |      52.20      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-|    RoBERTa-wwm-ext    |     60.00      |      65.60      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-| RoBERTa-wwm-large-ext |     64.00      |      70.20      | lr=1e-5, batch_size=12, max_seq_length=512, max_epochs=4 |
-
 #### WSC Winograd模式挑战中文版  The Winograd Schema Challenge,Chinese Version：
 | 模型 | 开发集（dev) | 测试集（test) | 训练参数 |
 | :----:| :----: | :----: | :----: |
