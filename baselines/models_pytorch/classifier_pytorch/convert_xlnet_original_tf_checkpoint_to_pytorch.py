@@ -1,18 +1,4 @@
-# coding=utf-8
-# Copyright 2018 The HuggingFace Inc. team.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-"""Convert BERT checkpoint."""
+"""Convert XLNET checkpoint."""
 
 from __future__ import absolute_import
 from __future__ import division
@@ -23,41 +9,18 @@ import argparse
 import torch
 
 from transformers import (CONFIG_NAME, WEIGHTS_NAME,
-                                                    XLNetConfig,
-                                                    XLNetLMHeadModel, XLNetForQuestionAnswering,
-                                                    XLNetForSequenceClassification,
-                                                    load_tf_weights_in_xlnet)
-
-GLUE_TASKS_NUM_LABELS = {
-    "cola": 2,
-    "mnli": 3,
-    "mrpc": 2,
-    "sst-2": 2,
-    "sts-b": 1,
-    "qqp": 2,
-    "qnli": 2,
-    "rte": 2,
-    "wnli": 2,
-}
+                        XLNetConfig,
+                        XLNetLMHeadModel,
+                        load_tf_weights_in_xlnet)
 
 import logging
 logging.basicConfig(level=logging.INFO)
 
-def convert_xlnet_checkpoint_to_pytorch(tf_checkpoint_path, bert_config_file, pytorch_dump_folder_path, finetuning_task=None):
+def convert_xlnet_checkpoint_to_pytorch(tf_checkpoint_path, bert_config_file, pytorch_dump_folder_path):
     # Initialise PyTorch model
     config = XLNetConfig.from_json_file(bert_config_file)
 
-    finetuning_task = finetuning_task.lower() if finetuning_task is not None else ""
-    if finetuning_task in GLUE_TASKS_NUM_LABELS:
-        print("Building PyTorch XLNetForSequenceClassification model from configuration: {}".format(str(config)))
-        config.finetuning_task = finetuning_task
-        config.num_labels = GLUE_TASKS_NUM_LABELS[finetuning_task]
-        model = XLNetForSequenceClassification(config)
-    elif 'squad' in finetuning_task:
-        config.finetuning_task = finetuning_task
-        model = XLNetForQuestionAnswering(config)
-    else:
-        model = XLNetLMHeadModel(config)
+    model = XLNetLMHeadModel(config)
 
     # Load weights from tf checkpoint
     load_tf_weights_in_xlnet(model, config, tf_checkpoint_path)
@@ -91,14 +54,8 @@ if __name__ == "__main__":
                         type = str,
                         required = True,
                         help = "Path to the folder to store the PyTorch model or dataset/vocab.")
-    parser.add_argument("--finetuning_task",
-                        default = None,
-                        type = str,
-                        help = "Name of a task on which the XLNet TensorFloaw model was fine-tuned")
     args = parser.parse_args()
-    print(args)
 
     convert_xlnet_checkpoint_to_pytorch(args.tf_checkpoint_path,
                                         args.xlnet_config_file,
-                                        args.pytorch_dump_folder_path,
-                                        args.finetuning_task)
+                                        args.pytorch_dump_folder_path)

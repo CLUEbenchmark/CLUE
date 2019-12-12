@@ -1,19 +1,4 @@
-# coding=utf-8
-# Copyright 2018 The Google AI Language Team Authors and The HuggingFace Inc. team.
-# Copyright (c) 2018, NVIDIA CORPORATION.  All rights reserved.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-""" Finetuning the library models for sequence classification on chineseGLUE (Bert, XLM, XLNet, RoBERTa)."""
+""" Finetuning the library models for sequence classification on CLUE (Bert, ERNIE, XLNet, RoBERTa)."""
 
 from __future__ import absolute_import, division, print_function
 
@@ -21,9 +6,10 @@ import argparse
 import glob
 import logging
 import os
+import json
 import numpy as np
 import torch
-from torch.utils.data import DataLoader, RandomSampler, SequentialSampler,TensorDataset
+from torch.utils.data import DataLoader, RandomSampler, SequentialSampler, TensorDataset
 from torch.utils.data.distributed import DistributedSampler
 
 from transformers import (WEIGHTS_NAME, BertConfig,
@@ -34,17 +20,14 @@ from transformers import (WEIGHTS_NAME, BertConfig,
                           AlbertForSequenceClassification)
 
 from transformers import AdamW, WarmupLinearSchedule
-
-from metrics.glue_compute_metrics import compute_metrics
-from processors import glue_output_modes as output_modes
-
-from processors import glue_processors as processors
-from processors import glue_convert_examples_to_features as convert_examples_to_features
-from processors import collate_fn,xlnet_collate_fn
-from tools.common import seed_everything
-from tools.common import init_logger,logger
+from metrics.clue_compute_metrics import compute_metrics
+from processors import clue_output_modes as output_modes
+from processors import clue_processors as processors
+from processors import clue_convert_examples_to_features as convert_examples_to_features
+from processors import collate_fn, xlnet_collate_fn
+from tools.common import seed_everything, save_numpy
+from tools.common import init_logger, logger
 from tools.progressbar import ProgressBar
-
 
 ALL_MODELS = sum((tuple(conf.pretrained_config_archive_map.keys()) for conf in (BertConfig, XLNetConfig,
                                                                                 RobertaConfig)), ())
@@ -56,11 +39,13 @@ MODEL_CLASSES = {
     'albert': (BertConfig, AlbertForSequenceClassification, BertTokenizer)
 }
 
+
 def train(args, train_dataset, model, tokenizer):
     """ Train the model """
     args.train_batch_size = args.per_gpu_train_batch_size * max(1, args.n_gpu)
     train_sampler = RandomSampler(train_dataset) if args.local_rank == -1 else DistributedSampler(train_dataset)
-    train_dataloader = DataLoader(train_dataset, sampler=train_sampler, batch_size=args.train_batch_size,collate_fn=xlnet_collate_fn if args.model_type in ['xlnet'] else collate_fn)
+    train_dataloader = DataLoader(train_dataset, sampler=train_sampler, batch_size=args.train_batch_size,
+                                  collate_fn=xlnet_collate_fn if args.model_type in ['xlnet'] else collate_fn)
 
     if args.max_steps > 0:
         t_total = args.max_steps
@@ -71,9 +56,10 @@ def train(args, train_dataset, model, tokenizer):
     # Prepare optimizer and schedule (linear warmup and decay)
     no_decay = ['bias', 'LayerNorm.weight']
     optimizer_grouped_parameters = [
-        {'params': [p for n, p in model.named_parameters() if not any(nd in n for nd in no_decay)], 'weight_decay': args.weight_decay},
+        {'params': [p for n, p in model.named_parameters() if not any(nd in n for nd in no_decay)],
+         'weight_decay': args.weight_decay},
         {'params': [p for n, p in model.named_parameters() if any(nd in n for nd in no_decay)], 'weight_decay': 0.0}
-        ]
+    ]
     optimizer = AdamW(optimizer_grouped_parameters, lr=args.learning_rate, eps=args.adam_epsilon)
     scheduler = WarmupLinearSchedule(optimizer, warmup_steps=args.warmup_steps, t_total=t_total)
     if args.fp16:
@@ -99,7 +85,8 @@ def train(args, train_dataset, model, tokenizer):
     logger.info("  Num Epochs = %d", args.num_train_epochs)
     logger.info("  Instantaneous batch size per GPU = %d", args.per_gpu_train_batch_size)
     logger.info("  Total train batch size (w. parallel, distributed & accumulation) = %d",
-                   args.train_batch_size * args.gradient_accumulation_steps * (torch.distributed.get_world_size() if args.local_rank != -1 else 1))
+                args.train_batch_size * args.gradient_accumulation_steps * (
+                    torch.distributed.get_world_size() if args.local_rank != -1 else 1))
     logger.info("  Gradient Accumulation steps = %d", args.gradient_accumulation_steps)
     logger.info("  Total optimization steps = %d", t_total)
 
@@ -108,20 +95,21 @@ def train(args, train_dataset, model, tokenizer):
     model.zero_grad()
     seed_everything(args.seed)  # Added here for reproductibility (even between python 2 and 3)
     for _ in range(int(args.num_train_epochs)):
-        pbar = ProgressBar(n_total=len(train_dataloader),desc='Training')
+        pbar = ProgressBar(n_total=len(train_dataloader), desc='Training')
         for step, batch in enumerate(train_dataloader):
             model.train()
             batch = tuple(t.to(args.device) for t in batch)
-            inputs = {'input_ids':      batch[0],
+            inputs = {'input_ids': batch[0],
                       'attention_mask': batch[1],
-                      'labels':         batch[3]}
+                      'labels': batch[3]}
             if args.model_type != 'distilbert':
-                inputs['token_type_ids'] = batch[2] if args.model_type in ['bert','xlnet','albert','roberta'] else None  # XLM, DistilBERT don't use segment_ids
+                inputs['token_type_ids'] = batch[2] if args.model_type in ['bert', 'xlnet', 'albert',
+                                                                           'roberta'] else None  # XLM, DistilBERT don't use segment_ids
             outputs = model(**inputs)
             loss = outputs[0]  # model outputs are always tuple in transformers (see doc)
 
             if args.n_gpu > 1:
-                loss = loss.mean() # mean() to average on multi-gpu parallel training
+                loss = loss.mean()  # mean() to average on multi-gpu parallel training
             if args.gradient_accumulation_steps > 1:
                 loss = loss / args.gradient_accumulation_steps
 
@@ -133,6 +121,7 @@ def train(args, train_dataset, model, tokenizer):
                 loss.backward()
                 torch.nn.utils.clip_grad_norm_(model.parameters(), args.max_grad_norm)
 
+            pbar(step, {'loss': loss.item()})
             tr_loss += loss.item()
             if (step + 1) % args.gradient_accumulation_steps == 0:
                 optimizer.step()
@@ -141,31 +130,31 @@ def train(args, train_dataset, model, tokenizer):
                 global_step += 1
 
                 if args.local_rank in [-1, 0] and args.logging_steps > 0 and global_step % args.logging_steps == 0:
+                    print(" ")
                     # Log metrics
-                    if args.local_rank == -1 :  # Only evaluate when single GPU otherwise metrics may not average well
-                        results = evaluate(args, model, tokenizer)
+                    if args.local_rank == -1:  # Only evaluate when single GPU otherwise metrics may not average well
+                        evaluate(args, model, tokenizer)
 
                 if args.local_rank in [-1, 0] and args.save_steps > 0 and global_step % args.save_steps == 0:
                     # Save model checkpoint
                     output_dir = os.path.join(args.output_dir, 'checkpoint-{}'.format(global_step))
                     if not os.path.exists(output_dir):
                         os.makedirs(output_dir)
-                    model_to_save = model.module if hasattr(model, 'module') else model  # Take care of distributed/parallel training
+                    model_to_save = model.module if hasattr(model,
+                                                            'module') else model  # Take care of distributed/parallel training
                     model_to_save.save_pretrained(output_dir)
                     torch.save(args, os.path.join(output_dir, 'training_args.bin'))
                     logger.info("Saving model checkpoint to %s", output_dir)
                     tokenizer.save_vocabulary(vocab_path=output_dir)
-            pbar(step,{'loss':loss.item()})
         print(" ")
         if 'cuda' in str(args.device):
             torch.cuda.empty_cache()
     return global_step, tr_loss / global_step
 
-def evaluate(args, model, tokenizer, prefix=""):
-    # Loop to handle MNLI double evaluation (matched, mis-matched)
-    eval_task_names = ("mnli", "mnli-mm") if args.task_name == "mnli" else (args.task_name,)
-    eval_outputs_dirs = (args.output_dir, args.output_dir + '-MM') if args.task_name == "mnli" else (args.output_dir,)
 
+def evaluate(args, model, tokenizer, prefix=""):
+    eval_task_names = (args.task_name,)
+    eval_outputs_dirs = (args.output_dir,)
     results = {}
     for eval_task, eval_output_dir in zip(eval_task_names, eval_outputs_dirs):
         eval_dataset = load_and_cache_examples(args, eval_task, tokenizer, data_type='dev')
@@ -175,26 +164,26 @@ def evaluate(args, model, tokenizer, prefix=""):
         args.eval_batch_size = args.per_gpu_eval_batch_size * max(1, args.n_gpu)
         # Note that DistributedSampler samples randomly
         eval_sampler = SequentialSampler(eval_dataset) if args.local_rank == -1 else DistributedSampler(eval_dataset)
-        eval_dataloader = DataLoader(eval_dataset, sampler=eval_sampler, batch_size=args.eval_batch_size,collate_fn=xlnet_collate_fn if args.model_type in ['xlnet'] else collate_fn)
+        eval_dataloader = DataLoader(eval_dataset, sampler=eval_sampler, batch_size=args.eval_batch_size,
+                                     collate_fn=xlnet_collate_fn if args.model_type in ['xlnet'] else collate_fn)
 
         # Eval!
-        logger.info("***** Running evaluation {} *****".format(prefix))
-        logger.info("  Num examples = %d", len(eval_dataset))
-        logger.info("  Batch size = %d", args.eval_batch_size)
+        logger.info("********* Running evaluation {} ********".format(prefix))
         eval_loss = 0.0
         nb_eval_steps = 0
         preds = None
         out_label_ids = None
-        pbar = ProgressBar(n_total=len(eval_dataloader),desc = "Evaluating")
-        for step,batch in enumerate(eval_dataloader):
+        pbar = ProgressBar(n_total=len(eval_dataloader), desc="Evaluating")
+        for step, batch in enumerate(eval_dataloader):
             model.eval()
             batch = tuple(t.to(args.device) for t in batch)
             with torch.no_grad():
-                inputs = {'input_ids':      batch[0],
+                inputs = {'input_ids': batch[0],
                           'attention_mask': batch[1],
-                          'labels':         batch[3]}
+                          'labels': batch[3]}
                 if args.model_type != 'distilbert':
-                    inputs['token_type_ids'] = batch[2] if args.model_type in ['bert','xlnet','albert','roberta'] else None  # XLM, DistilBERT and RoBERTa don't use segment_ids
+                    inputs['token_type_ids'] = batch[2] if args.model_type in ['bert', 'xlnet', 'albert',
+                                                                               'roberta'] else None  # XLM, DistilBERT and RoBERTa don't use segment_ids
                 outputs = model(**inputs)
                 tmp_eval_loss, logits = outputs[:2]
                 eval_loss += tmp_eval_loss.mean().item()
@@ -216,17 +205,19 @@ def evaluate(args, model, tokenizer, prefix=""):
             preds = np.squeeze(preds)
         result = compute_metrics(eval_task, preds, out_label_ids)
         results.update(result)
-        logger.info("***** Eval results {} *****".format(prefix))
+        logger.info("  Num examples = %d", len(eval_dataset))
+        logger.info("  Batch size = %d", args.eval_batch_size)
+        logger.info("******** Eval results {} ********".format(prefix))
         for key in sorted(result.keys()):
-            logger.info("  %s = %s", key, str(result[key]))
+            logger.info(" dev: %s = %s", key, str(result[key]))
     return results
 
-def predict(args, model, tokenizer, prefix=""):
-    # Loop to handle MNLI double evaluation (matched, mis-matched)
-    pred_task_names = ("mnli", "mnli-mm") if args.task_name == "mnli" else (args.task_name,)
-    pred_outputs_dirs = (args.output_dir, args.output_dir + '-MM') if args.task_name == "mnli" else (args.output_dir,)
 
-    results = {}
+def predict(args, model, tokenizer, label_list, prefix=""):
+    pred_task_names = (args.task_name,)
+    pred_outputs_dirs = (args.output_dir,)
+    label_map = {i: label for i, label in enumerate(label_list)}
+
     for pred_task, pred_output_dir in zip(pred_task_names, pred_outputs_dirs):
         pred_dataset = load_and_cache_examples(args, pred_task, tokenizer, data_type='test')
         if not os.path.exists(pred_output_dir) and args.local_rank in [-1, 0]:
@@ -235,41 +226,67 @@ def predict(args, model, tokenizer, prefix=""):
         args.pred_batch_size = args.per_gpu_eval_batch_size * max(1, args.n_gpu)
         # Note that DistributedSampler samples randomly
         pred_sampler = SequentialSampler(pred_dataset) if args.local_rank == -1 else DistributedSampler(pred_dataset)
-        pred_dataloader = DataLoader(pred_dataset, sampler=pred_sampler, batch_size=args.pred_batch_size,collate_fn=xlnet_collate_fn if args.model_type in ['xlnet'] else collate_fn)
+        pred_dataloader = DataLoader(pred_dataset, sampler=pred_sampler, batch_size=args.pred_batch_size,
+                                     collate_fn=xlnet_collate_fn
+                                     if args.model_type in ['xlnet'] else collate_fn)
 
-        logger.info("***** Running prediction {} *****".format(prefix))
+        logger.info("******** Running prediction {} ********".format(prefix))
         logger.info("  Num examples = %d", len(pred_dataset))
         logger.info("  Batch size = %d", args.pred_batch_size)
         nb_pred_steps = 0
         preds = None
-        pbar = ProgressBar(n_total=len(pred_dataloader),desc = "Predicting")
-        for step,batch in enumerate(pred_dataloader):
+        pbar = ProgressBar(n_total=len(pred_dataloader), desc="Predicting")
+        for step, batch in enumerate(pred_dataloader):
             model.eval()
             batch = tuple(t.to(args.device) for t in batch)
             with torch.no_grad():
-                inputs = {'input_ids':      batch[0],
+                inputs = {'input_ids': batch[0],
                           'attention_mask': batch[1],
-                          'labels':         batch[3]}
+                          'labels': batch[3]}
                 if args.model_type != 'distilbert':
-                    inputs['token_type_ids'] = batch[2] if ('bert' in args.model_type or 'xlnet' in args.model_type) else None  # XLM, DistilBERT and RoBERTa don't use segment_ids
+                    inputs['token_type_ids'] = batch[2] if (
+                            'bert' in args.model_type or 'xlnet' in args.model_type) else None  # XLM, DistilBERT and RoBERTa don't use segment_ids
                 outputs = model(**inputs)
                 _, logits = outputs[:2]
             nb_pred_steps += 1
             if preds is None:
-                preds = logits.detach().cpu().numpy()
+                if pred_task == 'copa':
+                    preds = logits.softmax(-1).detach().cpu().numpy()
+                else:
+                    preds = logits.detach().cpu().numpy()
             else:
-                preds = np.append(preds, logits.detach().cpu().numpy(), axis=0)
+                if pred_task == 'copa':
+                    preds = np.append(preds, logits.softmax(-1).detach().cpu().numpy(), axis=0)
+                else:
+                    preds = np.append(preds, logits.detach().cpu().numpy(), axis=0)
             pbar(step)
         print(' ')
         if args.output_mode == "classification":
-            preds = np.argmax(preds, axis=1)
+            predict_label = np.argmax(preds, axis=1)
         elif args.output_mode == "regression":
-            preds = np.squeeze(preds)
-        output_pred_file = os.path.join(pred_output_dir, prefix, "test_prediction.txt")
-        with open(output_pred_file, "w") as writer:
-            for pred in preds:
-                writer.write(str(pred)+'\n')
-    return results
+            predict_label = np.squeeze(preds)
+        if pred_task == 'copa':
+            predict_label = []
+            pred_logits = preds[:, 1]
+            i = 0
+            while (i < len(pred_logits) - 1):
+                if pred_logits[i] >= pred_logits[i + 1]:
+                    predict_label.append(0)
+                else:
+                    predict_label.append(1)
+                i += 2
+        output_submit_file = os.path.join(pred_output_dir, prefix, "test_prediction.json")
+        output_logits_file = os.path.join(pred_output_dir, prefix, "test_logits")
+        # 保存标签结果
+        with open(output_submit_file, "w") as writer:
+            for i, pred in enumerate(predict_label):
+                json_d = {}
+                json_d['id'] = i
+                json_d['label'] = str(label_map[pred])
+                writer.write(json.dumps(json_d) + '\n')
+        # 保存中间预测结果
+        save_numpy(file_path=output_logits_file, data=preds)
+
 
 def load_and_cache_examples(args, task, tokenizer, data_type='train'):
     if args.local_rank not in [-1, 0] and not evaluate:
@@ -305,27 +322,27 @@ def load_and_cache_examples(args, task, tokenizer, data_type='train'):
                                                 label_list=label_list,
                                                 max_length=args.max_seq_length,
                                                 output_mode=output_mode,
-                                                pad_on_left=bool(args.model_type in ['xlnet']),                 # pad on the left for xlnet
+                                                pad_on_left=bool(args.model_type in ['xlnet']),
+                                                # pad on the left for xlnet
                                                 pad_token=tokenizer.convert_tokens_to_ids([tokenizer.pad_token])[0],
                                                 pad_token_segment_id=4 if args.model_type in ['xlnet'] else 0,
-        )
+                                                )
         if args.local_rank in [-1, 0]:
             logger.info("Saving features into cached file %s", cached_features_file)
             torch.save(features, cached_features_file)
 
     if args.local_rank == 0 and not evaluate:
         torch.distributed.barrier()  # Make sure only the first process in distributed training process the dataset, and the others will use the cache
-
     # Convert to Tensors and build dataset
     all_input_ids = torch.tensor([f.input_ids for f in features], dtype=torch.long)
     all_attention_mask = torch.tensor([f.attention_mask for f in features], dtype=torch.long)
     all_token_type_ids = torch.tensor([f.token_type_ids for f in features], dtype=torch.long)
-    all_lens = torch.tensor([f.input_len for f in features],dtype=torch.long)
+    all_lens = torch.tensor([f.input_len for f in features], dtype=torch.long)
     if output_mode == "classification":
         all_labels = torch.tensor([f.label for f in features], dtype=torch.long)
     elif output_mode == "regression":
         all_labels = torch.tensor([f.label for f in features], dtype=torch.float)
-    dataset = TensorDataset(all_input_ids, all_attention_mask, all_token_type_ids, all_lens,all_labels)
+    dataset = TensorDataset(all_input_ids, all_attention_mask, all_token_type_ids, all_lens, all_labels)
     return dataset
 
 
@@ -338,7 +355,8 @@ def main():
     parser.add_argument("--model_type", default=None, type=str, required=True,
                         help="Model type selected in the list: " + ", ".join(MODEL_CLASSES.keys()))
     parser.add_argument("--model_name_or_path", default=None, type=str, required=True,
-                        help="Path to pre-trained model or shortcut name selected in the list: " + ", ".join(ALL_MODELS))
+                        help="Path to pre-trained model or shortcut name selected in the list: " + ", ".join(
+                            ALL_MODELS))
     parser.add_argument("--task_name", default=None, type=str, required=True,
                         help="The name of the task to train selected in the list: " + ", ".join(processors.keys()))
     parser.add_argument("--output_dir", default=None, type=str, required=True,
@@ -390,6 +408,8 @@ def main():
                         help="Save checkpoint every X updates steps.")
     parser.add_argument("--eval_all_checkpoints", action='store_true',
                         help="Evaluate all checkpoints starting with the same prefix as model_name ending and ending with step number")
+    parser.add_argument("--predict_checkpoints", type=int, default=0,
+                        help="predict checkpoints starting with the same prefix as model_name ending and ending with step number")
     parser.add_argument("--no_cuda", action='store_true',
                         help="Avoid using CUDA when available")
     parser.add_argument('--overwrite_output_dir', action='store_true',
@@ -410,12 +430,17 @@ def main():
     parser.add_argument('--server_port', type=str, default='', help="For distant debugging.")
     args = parser.parse_args()
 
-    args.output_dir = args.output_dir +'{}'.format(args.model_type)
     if not os.path.exists(args.output_dir):
         os.mkdir(args.output_dir)
-    init_logger(log_file=args.output_dir+'/{}-{}.log'.format(args.model_type,args.task_name))
-    if os.path.exists(args.output_dir) and os.listdir(args.output_dir) and args.do_train and not args.overwrite_output_dir:
-        raise ValueError("Output directory ({}) already exists and is not empty. Use --overwrite_output_dir to overcome.".format(args.output_dir))
+    args.output_dir = args.output_dir + '{}'.format(args.model_type)
+    if not os.path.exists(args.output_dir):
+        os.mkdir(args.output_dir)
+    init_logger(log_file=args.output_dir + '/{}-{}.log'.format(args.model_type, args.task_name))
+    if os.path.exists(args.output_dir) and os.listdir(
+            args.output_dir) and args.do_train and not args.overwrite_output_dir:
+        raise ValueError(
+            "Output directory ({}) already exists and is not empty. Use --overwrite_output_dir to overcome.".format(
+                args.output_dir))
 
     # Setup distant debugging if needed
     if args.server_ip and args.server_port:
@@ -438,11 +463,11 @@ def main():
 
     # Setup logging
     logger.warning("Process rank: %s, device: %s, n_gpu: %s, distributed training: %s, 16-bits training: %s",
-                    args.local_rank, device, args.n_gpu, bool(args.local_rank != -1), args.fp16)
+                   args.local_rank, device, args.n_gpu, bool(args.local_rank != -1), args.fp16)
 
     # Set seed
     seed_everything(args.seed)
-    # Prepare GLUE task
+    # Prepare CLUE task
     args.task_name = args.task_name.lower()
     if args.task_name not in processors:
         raise ValueError("Task not found: %s" % (args.task_name))
@@ -457,23 +482,22 @@ def main():
 
     args.model_type = args.model_type.lower()
     config_class, model_class, tokenizer_class = MODEL_CLASSES[args.model_type]
-    config = config_class.from_pretrained(args.config_name if args.config_name else args.model_name_or_path, num_labels=num_labels, finetuning_task=args.task_name)
-    tokenizer = tokenizer_class.from_pretrained(args.tokenizer_name if args.tokenizer_name else args.model_name_or_path, do_lower_case=args.do_lower_case)
-    model = model_class.from_pretrained(args.model_name_or_path, from_tf=bool('.ckpt' in args.model_name_or_path), config=config)
+    config = config_class.from_pretrained(args.config_name if args.config_name else args.model_name_or_path,
+                                          num_labels=num_labels, finetuning_task=args.task_name)
+    tokenizer = tokenizer_class.from_pretrained(args.tokenizer_name if args.tokenizer_name else args.model_name_or_path,
+                                                do_lower_case=args.do_lower_case)
+    model = model_class.from_pretrained(args.model_name_or_path, from_tf=bool('.ckpt' in args.model_name_or_path),
+                                        config=config)
 
     if args.local_rank == 0:
         torch.distributed.barrier()  # Make sure only the first process in distributed training will download model & vocab
-
     model.to(args.device)
-
     logger.info("Training/evaluation parameters %s", args)
-
     # Training
     if args.do_train:
         train_dataset = load_and_cache_examples(args, args.task_name, tokenizer, data_type='train')
         global_step, tr_loss = train(args, train_dataset, model, tokenizer)
         logger.info(" global_step = %s, average loss = %s", global_step, tr_loss)
-
 
     # Saving best-practices: if you use defaults names for the model, you can reload it using from_pretrained()
     if args.do_train and (args.local_rank == -1 or torch.distributed.get_rank() == 0):
@@ -484,7 +508,8 @@ def main():
         logger.info("Saving model checkpoint to %s", args.output_dir)
         # Save a trained model, configuration and tokenizer using `save_pretrained()`.
         # They can then be reloaded using `from_pretrained()`
-        model_to_save = model.module if hasattr(model, 'module') else model  # Take care of distributed/parallel training
+        model_to_save = model.module if hasattr(model,
+                                                'module') else model  # Take care of distributed/parallel training
         model_to_save.save_pretrained(args.output_dir)
         tokenizer.save_pretrained(args.output_dir)
 
@@ -502,7 +527,8 @@ def main():
         tokenizer = tokenizer_class.from_pretrained(args.output_dir, do_lower_case=args.do_lower_case)
         checkpoints = [args.output_dir]
         if args.eval_all_checkpoints:
-            checkpoints = list(os.path.dirname(c) for c in sorted(glob.glob(args.output_dir + '/**/' + WEIGHTS_NAME, recursive=True)))
+            checkpoints = list(
+                os.path.dirname(c) for c in sorted(glob.glob(args.output_dir + '/**/' + WEIGHTS_NAME, recursive=True)))
             logging.getLogger("transformers.modeling_utils").setLevel(logging.WARN)  # Reduce logging
         logger.info("Evaluate the following checkpoints: %s", checkpoints)
         for checkpoint in checkpoints:
@@ -517,6 +543,22 @@ def main():
         with open(output_eval_file, "w") as writer:
             for key in sorted(results.keys()):
                 writer.write("%s = %s\n" % (key, str(results[key])))
+
+    if args.do_predict and args.local_rank in [-1, 0]:
+        tokenizer = tokenizer_class.from_pretrained(args.output_dir, do_lower_case=args.do_lower_case)
+        checkpoints = [args.output_dir]
+        if args.predict_checkpoints > 0:
+            checkpoints = list(
+                os.path.dirname(c) for c in sorted(glob.glob(args.output_dir + '/**/' + WEIGHTS_NAME, recursive=True)))
+            logging.getLogger("transformers.modeling_utils").setLevel(logging.WARN)  # Reduce logging
+            checkpoints = [x for x in checkpoints if x.split('-')[-1] == str(args.predict_checkpoints)]
+        logger.info("Predict the following checkpoints: %s", checkpoints)
+        for checkpoint in checkpoints:
+            prefix = checkpoint.split('/')[-1] if checkpoint.find('checkpoint') != -1 else ""
+            model = model_class.from_pretrained(checkpoint)
+            model.to(args.device)
+            predict(args, model, tokenizer, label_list, prefix=prefix)
+
 
 if __name__ == "__main__":
     main()
