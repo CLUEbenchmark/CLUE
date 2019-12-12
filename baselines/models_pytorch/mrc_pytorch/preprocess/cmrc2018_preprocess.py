@@ -187,7 +187,7 @@ def json2features(input_file, output_files, tokenizer, is_training=False, repeat
                         # ipdb.set_trace()
 
                 examples.append({'doc_tokens': doc_tokens,
-                                 'orig_answer_text': context,
+                                 'orig_answer_text': ans_text,
                                  'qid': qid,
                                  'question': ques_text,
                                  'answer': ans_text,
