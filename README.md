@@ -144,21 +144,8 @@ CMNLI数据由两部分组成：XNLI和MNLI。数据来自于fiction，telephone
 ```
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/cmnli_public.zip" > CMNLI数据集下载</a>
 
-##### 5. COPA 因果推断-中文版 Choice of Plausible Alternatives
 
-自然语言推理的数据集，给定一个假设以及一个问题表明是因果还是影响，并从两个选项中选择合适的一个。遵照原数据集，我们使用了acc作为评估标准。
-
-```
-    数据量：训练集(400)，验证集(100)，测试集(500)
-    例子： 
-    {"idx": 7, "premise": "那人在杂货店买东西时打折了。", "choice0": "他向收银员打招呼。", "choice1": "他用了一张优惠券。", "question": "cause", "label": 1}
-    其中label的标注，0表示choice0，1 表示choice1。原先的COPA数据集是英文的，我们使用机器翻译以及人工翻译的方法，并做了些微的用法习惯上的调整，并根据中文的习惯进行了标注，得到了这份数据集。
-```
-
-   <a href="https://storage.googleapis.com/cluebenchmark/tasks/copa_public.zip" > COPA数据集下载</a>
-
-
-##### 6. WSC Winograd模式挑战中文版  The Winograd Schema Challenge,Chinese Version
+##### 5. WSC Winograd模式挑战中文版  The Winograd Schema Challenge,Chinese Version
 威诺格拉德模式挑战赛是图灵测试的一个变种，旨在判定AI系统的常识推理能力。参与挑战的计算机程序需要回答一种特殊但简易的常识问题：代词消歧问题，即对给定的名词和代词判断是否指代一致。
 ```
 数据量：训练集(532)，验证集(104)，测试集(143) 
@@ -179,7 +166,7 @@ CMNLI数据由两部分组成：XNLI和MNLI。数据来自于fiction，telephone
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/wsc_public.zip" > WSC数据集下载</a>
 
 
-##### 7. CSL 论文关键词识别 Keyword Recognition
+##### 6. CSL 论文关键词识别 Keyword Recognition
 [中文科技文献数据集(CSL)](https://github.com/P01son6415/chinese-scientific-literature-dataset)取自中文论文摘要及其关键词，论文选自部分中文社会科学和自然科学核心期刊。
 使用tf-idf生成伪造关键词与论文真实关键词混合，构造摘要-关键词对，任务目标是根据摘要判断关键词是否全部为真实关键词。
 ```
@@ -191,7 +178,7 @@ CMNLI数据由两部分组成：XNLI和MNLI。数据来自于fiction，telephone
 ```
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/csl_public.zip" > CSL数据集下载</a>
 
-##### 8.CMRC2018 简体中文阅读理解任务 Reading Comprehension for Simplified Chinese
+##### 7.CMRC2018 简体中文阅读理解任务 Reading Comprehension for Simplified Chinese
 https://hfl-rc.github.io/cmrc2018/
 ```
 数据量：训练集(短文数2,403，问题数10,142)，试验集(短文数256，问题数1,002)，开发集(短文数848，问题数3,219)  
@@ -240,7 +227,7 @@ https://hfl-rc.github.io/cmrc2018/
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/cmrc2018_public.zip" > CMRC2018数据集下载</a>
 
 
-##### 9.DRCD 繁体阅读理解任务 Reading Comprehension for Traditional Chinese
+##### 8.DRCD 繁体阅读理解任务 Reading Comprehension for Traditional Chinese
 台達閱讀理解資料集 Delta Reading Comprehension Dataset (DRCD)(https://github.com/DRCKnowledgeTeam/DRCD) 屬於通用領域繁體中文機器閱讀理解資料集。 本資料集期望成為適用於遷移學習之標準中文閱讀理解資料集。  
 ```
 数据量：训练集(8,016个段落，26,936个问题)，验证集(1,000个段落，3,524个问题)，测试集(1,000个段落，3,493个问题)  
@@ -288,7 +275,7 @@ https://hfl-rc.github.io/cmrc2018/
 数据格式和squad相同，如果使用简体中文模型进行评测的时候可以将其繁转简(本项目已提供)
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/drcd_public.zip" > DRCD2018数据集下载</a>
 
-##### 10.CHID 成语阅读理解填空 Chinese IDiom Dataset for Cloze Test
+##### 9.ChID 成语阅读理解填空 Chinese IDiom Dataset for Cloze Test
 https://arxiv.org/abs/1906.01265  
 成语完形填空，文中多处成语被mask，候选项中包含了近义的成语。
 ```
