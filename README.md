@@ -32,20 +32,20 @@ Language Understanding Evaluation benchmark for Chinese: datasets, baselines, pr
 
 | 模型 | Score | 参数 | DRCD | CMRC2018 | CHID |
 | :----:| :----: | :----: | :----: |:----: |:----: |
-| <a href="https://github.com/google-research/bert">BERT-base</a>	| 79.08 | 108M | 85.49 	| 69.72 | 82.04 |
-| <a href="https://github.com/ymcui/Chinese-BERT-wwm">BERT-wwm-ext</a> | 81.09 | 108M | 87.15 | 73.23 | 82.90 |
-| <a href="https://github.com/PaddlePaddle/ERNIE">ERNIE-base</a>	| 80.54 | 108M | 86.03 | 73.32 | 82.28 |
-| <a href="https://github.com/brightmart/roberta_zh">RoBERTa-large</a> | 83.32 | 334M 	| 89.35 | 76.11 | 84.50 |
-| <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>	| 77.75 | 209M | 83.28 | 66.51  | 83.47 |
-| <a href="https://github.com/brightmart/albert_zh">ALBERT-xlarge</a> | 81.52 | 59M | 89.78 | 75.22 | 79.55 |
-| <a href="https://github.com/brightmart/albert_zh">ALBERT-xxlarge</a> | - | - | - | - | - |
-| <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a> | 55.73 | 1.8M | 70.08 | 53.68 | 43.53 |
-| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>  | 81.88 | 108M  | 88.12 | 73.89 | 83.62 |
-| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-large</a> | ***84.22*** | 330M |	***90.70*** |	***76.58*** | ***85.37*** |
+| <a href="https://github.com/google-research/bert">BERT-base</a>	| 79.71 | 108M | 85.49 	| 71.60 | 82.04 |
+| <a href="https://github.com/ymcui/Chinese-BERT-wwm">BERT-wwm-ext</a> | 81.33 | 108M | 87.15 | 73.95 | 82.90 |
+| <a href="https://github.com/PaddlePaddle/ERNIE">ERNIE-base</a>	| 81.00 | 108M | 86.03 | 74.7 | 82.28 |
+| <a href="https://github.com/brightmart/roberta_zh">RoBERTa-large</a> | 84.12 | 334M 	| 89.35 | ***78.50*** | 84.50 |
+| <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>	| 77.90 | 209M | 83.28 | 66.95 | 83.47 |
+| <a href="https://github.com/brightmart/albert_zh">ALBERT-xlarge</a> | 82.38 | 59M | 89.78 | 77.80 | 79.55 |
+| <a href="https://github.com/brightmart/albert_zh">ALBERT-xxlarge</a> | - | 221M | 89.67 | 75.15 | - |
+| <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a> | 55.65 | 1.8M | 70.08 | 53.35 | 43.53 |
+| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>  | 82.31 | 108M  | 88.12 | 75.20 | 83.62 |
+| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-large</a> | ***84.67*** | 330M |	***90.70*** |	77.95 | ***85.37*** |
 
 DRCD、CMRC2018: 繁体、简体抽取式阅读理解(F1, EM)；CHID：成语多分类阅读理解(Acc)；
 
-注：阅读理解上述指标中F1和EM共存的情况下，取EM为最终指标
+注：阅读理解上述指标中F1和EM共存的情况下，取EM为最终指标。CMRC2018结果为CLUE专用独立测试集。
 
 一键运行.基线模型与代码 Baseline with codes
 ---------------------------------------------------------------------
@@ -489,32 +489,34 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 #### DRCD 繁体阅读理解 Reading Comprehension for Traditional Chinese (F1, EM)：
 | 模型 | 开发集（dev) | 测试集（test) | 训练参数 |
 | :----:| :----: | :----: | :----: |
-| BERT-base |F1:92.30 EM:86.60 | F1:91.46 EM:85.49 |  batch=32, length=512, epoch=2 lr=3e-5 warmup=0.1 |
-| BERT-wwm-ext-base |F1:93.27 EM:88.00 | F1:92.63 EM:87.15 |  batch=32, length=512, epoch=2 lr=3e-5 warmup=0.1 |
-| ERNIE-base  |F1:92.78 EM:86.85 | F1:92.01 EM:86.03 |  batch=32, length=512, epoch=2 lr=3e-5 warmup=0.1 |
-| ALBERT-large  |F1:93.90 EM:88.88 | F1:93.06 EM:87.52 |  batch=32, length=512, epoch=3 lr=2e-5 warmup=0.05 |
-| ALBERT-xlarge |F1:94.63 EM:89.68 | F1:94.70 EM:89.78 |  batch_size=32, length=512, epoch=3 lr=2.5e-5 warmup=0.06 |
-| ALBERT-tiny |F1:81.51 EM:71.61 | F1:80.67 EM:70.08 |  batch=32, length=512, epoch=3 lr=2e-4 warmup=0.1 |
-| RoBERTa-large |F1:94.93 EM:90.11 | F1:94.25 EM:89.35 |  batch=32, length=256, epoch=2 lr=3e-5 warmup=0.1|
-| xlnet-mid |F1:92.08 EM:84.40 | F1:91.44 EM:83.28 | batch=32, length=512, epoch=2 lr=3e-5 warmup=0.1 |
-| RoBERTa-wwm-ext |F1:94.26 EM:89.29 | F1:93.53 EM:88.12 |  batch=32, length=512, epoch=2 lr=3e-5 warmup=0.1|
-| RoBERTa-wwm-large-ext |***F1:95.32 EM:90.54*** | ***F1:95.06 EM:90.70*** | batch=32, length=512, epoch=2 lr=2.5e-5 warmup=0.1 |
+| BERT-base |F1:92.30 EM:86.60 | F1:91.46 EM:85.49 |  batch=32, length=512, epoch=2, lr=3e-5, warmup=0.1 |
+| BERT-wwm-ext-base |F1:93.27 EM:88.00 | F1:92.63 EM:87.15 |  batch=32, length=512, epoch=2, lr=3e-5, warmup=0.1 |
+| ERNIE-base  |F1:92.78 EM:86.85 | F1:92.01 EM:86.03 |  batch=32, length=512, epoch=2, lr=3e-5, warmup=0.1 |
+| ALBERT-large  |F1:93.90 EM:88.88 | F1:93.06 EM:87.52 |  batch=32, length=512, epoch=3, lr=2e-5, warmup=0.05 |
+| ALBERT-xlarge |F1:94.63 EM:89.68 | F1:94.70 EM:89.78 |  batch_size=32, length=512, epoch=3, lr=2.5e-5, warmup=0.06 |
+| ALBERT-xxlarge |F1:93.69 EM:89.97 | F1:94.62 EM:89.67 |  batch_size=32, length=512, epoch=2, lr=3e-5, warmup=0.1 |
+| ALBERT-tiny |F1:81.51 EM:71.61 | F1:80.67 EM:70.08 |  batch=32, length=512, epoch=3, lr=2e-4, warmup=0.1 |
+| RoBERTa-large |F1:94.93 EM:90.11 | F1:94.25 EM:89.35 |  batch=32, length=256, epoch=2, lr=3e-5, warmup=0.1|
+| xlnet-mid |F1:92.08 EM:84.40 | F1:91.44 EM:83.28 | batch=32, length=512, epoch=2, lr=3e-5, warmup=0.1 |
+| RoBERTa-wwm-ext |F1:94.26 EM:89.29 | F1:93.53 EM:88.12 |  batch=32, length=512, epoch=2, lr=3e-5, warmup=0.1|
+| RoBERTa-wwm-large-ext |***F1:95.32 EM:90.54*** | ***F1:95.06 EM:90.70*** | batch=32, length=512, epoch=2, lr=2.5e-5, warmup=0.1 |
 
 #### CMRC2018 阅读理解 Reading Comprehension for Simplified Chinese (F1, EM)：
 | 模型 | 开发集（dev) | 测试集（test) |  训练参数 |
 | :----:| :----: | :----: | :----: |
-| BERT-base	|F1:85.48 EM:64.77 | F1:87.17 EM:69.72 | batch=32, length=512, epoch=2 lr=3e-5 warmup=0.1 |
-| BERT-wwm-ext-base	|F1:86.68 EM:66.96 |F1:88.78 EM:73.23|	batch=32, length=512, epoch=2 lr=3e-5 warmup=0.1 |
-| ERNIE-base	|F1:87.30 EM:66.89 | F1:89.62 EM:73.32 | batch=32, length=512, epoch=2 lr=3e-5 warmup=0.1 |
-| ALBERT-large	| F1:87.86 EM:67.75 |F1:90.17 EM:73.66| epoch3, batch=32, length=512, lr=2e-5, warmup=0.05 |
-| ALBERT-xlarge	| F1:88.66 EM:68.90 |F1:90.92 EM:75.22| epoch3, batch=32, length=512, lr=2e-5, warmup=0.1 |
-| ALBERT-tiny	| F1:73.95 EM:48.31 |F1:75.73 EM:53.68| epoch3, batch=32, length=512, lr=2e-4, warmup=0.1 |
-| RoBERTa-large	| F1:88.61 EM:69.94 |F1:90.94 EM:76.11| epoch2, batch=32, length=256, lr=3e-5, warmup=0.1 |
-| xlnet-mid	|F1:85.63 EM:65.31 | F1:86.09 EM:66.51 | epoch2, batch=32, length=512, lr=3e-5, warmup=0.1 |
-| RoBERTa-wwm-ext	|F1:87.28 EM:67.89 | F1:89.74 EM:73.89 | epoch2, batch=32, length=512, lr=3e-5, warmup=0.1 |
-| RoBERTa-wwm-large-ext	|***F1:89.42 EM:70.59*** | ***F1:91.56 EM:76.58*** | epoch2, batch=32, length=512, lr=2.5e-5, warmup=0.1 |
+| BERT-base	|F1:85.48 EM:64.77 | F1:88.10 EM:71.60 | batch=32, length=512, epoch=2 lr=3e-5 warmup=0.1 |
+| BERT-wwm-ext-base	|F1:86.68 EM:66.96 |F1:89.62 EM:73.95|	batch=32, length=512, epoch=2 lr=3e-5 warmup=0.1 |
+| ERNIE-base	|F1:87.30 EM:66.89 | F1:90.57 EM:74.70 | batch=32, length=512, epoch=2 lr=3e-5 warmup=0.1 |
+| ALBERT-large	| F1:87.86 EM:67.75 |F1:90.81 EM:75.95| batch=32, epoch3, length=512, lr=2e-5, warmup=0.05 |
+| ALBERT-xlarge	| F1:88.66 EM:68.90 |F1:92.09 EM:76.30| batch=32, epoch3, length=512, lr=2e-5, warmup=0.1 |
+| ALBERT-xxlarge	| F1:87.47 EM:66.43 |F1:90.77 EM:75.15| batch=32, epoch2, length=512, lr=3e-5, warmup=0.1 |
+| ALBERT-tiny	| F1:73.95 EM:48.31 |F1:76.21 EM:53.35| batch=32, epoch3, length=512, lr=2e-4, warmup=0.1 |
+| RoBERTa-large	| F1:88.61 EM:69.94 |***F1:92.04 EM:78.50***| batch=32, epoch2, length=256, lr=3e-5, warmup=0.1 |
+| xlnet-mid	|F1:85.63 EM:65.31 | F1:86.11 EM:66.95 | batch=32, epoch2, length=512, lr=3e-5, warmup=0.1 |
+| RoBERTa-wwm-ext	|F1:87.28 EM:67.89 | F1:90.41 EM:75.20 | batch=32, epoch2, length=512, lr=3e-5, warmup=0.1 |
+| RoBERTa-wwm-large-ext	|***F1:89.42 EM:70.59*** | F1:92.11 EM:77.95 | batch=32, epoch2, length=512, lr=2.5e-5, warmup=0.1 |
 
-注: 现在榜上数据为cmrc2018完整测试集结果，之后CLUE将使用2k的测试集子集作为测试，而并非cmrc2018官方完整测试集。如需完整测试cmrc2018阅读理解数据集仍需通过cmrc2018平台提交(https://worksheets.codalab.org/worksheets/0x96f61ee5e9914aee8b54bd11e66ec647)。
+注: 现在榜上数据为cmrc2018的2k测试集子集作为测试，而并非cmrc2018官方完整测试集。如需完整测试cmrc2018阅读理解数据集仍需通过cmrc2018平台提交(https://worksheets.codalab.org/worksheets/0x96f61ee5e9914aee8b54bd11e66ec647)。
 
 #### CHID 成语阅读理解填空 Chinese IDiom Dataset for Cloze Test (Accuracy)：
 | 模型 | 开发集（dev) | 测试集（test) |  训练参数 |
@@ -523,6 +525,7 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 | BERT-wwm-ext-base	|83.36 |82.9 |	batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
 | ERNIE-base	|82.46 | 82.28 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
 | ALBERT-xlarge	| 79.44 |79.55 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
+| ALBERT-xxlarge | - | - | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
 | ALBERT-tiny	| 43.47 |43.53 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
 | RoBERTa-large	| 85.31 |84.50 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
 | xlnet-mid	|83.76 | 83.47 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
