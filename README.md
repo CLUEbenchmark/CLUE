@@ -38,7 +38,7 @@ Language Understanding Evaluation benchmark for Chinese: datasets, baselines, pr
 | <a href="https://github.com/brightmart/roberta_zh">RoBERTa-large</a> | 84.12 | 334M 	| 89.35 | ***78.50*** | 84.50 |
 | <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>	| 77.90 | 209M | 83.28 | 66.95 | 83.47 |
 | <a href="https://github.com/brightmart/albert_zh">ALBERT-xlarge</a> | 82.38 | 59M | 89.78 | 77.80 | 79.55 |
-| <a href="https://github.com/brightmart/albert_zh">ALBERT-xxlarge</a> | - | 221M | 89.67 | 75.15 | - |
+| <a href="https://github.com/brightmart/albert_zh">ALBERT-xxlarge</a> | 82.66 | 221M | 89.67 | 75.15 | 83.15 |
 | <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a> | 55.65 | 1.8M | 70.08 | 53.35 | 43.53 |
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>  | 82.31 | 108M  | 88.12 | 75.20 | 83.62 |
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-large</a> | ***84.67*** | 330M |	***90.70*** |	77.95 | ***85.37*** |
@@ -525,7 +525,7 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 | BERT-wwm-ext-base	|83.36 |82.9 |	batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
 | ERNIE-base	|82.46 | 82.28 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
 | ALBERT-xlarge	| 79.44 |79.55 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
-| ALBERT-xxlarge | - | - | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
+| ALBERT-xxlarge | 83.61 | 83.15 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
 | ALBERT-tiny	| 43.47 |43.53 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
 | RoBERTa-large	| 85.31 |84.50 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
 | xlnet-mid	|83.76 | 83.47 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
