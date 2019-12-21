@@ -104,9 +104,9 @@ Corpus for Langauge Modelling, Pre-training, Generating tasks
 
 1、新闻语料: 8G语料，分成两个上下两部分，总共有2000个小文件。
 
-2、社区互动语料：3G语料，包含3G文本，总共有900多个小文件。
+2、<a href="https://pan.baidu.com/s/1Vk2PihMiZNmWvA2agPb1iA">社区互动-语料</a>：3G语料，包含3G文本，总共有900多个小文件。 密码:qvlq
 
-3、<a href="https://pan.baidu.com/s/1XrM-x70PY4JEb0xCoB_mUw">维基百科</a>：1.1G左右文本，包含300左右小文件。  密码:rja4
+3、<a href="https://pan.baidu.com/s/1XrM-x70PY4JEb0xCoB_mUw">维基百科-语料</a>：1.1G左右文本，包含300左右小文件。  密码:rja4
 
 4、评论数据：2.3G左右文本，含有811个小文件，合并<a href="https://github.com/InsaneLife/ChineseNLPCorpus">ChineseNLPCorpus</a>的多个评论数据，清洗、格式转换、拆分成小文件。
 
