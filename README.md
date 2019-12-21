@@ -92,6 +92,30 @@ DRCD、CMRC2018: 繁体、简体抽取式阅读理解(F1, EM)；CHID：成语多
 测评入口：<a href="http://www.CLUEbenchmark.com">我要提交</a>
 <img src="https://github.com/CLUEbenchmark/CLUE/blob/master/resources/img/CLUEbenchmark.jpg"  width="90%" height="45%" />
 
+语料库：语言建模、预训练或生成型任务
+---------------------------------------------------------------------
+Corpus for Langauge Modelling, Pre-training, Generating tasks
+
+可用于语言建模、预训练或生成型任务等，数据量超过14G，主要部分来自于<a href="https://github.com/brightmart/nlp_chinese_corpus">nlp_chinese_corpus项目</a>
+
+当前语料库按照【预训练格式】处理，内含有多个文件夹；每个文件夹有许多不超过4M大小的小文件，文件格式符合预训练格式：每句话一行，文档间空行隔开。
+
+包含如下子语料库（总共14G语料）：
+
+1、新闻语料: 8G语料，分成两个上下两部分，总共有2000个小文件。
+
+2、社区互动语料：3G语料，包含3G文本，总共有900多个小文件。
+
+3、<a href="https://pan.baidu.com/s/1XrM-x70PY4JEb0xCoB_mUw">维基百科</a>：1.1G左右文本，包含300左右小文件。  密码:rja4
+
+4、评论数据：2.3G左右文本，含有811个小文件，合并<a href="https://github.com/InsaneLife/ChineseNLPCorpus">ChineseNLPCorpus</a>的多个评论数据，清洗、格式转换、拆分成小文件。
+
+这些语料，你可以通过上面这两个项目，清洗数据并做格式转换获得；
+
+你也可以通过邮件申请（chineseGLUE#163.com）获得单个项目的语料，告知单位或学校、姓名、语料用途；
+
+如需获得ChineseGLUE项目下的所有语料，需成为ChineseGLUE组织成员，并完成一个（小）任务。
+
 
 CLUE benchmark的定位 Vision
 ---------------------------------------------------------------------
@@ -532,28 +556,6 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 | RoBERTa-wwm-ext	|83.78 | 83.62 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
 | RoBERTa-wwm-large-ext	|***85.81*** | ***85.37*** | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
 
-
-语料库：语言建模、预训练或生成型任务 Corpus for Langauge Modelling, Pre-training, Generating tasks
----------------------------------------------------------------------
-可用于语言建模、预训练或生成型任务等，数据量超过10G，主要部分来自于<a href="https://github.com/brightmart/nlp_chinese_corpus">nlp_chinese_corpus项目</a>
-
-当前语料库按照【预训练格式】处理，内含有多个文件夹；每个文件夹有许多不超过4M大小的小文件，文件格式符合预训练格式：每句话一行，文档间空行隔开。
-
-包含如下子语料库（总共14G语料）：
-
-1、新闻语料: 8G语料，分成两个上下两部分，总共有2000个小文件。
-
-2、社区互动语料：3G语料，包含3G文本，总共有900多个小文件。
-
-3、维基百科：1.1G左右文本，包含300左右小文件。
-
-4、评论数据：2.3G左右文本，含有811个小文件，合并<a href="https://github.com/InsaneLife/ChineseNLPCorpus">ChineseNLPCorpus</a>的多个评论数据，清洗、格式转换、拆分成小文件。
-
-这些语料，你可以通过上面这两个项目，清洗数据并做格式转换获得；
-
-你也可以通过邮件申请（chineseGLUE#163.com）获得单个项目的语料，告知单位或学校、姓名、语料用途；
-
-如需获得ChineseGLUE项目下的所有语料，需成为ChineseGLUE组织成员，并完成一个（小）任务。
 
 成为ChineseGLUE组织的创始成员 Members
 ---------------------------------------------------------------------
