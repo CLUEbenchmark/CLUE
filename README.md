@@ -92,7 +92,7 @@ DRCD、CMRC2018: 繁体、简体抽取式阅读理解(F1, EM)；CHID：成语多
 测评入口：<a href="http://www.CLUEbenchmark.com">我要提交</a>
 <img src="https://github.com/CLUEbenchmark/CLUE/blob/master/resources/img/CLUEbenchmark.jpg"  width="90%" height="45%" />
 
-语料库：语言建模、预训练或生成型任务
+语料库(CLUECorpus)：语言建模、预训练或生成型任务
 ---------------------------------------------------------------------
 Corpus for Langauge Modelling, Pre-training, Generating tasks
 
@@ -102,13 +102,13 @@ Corpus for Langauge Modelling, Pre-training, Generating tasks
 
 包含如下子语料库（总共14G语料）：
 
-1、新闻语料: 8G语料，分成两个上下两部分，总共有2000个小文件。
+1、<a href="https://pan.baidu.com/s/195M7H5w3N8shYlqCjVL0_Q">新闻语料 news2016zh_corpus</a>: 8G语料，分成两个上下两部分，总共有2000个小文件。  密码:mzlk
 
-2、<a href="https://pan.baidu.com/s/1Vk2PihMiZNmWvA2agPb1iA">社区互动-语料</a>：3G语料，包含3G文本，总共有900多个小文件。 密码:qvlq
+2、<a href="https://pan.baidu.com/s/1Vk2PihMiZNmWvA2agPb1iA">社区互动-语料 webText2019zh_corpus</a>：3G语料，包含3G文本，总共有900多个小文件。 密码:qvlq
 
-3、<a href="https://pan.baidu.com/s/1XrM-x70PY4JEb0xCoB_mUw">维基百科-语料</a>：1.1G左右文本，包含300左右小文件。  密码:rja4
+3、<a href="https://pan.baidu.com/s/1XrM-x70PY4JEb0xCoB_mUw">维基百科-语料 wiki2019zh_corpus</a>：1.1G左右文本，包含300左右小文件。  密码:rja4
 
-4、<a href="https://pan.baidu.com/s/16cPwCcPduMNGdRSuILhEuQ">评论数据-语料</a>：2.3G左右文本，共784个小文件，包括点评评论547个、亚马逊评论227个，合并<a href="https://github.com/InsaneLife/ChineseNLPCorpus">ChineseNLPCorpus</a>的多个评论数据，清洗、格式转换、拆分成小文件。  密码:5kwk
+4、<a href="https://pan.baidu.com/s/16cPwCcPduMNGdRSuILhEuQ">评论数据-语料 comments2019zh_corpus</a>：2.3G左右文本，共784个小文件，包括点评评论547个、亚马逊评论227个，合并<a href="https://github.com/InsaneLife/ChineseNLPCorpus">ChineseNLPCorpus</a>的多个评论数据，清洗、格式转换、拆分成小文件。  密码:5kwk
 
 这些语料，你可以通过上面这两个项目，清洗数据并做格式转换获得；
 
