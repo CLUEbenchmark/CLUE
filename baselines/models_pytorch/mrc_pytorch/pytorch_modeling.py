@@ -16,14 +16,14 @@
 """PyTorch BERT model."""
 from __future__ import print_function
 
+import os
 import copy
 import json
-import logging
 import math
-import os
-import shutil
+import logging
 import tarfile
 import tempfile
+import shutil
 
 import torch
 from torch import nn
@@ -247,7 +247,6 @@ try:
     from apex.normalization.fused_layer_norm import FusedLayerNorm as BertLayerNorm
 except ImportError:
     print("Better speed can be achieved with apex installed from https://www.github.com/nvidia/apex.")
-
 
     class BertLayerNorm(nn.Module):
         def __init__(self, hidden_size, eps=1e-5):
@@ -985,7 +984,7 @@ class BertForMultipleChoice(PreTrainedBertModel):
         self.classifier = nn.Linear(config.hidden_size, 1)
         self.apply(self.init_bert_weights)
 
-    def forward(self, input_ids, token_type_ids=None, attention_mask=None, labels=None):
+    def forward(self, input_ids, token_type_ids=None, attention_mask=None, labels=None, return_logits=False):
         flat_input_ids = input_ids.view(-1, input_ids.size(-1))
         flat_token_type_ids = token_type_ids.view(-1, token_type_ids.size(-1))
         flat_attention_mask = attention_mask.view(-1, attention_mask.size(-1))
@@ -998,7 +997,10 @@ class BertForMultipleChoice(PreTrainedBertModel):
         if labels is not None:
             loss_fct = CrossEntropyLoss()
             loss = loss_fct(reshaped_logits, labels)
-            return loss
+            if return_logits:
+                return loss, reshaped_logits
+            else:
+                return loss
         else:
             return reshaped_logits
 
@@ -1205,7 +1207,6 @@ class ALBertForQA_CLS(PreTrainedBertModel):
         else:
             return start_logits, end_logits, target_logits
 
-
 class ALBertForMultipleChoice(PreTrainedBertModel):
 
     def __init__(self, config, num_choices=2):
@@ -1216,7 +1217,7 @@ class ALBertForMultipleChoice(PreTrainedBertModel):
         self.classifier = nn.Linear(config.hidden_size, 1)
         self.apply(self.init_bert_weights)
 
-    def forward(self, input_ids, token_type_ids=None, attention_mask=None, labels=None):
+    def forward(self, input_ids, token_type_ids=None, attention_mask=None, labels=None, return_logits=False):
         flat_input_ids = input_ids.view(-1, input_ids.size(-1))
         flat_token_type_ids = token_type_ids.view(-1, token_type_ids.size(-1))
         flat_attention_mask = attention_mask.view(-1, attention_mask.size(-1))
@@ -1229,6 +1230,9 @@ class ALBertForMultipleChoice(PreTrainedBertModel):
         if labels is not None:
             loss_fct = CrossEntropyLoss()
             loss = loss_fct(reshaped_logits, labels)
-            return loss
+            if return_logits:
+                return loss, reshaped_logits
+            else:
+                return loss
         else:
             return reshaped_logits

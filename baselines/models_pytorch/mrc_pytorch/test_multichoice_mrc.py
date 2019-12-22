@@ -9,6 +9,7 @@ from tqdm import tqdm
 
 from baselines.models_pytorch.mrc_pytorch.preprocess.CHID_preprocess import RawResult, get_final_predictions, \
     InputFeatures, write_predictions, generate_input
+from baselines.models_pytorch.mrc_pytorch.google_albert_pytorch_modeling import AlbertConfig, AlbertForMultipleChoice
 from baselines.models_pytorch.mrc_pytorch.pytorch_modeling import ALBertConfig, ALBertForMultipleChoice
 from baselines.models_pytorch.mrc_pytorch.pytorch_modeling import BertConfig, BertForMultipleChoice
 from baselines.models_pytorch.mrc_pytorch.tools.official_tokenization import BertTokenizer
@@ -101,8 +102,12 @@ def main():
 
     # Prepare model
     if 'albert' in args.bert_config_file:
-        bert_config = ALBertConfig.from_json_file(args.bert_config_file)
-        model = ALBertForMultipleChoice(bert_config, num_choices=args.max_num_choices)
+        if 'google' in args.bert_config_file:
+            bert_config = AlbertConfig.from_json_file(args.bert_config_file)
+            model = AlbertForMultipleChoice(bert_config, num_choices=args.max_num_choices)
+        else:
+            bert_config = ALBertConfig.from_json_file(args.bert_config_file)
+            model = ALBertForMultipleChoice(bert_config, num_choices=args.max_num_choices)
     else:
         bert_config = BertConfig.from_json_file(args.bert_config_file)
         model = BertForMultipleChoice(bert_config, num_choices=args.max_num_choices)

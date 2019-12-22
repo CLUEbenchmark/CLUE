@@ -36,6 +36,7 @@ from baselines.models_pytorch.mrc_pytorch.preprocess.CHID_preprocess import RawR
     write_predictions, generate_input, evaluate
 from baselines.models_pytorch.mrc_pytorch.pytorch_modeling import ALBertConfig, ALBertForMultipleChoice
 from baselines.models_pytorch.mrc_pytorch.pytorch_modeling import BertConfig, BertForMultipleChoice
+from baselines.models_pytorch.mrc_pytorch.google_albert_pytorch_modeling import AlbertConfig, AlbertForMultipleChoice
 from baselines.models_pytorch.mrc_pytorch.tools.official_tokenization import BertTokenizer
 from baselines.models_pytorch.mrc_pytorch.tools.pytorch_optimization import get_optimization, warmup_linear
 
@@ -196,8 +197,12 @@ def main():
 
     # Prepare model
     if 'albert' in args.bert_config_file:
-        bert_config = ALBertConfig.from_json_file(args.bert_config_file)
-        model = reset_model(args, bert_config, ALBertForMultipleChoice)
+        if 'google' in args.bert_config_file:
+            bert_config = AlbertConfig.from_json_file(args.bert_config_file)
+            model = reset_model(args, bert_config, AlbertForMultipleChoice)
+        else:
+            bert_config = ALBertConfig.from_json_file(args.bert_config_file)
+            model = reset_model(args, bert_config, ALBertForMultipleChoice)
     else:
         bert_config = BertConfig.from_json_file(args.bert_config_file)
         model = reset_model(args, bert_config, BertForMultipleChoice)

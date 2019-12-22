@@ -30,20 +30,19 @@ datasets, baselines, pre-trained models, corpus and leaderboard
 
 #### 阅读理解任务
 
-| 模型 | Score | 参数 | DRCD | CMRC2018 | CHID |
-| :----:| :----: | :----: | :----: |:----: |:----: |
-| <a href="https://github.com/google-research/bert">BERT-base</a>	| 79.71 | 108M | 85.49 	| 71.60 | 82.04 |
-| <a href="https://github.com/ymcui/Chinese-BERT-wwm">BERT-wwm-ext</a> | 81.33 | 108M | 87.15 | 73.95 | 82.90 |
-| <a href="https://github.com/PaddlePaddle/ERNIE">ERNIE-base</a>	| 81.00 | 108M | 86.03 | 74.7 | 82.28 |
-| <a href="https://github.com/brightmart/roberta_zh">RoBERTa-large</a> | 84.12 | 334M 	| 89.35 | ***78.50*** | 84.50 |
-| <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>	| 77.90 | 209M | 83.28 | 66.95 | 83.47 |
-| <a href="https://github.com/brightmart/albert_zh">ALBERT-xlarge</a> | 82.38 | 59M | 89.78 | 77.80 | 79.55 |
-| <a href="https://github.com/brightmart/albert_zh">ALBERT-xxlarge</a> | 82.66 | 221M | 89.67 | 75.15 | 83.15 |
-| <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a> | 55.65 | 1.8M | 70.08 | 53.35 | 43.53 |
-| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>  | 82.31 | 108M  | 88.12 | 75.20 | 83.62 |
-| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-large</a> | ***84.67*** | 330M |	***90.70*** |	77.95 | ***85.37*** |
+| 模型 | Score | 参数 | DRCD | CMRC2018 | CHID | C<sup>3</sup> |
+| :----:| :----: | :----: | :----: |:----: |:----: | :----: |
+| <a href="https://github.com/google-research/bert">BERT-base</a>	| 79.71 | 108M | 85.49 	| 71.60 | 82.04 | 64.50 |
+| <a href="https://github.com/ymcui/Chinese-BERT-wwm">BERT-wwm-ext</a> | 81.33 | 108M | 87.15 | 73.95 | 82.90 | 68.50 |
+| <a href="https://github.com/PaddlePaddle/ERNIE">ERNIE-base</a>	| 81.00 | 108M | 86.03 | 74.7 | 82.28 | 64.10 |
+| <a href="https://github.com/brightmart/roberta_zh">RoBERTa-large</a> | 84.12 | 334M 	| 89.35 | ***78.50*** | 84.50 | 63.44 |
+| <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>	| 77.90 | 209M | 83.28 | 66.95 | 83.47 | 67.68 |
+| <a href="https://github.com/brightmart/albert_zh">ALBERT-xxlarge</a> | 82.66 | 221M | 89.67 | 75.15 | 83.15 | 73.28 |
+| <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a> | 55.65 | 1.8M | 70.08 | 53.35 | 43.53 | 31.86 |
+| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>  | 82.31 | 108M  | 88.12 | 75.20 | 83.62 | 66.50 |
+| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-large</a> | ***84.67*** | 330M |	***90.70*** |	77.95 | ***85.37*** | ***73.82*** |
 
-DRCD、CMRC2018: 繁体、简体抽取式阅读理解(F1, EM)；CHID：成语多分类阅读理解(Acc)；
+DRCD、CMRC2018: 繁体、简体抽取式阅读理解(F1, EM)；CHID: 成语多分类阅读理解(Acc)；C<sup>3</sup>: 多选中文阅读理解(Acc)
 
 注：阅读理解上述指标中F1和EM共存的情况下，取EM为最终指标。CMRC2018结果为CLUE专用独立测试集。
 
@@ -335,6 +334,51 @@ https://arxiv.org/abs/1906.01265
 ```
 
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/chid_public.zip" > CHID数据集下载</a>
+   
+##### 10.C<sup>3</sup> 中文多选阅读理解 Multiple-Choice Chinese Machine Reading Comprehension  
+https://arxiv.org/abs/1904.09679  
+中文多选阅读理解数据集，包含对话和长文等混合类型数据集。  
+```
+    数据量：训练集(11,869)，验证集(3,816)，测试集(3,892)
+    例子：
+    [
+      [
+        "男：你今天晚上有时间吗?我们一起去看电影吧?",
+        "女：你喜欢恐怖片和爱情片，但是我喜欢喜剧片，科幻片一般。所以……"
+      ],
+      [
+       {
+        "question": "女的最喜欢哪种电影?",
+        "choice": [
+         "恐怖片",
+         "爱情片",
+         "喜剧片",
+         "科幻片"
+        ],
+        "answer": "喜剧片"
+       }
+      ],
+    "25-35"
+    ],
+    [
+      [
+       "男：足球比赛是明天上午八点开始吧?",
+       "女：因为天气不好，比赛改到后天下午三点了。"
+      ],
+      [
+       {
+        "question": "根据对话，可以知道什么?",
+        "choice": [
+         "今天天气不好",
+         "比赛时间变了",
+         "校长忘了时间"
+        ],
+        "answer": "比赛时间变了"
+       }
+      ],
+    "31-109"
+    ]
+```
 
 
 ##### 更多数据集添加中，Comming soon!
@@ -433,14 +477,14 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 |         模型          | 开发集（dev) | 测试集（test) |              训练参数              |
 | :-------------------: | :----------: | :-----------: | :--------------------------------: |
 |     ALBERT-xxlarge     |    -     |     -   |  -  |
-|      ALBERT-tiny      |    69.13%     |    69.92%    | batch_size=16, length=128, epoch=3 lr=2e-5 |
-|       BERT-base       |    74.16%     |     73.70%  | batch_size=16, length=128, epoch=3 lr=2e-5 |
-|   BERT-wwm-ext-base   |    73.74%     |      74.07%   | batch_size=16, length=128, epoch=3 lr=2e-5 |
-|      ERNIE-base       |         74.88% |      73.83%    | batch_size=16, length=128, epoch=3 lr=2e-5|
-|     RoBERTa-large     |     73.32%    |       74.02%   | batch_size=16, length=128, epoch=3 lr=2e-5|
-|       XLNet-mid       |     70.73%    |   70.50%       | batch_size=16, length=128, epoch=3 lr=2e-5|
-|    RoBERTa-wwm-ext    |   74.30%      |      74.04%       | batch_size=16, length=128, epoch=3 lr=2e-5|
-| RoBERTa-wwm-large-ext |  74.92% |  76.55% | batch_size=16, length=128, epoch=3 lr=2e-5|
+|      ALBERT-tiny      |    69.13%     |    69.92%    | batch_size=16, length=128, epoch=3 lr=2e-5|
+|       BERT-base       |    74.16%     |     73.70%   | batch_size=16, length=128, epoch=3 lr=2e-5|
+|   BERT-wwm-ext-base   |    73.74%     |     74.07%   | batch_size=16, length=128, epoch=3 lr=2e-5|
+|      ERNIE-base       |        74.88% |    73.83%    | batch_size=16, length=128, epoch=3 lr=2e-5|
+|     RoBERTa-large     |     73.32%    |     74.02%   | batch_size=16, length=128, epoch=3 lr=2e-5|
+|       XLNet-mid       |     70.73%    |   70.50%     | batch_size=16, length=128, epoch=3 lr=2e-5|
+|    RoBERTa-wwm-ext    |   74.30%      |    74.04%    | batch_size=16, length=128, epoch=3 lr=2e-5|
+| RoBERTa-wwm-large-ext |     74.92%    |    76.55%    | batch_size=16, length=128, epoch=3 lr=2e-5|
 
 #### TNEWS' 头条新闻分类 Toutiao News Classification (Accuracy)：
 |         模型          | 开发集（dev) | 测试集（test) |              训练参数              |
@@ -555,6 +599,19 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 | xlnet-mid	|83.76 | 83.47 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
 | RoBERTa-wwm-ext	|83.78 | 83.62 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
 | RoBERTa-wwm-large-ext	|***85.81*** | ***85.37*** | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
+
+#### C<sup>3</sup> 成语阅读理解填空 中文多选阅读理解 Multiple-Choice Chinese Machine Reading Comprehension (Accuracy)：
+| 模型 | 开发集（dev) | 测试集（test) |  训练参数 |
+| :----:| :----: | :----: | :----: |
+| BERT-base	| 65.70 | 64.50 | batch=24, length=512, epoch=8, lr=2e-5, warmup=0.1 |
+| BERT-wwm-ext-base	| 67.80 | 68.50 | batch=24, length=512, epoch=8, lr=2e-5, warmup=0.1 |
+| ERNIE-base	| 65.50 | 64.10 | batch=24, length=512, epoch=8, lr=2e-5, warmup=0.1 |
+| ALBERT-xxlarge | 73.66 | 73.28 | batch=16, length=512, epoch=8, lr=2e-5, warmup=0.1 |
+| ALBERT-tiny	| - | 31.86 | batch=24, length=512, epoch=8, lr=2e-5, warmup=0.1 |
+| RoBERTa-large	| - | 63.44 | batch=24, length=512, epoch=8, lr=2e-5, warmup=0.1 |
+| xlnet-mid	| - | 67.68 | batch=24, length=512, epoch=8, lr=2e-5, warmup=0.1 |
+| RoBERTa-wwm-ext	| 67.06 | 66.50 | batch=24, length=512, epoch=8, lr=2e-5, warmup=0.1 |
+| RoBERTa-wwm-large-ext	|***74.48*** | ***73.82*** | batch=16, length=512, epoch=8, lr=2e-5, warmup=0.1 |
 
 
 成为ChineseGLUE组织的创始成员 Members

@@ -11,6 +11,7 @@ from tqdm import tqdm
 
 from baselines.models_pytorch.mrc_pytorch.pytorch_modeling import BertConfig, BertForQuestionAnswering, ALBertConfig, \
     ALBertForQA
+from baselines.models_pytorch.mrc_pytorch.google_albert_pytorch_modeling import AlbertConfig, AlbertForMRC
 from baselines.models_pytorch.mrc_pytorch.tools import official_tokenization as tokenization
 from baselines.models_pytorch.mrc_pytorch.tools import utils
 
@@ -112,7 +113,10 @@ if __name__ == '__main__':
     if 'albert' not in args.bert_config_file:
         bert_config = BertConfig.from_json_file(args.bert_config_file)
     else:
-        bert_config = ALBertConfig.from_json_file(args.bert_config_file)
+        if 'google' in args.bert_config_file:
+            bert_config = AlbertConfig.from_json_file(args.bert_config_file)
+        else:
+            bert_config = ALBertConfig.from_json_file(args.bert_config_file)
 
     # load data
     print('loading data...')
@@ -139,7 +143,10 @@ if __name__ == '__main__':
     if 'albert' not in args.init_restore_dir:
         model = BertForQuestionAnswering(bert_config)
     else:
-        model = ALBertForQA(bert_config, dropout_rate=args.dropout)
+        if 'google' in args.init_restore_dir:
+            model = AlbertForMRC(bert_config)
+        else:
+            model = ALBertForQA(bert_config, dropout_rate=args.dropout)
     utils.torch_show_all_params(model)
     utils.torch_init_model(model, args.init_restore_dir)
     if args.float16:
