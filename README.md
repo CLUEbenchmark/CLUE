@@ -32,15 +32,15 @@ datasets, baselines, pre-trained models, corpus and leaderboard
 
 | 模型 | Score | 参数 | DRCD | CMRC2018 | CHID | C<sup>3</sup> |
 | :----:| :----: | :----: | :----: |:----: |:----: | :----: |
-| <a href="https://github.com/google-research/bert">BERT-base</a>	| 79.71 | 108M | 85.49 	| 71.60 | 82.04 | 64.50 |
-| <a href="https://github.com/ymcui/Chinese-BERT-wwm">BERT-wwm-ext</a> | 81.33 | 108M | 87.15 | 73.95 | 82.90 | 68.50 |
-| <a href="https://github.com/PaddlePaddle/ERNIE">ERNIE-base</a>	| 81.00 | 108M | 86.03 | 74.7 | 82.28 | 64.10 |
-| <a href="https://github.com/brightmart/roberta_zh">RoBERTa-large</a> | 84.12 | 334M 	| 89.35 | ***78.50*** | 84.50 | 63.44 |
-| <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>	| 77.90 | 209M | 83.28 | 66.95 | 83.47 | 67.68 |
-| <a href="https://github.com/brightmart/albert_zh">ALBERT-xxlarge</a> | 82.66 | 221M | 89.67 | 75.15 | 83.15 | 73.28 |
-| <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a> | 55.65 | 1.8M | 70.08 | 53.35 | 43.53 | 31.86 |
-| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>  | 82.31 | 108M  | 88.12 | 75.20 | 83.62 | 66.50 |
-| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-large</a> | ***84.67*** | 330M |	***90.70*** |	77.95 | ***85.37*** | ***73.82*** |
+| <a href="https://github.com/google-research/bert">BERT-base</a>	| 75.91 | 108M | 85.49 	| 71.60 | 82.04 | 64.50 |
+| <a href="https://github.com/ymcui/Chinese-BERT-wwm">BERT-wwm-ext</a> | 78.12 | 108M | 87.15 | 73.95 | 82.90 | 68.50 |
+| <a href="https://github.com/PaddlePaddle/ERNIE">ERNIE-base</a>	| 76.78 | 108M | 86.03 | 74.7 | 82.28 | 64.10 |
+| <a href="https://github.com/brightmart/roberta_zh">RoBERTa-large</a> | 79.98 | 334M 	| 89.35 | ***78.50*** | 84.50 | 67.55 |
+| <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>	| 75.35 | 209M | 83.28 | 66.95 | 83.47 | 67.68 |
+| <a href="https://github.com/brightmart/albert_zh">ALBERT-xxlarge</a> | 80.32 | 221M | 89.67 | 75.15 | 83.15 | 73.28 |
+| <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a> | 49.70 | 1.8M | 70.08 | 53.35 | 43.53 | 31.86 |
+| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>  | 78.36 | 108M  | 88.12 | 75.20 | 83.62 | 66.50 |
+| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-large</a> | ***81.96*** | 330M |	***90.70*** |	77.95 | ***85.37*** | ***73.82*** |
 
 DRCD、CMRC2018: 繁体、简体抽取式阅读理解(F1, EM)；CHID: 成语多分类阅读理解(Acc)；C<sup>3</sup>: 多选中文阅读理解(Acc)
 
@@ -608,7 +608,7 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 | ERNIE-base	| 65.50 | 64.10 | batch=24, length=512, epoch=8, lr=2e-5, warmup=0.1 |
 | ALBERT-xxlarge | 73.66 | 73.28 | batch=16, length=512, epoch=8, lr=2e-5, warmup=0.1 |
 | ALBERT-tiny	| - | 31.86 | batch=24, length=512, epoch=8, lr=2e-5, warmup=0.1 |
-| RoBERTa-large	| - | 63.44 | batch=24, length=512, epoch=8, lr=2e-5, warmup=0.1 |
+| RoBERTa-large	| 67.79 | 67.55 | batch=24, length=256, epoch=8, lr=2e-5, warmup=0.1 |
 | xlnet-mid	| - | 67.68 | batch=24, length=512, epoch=8, lr=2e-5, warmup=0.1 |
 | RoBERTa-wwm-ext	| 67.06 | 66.50 | batch=24, length=512, epoch=8, lr=2e-5, warmup=0.1 |
 | RoBERTa-wwm-large-ext	|***74.48*** | ***73.82*** | batch=16, length=512, epoch=8, lr=2e-5, warmup=0.1 |
