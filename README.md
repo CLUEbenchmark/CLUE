@@ -38,7 +38,7 @@ datasets, baselines, pre-trained models, corpus and leaderboard
 | <a href="https://github.com/brightmart/roberta_zh">RoBERTa-large</a> | 79.98 | 334M 	| 89.35 | ***78.50*** | 84.50 | 67.55 |
 | <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>	| 75.35 | 209M | 83.28 | 66.95 | 83.47 | 67.68 |
 | <a href="https://github.com/brightmart/albert_zh">ALBERT-xxlarge</a> | 80.32 | 221M | 89.67 | 75.15 | 83.15 | 73.28 |
-| <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a> | 49.70 | 1.8M | 70.08 | 53.35 | 43.53 | 31.86 |
+| <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a> | 54.31 | 1.8M | 70.08 | 53.35 | 43.53 | 50.26 |
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>  | 78.36 | 108M  | 88.12 | 75.20 | 83.62 | 66.50 |
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-large</a> | ***81.96*** | 330M |	***90.70*** |	77.95 | ***85.37*** | ***73.82*** |
 
@@ -607,9 +607,9 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 | BERT-wwm-ext-base	| 67.80 | 68.50 | batch=24, length=512, epoch=8, lr=2e-5, warmup=0.1 |
 | ERNIE-base	| 65.50 | 64.10 | batch=24, length=512, epoch=8, lr=2e-5, warmup=0.1 |
 | ALBERT-xxlarge | 73.66 | 73.28 | batch=16, length=512, epoch=8, lr=2e-5, warmup=0.1 |
-| ALBERT-tiny	| - | 31.86 | batch=24, length=512, epoch=8, lr=2e-5, warmup=0.1 |
+| ALBERT-tiny	| 50.58 | 50.26 | batch=32, length=512, epoch=8, lr=5e-5, warmup=0.1 |
 | RoBERTa-large	| 67.79 | 67.55 | batch=24, length=256, epoch=8, lr=2e-5, warmup=0.1 |
-| xlnet-mid	| - | 67.68 | batch=24, length=512, epoch=8, lr=2e-5, warmup=0.1 |
+| xlnet-mid	| 66.17 | 67.68 | batch=24, length=512, epoch=8, lr=2e-5, warmup=0.1 |
 | RoBERTa-wwm-ext	| 67.06 | 66.50 | batch=24, length=512, epoch=8, lr=2e-5, warmup=0.1 |
 | RoBERTa-wwm-large-ext	|***74.48*** | ***73.82*** | batch=16, length=512, epoch=8, lr=2e-5, warmup=0.1 |
 
