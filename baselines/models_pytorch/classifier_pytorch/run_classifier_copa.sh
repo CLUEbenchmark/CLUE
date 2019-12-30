@@ -1,3 +1,7 @@
+# @Author: bo.shi
+# @Date:   2019-12-30 19:36:33
+# @Last Modified by:   bo.shi
+# @Last Modified time: 2019-12-30 19:36:46
 CURRENT_DIR=`pwd`
 export BERT_BASE_DIR=$CURRENT_DIR/prev_trained_model/bert-base
 export GLUE_DIR=$CURRENT_DIR/CLUEdatasets
