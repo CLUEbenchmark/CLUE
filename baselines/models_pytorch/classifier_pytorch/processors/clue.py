@@ -1,3 +1,8 @@
+# -*- coding: utf-8 -*-
+# @Author: bo.shi
+# @Date:   2019-12-30 19:26:53
+# @Last Modified by:   bo.shi
+# @Last Modified time: 2020-01-01 11:39:23
 """ CLUE processors and helpers """
 
 import logging
@@ -275,7 +280,7 @@ class CmnliProcessor(DataProcessor):
             guid = "%s-%s" % (set_type, i)
             text_a = line["sentence1"]
             text_b = line["sentence2"]
-            label = str(line["label"]) if set_type != 'test' else 'neutral'
+            label = str(line["gold_label"]) if set_type != 'test' else 'neutral'
             examples.append(
                 InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
         return examples

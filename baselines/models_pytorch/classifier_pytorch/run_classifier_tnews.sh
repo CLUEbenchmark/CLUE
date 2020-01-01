@@ -2,15 +2,15 @@
 # @Author: bo.shi
 # @Date:   2019-11-04 09:56:36
 # @Last Modified by:   bo.shi
-# @Last Modified time: 2019-12-30 19:40:36
+# @Last Modified time: 2020-01-01 11:46:07
 
 TASK_NAME="tnews"
-MODEL_NAME="chinese_L-12_H-768_A-12"
+MODEL_NAME="bert-base-chinese"
 CURRENT_DIR=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 export CUDA_VISIBLE_DEVICES="0"
 export BERT_PRETRAINED_MODELS_DIR=$CURRENT_DIR/prev_trained_model
-export BERT_BASE_DIR=$BERT_PRETRAINED_MODELS_DIR/$MODEL_NAME
-export GLUE_DATA_DIR=$CURRENT_DIR/../../CLUEdataset
+export BERT_WWM_DIR=$BERT_PRETRAINED_MODELS_DIR/$MODEL_NAME
+export GLUE_DATA_DIR=$CURRENT_DIR/CLUEdatasets
 
 # download and unzip dataset
 if [ ! -d $GLUE_DATA_DIR ]; then
@@ -26,36 +26,18 @@ cd $TASK_NAME
 if [ ! -f "train.json" ] || [ ! -f "dev.json" ] || [ ! -f "test.json" ]; then
   rm *
   wget https://storage.googleapis.com/cluebenchmark/tasks/tnews_public.zip
-  unzip afqmc_public.zip
-  rm afqmc_public.zip
+  unzip tnews_public.zip
+  rm tnews_public.zip
 else
   echo "data exists"
 fi
 echo "Finish download dataset."
 
-# download model
-if [ ! -d $BERT_PRETRAINED_MODELS_DIR ]; then
-  mkdir -p $BERT_PRETRAINED_MODELS_DIR
-  echo "makedir $BERT_PRETRAINED_MODELS_DIR"
+# make output dir
+if [ ! -d $CURRENT_DIR/${TASK_NAME}_output ]; then
+  mkdir -p $CURRENT_DIR/${TASK_NAME}_output
+  echo "makedir $CURRENT_DIR/${TASK_NAME}_output"
 fi
-cd $BERT_PRETRAINED_MODELS_DIR
-if [ ! -d $MODEL_NAME ]; then
-  wget https://storage.googleapis.com/bert_models/2018_11_03/chinese_L-12_H-768_A-12.zip
-  unzip chinese_L-12_H-768_A-12.zip
-  rm chinese_L-12_H-768_A-12.zip
-else
-  cd $MODEL_NAME
-  if [ ! -f "bert_config.json" ] || [ ! -f "vocab.txt" ] || [ ! -f "bert_model.ckpt.index" ] || [ ! -f "bert_model.ckpt.meta" ] || [ ! -f "bert_model.ckpt.data-00000-of-00001" ]; then
-    cd ..
-    rm -rf $MODEL_NAME
-    wget https://storage.googleapis.com/bert_models/2018_11_03/chinese_L-12_H-768_A-12.zip
-    unzip chinese_L-12_H-768_A-12.zip
-    rm chinese_L-12_H-768_A-12.zip
-  else
-    echo "model exists"
-  fi
-fi
-echo "Finish download model."
 
 # run task
 cd $CURRENT_DIR
@@ -63,7 +45,7 @@ echo "Start running..."
 if [ $# == 0 ]; then
     python run_classifier.py \
       --model_type=bert \
-      --model_name_or_path=$BERT_BASE_DIR \
+      --model_name_or_path=$MODEL_NAME \
       --task_name=$TASK_NAME \
       --do_train \
       --do_eval \
@@ -83,7 +65,7 @@ elif [ $1 == "predict" ]; then
     echo "Start predict..."
     python run_classifier.py \
       --model_type=bert \
-      --model_name_or_path=$BERT_BASE_DIR \
+      --model_name_or_path=$MODEL_NAME \
       --task_name=$TASK_NAME \
       --do_predict \
       --do_lower_case \

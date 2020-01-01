@@ -1,3 +1,8 @@
+# -*- coding: utf-8 -*-
+# @Author: bo.shi
+# @Date:   2019-12-30 19:26:53
+# @Last Modified by:   bo.shi
+# @Last Modified time: 2019-12-31 19:49:36
 """ Finetuning the library models for sequence classification on CLUE (Bert, ERNIE, XLNet, RoBERTa)."""
 
 from __future__ import absolute_import, division, print_function
