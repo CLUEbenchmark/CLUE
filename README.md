@@ -52,8 +52,10 @@ DRCD、CMRC2018: 繁体、简体抽取式阅读理解(F1, EM)；CHID: 成语多�
     1、克隆项目 
        git clone https://github.com/CLUEbenchmark/CLUE.git
     2、进入到相应的目录
-       分类任务：
-           cd CLUE/baselines/models/bert  
+       分类任务  
+           例如：
+           cd CLUE/baselines/models/bert
+           cd CLUE/baselines/models_pytorch/classifier_pytorch
        或阅读理解任务：
            cd CLUE/baselines/models_pytorch/mrc_pytorch
     3、运行对应任务的脚本: 会自动下载模型和任务数据并开始运行。
