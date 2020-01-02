@@ -115,8 +115,8 @@ class c3Processor(DataProcessor):
         for sid in range(3):
             data = []
             for subtask in ["d", "m"]:
-                with open(self.data_dir + "/c3-" + subtask + "-" + ["train.json", "dev.json", "test.json"][sid], "r",
-                          encoding="utf8") as f:
+                with open(self.data_dir + "/c3-" + subtask + "-" + ["train.json", "dev.json", "test.json"][sid],
+                          "r", encoding="utf8") as f:
                     data += json.load(f)
             if sid == 0:
                 random.shuffle(data)
@@ -816,6 +816,12 @@ def main():
                         f.write("\n")
                     else:
                         f.write(" ")
+
+        # the test submission order can't be changed
+        submission_test = os.path.join(args.output_dir, "submission_test.json")
+        test_preds = [np.argmax(logits_) for logits_ in logits_all]
+        with open(submission_test, "w") as f:
+            json.dump(test_preds, f)
 
 
 if __name__ == "__main__":
