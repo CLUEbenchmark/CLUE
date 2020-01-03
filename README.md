@@ -37,7 +37,7 @@ datasets, baselines, pre-trained models, corpus and leaderboard
 | <a href="https://github.com/PaddlePaddle/ERNIE">ERNIE-base</a>	| 76.78 | 108M | 86.03 | 74.7 | 82.28 | 64.10 |
 | <a href="https://github.com/brightmart/roberta_zh">RoBERTa-large</a> | 79.98 | 334M 	| 89.35 | ***78.50*** | 84.50 | 67.55 |
 | <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>	| 75.35 | 209M | 83.28 | 66.95 | 83.47 | 67.68 |
-| <a href="https://github.com/brightmart/albert_zh">ALBERT-xxlarge</a> | 80.32 | 221M | 89.67 | 75.15 | 83.15 | 73.28 |
+| <a href="http://github.com/google-research/albert">ALBERT-xxlarge</a> | 80.32 | 221M | 89.67 | 75.15 | 83.15 | 73.28 |
 | <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a> | 54.31 | 1.8M | 70.08 | 53.35 | 43.53 | 50.26 |
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>  | 78.36 | 108M  | 88.12 | 75.20 | 83.62 | 66.50 |
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-large</a> | ***81.96*** | 330M |	***90.70*** |	77.95 | ***85.37*** | ***73.82*** |
