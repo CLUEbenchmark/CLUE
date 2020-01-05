@@ -339,7 +339,7 @@ https://arxiv.org/abs/1906.01265
    
 ##### 10.C<sup>3</sup> 中文多选阅读理解 Multiple-Choice Chinese Machine Reading Comprehension  
 https://arxiv.org/abs/1904.09679  
-中文多选阅读理解数据集，包含对话和长文等混合类型数据集。  
+中文多选阅读理解数据集，包含对话和长文等混合类型数据集。训练和验证集中的d,m分别代表对话、多种文本类型混合。  
 ```
     数据量：训练集(11,869)，验证集(3,816)，测试集(3,892)
     例子：
@@ -381,6 +381,7 @@ https://arxiv.org/abs/1904.09679
     "31-109"
     ]
 ```
+   <a href="https://storage.googleapis.com/cluebenchmark/tasks/c3_public.zip" > C3数据集下载</a>
 
 
 ##### 更多数据集添加中，Comming soon!
