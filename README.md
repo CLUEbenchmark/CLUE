@@ -383,6 +383,13 @@ https://arxiv.org/abs/1904.09679
 ```
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/c3_public.zip" > C3数据集下载</a>
 
+##### 11. 诊断集 CLUE_diagnostics test_set
+
+诊断集，用于评估不同模型在9种语言学家总结的中文语言现象上的表现
+
+使用在CMNLI上训练过的模型，直接预测在这个诊断集上的结果，提交格式和CMNLI一致，在排行榜详情页可以看到结果
+
+<a href='https://storage.googleapis.com/cluebenchmark/tasks/clue_diagnostics_public.zip'>diagnostics数据集下载</a>
 
 ##### 更多数据集添加中，Comming soon!
 如果你有定义良好的数据集并愿意为社区做贡献，请与我们取得联系 ChineseGLUE#163.com
