@@ -683,15 +683,14 @@ or join QQ group: 836811304
 
 Cite Us:
 ---------------------------------------------------------------------
-
-@misc{CLUEbenchmark_2020,
-  title={CLUE benchmark},
-  author={anonymous},
-  year={2020},
-  publisher={Github},
-  journal={GitHub repository},
-  howpublished={\url{https://https://github.com/CLUEbenchmark/CLUE}},
-}
+    @misc{CLUEbenchmark_2020,
+      title={CLUE benchmark},
+      author={anonymous},
+      year={2020},
+      publisher={Github},
+      journal={GitHub repository},
+      howpublished={\url{https://https://github.com/CLUEbenchmark/CLUE}},
+    }
 
 Reference:
 ---------------------------------------------------------------------
