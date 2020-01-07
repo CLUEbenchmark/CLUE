@@ -62,6 +62,8 @@ DRCD、CMRC2018: 繁体、简体抽取式阅读理解(F1, EM)；CHID: 成语多�
        bash run_classifier_xxx.sh
        如运行 bash run_classifier_iflytek.sh 会开始iflytek任务的训练
 
+### 运行环境
+tensorflow 1.12 /cuda 9.0 /cudnn7.0
 ### 工具包 Toolkit
 
 运行方式：
