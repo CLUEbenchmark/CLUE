@@ -681,6 +681,17 @@ or join QQ group: 836811304
 
 #### Research supported with Cloud TPUs from Google's TensorFlow Research Cloud (TFRC)
 
+Cite Us:
+---------------------------------------------------------------------
+
+@misc{CLUEbenchmark_2020,
+  title={CLUE benchmark},
+  author={anonymous},
+  year={2020},
+  publisher={Github},
+  journal={GitHub repository},
+  howpublished={\url{https://https://github.com/CLUEbenchmark/CLUE}},
+}
 
 Reference:
 ---------------------------------------------------------------------
