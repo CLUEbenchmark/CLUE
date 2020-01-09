@@ -126,7 +126,7 @@ class c3Processor(DataProcessor):
                     for k in range(len(data[i][1][j]["choice"])):
                         d += [data[i][1][j]["choice"][k].lower()]
                     for k in range(len(data[i][1][j]["choice"]), 4):
-                        d += ['无效答案']  # 有些C3数据选项不足4个，添加无效答案能够有效增强模型收敛稳定性
+                        d += ['无效答案']  # 有些C3数据选项不足4个，添加[无效答案]能够有效增强模型收敛稳定性
                     d += [data[i][1][j]["answer"].lower()]
                     self.D[sid] += [d]
 
