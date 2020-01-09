@@ -30,17 +30,20 @@ datasets, baselines, pre-trained models, corpus and leaderboard
 
 #### 阅读理解任务
 
-| 模型 | Score | 参数 | DRCD | CMRC2018 | CHID | C<sup>3</sup> |
+| 模型 | Score | 参数 | CMRC2018 | CHID | C<sup>3</sup> |
 | :----:| :----: | :----: | :----: |:----: |:----: | :----: |
-| <a href="https://github.com/google-research/bert">BERT-base</a>	| 75.91 | 108M | 85.49 	| 71.60 | 82.04 | 64.50 |
-| <a href="https://github.com/ymcui/Chinese-BERT-wwm">BERT-wwm-ext</a> | 78.12 | 108M | 87.15 | 73.95 | 82.90 | 68.50 |
-| <a href="https://github.com/PaddlePaddle/ERNIE">ERNIE-base</a>	| 76.78 | 108M | 86.03 | 74.7 | 82.28 | 64.10 |
-| <a href="https://github.com/brightmart/roberta_zh">RoBERTa-large</a> | 79.98 | 334M 	| 89.35 | ***78.50*** | 84.50 | 67.55 |
-| <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>	| 75.35 | 209M | 83.28 | 66.95 | 83.47 | 67.68 |
-| <a href="https://github.com/google-research/albert">ALBERT-xxlarge</a> | 80.32 | 221M | 89.67 | 75.15 | 83.15 | 73.28 |
-| <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a> | 54.31 | 1.8M | 70.08 | 53.35 | 43.53 | 50.26 |
-| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>  | 78.36 | 108M  | 88.12 | 75.20 | 83.62 | 66.50 |
-| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-large</a> | ***81.96*** | 330M |	***90.70*** |	77.95 | ***85.37*** | ***73.82*** |
+| <a href="https://github.com/google-research/bert">BERT-base</a>	| 72.71 | 108M | 71.60 | 82.04 | 64.50 |
+| <a href="https://github.com/ymcui/Chinese-BERT-wwm">BERT-wwm-ext</a> | 75.12 | 108M | 73.95 | 82.90 | 68.50 |
+| <a href="https://github.com/PaddlePaddle/ERNIE">ERNIE-base</a>	| 73.69 | 108M | 74.7 | 82.28 | 64.10 |
+| <a href="https://github.com/brightmart/roberta_zh">RoBERTa-large</a> | 76.85 | 334M | ***78.50*** | 84.50 | 67.55 |
+| <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>	| 72.70 | 209M | 66.95 | 83.47 | 67.68 |
+| <a href="https://github.com/google-research/albert">ALBERT-base</a> | - | 10M | 72.90 | - | 59.58 |
+| <a href="https://github.com/google-research/albert">ALBERT-large</a> | - | 16.5M | 75.95 | - | - |
+| <a href="https://github.com/google-research/albert">ALBERT-xlarge</a> | - | 57.5M | 76.30 | - | - |
+| <a href="https://github.com/google-research/albert">ALBERT-xxlarge</a> | 77.19 | 221M | 75.15 | 83.15 | 73.28 |
+| <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a> | 49.05 | 1.8M | 53.35 | 43.53 | 50.26 |
+| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>  | 75.11 | 108M | 75.20 | 83.62 | 66.50 |
+| <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-large</a> | ***79.05*** | 330M | 77.95 | ***85.37*** | ***73.82*** |
 
 DRCD、CMRC2018: 繁体、简体抽取式阅读理解(F1, EM)；CHID: 成语多分类阅读理解(Acc)；C<sup>3</sup>: 多选中文阅读理解(Acc)
 
@@ -587,8 +590,9 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 | BERT-base	|F1:85.48 EM:64.77 | F1:88.10 EM:71.60 | batch=32, length=512, epoch=2 lr=3e-5 warmup=0.1 |
 | BERT-wwm-ext-base	|F1:86.68 EM:66.96 |F1:89.62 EM:73.95|	batch=32, length=512, epoch=2 lr=3e-5 warmup=0.1 |
 | ERNIE-base	|F1:87.30 EM:66.89 | F1:90.57 EM:74.70 | batch=32, length=512, epoch=2 lr=3e-5 warmup=0.1 |
-| ALBERT-large	| F1:87.86 EM:67.75 |F1:90.81 EM:75.95| batch=32, epoch3, length=512, lr=2e-5, warmup=0.05 |
-| ALBERT-xlarge	| F1:88.66 EM:68.90 |F1:92.09 EM:76.30| batch=32, epoch3, length=512, lr=2e-5, warmup=0.1 |
+| ALBERT-base	| F1:85.86 EM:64.76 |F1:89.66 EM:72.90| batch=32, epoch2, length=512, lr=3e-5, warmup=0.1 |
+| ALBERT-large	| F1:87.36 EM:67.31 |F1:90.81 EM:75.95| batch=32, epoch2, length=512, lr=3e-5, warmup=0.1 |
+| ALBERT-xlarge	| F1:88.99 EM:69.08 |F1:92.09 EM:76.30| batch=32, epoch2, length=512, lr=3e-5, warmup=0.1 |
 | ALBERT-xxlarge	| F1:87.47 EM:66.43 |F1:90.77 EM:75.15| batch=32, epoch2, length=512, lr=3e-5, warmup=0.1 |
 | ALBERT-tiny	| F1:73.95 EM:48.31 |F1:76.21 EM:53.35| batch=32, epoch3, length=512, lr=2e-4, warmup=0.1 |
 | RoBERTa-large	| F1:88.61 EM:69.94 |***F1:92.04 EM:78.50***| batch=32, epoch2, length=256, lr=3e-5, warmup=0.1 |
@@ -618,6 +622,9 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 | BERT-base	| 65.70 | 64.50 | batch=24, length=512, epoch=8, lr=2e-5, warmup=0.1 |
 | BERT-wwm-ext-base	| 67.80 | 68.50 | batch=24, length=512, epoch=8, lr=2e-5, warmup=0.1 |
 | ERNIE-base	| 65.50 | 64.10 | batch=24, length=512, epoch=8, lr=2e-5, warmup=0.1 |
+| ALBERT-base | 60.43 | 59.58 | batch=24, length=512, epoch=8, lr=2e-5, warmup=0.1 |
+| ALBERT-large | 64.07 | 64.41 | batch=24, length=512, epoch=8, lr=2e-5, warmup=0.1 |
+| ALBERT-xlarge | - | - | batch=24, length=512, epoch=8, lr=2e-5, warmup=0.1 |
 | ALBERT-xxlarge | 73.66 | 73.28 | batch=16, length=512, epoch=8, lr=2e-5, warmup=0.1 |
 | ALBERT-tiny	| 50.58 | 50.26 | batch=32, length=512, epoch=8, lr=5e-5, warmup=0.1 |
 | RoBERTa-large	| 67.79 | 67.55 | batch=24, length=256, epoch=8, lr=2e-5, warmup=0.1 |
