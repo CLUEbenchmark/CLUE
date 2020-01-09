@@ -31,7 +31,7 @@ datasets, baselines, pre-trained models, corpus and leaderboard
 #### 阅读理解任务
 
 | 模型 | Score | 参数 | CMRC2018 | CHID | C<sup>3</sup> |
-| :----:| :----: | :----: | :----: |:----: |:----: | :----: |
+| :----:| :----: | :----: | :----: |:----: |:----: |
 | <a href="https://github.com/google-research/bert">BERT-base</a>	| 72.71 | 108M | 71.60 | 82.04 | 64.50 |
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">BERT-wwm-ext</a> | 75.12 | 108M | 73.95 | 82.90 | 68.50 |
 | <a href="https://github.com/PaddlePaddle/ERNIE">ERNIE-base</a>	| 73.69 | 108M | 74.7 | 82.28 | 64.10 |
