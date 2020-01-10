@@ -37,9 +37,9 @@ datasets, baselines, pre-trained models, corpus and leaderboard
 | <a href="https://github.com/PaddlePaddle/ERNIE">ERNIE-base</a>	| 73.69 | 108M | 74.7 | 82.28 | 64.10 |
 | <a href="https://github.com/brightmart/roberta_zh">RoBERTa-large</a> | 76.85 | 334M | ***78.50*** | 84.50 | 67.55 |
 | <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>	| 72.70 | 209M | 66.95 | 83.47 | 67.68 |
-| <a href="https://github.com/google-research/albert">ALBERT-base</a> | - | 10M | 72.90 | - | 59.58 |
-| <a href="https://github.com/google-research/albert">ALBERT-large</a> | - | 16.5M | 75.95 | - | 64.41 |
-| <a href="https://github.com/google-research/albert">ALBERT-xlarge</a> | - | 57.5M | 76.30 | - | 70.32 |
+| <a href="https://github.com/google-research/albert">ALBERT-base</a> | 68.08 | 10M | 72.90 | 71.77 | 59.58 |
+| <a href="https://github.com/google-research/albert">ALBERT-large</a> | 71.51 | 16.5M | 75.95 | 74.18 | 64.41 |
+| <a href="https://github.com/google-research/albert">ALBERT-xlarge</a> | 75.73 | 57.5M | 76.30 | 80.57 | 70.32 |
 | <a href="https://github.com/google-research/albert">ALBERT-xxlarge</a> | 77.19 | 221M | 75.15 | 83.15 | 73.28 |
 | <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a> | 49.05 | 1.8M | 53.35 | 43.53 | 50.26 |
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>  | 75.11 | 108M | 75.20 | 83.62 | 66.50 |
@@ -608,7 +608,9 @@ Why do we need a benchmark for Chinese lanague understand evaluation?
 | BERT-base	|82.20 | 82.04 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
 | BERT-wwm-ext-base	|83.36 |82.9 |	batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
 | ERNIE-base	|82.46 | 82.28 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
-| ALBERT-xlarge	| 79.44 |79.55 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
+| ALBERT-base	| 70.99 |71.77 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
+| ALBERT-large	| 75.10 |74.18 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
+| ALBERT-xlarge	| 81.20 | 80.57 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
 | ALBERT-xxlarge | 83.61 | 83.15 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
 | ALBERT-tiny	| 43.47 |43.53 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
 | RoBERTa-large	| 85.31 |84.50 | batch=24, length=64, epoch=3, lr=2e-5, warmup=0.06 |
