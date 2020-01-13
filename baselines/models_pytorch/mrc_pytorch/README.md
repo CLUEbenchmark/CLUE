@@ -31,7 +31,7 @@
 
 ### 运行
 
-1. 若下载对应tf模型权重，则运行转换脚本:
+1. 下载对应tf模型权重到./check_points/prev_trained_model/对应模型名文件夹中，则运行转换脚本:
 ```
 python convert_tf_checkpoint_to_pytorch.py \
       --tf_checkpoint_path=.check_points/prev_trained_model/roberta_wwm_ext_large/bert_model.ckpt \
