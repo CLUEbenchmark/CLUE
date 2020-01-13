@@ -6,16 +6,13 @@ import random
 
 import numpy as np
 import torch
-from torch import nn
+from google_albert_pytorch_modeling import AlbertConfig, AlbertForMRC
+from preprocess.cmrc2018_evaluate import get_eval
+from pytorch_modeling import BertConfig, BertForQuestionAnswering, ALBertConfig, ALBertForQA
+from tools import official_tokenization as tokenization, utils
+from tools.pytorch_optimization import get_optimization, warmup_linear
 from torch.utils.data import TensorDataset, DataLoader
 from tqdm import tqdm
-
-from baselines.models_pytorch.mrc_pytorch.preprocess.cmrc2018_evaluate import get_eval
-from baselines.models_pytorch.mrc_pytorch.pytorch_modeling import BertConfig, BertForQuestionAnswering, ALBertConfig, \
-    ALBertForQA
-from baselines.models_pytorch.mrc_pytorch.google_albert_pytorch_modeling import AlbertConfig, AlbertForMRC
-from baselines.models_pytorch.mrc_pytorch.tools import official_tokenization as tokenization, utils
-from baselines.models_pytorch.mrc_pytorch.tools.pytorch_optimization import get_optimization, warmup_linear
 
 
 def evaluate(model, args, eval_examples, eval_features, device, global_steps, best_f1, best_em, best_f1_em):
@@ -93,7 +90,7 @@ if __name__ == '__main__':
     parser.add_argument('--warmup_rate', type=float, default=0.05)
     parser.add_argument("--schedule", default='warmup_linear', type=str, help='schedule')
     parser.add_argument("--weight_decay_rate", default=0.01, type=float, help='weight_decay_rate')
-    parser.add_argument('--seed', type=list, default=[123, 456, 789, 556, 977])
+    parser.add_argument('--seed', type=list, default=[123])
     parser.add_argument('--float16', action='store_true', default=False)  # only sm >= 7.0 (tensorcores)
     parser.add_argument('--max_ans_length', type=int, default=50)
     parser.add_argument('--n_best', type=int, default=20)
@@ -120,11 +117,11 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     if args.task_name.lower() == 'drcd':
-        from baselines.models_pytorch.mrc_pytorch.preprocess.DRCD_output import write_predictions
-        from baselines.models_pytorch.mrc_pytorch.preprocess.DRCD_preprocess import json2features
+        from preprocess.DRCD_output import write_predictions
+        from preprocess.DRCD_preprocess import json2features
     elif args.task_name.lower() == 'cmrc2018':
-        from baselines.models_pytorch.mrc_pytorch.preprocess.cmrc2018_output import write_predictions
-        from baselines.models_pytorch.mrc_pytorch.preprocess.cmrc2018_preprocess import json2features
+        from preprocess.cmrc2018_output import write_predictions
+        from preprocess.cmrc2018_preprocess import json2features
     else:
         raise NotImplementedError
 

@@ -4,7 +4,7 @@ import os
 
 from tqdm import tqdm
 
-from ..tools import official_tokenization as tokenization
+from tools import official_tokenization as tokenization
 
 SPIECE_UNDERLINE = '▁'
 

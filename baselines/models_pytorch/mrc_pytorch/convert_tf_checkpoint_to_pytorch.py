@@ -24,7 +24,7 @@ import numpy as np
 import tensorflow as tf
 import torch
 
-from .pytorch_modeling import BertConfig, BertForPreTraining, ALBertConfig, ALBertForPreTraining
+from pytorch_modeling import BertConfig, BertForPreTraining, ALBertConfig, ALBertForPreTraining
 
 
 def convert_tf_checkpoint_to_pytorch(tf_checkpoint_path, bert_config_file, pytorch_dump_path, is_albert):

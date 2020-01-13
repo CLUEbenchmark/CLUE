@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
 
 CURRENT_DIR=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
-export MODEL_NAME=roberta_wwm_ext_large
+export MODEL_NAME=roberta_wwm_ext_base
 export OUTPUT_DIR=$CURRENT_DIR/check_points
 export BERT_DIR=$OUTPUT_DIR/prev_trained_model/$MODEL_NAME
 export GLUE_DIR=$CURRENT_DIR/mrc_data # set your data dir
 TASK_NAME="CMRC2018"
 
 python run_mrc.py \
-  --gpu_ids="0,1,2,3" \
+  --gpu_ids="0,1" \
   --train_epochs=2 \
   --n_batch=32 \
   --lr=3e-5 \
   --warmup_rate=0.1 \
-  --max_seq_length=256 \
+  --max_seq_length=512 \
   --task_name=$TASK_NAME \
   --vocab_file=$BERT_DIR/vocab.txt \
   --bert_config_file=$BERT_DIR/bert_config.json \
@@ -28,7 +28,7 @@ python run_mrc.py \
 python test_mrc.py \
   --gpu_ids="0" \
   --n_batch=32 \
-  --max_seq_length=256 \
+  --max_seq_length=512 \
   --task_name=$TASK_NAME \
   --vocab_file=$BERT_DIR/vocab.txt \
   --bert_config_file=$BERT_DIR/bert_config.json \

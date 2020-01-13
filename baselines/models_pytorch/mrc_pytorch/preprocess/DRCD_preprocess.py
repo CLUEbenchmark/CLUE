@@ -5,7 +5,7 @@ import os
 
 from tqdm import tqdm
 
-from ..tools.langconv import Converter
+from tools.langconv import Converter
 
 SPIECE_UNDERLINE = '▁'
 

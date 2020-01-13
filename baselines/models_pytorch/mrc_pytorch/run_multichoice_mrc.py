@@ -29,16 +29,14 @@ import random
 
 import numpy as np
 import torch
+from google_albert_pytorch_modeling import AlbertConfig, AlbertForMultipleChoice
+from preprocess.CHID_preprocess import RawResult, get_final_predictions, write_predictions, generate_input, evaluate
+from pytorch_modeling import ALBertConfig, ALBertForMultipleChoice
+from pytorch_modeling import BertConfig, BertForMultipleChoice
+from tools.official_tokenization import BertTokenizer
+from tools.pytorch_optimization import get_optimization, warmup_linear
 from torch.utils.data import TensorDataset, DataLoader, RandomSampler, SequentialSampler
 from tqdm import tqdm
-
-from baselines.models_pytorch.mrc_pytorch.preprocess.CHID_preprocess import RawResult, get_final_predictions, \
-    write_predictions, generate_input, evaluate
-from baselines.models_pytorch.mrc_pytorch.pytorch_modeling import ALBertConfig, ALBertForMultipleChoice
-from baselines.models_pytorch.mrc_pytorch.pytorch_modeling import BertConfig, BertForMultipleChoice
-from baselines.models_pytorch.mrc_pytorch.google_albert_pytorch_modeling import AlbertConfig, AlbertForMultipleChoice
-from baselines.models_pytorch.mrc_pytorch.tools.official_tokenization import BertTokenizer
-from baselines.models_pytorch.mrc_pytorch.tools.pytorch_optimization import get_optimization, warmup_linear
 
 
 def reset_model(args, bert_config, model_cls):
@@ -113,7 +111,7 @@ def main():
     parser.add_argument('--seed', type=int, default=42, help="random seed for initialization")
     parser.add_argument('--gradient_accumulation_steps', type=int, default=1,
                         help="Number of updates steps to accumulate before performing a backward/update pass.")
-    parser.add_argument("--do_lower_case", default=True, action='store_true',
+    parser.add_argument("--do_lower_case", default=True,
                         help="Whether to lower case the input text. True for uncased models, False for cased models.")
     parser.add_argument('--fp16', default=False, action='store_true',
                         help="Whether to use 16-bit float precision instead of 32-bit")
@@ -122,7 +120,7 @@ def main():
     print(args)
     os.environ["CUDA_VISIBLE_DEVICES"] = args.gpu_ids
 
-    device = torch.device("cuda" if torch.cuda.is_available() and not args.no_cuda else "cpu")
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     n_gpu = torch.cuda.device_count()
     print("device: {} n_gpu: {}, 16-bits training: {}".format(device, n_gpu, args.fp16))
 

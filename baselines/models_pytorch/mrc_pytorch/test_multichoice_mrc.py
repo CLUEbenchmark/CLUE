@@ -2,18 +2,17 @@ from __future__ import print_function
 
 import argparse
 import os
+from glob import glob
 
 import torch
+from google_albert_pytorch_modeling import AlbertConfig, AlbertForMultipleChoice
+from preprocess.CHID_preprocess import RawResult, get_final_predictions, write_predictions, \
+    generate_input
+from pytorch_modeling import ALBertConfig, ALBertForMultipleChoice
+from pytorch_modeling import BertConfig, BertForMultipleChoice
+from tools.official_tokenization import BertTokenizer
 from torch.utils.data import TensorDataset, DataLoader, SequentialSampler
 from tqdm import tqdm
-
-from baselines.models_pytorch.mrc_pytorch.preprocess.CHID_preprocess import RawResult, get_final_predictions, \
-    InputFeatures, write_predictions, generate_input
-from baselines.models_pytorch.mrc_pytorch.google_albert_pytorch_modeling import AlbertConfig, AlbertForMultipleChoice
-from baselines.models_pytorch.mrc_pytorch.pytorch_modeling import ALBertConfig, ALBertForMultipleChoice
-from baselines.models_pytorch.mrc_pytorch.pytorch_modeling import BertConfig, BertForMultipleChoice
-from baselines.models_pytorch.mrc_pytorch.tools.official_tokenization import BertTokenizer
-from glob import glob
 
 
 def torch_init_model(model, init_restore_dir):
@@ -65,7 +64,7 @@ def main():
                         required=True,
                         type=str,
                         help="Initial checkpoint (usually from a pre-trained BERT model).")
-    parser.add_argument('--output_file', type=str, default='predictions_test.json')
+    parser.add_argument('--output_file', type=str, default='test_predictions.json')
 
     ## Other parameters
     parser.add_argument("--max_seq_length", default=64, type=int,
@@ -76,10 +75,9 @@ def main():
     parser.add_argument("--predict_batch_size", default=16, type=int, help="Total batch size for predictions.")
     parser.add_argument("--do_lower_case",
                         default=True,
-                        action='store_true',
                         help="Whether to lower case the input text. True for uncased models, False for cased models.")
     parser.add_argument('--fp16',
-                        default=True,
+                        default=False,
                         action='store_true',
                         help="Whether to use 16-bit float precision instead of 32-bit")
 
@@ -87,9 +85,8 @@ def main():
     print(args)
     os.environ["CUDA_VISIBLE_DEVICES"] = args.gpu_ids
 
-    device = torch.device("cuda" if torch.cuda.is_available() and not args.no_cuda else "cpu")
-    print("device: {}, distributed training: {}, 16-bits training: {}".format(device, bool(args.local_rank != -1),
-                                                                              args.fp16))
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    print("device: {}, 16-bits training: {}".format(device, args.fp16))
 
     tokenizer = BertTokenizer(vocab_file=args.vocab_file, do_lower_case=args.do_lower_case)
 
@@ -117,7 +114,9 @@ def main():
             args.init_restore_dir.endswith('.bin'):
         pass
     else:
-        args.init_restore_dir = glob(args.init_restore_dir + '*.pth')
+        args.init_restore_dir = glob(args.init_restore_dir + '*.pth') + \
+                                glob(args.init_restore_dir + '*.pt') + \
+                                glob(args.init_restore_dir + '*.bin')
         assert len(args.init_restore_dir) == 1
         args.init_restore_dir = args.init_restore_dir[0]
     torch_init_model(model, args.init_restore_dir)

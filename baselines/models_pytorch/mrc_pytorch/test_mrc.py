@@ -5,15 +5,13 @@ import os
 from glob import glob
 
 import torch
-from torch import nn
 from torch.utils.data import TensorDataset, DataLoader
 from tqdm import tqdm
 
-from baselines.models_pytorch.mrc_pytorch.pytorch_modeling import BertConfig, BertForQuestionAnswering, ALBertConfig, \
-    ALBertForQA
-from baselines.models_pytorch.mrc_pytorch.google_albert_pytorch_modeling import AlbertConfig, AlbertForMRC
-from baselines.models_pytorch.mrc_pytorch.tools import official_tokenization as tokenization
-from baselines.models_pytorch.mrc_pytorch.tools import utils
+from pytorch_modeling import BertConfig, BertForQuestionAnswering, ALBertConfig, ALBertForQA
+from google_albert_pytorch_modeling import AlbertConfig, AlbertForMRC
+from tools import official_tokenization as tokenization
+from tools import utils
 
 
 def test(model, args, eval_examples, eval_features, device):
@@ -63,7 +61,7 @@ if __name__ == '__main__':
 
     # training parameter
     parser.add_argument('--n_batch', type=int, default=32)
-    parser.add_argument('--float16', type=bool, default=False)  # only sm >= 7.0 (tensorcores)
+    parser.add_argument('--float16', action='store_true', default=False)  # only sm >= 7.0 (tensorcores)
     parser.add_argument('--max_ans_length', type=int, default=50)
     parser.add_argument('--n_best', type=int, default=20)
     parser.add_argument('--vocab_size', type=int, default=21128)
@@ -83,11 +81,11 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     if args.task_name.lower() == 'drcd':
-        from baselines.models_pytorch.mrc_pytorch.preprocess.DRCD_output import write_predictions
-        from baselines.models_pytorch.mrc_pytorch.preprocess.DRCD_preprocess import json2features
+        from preprocess.DRCD_output import write_predictions
+        from preprocess.DRCD_preprocess import json2features
     elif args.task_name.lower() == 'cmrc2018':
-        from baselines.models_pytorch.mrc_pytorch.preprocess.cmrc2018_output import write_predictions
-        from baselines.models_pytorch.mrc_pytorch.preprocess.cmrc2018_preprocess import json2features
+        from preprocess.cmrc2018_output import write_predictions
+        from preprocess.cmrc2018_preprocess import json2features
     else:
         raise NotImplementedError
 
