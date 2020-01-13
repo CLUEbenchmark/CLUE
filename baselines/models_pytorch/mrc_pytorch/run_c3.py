@@ -18,27 +18,24 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import csv
-import os
-import logging
 import argparse
-import random
+import csv
+import json
+import logging
+import os
 import pickle
-from tqdm import tqdm
+import random
 
 import numpy as np
 import torch
+from google_albert_pytorch_modeling import AlbertConfig, AlbertForMultipleChoice
+from pytorch_modeling import BertConfig, BertForMultipleChoice, ALBertConfig, ALBertForMultipleChoice
+from tools import official_tokenization as tokenization
+from tools import utils
+from tools.pytorch_optimization import get_optimization, warmup_linear
 from torch.utils.data import TensorDataset, DataLoader, RandomSampler, SequentialSampler
 from torch.utils.data.distributed import DistributedSampler
-from baselines.models_pytorch.mrc_pytorch.tools import utils
-
-from baselines.models_pytorch.mrc_pytorch.tools import official_tokenization as tokenization
-from baselines.models_pytorch.mrc_pytorch.google_albert_pytorch_modeling import AlbertConfig, AlbertForMultipleChoice
-from baselines.models_pytorch.mrc_pytorch.pytorch_modeling import BertConfig, BertForMultipleChoice, ALBertConfig, \
-    ALBertForMultipleChoice
-from baselines.models_pytorch.mrc_pytorch.tools.pytorch_optimization import get_optimization, warmup_linear
-
-import json
+from tqdm import tqdm
 
 n_class = 4
 reverse_order = False
@@ -346,11 +343,11 @@ def main():
                              "Sequences longer than this will be truncated, and sequences shorter \n"
                              "than this will be padded.")
     parser.add_argument("--do_train",
-                        default=True,
+                        default=False,
                         action='store_true',
                         help="Whether to run training.")
     parser.add_argument("--do_eval",
-                        default=True,
+                        default=False,
                         action='store_true',
                         help="Whether to run eval on the dev set.")
     parser.add_argument("--train_batch_size",
@@ -390,7 +387,6 @@ def main():
                         action='store_true',
                         help="Whether not to use CUDA when available")
     parser.add_argument('--float16',
-                        type=bool,
                         action='store_true',
                         default=False)
     parser.add_argument("--local_rank",
@@ -819,7 +815,7 @@ def main():
 
         # the test submission order can't be changed
         submission_test = os.path.join(args.output_dir, "submission_test.json")
-        test_preds = [np.argmax(logits_) for logits_ in logits_all]
+        test_preds = [int(np.argmax(logits_)) for logits_ in logits_all]
         with open(submission_test, "w") as f:
             json.dump(test_preds, f)
 
