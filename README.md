@@ -98,7 +98,7 @@ tensorflow 1.12 /cuda 9.0 /cudnn7.0
 测评入口：<a href="http://www.CLUEbenchmark.com">我要提交</a>
 <img src="https://github.com/CLUEbenchmark/CLUE/blob/master/resources/img/CLUEbenchmark.jpg"  width="90%" height="45%" />
 
-语料库(CLUECorpus)：语言建模、预训练或生成型任务
+语料库(CLUECorpus2020)：语言建模、预训练或生成型任务
 ---------------------------------------------------------------------
 Corpus for Langauge Modelling, Pre-training, Generating tasks
 
