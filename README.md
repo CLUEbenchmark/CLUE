@@ -20,8 +20,8 @@ datasets, baselines, pre-trained models, corpus and leaderboard
 | <a href="https://github.com/ymcui/Chinese-PreTrained-XLNet">XLNet-mid</a>  | 68.65% | 200M | 70.50% | 56.24% | 57.85% | 81.25% |  64.4%   | 81.26%     |
 | <a href="https://github.com/google-research/albert">ALBERT-xxlarge</a>      | 71.04% | 235M   | 75.6%  | **59.46%** | 62.89% | **83.14%** |  61.54%   | **83.63%**  |
 | <a href="https://github.com/google-research/albert">ALBERT-xlarge</a>      | 68.91% | 60M   | 69.96%  | 57.36% | 59.50% | 81.13% |  64.34%   | 81.20%  |
-| <a href="https://github.com/google-research/albert">ALBERT-large</a>      | 63.86% | 18M   | 72.24%  | 55.16% | 55.31% | 68.38% |  51.75%   | 80.30%  |
-| <a href="https://github.com/google-research/albert">ALBERT-base</a>      | 62.10% | 12M   | 72.55%  | 55.06% | 36.07% | 77.58% |  64.34%   | 66.97%  |
+| <a href="https://github.com/google-research/albert">ALBERT-large</a>      | 67.63% | 18M   | 74%  | 55.16% | 55.31% | 78.77% |  62.24%   | 80.30%  |
+| <a href="https://github.com/google-research/albert">ALBERT-base</a>      | 67.44% | 12M   | 72.55%  | 55.06% | 56.58% | 77.58% |  64.34%   | 78.5%  |
 | <a href="https://github.com/brightmart/albert_zh">ALBERT-tiny</a>        | 61.92% | **4M** | 69.92% | 53.35% | 48.71% | 70.61% |  58.5%   | 74.56% |
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>   | 71.72% | 108M  | 74.04% | 56.94% | 60.31% | 80.51% | 67.8% | 81.0% |
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-large</a> | **73.45%** | 330M | **76.55%** | 58.61% | **62.98%** | 82.12% |  **74.6%** | 82.13% |
