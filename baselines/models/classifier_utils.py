@@ -386,7 +386,7 @@ class CMNLIProcessor(DataProcessor):
   def _create_examples_json(self, file_name, set_type):
     """Creates examples for the training and dev sets."""
     examples = []
-    lines = open(file_name, "r", encoding="utf-8")
+    lines = tf.gfile.Open(file_name, "r", encoding="utf-8")
     index = 0
     for line in lines:
       line_obj = json.loads(line)
