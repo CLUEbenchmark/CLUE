@@ -772,8 +772,9 @@ def main(_):
   is_per_host = tf.contrib.tpu.InputPipelineConfig.PER_HOST_V2
   # Cloud TPU: Invalid TPU configuration, ensure ClusterResolver is passed to tpu.
   print("###tpu_cluster_resolver:", tpu_cluster_resolver)
+  print("###save_checkpoints_steps:", FLAGS.save_checkpoints_steps)
   run_config = tf.contrib.tpu.RunConfig(
-      keep_checkpoint_max=0,
+      keep_checkpoint_max=FLAGS.keep_checkpoint_max,
       cluster=tpu_cluster_resolver,
       master=FLAGS.master,
       model_dir=FLAGS.output_dir,
@@ -791,6 +792,8 @@ def main(_):
     print("###length of total train_examples:", len(train_examples))
     num_train_steps = int(len(train_examples) / FLAGS.train_batch_size * FLAGS.num_train_epochs)
     num_warmup_steps = int(num_train_steps * FLAGS.warmup_proportion)
+    print("###num_train_steps :", num_train_steps)
+    print("###num_warmup_steps :", num_warmup_steps)
 
   model_fn = model_fn_builder(
       bert_config=bert_config,
