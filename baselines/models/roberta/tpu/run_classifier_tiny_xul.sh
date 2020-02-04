@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 CURRENT_DIR=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 CURRENT_TIME=$(date "+%Y%m%d-%H%M%S")
-CLUE_DATA_DIR=gs://data_zxw/nlp/CLUE
-CLUE_PREV_TRAINED_MODEL_DIR=gs://models_zxw/prev_trained_models/nlp
-CLUE_OUTPUT_DIR=gs://models_zxw/fine_tuning_models/nlp
+CLUE_DATA_DIR=gs://cluebenchmark/tasks_json/afqmc_public
+CLUE_PREV_TRAINED_MODEL_DIR=gs://clue_pretrain_corpus/roberta_tiny2/tiny_normal/ckpt-normal
+CLUE_OUTPUT_DIR=gs://clue_pretrain_corpus/roberta_tiny2/fine_tuning_clue/afqmc
 run_task() {
 TASK_NAME=$1
 MODEL_NAME=$2
@@ -36,19 +36,21 @@ python3 $CURRENT_DIR/../run_classifier.py \
       $COMMON_ARGS \
       --do_train=true \
       --do_eval=false \
-      --do_predict=false
+      --do_predict=false 
 
 echo "Start predict..."
 python3 $CURRENT_DIR/../run_classifier.py \
       $COMMON_ARGS \
       --do_train=false \
       --do_eval=true \
-      --do_predict=true
+      --do_predict=true 
 }
 ##command##task_name##model_name##max_seq_length##train_batch_size##learning_rate##num_train_epochs##save_checkpoints_steps##tpu_ip
-run_task cmnli roberta_tiny_normal 128 16 1e-5 5 1000 10.100.247.82
+#run_task cmnli roberta_tiny_normal 128 16 1e-5 5 1000 10.100.247.82
 #run_task wsc roberta_tiny_normal 128 16 1e-5 10 10 10.100.247.82
 #run_task csl roberta_tiny_normal 128 16 1e-5 5 100 10.100.247.82
-#run_task afqmc roberta_tiny_normal 128 16 1e-5 5 100 10.100.247.82
+run_task afqmc roberta_tiny_normal 128 16 2e-5 3 1000 10.240.1.26
 #run_task tnews roberta_tiny_normal 128 16 1e-5 5 100 10.100.247.82
 #run_task iflytek roberta_tiny_normal 128 16 1e-5 5 100 10.100.247.82
+
+
