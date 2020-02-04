@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 CURRENT_DIR=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 CURRENT_TIME=$(date "+%Y%m%d-%H%M%S")
-CLUE_DATA_DIR=gs://cluebenchmark/tasks_json/afqmc_public
+CLUE_DATA_DIR=gs://cluebenchmark/tasks_json
 CLUE_PREV_TRAINED_MODEL_DIR=gs://clue_pretrain_corpus/roberta_tiny2/tiny_normal/ckpt-normal
 CLUE_OUTPUT_DIR=gs://clue_pretrain_corpus/roberta_tiny2/fine_tuning_clue/afqmc
 run_task() {
