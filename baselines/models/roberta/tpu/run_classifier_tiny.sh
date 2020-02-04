@@ -15,7 +15,7 @@ LEARNING_RATE=$5
 NUM_TRAIN_EPOCHS=$6
 SAVE_CHECKPOINTS_STEPS=$7
 TPU_IP=$8
-OUTPUT_DIR=$CLUE_OUTPUT_DIR/$MODEL_NAME/$CURRENT_TIME
+OUTPUT_DIR=$CLUE_OUTPUT_DIR/$MODEL_NAME/$TASK_NAME/$CURRENT_TIME
 COMMON_ARGS="
       --task_name=$TASK_NAME \
       --data_dir=$DATA_DIR \
@@ -32,20 +32,24 @@ COMMON_ARGS="
       --num_tpu_cores=8 --use_tpu=True --tpu_name=grpc://$TPU_IP:8470
 "
 echo "Start running..."
-python $CURRENT_DIR/../run_classifier.py \
+python3 $CURRENT_DIR/../run_classifier.py \
       $COMMON_ARGS \
       --do_train=true \
       --do_eval=false \
       --do_predict=false 
 
 echo "Start predict..."
-python $CURRENT_DIR/../run_classifier.py \
+python3 $CURRENT_DIR/../run_classifier.py \
       $COMMON_ARGS \
       --do_train=false \
       --do_eval=true \
       --do_predict=true 
 }
-
-#run_task cmnli roberta_tiny_normal 128 16 1e-5 3 100 10.100.247.82
-run_task wsc roberta_tiny_normal 128 16 1e-5 3 10 10.100.247.82
+##command##task_name##model_name##max_seq_length##train_batch_size##learning_rate##num_train_epochs##save_checkpoints_steps##tpu_ip
+run_task cmnli roberta_tiny_normal 128 16 1e-5 5 1000 10.100.247.82
+#run_task wsc roberta_tiny_normal 128 16 1e-5 10 10 10.100.247.82
+#run_task csl roberta_tiny_normal 128 16 1e-5 5 100 10.100.247.82
+#run_task afqmc roberta_tiny_normal 128 16 1e-5 5 100 10.100.247.82
+#run_task tnews roberta_tiny_normal 128 16 1e-5 5 100 10.100.247.82
+#run_task iflytek roberta_tiny_normal 128 16 1e-5 5 100 10.100.247.82
 

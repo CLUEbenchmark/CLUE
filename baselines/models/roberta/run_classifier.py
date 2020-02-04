@@ -93,7 +93,7 @@ flags.DEFINE_float("learning_rate", 5e-5, "The initial learning rate for Adam.")
 flags.DEFINE_float("num_train_epochs", 3.0,
                    "Total number of training epochs to perform.")
 
-flags.DEFINE_float("keep_checkpoint_max", 1.0,
+flags.DEFINE_integer("keep_checkpoint_max", 1,
                    "Total number of training keep checkpoint.")
 
 flags.DEFINE_float(
@@ -101,7 +101,7 @@ flags.DEFINE_float(
     "Proportion of training to perform linear learning rate warmup for. "
     "E.g., 0.1 = 10% of training.")
 
-flags.DEFINE_integer("save_checkpoints_steps", 1000,
+flags.DEFINE_integer("save_checkpoints_steps", 100,
                      "How often to save the model checkpoint.")
 
 flags.DEFINE_integer("iterations_per_loop", 1000,
@@ -772,14 +772,22 @@ def main(_):
   is_per_host = tf.contrib.tpu.InputPipelineConfig.PER_HOST_V2
   # Cloud TPU: Invalid TPU configuration, ensure ClusterResolver is passed to tpu.
   print("###tpu_cluster_resolver:", tpu_cluster_resolver)
+  print("###save_checkpoints_steps:", FLAGS.save_checkpoints_steps)
+  print("###keep_checkpoint_max:", FLAGS.keep_checkpoint_max)
+  if FLAGS.do_train:
+    iterations_per_loop = int(min(FLAGS.iterations_per_loop,              
+                                  FLAGS.save_checkpoints_steps))          
+  else:
+    iterations_per_loop = FLAGS.iterations_per_loop 
+
   run_config = tf.contrib.tpu.RunConfig(
-      keep_checkpoint_max=0,
+      keep_checkpoint_max=FLAGS.keep_checkpoint_max,
       cluster=tpu_cluster_resolver,
       master=FLAGS.master,
       model_dir=FLAGS.output_dir,
       save_checkpoints_steps=FLAGS.save_checkpoints_steps,
       tpu_config=tf.contrib.tpu.TPUConfig(
-          iterations_per_loop=FLAGS.iterations_per_loop,
+          iterations_per_loop=iterations_per_loop,
           num_shards=FLAGS.num_tpu_cores,
           per_host_input_for_training=is_per_host))
 
@@ -791,6 +799,8 @@ def main(_):
     print("###length of total train_examples:", len(train_examples))
     num_train_steps = int(len(train_examples) / FLAGS.train_batch_size * FLAGS.num_train_epochs)
     num_warmup_steps = int(num_train_steps * FLAGS.warmup_proportion)
+    print("###num_train_steps :", num_train_steps)
+    print("###num_warmup_steps :", num_warmup_steps)
 
   model_fn = model_fn_builder(
       bert_config=bert_config,
