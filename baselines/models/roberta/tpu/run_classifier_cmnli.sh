@@ -28,15 +28,18 @@ COMMON_ARGS="
 "
 echo "Start running..."
 python $CURRENT_DIR/../run_classifier.py \
+      $COMMON_ARGS \
       --do_train=true \
       --do_eval=false \
-      --do_predict=false \
+      --do_predict=false 
 
 echo "Start predict..."
-python $CURENT_DIR/../run_classifier.py \
+python $CURRENT_DIR/../run_classifier.py \
+      $COMMON_ARGS \
       --do_train=false \
       --do_eval=true \
-      --do_predict=true \
+      --do_predict=true 
 }
+
 run_task cmnli roberta_tiny_normal 128 16 1e-5 3
 
