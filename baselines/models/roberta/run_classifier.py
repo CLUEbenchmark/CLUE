@@ -93,6 +93,9 @@ flags.DEFINE_float("learning_rate", 5e-5, "The initial learning rate for Adam.")
 flags.DEFINE_float("num_train_epochs", 3.0,
                    "Total number of training epochs to perform.")
 
+flags.DEFINE_float("keep_checkpoint_max", 1.0,
+                   "Total number of training keep checkpoint.")
+
 flags.DEFINE_float(
     "warmup_proportion", 0.1,
     "Proportion of training to perform linear learning rate warmup for. "
@@ -770,6 +773,7 @@ def main(_):
   # Cloud TPU: Invalid TPU configuration, ensure ClusterResolver is passed to tpu.
   print("###tpu_cluster_resolver:", tpu_cluster_resolver)
   run_config = tf.contrib.tpu.RunConfig(
+      keep_checkpoint_max=0,
       cluster=tpu_cluster_resolver,
       master=FLAGS.master,
       model_dir=FLAGS.output_dir,
@@ -782,7 +786,7 @@ def main(_):
   train_examples = None
   num_train_steps = None
   num_warmup_steps = None
-  if FLAGS.do_train:
+  if FLAGS.do_train or FLAGS.do_eval:
     train_examples = processor.get_train_examples(FLAGS.data_dir)  # TODO
     print("###length of total train_examples:", len(train_examples))
     num_train_steps = int(len(train_examples) / FLAGS.train_batch_size * FLAGS.num_train_epochs)
@@ -922,7 +926,8 @@ def main(_):
 
     global_step, best_perf_global_step, best_perf = _best_trial_info()
     writer = tf.gfile.GFile(output_eval_file, "w")
-    while global_step < FLAGS.train_step:
+    while global_step < num_train_steps:
+    #while global_step < FLAGS.train_step:
       steps_and_files = {}
       filenames = tf.gfile.ListDirectory(FLAGS.output_dir)
       for filename in filenames:

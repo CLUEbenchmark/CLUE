@@ -13,6 +13,8 @@ MAX_SEQ_LENGTH=$3
 TRAIN_BATCH_SIZE=$4
 LEARNING_RATE=$5
 NUM_TRAIN_EPOCHS=$6
+SAVE_CHECKPOINTS_STEPS=$7
+TPU_IP=$8
 OUTPUT_DIR=$CLUE_OUTPUT_DIR/$MODEL_NAME/$CURRENT_TIME
 COMMON_ARGS="
       --task_name=$TASK_NAME \
@@ -24,7 +26,10 @@ COMMON_ARGS="
       --train_batch_size=$TRAIN_BATCH_SIZE \
       --learning_rate=$LEARNING_RATE \
       --num_train_epochs=$NUM_TRAIN_EPOCHS \
-      --output_dir=$OUTPUT_DIR
+      --save_checkpoints_steps=$SAVE_CHECKPOINTS_STEPS \
+      --output_dir=$OUTPUT_DIR \
+      --keep_checkpoint_max=0 \
+      --num_tpu_cores=8 --use_tpu=True --tpu_name=grpc://$TPU_IP:8470
 "
 echo "Start running..."
 python $CURRENT_DIR/../run_classifier.py \
@@ -41,5 +46,6 @@ python $CURRENT_DIR/../run_classifier.py \
       --do_predict=true 
 }
 
-run_task cmnli roberta_tiny_normal 128 16 1e-5 3
+#run_task cmnli roberta_tiny_normal 128 16 1e-5 3 100 10.100.247.82
+run_task wsc roberta_tiny_normal 128 16 1e-5 3 10 10.100.247.82
 
