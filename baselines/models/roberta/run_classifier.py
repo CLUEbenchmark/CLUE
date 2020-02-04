@@ -773,6 +773,13 @@ def main(_):
   # Cloud TPU: Invalid TPU configuration, ensure ClusterResolver is passed to tpu.
   print("###tpu_cluster_resolver:", tpu_cluster_resolver)
   print("###save_checkpoints_steps:", FLAGS.save_checkpoints_steps)
+  print("###keep_checkpoint_max:", FLAGS.keep_checkpoint_max)
+  if FLAGS.do_train:
+    iterations_per_loop = int(min(FLAGS.iterations_per_loop,              
+                                  FLAGS.save_checkpoints_steps))          
+  else:
+    iterations_per_loop = FLAGS.iterations_per_loop 
+
   run_config = tf.contrib.tpu.RunConfig(
       keep_checkpoint_max=FLAGS.keep_checkpoint_max,
       cluster=tpu_cluster_resolver,
@@ -780,7 +787,7 @@ def main(_):
       model_dir=FLAGS.output_dir,
       save_checkpoints_steps=FLAGS.save_checkpoints_steps,
       tpu_config=tf.contrib.tpu.TPUConfig(
-          iterations_per_loop=FLAGS.iterations_per_loop,
+          iterations_per_loop=iterations_per_loop,
           num_shards=FLAGS.num_tpu_cores,
           per_host_input_for_training=is_per_host))
 

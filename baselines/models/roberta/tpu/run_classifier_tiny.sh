@@ -46,6 +46,10 @@ python3 $CURRENT_DIR/../run_classifier.py \
       --do_predict=true 
 }
 ##command##task_name##model_name##max_seq_length##train_batch_size##learning_rate##num_train_epochs##save_checkpoints_steps##tpu_ip
-#run_task cmnli roberta_tiny_normal 128 16 1e-5 3 100 10.100.247.82
-run_task wsc roberta_tiny_normal 128 16 1e-5 10 10 10.100.247.82
+run_task cmnli roberta_tiny_normal 128 16 1e-5 5 1000 10.100.247.82
+#run_task wsc roberta_tiny_normal 128 16 1e-5 10 10 10.100.247.82
+#run_task csl roberta_tiny_normal 128 16 1e-5 5 100 10.100.247.82
+#run_task afqmc roberta_tiny_normal 128 16 1e-5 5 100 10.100.247.82
+#run_task tnews roberta_tiny_normal 128 16 1e-5 5 100 10.100.247.82
+#run_task iflytek roberta_tiny_normal 128 16 1e-5 5 100 10.100.247.82
 
