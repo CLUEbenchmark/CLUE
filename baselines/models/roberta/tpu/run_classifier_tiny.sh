@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 CURRENT_DIR=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
+export PYTHONPATH=$CURRENT_DIR/../../:$PYTHONPATH
 CURRENT_TIME=$(date "+%Y%m%d-%H%M%S")
 CLUE_DATA_DIR=gs://data_zxw/nlp/CLUE
 CLUE_PREV_TRAINED_MODEL_DIR=gs://models_zxw/prev_trained_models/nlp
