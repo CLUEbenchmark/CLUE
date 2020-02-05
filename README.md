@@ -64,10 +64,10 @@ DRCD、CMRC2018: 繁体、简体抽取式阅读理解(F1, EM)；CHID: 成语多�
            cd CLUE/baselines/models_pytorch/classifier_pytorch
        或阅读理解任务：
            cd CLUE/baselines/models_pytorch/mrc_pytorch
-    3、运行对应任务的脚本: 会自动下载模型和任务数据并开始运行。
+    3、运行对应任务的脚本(GPU方式): 会自动下载模型和任务数据并开始运行。
        bash run_classifier_xxx.sh
        如运行 bash run_classifier_iflytek.sh 会开始iflytek任务的训练  
-    4、tpu使用方式  
+    4、tpu使用方式(可选)  
         cd CLUE/baselines/models/roberta/tpu  
         sh run_classifier_tiny.sh即可运行所有分类任务（注意更换里面的路径,模型地址和tpu ip）  
 
