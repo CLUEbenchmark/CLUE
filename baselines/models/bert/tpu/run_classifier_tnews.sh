@@ -2,10 +2,12 @@ CURRENT_DIR=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 CURRENT_TIME=$(date "+%Y%m%d-%H%M%S")
 TASK_NAME="tnews"
 
+GS="gs" # change it to yours
+TPU_IP="1.1.1.1" # chagne it to your
 # please create folder 
-export PREV_TRAINED_MODEL_DIR=gs://clue_storage/prev_trained_models/nlp/bert-base/chinese_L-12_H-768_A-12
-export DATA_DIR=gs://clue_storage/nlp/chineseGLUEdatasets.v0.0.1/${TASK_NAME}
-export OUTPUT_DIR=gs://clue_storage/fine_tuning_models/nlp/bert-base/chinese_L-12_H-768_A-12/tpu/$TASK_NAME/$CURRENT_TIME
+export PREV_TRAINED_MODEL_DIR=$GS/prev_trained_models/nlp/bert-base/chinese_L-12_H-768_A-12
+export DATA_DIR=$GS/nlp/chineseGLUEdatasets.v0.0.1/${TASK_NAME}
+export OUTPUT_DIR=$GS/fine_tuning_models/nlp/bert-base/chinese_L-12_H-768_A-12/tpu/$TASK_NAME/$CURRENT_TIME
 
 
 MODEL_NAME="chinese_L-12_H-768_A-12"
@@ -80,4 +82,4 @@ python $CURRENT_DIR/../run_classifier.py \
   --learning_rate=2e-5 \
   --num_train_epochs=3.0 \
   --output_dir=$OUTPUT_DIR \
-  --num_tpu_cores=8 --use_tpu=True --tpu_name=grpc://192.168.0.2:8470
+  --num_tpu_cores=8 --use_tpu=True --tpu_name=grpc://$TPU_IP:8470
