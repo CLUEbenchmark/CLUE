@@ -3,9 +3,9 @@ CURRENT_TIME=$(date "+%Y%m%d-%H%M%S")
 TASK_NAME="tnews"
 
 # please create folder 
-export PREV_TRAINED_MODEL_DIR=gs://models_ljy/prev_trained_models/nlp/bert-base/chinese_L-12_H-768_A-12
-export DATA_DIR=gs://data_ljy/nlp/chineseGLUEdatasets.v0.0.1/${TASK_NAME}
-export OUTPUT_DIR=gs://models_ljy/fine_tuning_models/nlp/bert-base/chinese_L-12_H-768_A-12/tpu/$TASK_NAME/$CURRENT_TIME
+export PREV_TRAINED_MODEL_DIR=gs://clue_storage/prev_trained_models/nlp/bert-base/chinese_L-12_H-768_A-12
+export DATA_DIR=gs://clue_storage/nlp/chineseGLUEdatasets.v0.0.1/${TASK_NAME}
+export OUTPUT_DIR=gs://clue_storage/fine_tuning_models/nlp/bert-base/chinese_L-12_H-768_A-12/tpu/$TASK_NAME/$CURRENT_TIME
 
 
 MODEL_NAME="chinese_L-12_H-768_A-12"
