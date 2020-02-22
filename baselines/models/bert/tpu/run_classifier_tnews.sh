@@ -65,6 +65,8 @@ gsutil -m cp $BERT_PRETRAINED_MODELS_DIR/* $PREV_TRAINED_MODEL_DIR
 
 gsutil -m cp $GLUE_DATA_DIR/$TASK_NAME/* $DATA_DIR
 
+cd $CURRENT_DIR
+echo "Start running..."
 python $CURRENT_DIR/../run_classifier.py \
   --task_name=$TASK_NAME \
   --do_train=true \
