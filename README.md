@@ -48,7 +48,7 @@ datasets, baselines, pre-trained models, corpus and leaderboard
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-ext</a>  | 75.11 | 108M | 75.20 | 83.62 | 66.50 |
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">RoBERTa-wwm-large</a> | ***79.05*** | 330M | 77.95 | ***85.37*** | ***73.82*** |
 
-DRCD、CMRC2018: 繁体、简体抽取式阅读理解(F1, EM)；CHID: 成语多分类阅读理解(Acc)；C<sup>3</sup>: 多选中文阅读理解(Acc)；Score总分是通过计算6个数据集得分平均值获得。
+DRCD、CMRC2018: 繁体、简体抽取式阅读理解(F1, EM)；CHID: 成语多分类阅读理解(Acc)；C<sup>3</sup>: 多选中文阅读理解(Acc)；Score总分是通过计算3个数据集得分平均值获得。
 
 注：阅读理解上述指标中F1和EM共存的情况下，取EM为最终指标。CMRC2018结果为CLUE专用独立测试集。
 
