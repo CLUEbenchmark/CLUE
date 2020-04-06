@@ -185,7 +185,8 @@ CMNLI数据由两部分组成：XNLI和MNLI。数据来自于fiction，telephone
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/cmnli_public.zip" > CMNLI数据集下载</a>
 
 
-##### 5. CLUEWSC2020: WSC Winograd模式挑战中文版，新版2020-03-25发布  <a href='https://storage.googleapis.com/cluebenchmark/tasks/cluewsc2020_public.zip'>CLUEWSC2020数据集下载</a>
+
+##### 5. CLUEWSC2020: WSC Winograd模式挑战中文版，新版2020-03-25发布  
 
 Winograd Scheme Challenge（WSC）是一类代词消歧的任务。新版与原CLUE项目WSC内容不同
 
@@ -210,6 +211,8 @@ Winograd Scheme Challenge（WSC）是一类代词消歧的任务。新版与原C
 数据集大小：
 - 训练集：1244
 - 开发集：304
+<a href='https://storage.googleapis.com/cluebenchmark/tasks/cluewsc2020_public.zip'>CLUEWSC2020数据集下载</a>
+
 
 ##### 6. CSL 论文关键词识别 Keyword Recognition
 [中文科技文献数据集(CSL)](https://github.com/P01son6415/chinese-scientific-literature-dataset)取自中文论文摘要及其关键词，论文选自部分中文社会科学和自然科学核心期刊。
