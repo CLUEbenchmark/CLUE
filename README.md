@@ -182,7 +182,7 @@ CMNLI数据由两部分组成：XNLI和MNLI。数据来自于fiction，telephone
     {"sentence1": "新的权利已经足够好了", "sentence2": "每个人都很喜欢最新的福利", "label": "neutral"}
     每一条数据有三个属性，从前往后分别是 句子1，句子2，蕴含关系标签。其中label标签有三种：neutral，entailment，contradiction。
 ```
-   <a href="https://storage.googleapis.com/cluebenchmark/tasks/cmnli_public.zip" > CMNLI数据集下载</a>
+<a href="https://storage.googleapis.com/cluebenchmark/tasks/cmnli_public.zip" > CMNLI数据集下载</a>
 
 
 
@@ -211,7 +211,8 @@ Winograd Scheme Challenge（WSC）是一类代词消歧的任务。新版与原C
 数据集大小：
 - 训练集：1244
 - 开发集：304
-<a href='https://storage.googleapis.com/cluebenchmark/tasks/cluewsc2020_public.zip'>CLUEWSC2020数据集下载</a>
+
+  <a href='https://storage.googleapis.com/cluebenchmark/tasks/cluewsc2020_public.zip'>CLUEWSC2020数据集下载</a>
 
 
 ##### 6. CSL 论文关键词识别 Keyword Recognition
