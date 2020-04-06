@@ -185,26 +185,31 @@ CMNLI数据由两部分组成：XNLI和MNLI。数据来自于fiction，telephone
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/cmnli_public.zip" > CMNLI数据集下载</a>
 
 
-##### 5. WSC Winograd模式挑战中文版  The Winograd Schema Challenge,Chinese Version
-威诺格拉德模式挑战赛是图灵测试的一个变种，旨在判定AI系统的常识推理能力。参与挑战的计算机程序需要回答一种特殊但简易的常识问题：代词消歧问题，即对给定的名词和代词判断是否指代一致。
-```
-数据量：训练集(532)，验证集(104)，测试集(143) 
-例子：
-{"target": 
-    {"span2_index": 28, 
-     "span1_index": 0, 
-     "span1_text": "马克", 
-     "span2_text": "他"
-    }, 
-     "idx": 0, 
+##### 5. CLUEWSC2020: WSC Winograd模式挑战中文版，新版2020-03-25发布  <a href='https://storage.googleapis.com/cluebenchmark/tasks/cluewsc2020_public.zip'>CLUEWSC2020数据集下载</a>
+
+Winograd Scheme Challenge（WSC）是一类代词消歧的任务。新版与原CLUE项目WSC内容不同
+
+即判断句子中的代词指代的是哪个名词。题目以真假判别的方式出现，如：
+
+句子：这时候放在床上枕头旁边的手机响了，我感到奇怪，因为欠费已被停机两个月，现在它突然响了。需要判断“它”指代的是“床”、“枕头”，还是“手机”？
+
+数据来源：数据有CLUE benchmark提供，从中国现当代作家文学作品中抽取，再经语言专家人工挑选、标注。
+
+数据形式：
+
+     {"target": 
+         {"span2_index": 37, 
+         "span1_index": 5, 
+         "span1_text": "床", 
+         "span2_text": "它"}, 
+     "idx": 261, 
      "label": "false", 
-     "text": "马克告诉皮特许多关于他自己的谎言，皮特也把这些谎言写进了他的书里。他应该多怀疑。"
-}
-    其中label标签，true表示指代一致，false表示指代不一致。
-```
+     "text": "这时候放在床上枕头旁边的手机响了，我感到奇怪，因为欠费已被停机两个月，现在它突然响了。"}
+     "true"表示代词确实是指代span1_text中的名词的，"false"代表不是。
 
-   <a href="https://storage.googleapis.com/cluebenchmark/tasks/wsc_public.zip" > WSC数据集下载</a>
-
+数据集大小：
+- 训练集：1244
+- 开发集：304
 
 ##### 6. CSL 论文关键词识别 Keyword Recognition
 [中文科技文献数据集(CSL)](https://github.com/P01son6415/chinese-scientific-literature-dataset)取自中文论文摘要及其关键词，论文选自部分中文社会科学和自然科学核心期刊。
