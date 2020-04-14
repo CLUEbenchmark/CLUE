@@ -713,11 +713,11 @@ Cite Us:
 ---------------------------------------------------------------------
     @misc{CLUEbenchmark_2020,
       title={CLUE benchmark},
-      author={anonymous},
+      author={Liang Xu, Xuanwei Zhang, Lu Li, Hai Hu, Chenjie Cao, Weitang Liu, Junyi Li, Yudong Li, Kai Sun, Yechen Xu, Yiming Cui, Cong Yu, Qianqian Dong, Yin Tian, Dian Yu, Bo Shi, Jun Zeng, Rongzhao Wang, Weijian Xie, Yanting Li, Yina Patterson, Zuoyu Tian, Yiwen Zhang, He Zhou, Shaoweihua Liu, Qipeng Zhao, Cong Yue, Xinrui Zhang, Zhengliang Yang, Zhenzhong Lan},
       year={2020},
       publisher={Github},
       journal={GitHub repository},
-      howpublished={\url{https://https://github.com/CLUEbenchmark/CLUE}},
+      howpublished={\url{https://arxiv.org/abs/2004.05986}},
     }
 
 Reference:
