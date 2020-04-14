@@ -7,7 +7,7 @@ datasets, baselines, pre-trained models, corpus and leaderboard
 
 中文任务基准测评(CLUE benchmark)-排行榜 Leaderboard
 ---------------------------------------------------------------------
-#####  排行榜会定期更新                     数据来源: www.CLUEbenchmark.com
+#####  排行榜会定期更新     数据来源: www.CLUEbenchmark.com     论文:https://arxiv.org/abs/2004.05986
 
 #### 分类任务(v1版本,正式版)
 
