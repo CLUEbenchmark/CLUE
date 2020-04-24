@@ -69,10 +69,10 @@ DRCD、CMRC2018: 繁体、简体抽取式阅读理解(F1, EM)；CHID: 成语多�
        如运行 bash run_classifier_iflytek.sh 会开始iflytek任务的训练  
     4、tpu使用方式(可选)  
         cd CLUE/baselines/models/bert/tpu  
-        sh run_classifier_tnews.sh即可测试tnews任务（注意更换里面的gs路径和tpu ip）。数据和模型会自动下载和上传。
+        bash run_classifier_tnews.sh即可测试tnews任务（注意更换里面的gs路径和tpu ip）。数据和模型会自动下载和上传。
         
         cd CLUE/baselines/models/roberta/tpu  
-        sh run_classifier_tiny.sh即可运行所有分类任务（注意更换里面的路径,模型地址和tpu ip）  
+        bash run_classifier_tiny.sh即可运行所有分类任务（注意更换里面的路径,模型地址和tpu ip）  
 
         
 ### 运行环境
@@ -91,7 +91,7 @@ tensorflow 1.12 /cuda 9.0 /cudnn7.0
 
     分类任务: 
         在CLUE/baselines/models/bert目录下执行
-        sh run_classifier_xxx.sh predict 
+        bash run_classifier_xxx.sh predict 
         即可在output_dir下得到相应的提交文件json格式结果xxx_prdict.json
 
    或见<a href="https://github.com/CLUEbenchmark/CLUE/blob/master/baselines/models/bert/run_classifier.py#L932-L951">代码实现</a>
