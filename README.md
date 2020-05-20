@@ -7,7 +7,7 @@ datasets, baselines, pre-trained models, corpus and leaderboard
 
 中文任务基准测评(CLUE benchmark)-排行榜 Leaderboard
 ---------------------------------------------------------------------
-#####  排行榜会定期更新           数据来源: www.CLUEbenchmark.com                <a href='https://arxiv.org/abs/2004.05986'>论文</a>
+#####  排行榜会定期更新           数据来源: www.CLUEbenchmarks.com                <a href='https://arxiv.org/abs/2004.05986'>论文</a>
 
 #### 分类任务(v1版本,正式版)
 
@@ -105,7 +105,7 @@ tensorflow 1.12 /cuda 9.0 /cudnn7.0
 
 测评系统 Leaderboard
 ---------------------------------------------------------------------
-测评入口：<a href="http://www.CLUEbenchmark.com">我要提交</a>
+测评入口：<a href="http://www.CLUEbenchmarks.com">我要提交</a>
 <img src="https://github.com/CLUEbenchmark/CLUE/blob/master/resources/img/CLUEbenchmark.jpg"  width="90%" height="45%" />
 
 语料库(CLUECorpus2020)：语言建模、预训练或生成型任务
