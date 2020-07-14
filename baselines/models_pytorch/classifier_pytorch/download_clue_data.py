@@ -20,7 +20,7 @@ TASK2PATH = {
     "csl": "https://storage.googleapis.com/cluebenchmark/tasks/csl_public.zip",
     "iflytek": "https://storage.googleapis.com/cluebenchmark/tasks/iflytek_public.zip",
     "tnews": "https://storage.googleapis.com/cluebenchmark/tasks/tnews_public.zip",
-    "wsc": "https://storage.googleapis.com/cluebenchmark/tasks/wsc_public.zip",
+    "wsc": "https://storage.googleapis.com/cluebenchmark/tasks/cluewsc2020_public.zip",
     'cmrc': "https://storage.googleapis.com/cluebenchmark/tasks/cmrc2018_public.zip",
     "chid": "https://storage.googleapis.com/cluebenchmark/tasks/chid_public.zip",
     "drcd": "https://storage.googleapis.com/cluebenchmark/tasks/drcd_public.zip",
