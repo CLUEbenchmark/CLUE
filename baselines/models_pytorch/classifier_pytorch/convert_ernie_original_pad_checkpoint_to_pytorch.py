@@ -1,5 +1,7 @@
+#!/usr/bin/env python
+# encoding: utf-8
 """
-File Description: https://github.com/nghuyong/ERNIE-Pytorch/blob/master/convert.py
+File Description: https://github.com/nghuyong/ERNIE-Pytorch
 Author: nghuyong
 Mail: nghuyong@163.com
 Created Time: 2020/7/14
@@ -14,8 +16,10 @@ from paddle import fluid
 
 
 # downloading ERNIE1.0: https://ernie-github.cdn.bcebos.com/model-ernie1.0.1.tar.gz and unzip
+# downloading ERNIE-tiny: https://ernie-github.cdn.bcebos.com/model-ernie_tiny.1.tar.gz and unzip
+# downloading ERNIE-tiny: https://ernie-github.cdn.bcebos.com/model-ernie2.0-en.1.tar.gz and unzip
 
-def build_params_map():
+def build_params_map(attention_num=12):
     """
     build params map from paddle-paddle's ERNIE to transformer's BERT
     :return:
@@ -27,8 +31,8 @@ def build_params_map():
         'ln.weight': 'bert.embeddings.LayerNorm.gamma',
         'ln.bias': 'bert.embeddings.LayerNorm.beta',
     })
-    # add 12 layers attention
-    for i in range(12):
+    # add attention layers
+    for i in range(attention_num):
         weight_map[f'encoder_stack.block.{i}.attn.q.weight'] = f'bert.encoder.layer.{i}.attention.self.query.weight'
         weight_map[f'encoder_stack.block.{i}.attn.q.bias'] = f'bert.encoder.layer.{i}.attention.self.query.bias'
         weight_map[f'encoder_stack.block.{i}.attn.k.weight'] = f'bert.encoder.layer.{i}.attention.self.key.weight'
@@ -78,6 +82,8 @@ def extract_and_convert(input_dir, output_dir):
     print('=' * 20 + 'save config file' + '=' * 20)
     config = json.load(open(os.path.join(input_dir, 'ernie_config.json'), 'rt', encoding='utf-8'))
     config['layer_norm_eps'] = 1e-5
+    if 'sent_type_vocab_size' in config:
+        config['type_vocab_size'] = config['sent_type_vocab_size']
     json.dump(config, open(os.path.join(output_dir, 'config.json'), 'wt', encoding='utf-8'), indent=4)
     print('=' * 20 + 'save vocab file' + '=' * 20)
     shutil.copyfile(os.path.join(input_dir, 'vocab.txt'), os.path.join(output_dir, 'vocab.txt'))
