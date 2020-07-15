@@ -15,9 +15,11 @@ import torch
 from paddle import fluid
 
 
-# downloading ERNIE1.0: https://ernie-github.cdn.bcebos.com/model-ernie1.0.1.tar.gz and unzip
-# downloading ERNIE-tiny: https://ernie-github.cdn.bcebos.com/model-ernie_tiny.1.tar.gz and unzip
-# downloading ERNIE-tiny: https://ernie-github.cdn.bcebos.com/model-ernie2.0-en.1.tar.gz and unzip
+# downloading paddlepaddle model
+# ERNIE1.0: https://ernie-github.cdn.bcebos.com/model-ernie1.0.1.tar.gz and unzip
+# ERNIE-tiny: https://ernie-github.cdn.bcebos.com/model-ernie_tiny.1.tar.gz and unzip
+# ERNIE2.0 https://ernie-github.cdn.bcebos.com/model-ernie2.0-en.1.tar.gz and unzip
+# ERNIE large https://ernie-github.cdn.bcebos.com/model-ernie2.0-large-en.1.tar.gz and unzip
 
 def build_params_map(attention_num=12):
     """
@@ -67,9 +69,18 @@ def build_params_map(attention_num=12):
 def extract_and_convert(input_dir, output_dir):
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
+    print('=' * 20 + 'save config file' + '=' * 20)
+    config = json.load(open(os.path.join(input_dir, 'ernie_config.json'), 'rt', encoding='utf-8'))
+    config['layer_norm_eps'] = 1e-5
+    if 'sent_type_vocab_size' in config:
+        config['type_vocab_size'] = config['sent_type_vocab_size']
+    config['intermediate_size'] = 4 * config['hidden_size']
+    json.dump(config, open(os.path.join(output_dir, 'config.json'), 'wt', encoding='utf-8'), indent=4)
+    print('=' * 20 + 'save vocab file' + '=' * 20)
+    shutil.copyfile(os.path.join(input_dir, 'vocab.txt'), os.path.join(output_dir, 'vocab.txt'))
     print('=' * 20 + 'extract weights' + '=' * 20)
     state_dict = collections.OrderedDict()
-    weight_map = build_params_map()
+    weight_map = build_params_map(attention_num=config['num_hidden_layers'])
     with fluid.dygraph.guard():
         paddle_paddle_params, _ = D.load_dygraph(os.path.join(input_dir, 'saved_weights'))
     for weight_name, weight_value in paddle_paddle_params.items():
@@ -79,14 +90,6 @@ def extract_and_convert(input_dir, output_dir):
         state_dict[weight_map[weight_name]] = torch.FloatTensor(weight_value)
         print(weight_name, '->', weight_map[weight_name], weight_value.shape)
     torch.save(state_dict, os.path.join(output_dir, "pytorch_model.bin"))
-    print('=' * 20 + 'save config file' + '=' * 20)
-    config = json.load(open(os.path.join(input_dir, 'ernie_config.json'), 'rt', encoding='utf-8'))
-    config['layer_norm_eps'] = 1e-5
-    if 'sent_type_vocab_size' in config:
-        config['type_vocab_size'] = config['sent_type_vocab_size']
-    json.dump(config, open(os.path.join(output_dir, 'config.json'), 'wt', encoding='utf-8'), indent=4)
-    print('=' * 20 + 'save vocab file' + '=' * 20)
-    shutil.copyfile(os.path.join(input_dir, 'vocab.txt'), os.path.join(output_dir, 'vocab.txt'))
 
 
 if __name__ == '__main__':
