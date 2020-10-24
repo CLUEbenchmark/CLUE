@@ -208,7 +208,7 @@ CLUE benchmark的定位 Vision
 OCNLI，即原生中文自然语言推理数据集，是第一个非翻译的、使用原生汉语的大型中文自然语言推理数据集。
 
 ```
-<a href="????" > OCNLI数据集下载</a>
+<a href="https://storage.googleapis.com/cluebenchmark/tasks/ocnli_public.zip" > OCNLI数据集下载</a>
 
 
 ##### --4.CMNLI 语言推理任务 Chinese Multi-Genre NLI (该任务在排行榜中被中文原版OCNLI替代)
