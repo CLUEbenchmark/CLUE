@@ -203,31 +203,15 @@ CLUE benchmark的定位 Vision
 	"genre": "gov",
 	"prem_id": "gov_755",
 	"id": 2
-} {
-	"level": "hard",
-	"sentence1": "一些地方财政收支矛盾较大",
-	"sentence2": "地方经历了经济危机",
-	"label": "neutral",
-	"genre": "gov",
-	"prem_id": "gov_333",
-	"id": 3
-} {
-	"level": "medium",
-	"sentence1": "等他回来,我们就出去吃啊.",
-	"sentence2": "我们在等他",
-	"label": "entailment",
-	"genre": "phone",
-	"prem_id": "phone_443",
-	"id": 4
-}
+} 
 
 OCNLI，即原生中文自然语言推理数据集，是第一个非翻译的、使用原生汉语的大型中文自然语言推理数据集。
 
 ```
-<a href="https://storage.googleapis.com/cluebenchmark/tasks/cmnli_public.zip" > CMNLI数据集下载</a>
+<a href="????" > OCNLI数据集下载</a>
 
 
-##### -4.CMNLI 语言推理任务 Chinese Multi-Genre NLI
+##### --4.CMNLI 语言推理任务 Chinese Multi-Genre NLI (该任务在排行榜中被中文原版OCNLI替代)
 
 CMNLI数据由两部分组成：XNLI和MNLI。数据来自于fiction，telephone，travel，government，slate等，对原始MNLI数据和XNLI数据进行了中英文转化，保留原始训练集，合并XNLI中的dev和MNLI中的matched作为CMNLI的dev，合并XNLI中的test和MNLI中的mismatched作为CMNLI的test，并打乱顺序。该数据集可用于判断给定的两个句子之间属于蕴涵、中立、矛盾关系。
 
