@@ -174,7 +174,60 @@ CLUE benchmark的定位 Vision
 ```
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/iflytek_public.zip" > IFLYTEK'数据集下载</a>
 
-##### 4.CMNLI 语言推理任务 Chinese Multi-Genre NLI
+##### 4.<a href='https://github.com/cluebenchmark/OCNLI'>OCNLI 中文原版自然语言推理</a> Original Chinese Natural Language Inference
+ 
+```
+    数据量：train: 50k， dev(3k), test(3k) 
+    例子：
+     {
+	"level": "medium",
+	"sentence1": "身上裹一件工厂发的棉大衣,手插在袖筒里",
+	"sentence2": "身上至少一件衣服",
+	"label": "entailment",
+	"genre": "lit",
+	"prem_id": "lit_635",
+	"id": 0
+} {
+	"level": "easy",
+	"sentence1": "东、中、西部地区要加强多种形式的合作,在协调发展中逐步实现共同富裕",
+	"sentence2": "东、中、西部地区发展存在不协调",
+	"label": "entailment",
+	"genre": "gov",
+	"prem_id": "gov_1260",
+	"id": 1
+} {
+	"level": "hard",
+	"sentence1": "外贸经营权进一步放开",
+	"sentence2": "外贸经营权经历了先收缩再放开的过程。",
+	"label": "neutral",
+	"genre": "gov",
+	"prem_id": "gov_755",
+	"id": 2
+} {
+	"level": "hard",
+	"sentence1": "一些地方财政收支矛盾较大",
+	"sentence2": "地方经历了经济危机",
+	"label": "neutral",
+	"genre": "gov",
+	"prem_id": "gov_333",
+	"id": 3
+} {
+	"level": "medium",
+	"sentence1": "等他回来,我们就出去吃啊.",
+	"sentence2": "我们在等他",
+	"label": "entailment",
+	"genre": "phone",
+	"prem_id": "phone_443",
+	"id": 4
+}
+
+OCNLI，即原生中文自然语言推理数据集，是第一个非翻译的、使用原生汉语的大型中文自然语言推理数据集。
+
+```
+<a href="https://storage.googleapis.com/cluebenchmark/tasks/cmnli_public.zip" > CMNLI数据集下载</a>
+
+
+##### -4.CMNLI 语言推理任务 Chinese Multi-Genre NLI
 
 CMNLI数据由两部分组成：XNLI和MNLI。数据来自于fiction，telephone，travel，government，slate等，对原始MNLI数据和XNLI数据进行了中英文转化，保留原始训练集，合并XNLI中的dev和MNLI中的matched作为CMNLI的dev，合并XNLI中的test和MNLI中的mismatched作为CMNLI的test，并打乱顺序。该数据集可用于判断给定的两个句子之间属于蕴涵、中立、矛盾关系。
 
