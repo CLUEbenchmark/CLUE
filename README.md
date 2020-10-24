@@ -175,9 +175,10 @@ CLUE benchmark的定位 Vision
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/iflytek_public.zip" > IFLYTEK'数据集下载</a>
 
 ##### 4.<a href='https://github.com/cluebenchmark/OCNLI'>OCNLI 中文原版自然语言推理</a> Original Chinese Natural Language Inference
- 
+OCNLI，即原生中文自然语言推理数据集，是第一个非翻译的、使用原生汉语的大型中文自然语言推理数据集。
+
 ```
-    数据量：train: 50k， dev(3k), test(3k) 
+   数据量：train: 50k， dev(3k), test(3k) 
     例子：
      {
 	"level": "medium",
@@ -204,8 +205,6 @@ CLUE benchmark的定位 Vision
 	"prem_id": "gov_755",
 	"id": 2
 } 
-
-OCNLI，即原生中文自然语言推理数据集，是第一个非翻译的、使用原生汉语的大型中文自然语言推理数据集。
 
 ```
 <a href="https://storage.googleapis.com/cluebenchmark/tasks/ocnli_public.zip" > OCNLI数据集下载</a>
