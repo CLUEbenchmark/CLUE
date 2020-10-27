@@ -25,7 +25,8 @@ fi
 cd $TASK_NAME
 if [ ! -f "train.json" ] || [ ! -f "dev.json" ] || [ ! -f "test.json" ]; then
   rm *
-  wget https://storage.googleapis.com/cluebenchmark/tasks/wsc_public.zip
+  # wget https://storage.googleapis.com/cluebenchmark/tasks/wsc_public.zip # this is old version of wsc
+  wget https://storage.googleapis.com/cluebenchmark/tasks/cluewsc2020_public.zip # now use new version of wsc,that is CLUEWSC2020
   unzip wsc_public.zip
   rm wsc_public.zip
 else
