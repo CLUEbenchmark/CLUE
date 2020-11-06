@@ -7,7 +7,7 @@ datasets, baselines, pre-trained models, corpus and leaderboard
 
 Update: <a href='https://mp.weixin.qq.com/s/LtkKuKdpg8Lg3XCEMWpaMw'> CLUE论文被计算语言学国际会议 COLING2020高分录用</a>
 
-中文任务基准测评(CLUE benchmark)-排行榜 Leaderboard
+中文任务测评基准(CLUE benchmark)-排行榜 Leaderboard
 ---------------------------------------------------------------------
 #####  排行榜会定期更新           数据来源: www.CLUEbenchmarks.com                <a href='https://arxiv.org/abs/2004.05986'>论文</a>
 
