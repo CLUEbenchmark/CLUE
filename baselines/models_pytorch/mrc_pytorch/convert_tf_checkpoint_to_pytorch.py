@@ -116,7 +116,6 @@ if __name__ == "__main__":
     parser.add_argument("--is_albert",
                         default=False,
                         action='store_true',
-                        type=bool,
                         help="whether is albert?")
     args = parser.parse_args()
     convert_tf_checkpoint_to_pytorch(args.tf_checkpoint_path,
