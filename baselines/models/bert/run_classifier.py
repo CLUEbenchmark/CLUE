@@ -29,6 +29,7 @@ import optimization
 import tokenization
 import tensorflow as tf
 import sys
+import pdb
 sys.path.append('..')
 from classifier_utils import *
 
@@ -772,6 +773,7 @@ def main(_):
   num_warmup_steps = None
   if FLAGS.do_train:
     print("data_dir:", FLAGS.data_dir)
+    pdb.set_trace()
     train_examples = processor.get_train_examples(FLAGS.data_dir)
     num_train_steps = int(
         len(train_examples) / FLAGS.train_batch_size * FLAGS.num_train_epochs)

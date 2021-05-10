@@ -15,4 +15,7 @@ prev_trained_model
 .idea
 .idea/CLUE.iml
 .idea/misc.iml
+baselines/models_pytorch/classifier_pytorch/CLUEdatasets
+baselines/models_pytorch/classifier_pytorch/*output
+baselines/models/bert/*output
 __pycache__

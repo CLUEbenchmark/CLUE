@@ -39,6 +39,8 @@ def compute_metrics(task_name, preds, labels):
         return {"acc": simple_accuracy(preds, labels)}
     elif task_name == "cmnli":
         return {"acc": simple_accuracy(preds, labels)}
+    elif task_name == "ocnli":
+        return {"acc": simple_accuracy(preds, labels)}
     elif task_name == "iflytek":
         return {"acc": simple_accuracy(preds, labels)}
     elif task_name == "wsc":
