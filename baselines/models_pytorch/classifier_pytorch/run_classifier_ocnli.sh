@@ -5,7 +5,8 @@
 # @Last Modified time: 2020-01-01 11:40:23
 
 TASK_NAME="ocnli"
-MODEL_NAME="bert-base-chinese"
+MODEL_NAME="./chinese_roberta_wwm_ext_L-12_H-768_A-12"
+#MODEL_NAME="bert-base-chinese"
 CURRENT_DIR=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 export CUDA_VISIBLE_DEVICES="0"
 export BERT_PRETRAINED_MODELS_DIR=$CURRENT_DIR/prev_trained_model
