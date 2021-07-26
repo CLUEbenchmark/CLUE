@@ -163,7 +163,7 @@ CLUE benchmark的定位 Vision
      每一条数据有三个属性，从前往后分别是 分类ID，分类名称，新闻字符串（仅含标题）。
 ```
    <a href="https://storage.googleapis.com/cluebenchmark/tasks/tnews_public.zip" > TNEWS'数据集下载</a>
-
+           
 ##### 3.IFLYTEK' 长文本分类 Long Text classification
 该数据集共有1.7万多条关于app应用描述的长文本标注数据，包含和日常生活相关的各类应用主题，共119个类别："打车":0,"地图导航":1,"免费WIFI":2,"租车":3,….,"女性":115,"经营":116,"收款":117,"其他":118(分别用0-118表示)。
 ```
