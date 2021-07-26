@@ -13,7 +13,7 @@ Update: <a href='https://mp.weixin.qq.com/s/LtkKuKdpg8Lg3XCEMWpaMw'> CLUE论文�
 
 #### 分类任务(v1版本,正式版)
 
-| 模型   | Score  | 参数    | AFQMC  | TNEWS'  | IFLYTEK'   | CMNLI   | WSC | CSL  |
+| 模型   | Score  | 参数    | AFQMC  | TNEWS'  | IFLYTEK'   | CMNLI   | CLUEWSC2020 | CSL  |
 | :----:| :----: | :----: | :----: |:----: |:----: |:----: |:----: |:----: |
 | <a href="https://github.com/google-research/bert">BERT-base</a>        | 68.77 | 108M |  73.70 | 56.58  | 60.29 | 79.69 |  62.0 | 80.36 |
 | <a href="https://github.com/ymcui/Chinese-BERT-wwm">BERT-wwm-ext</a>      | 68.75 | 108M  | 74.07 | 56.84  | 59.43 | 80.42 | 61.1  | 80.63 |
@@ -30,7 +30,7 @@ Update: <a href='https://mp.weixin.qq.com/s/LtkKuKdpg8Lg3XCEMWpaMw'> CLUE论文�
 
 
     注：AFQMC:蚂蚁语义相似度(Acc)；TNEWS:文本分类(Acc)；IFLYTEK:长文本分类(Acc); CMNLI: 自然语言推理中文版; 
-       COPA: 因果推断; WSC: Winograd模式挑战中文版; CSL: 中国科学文献数据集; Score总分是通过计算6个数据集得分平均值获得；
+       COPA: 因果推断; WSC:CLUEWSC2020,即Winograd模式挑战中文版; CSL: 中国科学文献数据集; Score总分是通过计算6个数据集得分平均值获得；
       '代表对原数据集使用albert_tiny模型筛选后获得，数据集与原数据集不同,从而可能导致在这些数据集上albert_tiny表现略低.
 
 #### 阅读理解任务
@@ -225,6 +225,8 @@ CMNLI数据由两部分组成：XNLI和MNLI。数据来自于fiction，telephone
 
 
 ##### 5. CLUEWSC2020: WSC Winograd模式挑战中文版，新版2020-03-25发布  
+
+<a href="https://github.com/CLUEbenchmark/CLUEWSC2020">git项目地址</a>
 
 Winograd Scheme Challenge（WSC）是一类代词消歧的任务。新版与原CLUE项目WSC内容不同
 
