@@ -819,6 +819,4 @@ Reference:
 
 9、<a href="https://arxiv.org/pdf/1907.11692.pdf">RoBERTa: A Robustly Optimized BERT Pretraining Approach</a>
 	
-10、CBLUE: A Chinese Biomedical Language Understanding Evaluation Benchmark <a href="https://github.com/CBLUEbenchmark/CBLUE">[git]</a>  
-	<a href="https://arxiv.org/abs/2106.08087">[pdf]</a>
-	<a href="https://tianchi.aliyun.com/dataset/dataDetail?dataId=95414&lang=en-us">[web]</a>
+10、CBLUE: A Chinese Biomedical Language Understanding Evaluation Benchmark <a href="https://github.com/CBLUEbenchmark/CBLUE">[git]</a>  <a href="https://arxiv.org/abs/2106.08087">[pdf]</a> <a href="https://tianchi.aliyun.com/dataset/dataDetail?dataId=95414&lang=en-us">[web]</a>
