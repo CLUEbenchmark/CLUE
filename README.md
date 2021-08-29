@@ -76,19 +76,6 @@ DRCD、CMRC2018: 繁体、简体抽取式阅读理解(F1, EM)；CHID: 成语多�
         cd CLUE/baselines/models/roberta/tpu  
         bash run_classifier_tiny.sh即可运行所有分类任务（注意更换里面的路径,模型地址和tpu ip）  
 
-        
-### 运行环境
-tensorflow 1.12 /cuda 9.0 /cudnn7.0
-### 工具包 Toolkit
-
-运行方式：
-
-    pip install PyCLUE 
-    cd PyCLUE/examples/classifications
-    python3 run_clue_task.py
-
-支持10个任务、9大模型、自定义任务，见 <a href="https://github.com/CLUEbenchmark/PyCLUE">PyCLUE toolkit</a>
-
 ### 生成提交文件
 
     分类任务: 
@@ -104,6 +91,19 @@ tensorflow 1.12 /cuda 9.0 /cudnn7.0
          具体参数和使用方法可见对应的run_mrc_xxx.sh
     ​    
  <a href="https://storage.googleapis.com/cluebenchmark/tasks/clue_submit_examples.zip">提交样例下载</a>
+ 
+ 
+### 运行环境
+tensorflow 1.12 /cuda 9.0 /cudnn7.0
+### 工具包 Toolkit
+
+运行方式：
+
+    pip install PyCLUE 
+    cd PyCLUE/examples/classifications
+    python3 run_clue_task.py
+
+支持10个任务、9大模型、自定义任务，见 <a href="https://github.com/CLUEbenchmark/PyCLUE">PyCLUE toolkit</a>
 
 测评系统 Leaderboard
 ---------------------------------------------------------------------
