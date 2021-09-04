@@ -66,7 +66,7 @@ if [ $# == 0 ]; then:
       --learning_rate=2e-5 \
       --num_train_epochs=3.0 \
       --output_dir=$CURRENT_DIR/${TASK_NAME}_output/
-elif [ $1 == "predict" ]; then
+elif [ $1 == "predict" ]; then:
     echo "Start predict..."
     python run_classifier.py \
       --task_name=$TASK_NAME \
