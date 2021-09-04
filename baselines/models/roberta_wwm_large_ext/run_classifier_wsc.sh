@@ -53,7 +53,7 @@ echo "Finish download model."
 # run task
 cd $CURRENT_DIR
 echo "Start running..."
-if [ $1 == "predict" ]; then
+if [ $# == 0 ]; then
     python run_classifier.py \
       --task_name=$TASK_NAME \
       --do_train=true \
