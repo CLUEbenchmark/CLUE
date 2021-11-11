@@ -35,7 +35,7 @@ def pearson_and_spearman(preds, labels):
 
 def compute_metrics(task_name, preds, labels):
     assert len(preds) == len(labels)
-    if task_name == "cls":
+    if task_name == "csl":
         return {"acc": simple_accuracy(preds, labels)}
     elif task_name == "cmnli":
         return {"acc": simple_accuracy(preds, labels)}
