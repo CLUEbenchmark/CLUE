@@ -122,13 +122,13 @@ Corpus for Langauge Modelling, Pre-training, Generating tasks
 
 包含如下子语料库（总共14G语料）：
 
-1、<a href="https://pan.baidu.com/s/195M7H5w3N8shYlqCjVL0_Q">新闻语料 news2016zh_corpus</a>: 8G语料，分成两个上下两部分，总共有2000个小文件。  密码:mzlk
+1、<a href="https://pan.baidu.com/s/1MLLM-CdM6BhJkj8D0u3atA">新闻语料 news2016zh_corpus</a>: 8G语料，分成两个上下两部分，总共有2000个小文件。  密码:
 
-2、<a href="https://pan.baidu.com/s/1Vk2PihMiZNmWvA2agPb1iA">社区互动-语料 webText2019zh_corpus</a>：3G语料，包含3G文本，总共有900多个小文件。 密码:qvlq
+2、<a href="https://drive.google.com/open?id=1u2yW_XohbYL2YAK6Bzc5XrngHstQTf0v">社区互动-语料 webText2019zh_corpus</a>：3G语料，包含3G文本，总共有900多个小文件。
 
-3、<a href="https://pan.baidu.com/s/1XrM-x70PY4JEb0xCoB_mUw">维基百科-语料 wiki2019zh_corpus</a>：1.1G左右文本，包含300左右小文件。  密码:rja4
+3、<a href="https://pan.baidu.com/s/1uPMlIY3vhusdnhAge318TA">维基百科-语料 wiki2019zh_corpus</a>：1.1G左右文本，包含300左右小文件。  
 
-4、<a href="https://pan.baidu.com/s/16cPwCcPduMNGdRSuILhEuQ">评论数据-语料 comments2019zh_corpus</a>：2.3G左右文本，共784个小文件，包括点评评论547个、亚马逊评论227个，合并<a href="https://github.com/InsaneLife/ChineseNLPCorpus">ChineseNLPCorpus</a>的多个评论数据，清洗、格式转换、拆分成小文件。  密码:5kwk
+4、<a href="https://pan.baidu.com/s/18-ufaJJtf7ullzHMWXvhFw">评论数据-语料 comments2019zh_corpus</a>：2.3G左右文本，共784个小文件，包括点评评论547个、亚马逊评论227个，合并<a href="https://github.com/InsaneLife/ChineseNLPCorpus">ChineseNLPCorpus</a>的多个评论数据，清洗、格式转换、拆分成小文件。  密码:k265
 
 这些语料，你可以通过上面这两个项目，清洗数据并做格式转换获得；
 
