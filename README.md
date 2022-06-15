@@ -5,7 +5,7 @@ datasets, baselines, pre-trained models, corpus and leaderboard
 
 我们会选择一系列有一定代表性的任务对应的数据集，做为我们测试基准的数据集。这些数据集会覆盖不同的任务、数据量、任务难度。
 
-体验Demo：<a href="https://www.qclue.cn/demo" target="_" style="color:red">数据集自动标注工具--释放AI潜力！</a>
+体验Demo：<a href="https://www.modelfun.cn/demo" target="_" style="color:red">数据集自动标注工具--释放AI潜力！</a>
 
 Update: <a href='https://mp.weixin.qq.com/s/LtkKuKdpg8Lg3XCEMWpaMw'> CLUE论文被计算语言学国际会议 COLING2020高分录用</a>
 
