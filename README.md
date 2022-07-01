@@ -5,7 +5,7 @@ datasets, baselines, pre-trained models, corpus and leaderboard
 
 我们会选择一系列有一定代表性的任务对应的数据集，做为我们测试基准的数据集。这些数据集会覆盖不同的任务、数据量、任务难度。
 
-优秀的国产深度学习框架PaddlePaddle中的<a href="https://github.com/CLUEbenchmark/CLUE/tree/master/baselines/paddlenlp" target="_" style="color:red">NLP核心项目PaddleNLP现以全面支持CLUE</a>
+优秀的国产深度学习框架PaddlePaddle中的NLP核心项目：<a href="https://github.com/CLUEbenchmark/CLUE/tree/master/baselines/paddlenlp" target="_" style="color:red">PaddleNLP现以全面支持CLUE基准</a>
 
 体验Demo：<a href="https://www.modelfun.cn/demo" target="_" style="color:red">数据集自动标注工具--释放AI潜力！</a>
 
