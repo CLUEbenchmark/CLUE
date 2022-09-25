@@ -5,11 +5,11 @@ datasets, baselines, pre-trained models, corpus and leaderboard
 
 我们会选择一系列有一定代表性的任务对应的数据集，做为我们测试基准的数据集。这些数据集会覆盖不同的任务、数据量、任务难度。
 
+Update: <a href="https://www.cluebenchmarks.com/clueai.html">三分钟定制一个NLP的API--社区版免费、不需要标注数据、训练和算力</a>
+
 优秀的国产深度学习框架PaddlePaddle中的NLP核心项目：<a href="https://github.com/CLUEbenchmark/CLUE/tree/master/baselines/paddlenlp" target="_" style="color:red">PaddleNLP现以全面支持CLUE基准</a>
 
-<a href="https://www.cluebenchmarks.com/clueai.html">三分钟定制一个NLP的API--社区版免费、不需要标注数据、训练和算力</a>
-
-Update: <a href='https://mp.weixin.qq.com/s/LtkKuKdpg8Lg3XCEMWpaMw'> CLUE论文被计算语言学国际会议 COLING2020高分录用</a>
+<a href='https://mp.weixin.qq.com/s/LtkKuKdpg8Lg3XCEMWpaMw'> CLUE论文被计算语言学国际会议 COLING2020高分录用</a>
 
 中文任务测评基准(CLUE benchmark)-排行榜 Leaderboard
 ---------------------------------------------------------------------
