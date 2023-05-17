@@ -7,7 +7,7 @@ datasets, baselines, pre-trained models, corpus and leaderboard
 
 Update:
 
-<a href="https://www.cluebenchmarks.com/clueai.html">clueai工具包: 三分钟三行代码定制一个NLP的API（零样本学习）</a>
+<a href="https://github.com/CLUEbenchmark/SuperCLUE">SuperCLUE: 中文通用大模型综合性测评基准</a>
 
 优秀的国产深度学习框架PaddlePaddle中的NLP核心项目：<a href="https://github.com/CLUEbenchmark/CLUE/tree/master/baselines/paddlenlp" target="_" style="color:red">PaddleNLP现以全面支持CLUE基准</a>
 
