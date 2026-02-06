@@ -5,9 +5,13 @@ datasets, baselines, pre-trained models, corpus and leaderboard
 
 我们会选择一系列有一定代表性的任务对应的数据集，做为我们测试基准的数据集。这些数据集会覆盖不同的任务、数据量、任务难度。
 
-** Update 2025-09-08: **
+** Update 2026-02-06: **
 
-SuperCLUE官网更新： <a href='https://www.superclueai.com/' target="__blank">www.SuperClueAI.com</a>
+SuperCLUE官网更新（2026-02-06）： <a href='https://www.superclueai.com/' target="__blank">www.SuperClueAI.com</a>
+
+中文大模型基准测评2025年年度报告(New!)：<a href='https://www.cluebenchmarks.com/superclue_2025' target="__blank">中文大模型基准测评2025年年度报告</a>
+
+State Of Chinese AI 2025(New!)：<a href='https://www.cluebenchmarks.com/superclue_2025_en' target="__blank">State Of Chinese AI 2025</a>
 
 
 优秀的国产深度学习框架PaddlePaddle中的NLP核心项目：<a href="https://github.com/CLUEbenchmark/CLUE/tree/master/baselines/paddlenlp" target="_" style="color:red">PaddleNLP现以全面支持CLUE基准</a>
